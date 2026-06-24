@@ -1,0 +1,21 @@
+User-agent: Googlebot
+Allow: /
+Disallow: /api/
+
+User-agent: Bingbot
+Allow: /
+Disallow: /api/
+
+User-agent: Twitterbot
+Allow: /
+Disallow: /api/
+
+User-agent: facebookexternalhit
+Allow: /
+Disallow: /api/
+
+User-agent: *
+Allow: /
+Disallow: /api/
+
+Sitemap: https://saatvikcars.in/sitemap.xml

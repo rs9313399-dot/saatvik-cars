@@ -1,0 +1,143 @@
+'use client';
+
+import { motion } from 'framer-motion';
+import { Mountain, Car, Zap, Crown, Users, Bolt, ArrowRight } from 'lucide-react';
+import { useStore } from '@/lib/store';
+import { toast } from 'sonner';
+import type { LucideIcon } from 'lucide-react';
+
+interface Category {
+  name: string;
+  icon: LucideIcon;
+  filterValue: string;
+}
+
+const categories: Category[] = [
+  { name: 'SUV', icon: Mountain, filterValue: 'suv' },
+  { name: 'Sedan', icon: Car, filterValue: 'sedan' },
+  { name: 'Hatchback', icon: Zap, filterValue: 'hatchback' },
+  { name: 'Luxury', icon: Crown, filterValue: 'luxury' },
+  { name: 'MUV/MPV', icon: Users, filterValue: 'muv' },
+  { name: 'Electric', icon: Bolt, filterValue: 'electric' },
+];
+
+const containerVariants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.08,
+    },
+  },
+};
+
+const cardVariants = {
+  hidden: { opacity: 0, y: 24 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.45, ease: [0.25, 0.46, 0.45, 0.94] },
+  },
+};
+
+function CategoryCard({
+  category,
+  onExplore,
+}: {
+  category: Category;
+  onExplore: (cat: Category) => void;
+}) {
+  const Icon = category.icon;
+
+  return (
+    <motion.button
+      type="button"
+      variants={cardVariants}
+      className="group cursor-pointer rounded-xl border border-white/[0.06] bg-[#111827] p-4 text-left transition-all duration-300 hover:border-[#00D4FF]/30 hover:shadow-[0_0_20px_rgba(0,212,255,0.08)] hover:-translate-y-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#00D4FF]/40"
+      suppressHydrationWarning
+      onClick={() => onExplore(category)}
+      aria-label={`Browse ${category.name} cars`}
+    >
+      {/* Icon — unified cyan accent for all categories */}
+      <div
+        className="mb-3 flex h-10 w-10 items-center justify-center rounded-full bg-[#00D4FF]/15 text-[#00D4FF] transition-transform duration-300 group-hover:scale-110"
+        suppressHydrationWarning
+      >
+        <Icon className="h-5 w-5" strokeWidth={1.5} />
+      </div>
+      <h3
+        className="text-sm font-semibold text-white"
+        suppressHydrationWarning
+      >
+        {category.name}
+      </h3>
+      <div
+        className="mt-2 flex items-center gap-1 text-xs font-medium text-[#00D4FF] opacity-0 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-0.5"
+        suppressHydrationWarning
+      >
+        Explore
+        <ArrowRight className="h-3 w-3 transition-transform duration-300 group-hover:translate-x-0.5" />
+      </div>
+    </motion.button>
+  );
+}
+
+export default function CarCategories() {
+  const { setActiveFilters, activeFilters } = useStore();
+
+  const handleExplore = (category: Category) => {
+    setActiveFilters({ ...activeFilters, category: category.filterValue });
+    const carsSection = document.getElementById('cars');
+    if (carsSection) carsSection.scrollIntoView({ behavior: 'smooth' });
+    toast.success(`Browsing ${category.name} cars`, {
+      duration: 3000,
+    });
+  };
+
+  return (
+    <section
+      id="categories"
+      className="py-12 sm:py-14 bg-[#0A0A0A]"
+      suppressHydrationWarning
+    >
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="mb-10 text-center sm:text-left"
+        >
+          <h2
+            className="text-2xl font-bold text-white sm:text-3xl"
+            suppressHydrationWarning
+          >
+            Browse by Category
+          </h2>
+          <p
+            className="mt-2 text-sm text-slate-500 sm:text-base"
+            suppressHydrationWarning
+          >
+            Find the perfect car type for your lifestyle
+          </p>
+        </motion.div>
+
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: '-40px' }}
+          className="grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 lg:grid-cols-6"
+        >
+          {categories.map((category) => (
+            <CategoryCard
+              key={category.name}
+              category={category}
+              onExplore={handleExplore}
+            />
+          ))}
+        </motion.div>
+      </div>
+      <div className="section-separator" />
+    </section>
+  );
+}

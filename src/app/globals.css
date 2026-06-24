@@ -1,0 +1,406 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-display: var(--font-display);
+  --font-mono: var(--font-geist-mono);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+/* ═══════════════════════════════════════════════════
+   DESIGN TOKENS — Editorial Premium Automotive
+   Refined, restrained palette. No neon glows.
+   ═══════════════════════════════════════════════════ */
+:root {
+  --radius: 0.5rem;
+  --background: oklch(0.98 0.005 240);
+  --foreground: oklch(0.145 0.02 240);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.145 0.02 240);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.145 0.02 240);
+  --primary: oklch(0.55 0.15 220);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.95 0.01 240);
+  --secondary-foreground: oklch(0.205 0.02 240);
+  --muted: oklch(0.95 0.01 240);
+  --muted-foreground: oklch(0.556 0.02 240);
+  --accent: oklch(0.95 0.01 240);
+  --accent-foreground: oklch(0.205 0.02 240);
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: oklch(0.9 0.01 240);
+  --input: oklch(0.9 0.01 240);
+  --ring: oklch(0.55 0.15 220);
+  --chart-1: oklch(0.55 0.15 220);
+  --chart-2: oklch(0.6 0.2 25);
+  --chart-3: oklch(0.398 0.07 227.392);
+  --chart-4: oklch(0.828 0.189 84.429);
+  --chart-5: oklch(0.769 0.188 70.08);
+  --sidebar: oklch(0.97 0.005 240);
+  --sidebar-foreground: oklch(0.145 0.02 240);
+  --sidebar-primary: oklch(0.55 0.15 220);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.95 0.01 240);
+  --sidebar-accent-foreground: oklch(0.205 0.02 240);
+  --sidebar-border: oklch(0.9 0.01 240);
+  --sidebar-ring: oklch(0.55 0.15 220);
+
+  /* ═══ Brand tokens — Saatvik Cars canonical palette ═══
+     ONE palette. All components should use these variables
+     (or the matching hex). Do NOT introduce new cyan shades.
+
+     DARK SCALE (3 tiers — use the lowest for body, higher for layering)
+     --brand-bg             #0A0A0A  page background (body)
+     --brand-bg-elevated    #111827  cards, elevated surfaces
+     --brand-bg-elevated-2  #1a1a2e  popovers, nested panels, hover states
+
+     CYAN SCALE (3 tiers — one accent, do NOT mix)
+     --brand-accent         #00D4FF  primary (buttons, links, highlights)
+     --brand-accent-hover   #00B8E6  hover/active
+     --brand-accent-light   #3DDEFF  light text on dark, glows
+
+     AMBER (single)
+     --brand-amber          #F5A623  ratings, urgency
+
+     SEMANTIC
+     --brand-emerald        #10B981  success / "best deal"
+     --brand-red            #EF4444  danger / "urgent"
+
+     Soft + ring helpers (derived from accent)
+     --brand-accent-soft    rgba(0,212,255,0.10)  backgrounds, chips
+     --brand-accent-ring    rgba(0,212,255,0.30)  focus/border rings
+     --brand-accent-fg      #0A0A0A  text/icon on top of accent
+  */
+  --brand-accent: #00D4FF;
+  --brand-accent-hover: #00B8E6;
+  --brand-accent-light: #3DDEFF;
+  --brand-accent-soft: rgba(0, 212, 255, 0.10);
+  --brand-accent-ring: rgba(0, 212, 255, 0.30);
+  --brand-accent-fg: #0A0A0A;
+  --brand-bg: #0A0A0A;
+  --brand-bg-elevated: #111827;
+  --brand-bg-elevated-2: #1a1a2e;
+  --brand-amber: #F5A623;
+  --brand-emerald: #10B981;
+  --brand-red: #EF4444;
+}
+
+.dark {
+  --background: oklch(0.06 0.01 240);
+  --foreground: oklch(0.95 0.01 240);
+  --card: oklch(0.09 0.012 240);
+  --card-foreground: oklch(0.95 0.01 240);
+  --popover: oklch(0.09 0.012 240);
+  --popover-foreground: oklch(0.95 0.01 240);
+  --primary: oklch(0.65 0.17 200);
+  --primary-foreground: oklch(0.06 0.01 240);
+  --secondary: oklch(0.13 0.012 240);
+  --secondary-foreground: oklch(0.95 0.01 240);
+  --muted: oklch(0.13 0.012 240);
+  --muted-foreground: oklch(0.65 0.02 240);
+  --accent: oklch(0.13 0.012 240);
+  --accent-foreground: oklch(0.95 0.01 240);
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: oklch(1 0 0 / 8%);
+  --input: oklch(1 0 0 / 12%);
+  --ring: oklch(0.65 0.17 200);
+  --chart-1: oklch(0.65 0.17 200);
+  --chart-2: oklch(0.65 0.25 25);
+  --chart-3: oklch(0.769 0.188 70.08);
+  --chart-4: oklch(0.627 0.265 303.9);
+  --chart-5: oklch(0.645 0.246 16.439);
+  --sidebar: oklch(0.08 0.012 240);
+  --sidebar-foreground: oklch(0.95 0.01 240);
+  --sidebar-primary: oklch(0.65 0.17 200);
+  --sidebar-primary-foreground: oklch(0.95 0.01 240);
+  --sidebar-accent: oklch(0.13 0.012 240);
+  --sidebar-accent-foreground: oklch(0.95 0.01 240);
+  --sidebar-border: oklch(1 0 0 / 8%);
+  --sidebar-ring: oklch(0.65 0.17 200);
+
+  /* Brand tokens — identical in light & dark (site is permanently dark) */
+  --brand-accent: #00D4FF;
+  --brand-accent-hover: #00B8E6;
+  --brand-accent-light: #3DDEFF;
+  --brand-accent-soft: rgba(0, 212, 255, 0.10);
+  --brand-accent-ring: rgba(0, 212, 255, 0.30);
+  --brand-accent-fg: #0A0A0A;
+  --brand-bg: #0A0A0A;
+  --brand-bg-elevated: #111827;
+  --brand-bg-elevated-2: #1a1a2e;
+  --brand-amber: #F5A623;
+  --brand-emerald: #10B981;
+  --brand-red: #EF4444;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "ss01", "cv11";
+  }
+  h1, h2, h3, h4 {
+    font-family: var(--font-display), var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+    letter-spacing: -0.02em;
+  }
+}
+
+html { scroll-behavior: smooth; }
+
+/* ═══════════════════════════════════════════════════
+   SCROLLBAR — minimal, professional
+   ═══════════════════════════════════════════════════ */
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.10); border-radius: 10px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.18); }
+* { scrollbar-width: thin; scrollbar-color: rgba(255,255,255,0.10) transparent; }
+
+::selection { background: rgba(0,212,255,0.22); color: #fff; }
+.dark ::selection { background: rgba(0,212,255,0.30); color: #fff; }
+
+/* ═══════════════════════════════════════════════════
+   MARQUEE — brand strip
+   ═══════════════════════════════════════════════════ */
+.marquee-container {
+  overflow: hidden;
+  mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+}
+.marquee-track {
+  display: flex;
+  gap: 1.5rem;
+  animation: marqueeScroll 32s linear infinite;
+  width: max-content;
+}
+.marquee-track:hover { animation-play-state: paused; }
+@keyframes marqueeScroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* ═══════════════════════════════════════════════════
+   HIDE HORIZONTAL SCROLLBAR (chips, galleries)
+   ═══════════════════════════════════════════════════ */
+.overflow-x-auto::-webkit-scrollbar { display: none; }
+.overflow-x-auto { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* ═══════════════════════════════════════════════════
+   HERO — full-bleed editorial background
+   ═══════════════════════════════════════════════════ */
+.hero-editorial {
+  position: relative;
+  background-color: #08080A;
+}
+.hero-editorial::after {
+  /* gradient overlay so headline is readable over photo */
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(8,8,10,0.92) 0%, rgba(8,8,10,0.72) 38%, rgba(8,8,10,0.30) 70%, rgba(8,8,10,0.55) 100%),
+    linear-gradient(0deg, rgba(8,8,10,0.85) 0%, transparent 35%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ═══════════════════════════════════════════════════
+   SKELETON SHIMMER
+   ═══════════════════════════════════════════════════ */
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+.skeleton-shimmer {
+  background: linear-gradient(90deg, rgba(255,255,255,0.03) 25%, rgba(255,255,255,0.06) 50%, rgba(255,255,255,0.03) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s ease-in-out infinite;
+}
+
+/* ═══════════════════════════════════════════════════
+   SEARCH BAR — subtle focus ring (not a glow)
+   ═══════════════════════════════════════════════════ */
+.search-bar-focus {
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.search-bar-focus:focus-within {
+  border-color: rgba(0,212,255,0.45) !important;
+  box-shadow: 0 0 0 1px rgba(0,212,255,0.20);
+}
+
+/* ═══════════════════════════════════════════════════
+   SECTION DIVIDER — hairline
+   ═══════════════════════════════════════════════════ */
+.section-divider,
+.section-separator {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent);
+}
+
+/* ═══════════════════════════════════════════════════
+   CAR CARD — hover lift (no shine sweep)
+   ═══════════════════════════════════════════════════ */
+.car-card-lift,
+.car-card-shine {
+  transition: transform 0.3s cubic-bezier(0.16,1,0.3,1), border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.car-card-lift:hover,
+.car-card-shine:hover {
+  transform: translateY(-4px);
+  border-color: rgba(0,212,255,0.30);
+  box-shadow: 0 18px 40px -20px rgba(0,0,0,0.6);
+}
+
+/* ═══════════════════════════════════════════════════
+   CTA SECTION
+   ═══════════════════════════════════════════════════ */
+.cta-band,
+.cta-gradient {
+  background:
+    radial-gradient(ellipse 60% 80% at 80% 50%, rgba(0,212,255,0.06) 0%, transparent 70%),
+    linear-gradient(180deg, #0B0B0E 0%, #0E1218 50%, #0B0B0E 100%);
+}
+
+/* ═══════════════════════════════════════════════════
+   GLASS CARD — frosted premium card
+   ═══════════════════════════════════════════════════ */
+.glass-card {
+  background: rgba(255, 255, 255, 0.025);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 0.75rem;
+  transition: border-color 0.3s ease, background 0.3s ease;
+}
+.glass-card:hover {
+  border-color: rgba(0, 212, 255, 0.20);
+}
+
+/* ═══════════════════════════════════════════════════
+   NAVBAR — animated gradient bottom line
+   ═══════════════════════════════════════════════════ */
+.nav-gradient-line-animated {
+  height: 1px;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    rgba(0, 212, 255, 0.0) 10%,
+    rgba(0, 212, 255, 0.5) 50%,
+    rgba(0, 212, 255, 0.0) 90%,
+    transparent 100%);
+  background-size: 200% 100%;
+  animation: navLineSweep 4s ease-in-out infinite;
+}
+@keyframes navLineSweep {
+  0%, 100% { background-position: 0% 0%; }
+  50% { background-position: 100% 0%; }
+}
+
+/* ═══════════════════════════════════════════════════
+   ACCESSIBILITY — Part D (D4)
+   ═══════════════════════════════════════════════════ */
+
+/* Skip to content link — visible only on focus */
+.skip-to-content {
+  position: absolute;
+  top: -100px;
+  left: 1rem;
+  z-index: 9999;
+  padding: 0.75rem 1.25rem;
+  background: #00D4FF;
+  color: #0A0A0A;
+  font-weight: 600;
+  font-size: 0.875rem;
+  border-radius: 0 0 0.5rem 0.5rem;
+  transition: top 0.2s ease;
+}
+.skip-to-content:focus {
+  top: 0;
+  outline: 3px solid #3DDEFF;
+  outline-offset: 2px;
+}
+
+/* Screen-reader-only utility (Tailwind has .sr-only but this is a fallback) */
+.sr-only-focusable:not(:focus):not(:focus-within) {
+  position: absolute !important;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0, 0, 0, 0);
+  white-space: nowrap; border: 0;
+}
+
+/* Visible focus ring for keyboard users (not mouse) */
+:focus-visible {
+  outline: 2px solid #00D4FF;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+/* Remove default outline only when NOT keyboard-focused (mouse click) */
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* prefers-reduced-motion — disable all animations/transitions for users who request it */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .marquee-track { animation: none !important; }
+  .skeleton-shimmer { animation: none !important; }
+  .nav-gradient-line-animated { animation: none !important; }
+}
+
+/* High-contrast focus for interactive elements on dark bg */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+[role="button"]:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid #00D4FF;
+  outline-offset: 2px;
+}

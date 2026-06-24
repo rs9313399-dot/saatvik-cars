@@ -1,0 +1,207 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Admin {
+  id        String   @id @default(cuid())
+  username  String   @unique
+  password  String
+  token     String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Car {
+  id           String   @id @default(cuid())
+  name         String
+  slug         String   @unique
+  brand        String
+  model        String
+  year         Int
+  price        Int
+  fuelType     String   // Petrol, Diesel, CNG, Electric
+  transmission String   // Manual, Automatic
+  kmDriven     Int
+  ownerType    String   // 1st, 2nd, 3rd+
+  location     String
+  description  String
+  tags         String   @default("")  // comma-separated: featured, urgent, best_deal
+  contactPhone String
+  carNumber    String   @default("")  // Vehicle registration number (e.g. MH 01 AB 1234)
+  color        String   @default("")  // Car colour (e.g. Pearl White)
+  insurance    String   @default("")  // Insurance status (e.g. "Valid till 03/2026" or "Expired")
+  rto          String   @default("")  // RTO code (e.g. MH-01, CG-04)
+  sunroof      String   @default("No") // Sunroof: No / Single Pane / Panoramic
+  finance      String   @default("")  // Finance/Refinance: "Finance & Refinance available" etc.
+  bodyType     String   @default("")  // D7: Hatchback / Sedan / SUV / MUV / Luxury / Electric
+  images       String   @default("")  // JSON array of image paths
+  active       Boolean  @default(true)
+  featuredUntil DateTime? // D7: time-bound featured status (null = not featured, or use tags)
+  views        Int      @default(0)
+  callClicks   Int      @default(0)
+  whatsappClicks Int    @default(0)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@index([brand])
+  @@index([price])
+  @@index([year])
+  @@index([active])
+  @@index([location])
+  @@index([createdAt])
+  @@index([bodyType])
+}
+
+model NewsletterSubscriber {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  active    Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Testimonial {
+  id         String   @id @default(cuid())
+  name       String
+  location   String   @default("")
+  rating     Int      @default(5)  // 1–5 stars
+  carPurchased String @default("")  // e.g. "Hyundai Creta SX"
+  title      String   @default("")
+  body       String
+  approved   Boolean  @default(false)  // admin must approve before public display
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  @@index([approved])
+}
+
+model Lead {
+  id         String   @id @default(cuid())
+  type       String   @default("test_drive")  // test_drive | callback | general
+  name       String
+  email      String   @default("")
+  phone      String
+  carId      String   @default("")  // optional: which car the lead is about
+  carName    String   @default("")  // denormalised for display even if car is deleted
+  message    String   @default("")
+  preferredDate String @default("")  // ISO date string for test drive
+  status     String   @default("new")  // new | contacted | closed
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  @@index([type])
+  @@index([status])
+  @@index([createdAt])
+}
+
+// C1 — Customer sell/trade valuation inquiries
+model SellInquiry {
+  id              String   @id @default(cuid())
+  customerName    String
+  phone           String
+  email           String   @default("")
+  brand           String
+  model           String
+  year            Int
+  fuelType        String   @default("")
+  transmission    String   @default("")
+  kmDriven        Int      @default(0)
+  ownerType       String   @default("")   // 1st, 2nd, 3rd+
+  condition       String   @default("Good") // Excellent, Good, Fair, Poor
+  estimatedPrice  Int      @default(0)     // algorithm-generated estimate (INR)
+  photos          String   @default("")    // JSON array of uploaded photo paths
+  inspectionDate  String   @default("")    // ISO date the customer picked
+  inspectionSlot  String   @default("")    // e.g. "11 AM"
+  message         String   @default("")
+  status          String   @default("new") // new | reviewed | offered | closed
+  offerPrice      Int      @default(0)     // admin's negotiated offer
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@index([status])
+  @@index([createdAt])
+}
+
+// C10 — Blog / news articles
+model BlogPost {
+  id          String   @id @default(cuid())
+  title       String
+  slug        String   @unique
+  excerpt     String   @default("")
+  body        String   // markdown / plain text
+  category    String   @default("Guides") // Guides, Maintenance, News, Reviews, Updates
+  tags        String   @default("")       // comma-separated
+  coverImage  String   @default("")
+  author      String   @default("Saatvik Cars")
+  published   Boolean  @default(true)
+  views       Int      @default(0)
+  publishedAt DateTime @default(now())
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([published])
+  @@index([category])
+  @@index([publishedAt])
+}
+
+// C7/C8/C9 — Service inquiries (insurance, rc transfer, exchange/buyback, warranty, rsa)
+model ServiceInquiry {
+  id        String   @id @default(cuid())
+  type      String   // insurance | rc_transfer | exchange | warranty | rsa | finance
+  name      String
+  phone     String
+  email     String   @default("")
+  carDetail String   @default("")  // e.g. "Hyundai Creta 2020" or current car info
+  message   String   @default("")
+  status    String   @default("new")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([type])
+  @@index([status])
+  @@index([createdAt])
+}
+
+// C16 — Live chat messages (session-based, no auth)
+model ChatMessage {
+  id        String   @id @default(cuid())
+  sessionId String
+  role      String   // user | bot | agent
+  message   String
+  createdAt DateTime @default(now())
+
+  @@index([sessionId])
+  @@index([createdAt])
+}
+
+// D7 — Track sold cars (sales transactions)
+model Sale {
+  id          String   @id @default(cuid())
+  carId       String   // references Car.id (denormalised — car may be deleted)
+  carName     String   // denormalised for display
+  buyerName   String
+  buyerPhone  String
+  salePrice   Int      // final agreed price
+  saleDate    DateTime @default(now())
+  notes       String   @default("")
+  createdAt   DateTime @default(now())
+
+  @@index([carId])
+  @@index([saleDate])
+}
+
+// D7 — Price history for tracking price drops (powers price-drop alerts)
+model PriceHistory {
+  id        String   @id @default(cuid())
+  carId     String
+  price     Int      // the price at this point in time
+  recordedAt DateTime @default(now())
+
+  @@index([carId])
+  @@index([recordedAt])
+}
