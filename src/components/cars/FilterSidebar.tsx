@@ -97,10 +97,10 @@ export default function FilterSidebar({ cars }: FilterSidebarProps) {
       {/* Header */}
       <div className="mb-4 flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <SlidersHorizontal className="h-4 w-4 text-[#00D4FF]" />
+          <SlidersHorizontal className="h-4 w-4 text-[#D7B56D]" />
           <h3 className="text-sm font-semibold text-white">Filters</h3>
           {activeCount > 0 && (
-            <span className="rounded-full bg-[#00D4FF]/15 px-2 py-0.5 text-[10px] font-bold text-[#00D4FF]" suppressHydrationWarning>
+            <span className="rounded-full bg-[#D7B56D]/15 px-2 py-0.5 text-[10px] font-bold text-[#D7B56D]" suppressHydrationWarning>
               {activeCount}
             </span>
           )}
@@ -109,7 +109,7 @@ export default function FilterSidebar({ cars }: FilterSidebarProps) {
           <button
             onClick={handleClear}
             suppressHydrationWarning
-            className="flex items-center gap-1 text-[11px] text-slate-500 transition-colors hover:text-[#00D4FF]"
+            className="flex items-center gap-1 text-[11px] text-slate-500 transition-colors hover:text-[#D7B56D]"
           >
             <RotateCcw className="h-3 w-3" /> Clear
           </button>
@@ -123,7 +123,7 @@ export default function FilterSidebar({ cars }: FilterSidebarProps) {
             value={f.brand || ''}
             onChange={(e) => update({ brand: e.target.value || undefined })}
             suppressHydrationWarning
-            className="h-9 w-full appearance-none rounded-lg border border-white/[0.08] bg-white/[0.03] px-3 text-xs text-white outline-none cursor-pointer hover:border-white/15 focus:border-[#00D4FF]/50 focus:ring-2 focus:ring-[#00D4FF]/20"
+            className="h-9 w-full appearance-none rounded-lg border border-white/[0.08] bg-white/[0.03] px-3 text-xs text-white outline-none cursor-pointer hover:border-white/15 focus:border-[#D7B56D]/50 focus:ring-2 focus:ring-[#D7B56D]/20"
           >
             <option value="" className="bg-[#0f172a]">All Brands</option>
             {ALL_BRANDS.map((b) => (
@@ -144,7 +144,7 @@ export default function FilterSidebar({ cars }: FilterSidebarProps) {
                   onClick={() => update({ fuelType: toggleMulti(f.fuelType, opt) })}
                   className={`rounded-lg border px-2.5 py-1 text-[11px] font-medium transition-all ${
                     selected
-                      ? 'border-[#00D4FF]/40 bg-[#00D4FF]/15 text-[#00D4FF]'
+                      ? 'border-[#D7B56D]/40 bg-[#D7B56D]/15 text-[#D7B56D]'
                       : 'border-white/[0.08] bg-white/[0.02] text-slate-400 hover:border-white/15 hover:text-white'
                   }`}
                 >
@@ -167,7 +167,7 @@ export default function FilterSidebar({ cars }: FilterSidebarProps) {
                   onClick={() => update({ transmission: toggleMulti(f.transmission, opt) })}
                   className={`flex-1 rounded-lg border px-2.5 py-1 text-[11px] font-medium transition-all ${
                     selected
-                      ? 'border-[#00D4FF]/40 bg-[#00D4FF]/15 text-[#00D4FF]'
+                      ? 'border-[#D7B56D]/40 bg-[#D7B56D]/15 text-[#D7B56D]'
                       : 'border-white/[0.08] bg-white/[0.02] text-slate-400 hover:border-white/15 hover:text-white'
                   }`}
                 >
@@ -196,11 +196,11 @@ export default function FilterSidebar({ cars }: FilterSidebarProps) {
               update({ maxPrice: val === 0 ? undefined : val });
             }}
             suppressHydrationWarning
-            className="w-full accent-[#00D4FF] cursor-pointer"
+            className="w-full accent-[#D7B56D] cursor-pointer"
           />
           <div className="mt-1 flex items-center justify-between text-[11px]">
             <span className="text-slate-500">Any</span>
-            <span className="font-semibold text-[#00D4FF]" suppressHydrationWarning>
+            <span className="font-semibold text-[#D7B56D]" suppressHydrationWarning>
               {f.maxPrice !== undefined ? formatPrice(f.maxPrice) : 'Any'}
             </span>
           </div>
@@ -224,11 +224,11 @@ export default function FilterSidebar({ cars }: FilterSidebarProps) {
               update({ maxKm: val === 0 ? undefined : val });
             }}
             suppressHydrationWarning
-            className="w-full accent-[#00D4FF] cursor-pointer"
+            className="w-full accent-[#D7B56D] cursor-pointer"
           />
           <div className="mt-1 flex items-center justify-between text-[11px]">
             <span className="text-slate-500">Any</span>
-            <span className="font-semibold text-[#00D4FF]" suppressHydrationWarning>
+            <span className="font-semibold text-[#D7B56D]" suppressHydrationWarning>
               {f.maxKm !== undefined ? formatKM(f.maxKm) : 'Any'}
             </span>
           </div>
@@ -241,7 +241,7 @@ export default function FilterSidebar({ cars }: FilterSidebarProps) {
               value={f.minYear ?? ''}
               onChange={(e) => update({ minYear: e.target.value ? Number(e.target.value) : undefined })}
               suppressHydrationWarning
-              className="h-9 w-full appearance-none rounded-lg border border-white/[0.08] bg-white/[0.03] px-2 text-xs text-white outline-none cursor-pointer hover:border-white/15 focus:border-[#00D4FF]/50"
+              className="h-9 w-full appearance-none rounded-lg border border-white/[0.08] bg-white/[0.03] px-2 text-xs text-white outline-none cursor-pointer hover:border-white/15 focus:border-[#D7B56D]/50"
             >
               <option value="" className="bg-[#0f172a]">From</option>
               {YEAR_OPTIONS.map((y) => (
@@ -253,7 +253,7 @@ export default function FilterSidebar({ cars }: FilterSidebarProps) {
               value={f.maxYear ?? ''}
               onChange={(e) => update({ maxYear: e.target.value ? Number(e.target.value) : undefined })}
               suppressHydrationWarning
-              className="h-9 w-full appearance-none rounded-lg border border-white/[0.08] bg-white/[0.03] px-2 text-xs text-white outline-none cursor-pointer hover:border-white/15 focus:border-[#00D4FF]/50"
+              className="h-9 w-full appearance-none rounded-lg border border-white/[0.08] bg-white/[0.03] px-2 text-xs text-white outline-none cursor-pointer hover:border-white/15 focus:border-[#D7B56D]/50"
             >
               <option value="" className="bg-[#0f172a]">To</option>
               {YEAR_OPTIONS.map((y) => (
@@ -275,7 +275,7 @@ export default function FilterSidebar({ cars }: FilterSidebarProps) {
                   onClick={() => update({ ownerType: toggleMulti(f.ownerType, opt) })}
                   className={`rounded-lg border px-2.5 py-1 text-[11px] font-medium transition-all ${
                     selected
-                      ? 'border-[#00D4FF]/40 bg-[#00D4FF]/15 text-[#00D4FF]'
+                      ? 'border-[#D7B56D]/40 bg-[#D7B56D]/15 text-[#D7B56D]'
                       : 'border-white/[0.08] bg-white/[0.02] text-slate-400 hover:border-white/15 hover:text-white'
                   }`}
                 >
@@ -293,7 +293,7 @@ export default function FilterSidebar({ cars }: FilterSidebarProps) {
               value={f.location || ''}
               onChange={(e) => update({ location: e.target.value || undefined })}
               suppressHydrationWarning
-              className="h-9 w-full appearance-none rounded-lg border border-white/[0.08] bg-white/[0.03] px-3 text-xs text-white outline-none cursor-pointer hover:border-white/15 focus:border-[#00D4FF]/50 focus:ring-2 focus:ring-[#00D4FF]/20"
+              className="h-9 w-full appearance-none rounded-lg border border-white/[0.08] bg-white/[0.03] px-3 text-xs text-white outline-none cursor-pointer hover:border-white/15 focus:border-[#D7B56D]/50 focus:ring-2 focus:ring-[#D7B56D]/20"
             >
               <option value="" className="bg-[#0f172a]">All Locations</option>
               {locations.map((loc) => (
@@ -315,7 +315,7 @@ export default function FilterSidebar({ cars }: FilterSidebarProps) {
                   onClick={() => update({ tags: selected ? undefined : opt.value })}
                   className={`rounded-lg border px-2.5 py-1 text-[11px] font-medium transition-all ${
                     selected
-                      ? 'border-[#00D4FF]/40 bg-[#00D4FF]/15 text-[#00D4FF]'
+                      ? 'border-[#D7B56D]/40 bg-[#D7B56D]/15 text-[#D7B56D]'
                       : 'border-white/[0.08] bg-white/[0.02] text-slate-400 hover:border-white/15 hover:text-white'
                   }`}
                 >

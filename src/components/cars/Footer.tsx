@@ -156,7 +156,7 @@ export default function Footer() {
                 suppressHydrationWarning
               />
               <span className="text-lg font-bold tracking-tight text-white">
-                Saatvik<span className="text-[#00D4FF]">Cars</span>
+                Saatvik<span className="text-[#D7B56D]">Cars</span>
               </span>
             </div>
 
@@ -177,7 +177,7 @@ export default function Footer() {
                   rel="noopener noreferrer"
                   aria-label={label}
                   suppressHydrationWarning
-                  className="flex h-9 w-9 items-center justify-center rounded-full border border-white/[0.06] bg-white/[0.02] text-slate-500 transition-all duration-200 hover:border-[#00D4FF]/30 hover:text-[#00D4FF] hover:bg-[#00D4FF]/5 hover:shadow-[0_0_12px_rgba(0,212,255,0.1)]"
+                  className="flex h-9 w-9 items-center justify-center rounded-full border border-white/[0.06] bg-white/[0.02] text-slate-500 transition-all duration-200 hover:border-[#D7B56D]/30 hover:text-[#D7B56D] hover:bg-[#D7B56D]/5 hover:shadow-[0_0_12px_rgba(215,181,109,0.1)]"
                 >
                   <Icon className="h-4 w-4" />
                 </a>
@@ -285,7 +285,7 @@ export default function Footer() {
               Be the first to know when prices drop on cars you love.
             </p>
             <form onSubmit={handleSubscribe} className="space-y-2.5" suppressHydrationWarning>
-              <div className="flex rounded-xl overflow-hidden border border-white/[0.08] bg-white/[0.03] focus-within:border-[#00D4FF]/30 focus-within:ring-1 focus-within:ring-[#00D4FF]/20 transition-all" suppressHydrationWarning>
+              <div className="flex rounded-xl overflow-hidden border border-white/[0.08] bg-white/[0.03] focus-within:border-[#D7B56D]/30 focus-within:ring-1 focus-within:ring-[#D7B56D]/20 transition-all" suppressHydrationWarning>
                 <Input
                   type="email"
                   placeholder="your@email.com"
@@ -299,7 +299,7 @@ export default function Footer() {
                   type="submit"
                   disabled={subscribing}
                   suppressHydrationWarning
-                  className="h-11 rounded-none bg-[#00D4FF] text-[#0A0A0A] hover:bg-[#00B8E6] text-sm font-bold disabled:opacity-60 px-5 shrink-0"
+                  className="h-11 rounded-none bg-[#D7B56D] text-[#0A0A0A] hover:bg-[#E7C77B] text-sm font-bold disabled:opacity-60 px-5 shrink-0"
                 >
                   {subscribing ? '...' : 'Subscribe'}
                 </Button>
@@ -320,7 +320,7 @@ export default function Footer() {
               key={label}
               className="flex items-center gap-2 rounded-lg border border-white/[0.06] bg-white/[0.02] px-3 py-1.5 text-[11px] text-slate-400"
             >
-              <Icon className="h-3.5 w-3.5 text-[#00D4FF]/60" />
+              <Icon className="h-3.5 w-3.5 text-[#D7B56D]/60" />
               <span>{label}</span>
             </div>
           ))}

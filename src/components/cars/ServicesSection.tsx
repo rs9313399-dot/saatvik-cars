@@ -177,7 +177,7 @@ function SectionHeader({ eyebrow, title, subtitle }: { eyebrow: string; title: s
       suppressHydrationWarning
     >
       <span
-        className="inline-flex items-center gap-2 rounded-full border border-[#00D4FF]/20 bg-[#00D4FF]/5 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-[#00D4FF]"
+        className="inline-flex items-center gap-2 rounded-full border border-[#D7B56D]/20 bg-[#D7B56D]/5 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-[#D7B56D]"
         suppressHydrationWarning
       >
         <Shield className="h-3.5 w-3.5" />
@@ -202,11 +202,11 @@ function SectionHeader({ eyebrow, title, subtitle }: { eyebrow: string; title: s
 function StepCard({ step, title, desc }: { step: number; title: string; desc: string }) {
   return (
     <div
-      className="relative rounded-2xl border border-white/[0.06] bg-white/[0.02] p-5 transition-all duration-300 hover:border-[#00D4FF]/30 hover:bg-[#00D4FF]/[0.03]"
+      className="relative rounded-2xl border border-white/[0.06] bg-white/[0.02] p-5 transition-all duration-300 hover:border-[#D7B56D]/30 hover:bg-[#D7B56D]/[0.03]"
       suppressHydrationWarning
     >
       <div
-        className="mb-3 flex h-9 w-9 items-center justify-center rounded-full bg-[#00D4FF]/10 text-sm font-bold text-[#00D4FF]"
+        className="mb-3 flex h-9 w-9 items-center justify-center rounded-full bg-[#D7B56D]/10 text-sm font-bold text-[#D7B56D]"
         suppressHydrationWarning
       >
         {step}
@@ -238,7 +238,7 @@ function DocChip({ label }: { label: string }) {
 function SubHeading({ icon: Icon, title }: { icon: typeof FileText; title: string }) {
   return (
     <div className="mb-4 flex items-center gap-2" suppressHydrationWarning>
-      <Icon className="h-4 w-4 text-[#00D4FF]" />
+      <Icon className="h-4 w-4 text-[#D7B56D]" />
       <h3 className="text-sm font-semibold uppercase tracking-wider text-white" suppressHydrationWarning>
         {title}
       </h3>
@@ -358,7 +358,7 @@ function PremiumCalculator() {
       </div>
 
       <div
-        className="mt-5 flex items-center justify-between rounded-xl border border-[#00D4FF]/20 bg-gradient-to-br from-[#00D4FF]/[0.06] to-transparent p-4"
+        className="mt-5 flex items-center justify-between rounded-xl border border-[#D7B56D]/20 bg-gradient-to-br from-[#D7B56D]/[0.06] to-transparent p-4"
         aria-live="polite"
         aria-atomic="true"
         suppressHydrationWarning
@@ -367,12 +367,12 @@ function PremiumCalculator() {
           <p className="text-xs font-medium text-slate-400" suppressHydrationWarning>
             Estimated premium
           </p>
-          <p className="text-2xl font-bold text-[#00D4FF]" suppressHydrationWarning>
+          <p className="text-2xl font-bold text-[#D7B56D]" suppressHydrationWarning>
             ₹{premium.toLocaleString('en-IN')}
             <span className="ml-1 text-sm font-normal text-slate-400">/yr</span>
           </p>
         </div>
-        <Shield className="h-8 w-8 text-[#00D4FF]/40" />
+        <Shield className="h-8 w-8 text-[#D7B56D]/40" />
       </div>
       <p className="mt-3 text-[11px] leading-relaxed text-slate-500" suppressHydrationWarning>
         Indicative only. Actual premium depends on insurer, IDV, add-ons, NCB and city of registration.
@@ -506,7 +506,7 @@ function InsuranceQuoteForm() {
         type="submit"
         disabled={submitting}
         suppressHydrationWarning
-        className="mt-5 h-11 w-full rounded-xl bg-[#00D4FF] text-[#0A0A0A] font-bold hover:bg-[#00B8E6] transition-all disabled:opacity-60"
+        className="mt-5 h-11 w-full rounded-xl bg-[#D7B56D] text-[#0A0A0A] font-bold hover:bg-[#E7C77B] transition-all disabled:opacity-60"
       >
         {submitting ? 'Submitting...' : 'Get Quote'}
         {!submitting && <ArrowRight className="ml-2 h-4 w-4" />}
@@ -535,7 +535,7 @@ function InsuranceTab() {
           {INSURANCE_PARTNERS.map((p) => (
             <div
               key={p}
-              className="flex h-20 items-center justify-center rounded-xl border border-white/[0.06] bg-white/[0.02] px-2 text-center transition-all duration-300 hover:border-[#00D4FF]/30 hover:bg-[#00D4FF]/[0.03]"
+              className="flex h-20 items-center justify-center rounded-xl border border-white/[0.06] bg-white/[0.02] px-2 text-center transition-all duration-300 hover:border-[#D7B56D]/30 hover:bg-[#D7B56D]/[0.03]"
               suppressHydrationWarning
             >
               <span className="text-xs font-semibold text-slate-200 sm:text-sm" suppressHydrationWarning>
@@ -555,11 +555,11 @@ function InsuranceTab() {
             return (
               <div
                 key={t.id}
-                className="rounded-2xl border border-white/[0.06] bg-white/[0.02] p-5 transition-all duration-300 hover:border-[#00D4FF]/30 hover:bg-[#00D4FF]/[0.03]"
+                className="rounded-2xl border border-white/[0.06] bg-white/[0.02] p-5 transition-all duration-300 hover:border-[#D7B56D]/30 hover:bg-[#D7B56D]/[0.03]"
                 suppressHydrationWarning
               >
                 <div
-                  className="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-[#00D4FF]/10 text-[#00D4FF]"
+                  className="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-[#D7B56D]/10 text-[#D7B56D]"
                   suppressHydrationWarning
                 >
                   <Icon className="h-5 w-5" />
@@ -708,15 +708,15 @@ function RCTransferTab() {
 
       {/* Track application note */}
       <div
-        className="flex items-start gap-3 rounded-xl border border-[#00D4FF]/20 bg-[#00D4FF]/[0.04] p-4"
+        className="flex items-start gap-3 rounded-xl border border-[#D7B56D]/20 bg-[#D7B56D]/[0.04] p-4"
         suppressHydrationWarning
       >
-        <AlertCircle className="mt-0.5 h-4 w-4 shrink-0 text-[#00D4FF]" />
+        <AlertCircle className="mt-0.5 h-4 w-4 shrink-0 text-[#D7B56D]" />
         <p className="text-xs leading-relaxed text-slate-300" suppressHydrationWarning>
           After submitting, you&apos;ll get a reference number. Call us anytime at{' '}
           <a
             href={`tel:${BUSINESS.phones[0].tel}`}
-            className="font-semibold text-[#00D4FF] hover:underline"
+            className="font-semibold text-[#D7B56D] hover:underline"
             suppressHydrationWarning
           >
             {BUSINESS.phones[0].display}
@@ -877,7 +877,7 @@ function RCInquiryForm() {
         type="submit"
         disabled={submitting}
         suppressHydrationWarning
-        className="mt-5 h-11 w-full rounded-xl bg-[#00D4FF] text-[#0A0A0A] font-bold hover:bg-[#00B8E6] transition-all disabled:opacity-60"
+        className="mt-5 h-11 w-full rounded-xl bg-[#D7B56D] text-[#0A0A0A] font-bold hover:bg-[#E7C77B] transition-all disabled:opacity-60"
       >
         {submitting ? 'Submitting...' : 'Submit Inquiry'}
         {!submitting && <ArrowRight className="ml-2 h-4 w-4" />}
@@ -1014,7 +1014,7 @@ function ValueYourCar() {
       </div>
 
       <div
-        className="mt-5 flex items-center justify-between rounded-xl border border-[#00D4FF]/20 bg-gradient-to-br from-[#00D4FF]/[0.06] to-transparent p-4"
+        className="mt-5 flex items-center justify-between rounded-xl border border-[#D7B56D]/20 bg-gradient-to-br from-[#D7B56D]/[0.06] to-transparent p-4"
         aria-live="polite"
         aria-atomic="true"
         suppressHydrationWarning
@@ -1023,11 +1023,11 @@ function ValueYourCar() {
           <p className="text-xs font-medium text-slate-400" suppressHydrationWarning>
             Estimated value
           </p>
-          <p className="text-2xl font-bold text-[#00D4FF]" suppressHydrationWarning>
+          <p className="text-2xl font-bold text-[#D7B56D]" suppressHydrationWarning>
             {estimate ? `₹${estimate.toLocaleString('en-IN')}` : '—'}
           </p>
         </div>
-        <Banknote className="h-8 w-8 text-[#00D4FF]/40" />
+        <Banknote className="h-8 w-8 text-[#D7B56D]/40" />
       </div>
       <p className="mt-3 text-[11px] leading-relaxed text-slate-500" suppressHydrationWarning>
         Instant indicative estimate. Final offer is subject to physical inspection at our showroom.
@@ -1155,7 +1155,7 @@ function ExchangeInquiryForm() {
         type="submit"
         disabled={submitting}
         suppressHydrationWarning
-        className="mt-5 h-11 w-full rounded-xl bg-[#00D4FF] text-[#0A0A0A] font-bold hover:bg-[#00B8E6] transition-all disabled:opacity-60"
+        className="mt-5 h-11 w-full rounded-xl bg-[#D7B56D] text-[#0A0A0A] font-bold hover:bg-[#E7C77B] transition-all disabled:opacity-60"
       >
         {submitting ? 'Submitting...' : 'Submit Inquiry'}
         {!submitting && <ArrowRight className="ml-2 h-4 w-4" />}
@@ -1208,7 +1208,7 @@ function ExchangeTab() {
           <Button
             onClick={handleBrowseCars}
             suppressHydrationWarning
-            className="mt-5 h-11 w-full rounded-xl border border-[#00D4FF]/30 bg-[#00D4FF]/10 text-[#00D4FF] font-semibold hover:bg-[#00D4FF]/20 transition-all"
+            className="mt-5 h-11 w-full rounded-xl border border-[#D7B56D]/30 bg-[#D7B56D]/10 text-[#D7B56D] font-semibold hover:bg-[#D7B56D]/20 transition-all"
           >
             <Car className="mr-2 h-4 w-4" />
             Browse Cars
@@ -1270,7 +1270,7 @@ export default function ServicesSection() {
           >
             <TabsTrigger
               value="insurance"
-              className="gap-2 rounded-none border-b-2 border-transparent bg-transparent px-4 py-3 text-xs font-medium text-slate-400 whitespace-nowrap transition-colors data-[state=active]:border-[#00D4FF] data-[state=active]:bg-transparent data-[state=active]:text-[#00D4FF] data-[state=active]:shadow-none hover:text-white sm:text-sm"
+              className="gap-2 rounded-none border-b-2 border-transparent bg-transparent px-4 py-3 text-xs font-medium text-slate-400 whitespace-nowrap transition-colors data-[state=active]:border-[#D7B56D] data-[state=active]:bg-transparent data-[state=active]:text-[#D7B56D] data-[state=active]:shadow-none hover:text-white sm:text-sm"
               suppressHydrationWarning
             >
               <Shield className="h-4 w-4" />
@@ -1278,7 +1278,7 @@ export default function ServicesSection() {
             </TabsTrigger>
             <TabsTrigger
               value="rc-transfer"
-              className="gap-2 rounded-none border-b-2 border-transparent bg-transparent px-4 py-3 text-xs font-medium text-slate-400 whitespace-nowrap transition-colors data-[state=active]:border-[#00D4FF] data-[state=active]:bg-transparent data-[state=active]:text-[#00D4FF] data-[state=active]:shadow-none hover:text-white sm:text-sm"
+              className="gap-2 rounded-none border-b-2 border-transparent bg-transparent px-4 py-3 text-xs font-medium text-slate-400 whitespace-nowrap transition-colors data-[state=active]:border-[#D7B56D] data-[state=active]:bg-transparent data-[state=active]:text-[#D7B56D] data-[state=active]:shadow-none hover:text-white sm:text-sm"
               suppressHydrationWarning
             >
               <FileText className="h-4 w-4" />
@@ -1286,7 +1286,7 @@ export default function ServicesSection() {
             </TabsTrigger>
             <TabsTrigger
               value="exchange"
-              className="gap-2 rounded-none border-b-2 border-transparent bg-transparent px-4 py-3 text-xs font-medium text-slate-400 whitespace-nowrap transition-colors data-[state=active]:border-[#00D4FF] data-[state=active]:bg-transparent data-[state=active]:text-[#00D4FF] data-[state=active]:shadow-none hover:text-white sm:text-sm"
+              className="gap-2 rounded-none border-b-2 border-transparent bg-transparent px-4 py-3 text-xs font-medium text-slate-400 whitespace-nowrap transition-colors data-[state=active]:border-[#D7B56D] data-[state=active]:bg-transparent data-[state=active]:text-[#D7B56D] data-[state=active]:shadow-none hover:text-white sm:text-sm"
               suppressHydrationWarning
             >
               <RefreshCw className="h-4 w-4" />
@@ -1313,7 +1313,7 @@ export default function ServicesSection() {
           suppressHydrationWarning
         >
           <div className="flex items-center gap-3" suppressHydrationWarning>
-            <Phone className="h-5 w-5 text-[#00D4FF]" />
+            <Phone className="h-5 w-5 text-[#D7B56D]" />
             <div suppressHydrationWarning>
               <p className="text-sm font-semibold text-white" suppressHydrationWarning>
                 Need help choosing a service?
@@ -1328,7 +1328,7 @@ export default function ServicesSection() {
               <a
                 key={p.tel}
                 href={`tel:${p.tel}`}
-                className="inline-flex items-center gap-1.5 rounded-lg border border-[#00D4FF]/20 bg-[#00D4FF]/10 px-3 py-2 text-xs font-semibold text-[#00D4FF] transition-colors hover:bg-[#00D4FF]/20"
+                className="inline-flex items-center gap-1.5 rounded-lg border border-[#D7B56D]/20 bg-[#D7B56D]/10 px-3 py-2 text-xs font-semibold text-[#D7B56D] transition-colors hover:bg-[#D7B56D]/20"
                 suppressHydrationWarning
               >
                 <Phone className="h-3 w-3" />

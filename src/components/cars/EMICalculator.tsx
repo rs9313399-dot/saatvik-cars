@@ -42,7 +42,7 @@ export default function EMICalculator() {
           className="mb-8 text-center"
           suppressHydrationWarning
         >
-          <span className="inline-flex items-center gap-2 rounded-full border border-[#00D4FF]/20 bg-[#00D4FF]/5 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-[#00D4FF]" suppressHydrationWarning>
+          <span className="inline-flex items-center gap-2 rounded-full border border-[#D7B56D]/20 bg-[#D7B56D]/5 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-[#D7B56D]" suppressHydrationWarning>
             <Calculator className="h-3.5 w-3.5" />
             EMI Calculator
           </span>
@@ -83,7 +83,7 @@ export default function EMICalculator() {
                   if (downPayment > v * 0.9) setDownPayment(Math.round(v * 0.2));
                 }}
                 suppressHydrationWarning
-                className="w-full h-2 rounded-full appearance-none cursor-pointer bg-white/10 accent-[#00D4FF]"
+                className="w-full h-2 rounded-full appearance-none cursor-pointer bg-white/10 accent-[#D7B56D]"
               />
               <div className="mt-1 flex justify-between text-[10px] text-slate-400">
                 <span>₹1L</span>
@@ -106,7 +106,7 @@ export default function EMICalculator() {
                 value={downPayment}
                 onChange={(e) => setDownPayment(Number(e.target.value))}
                 suppressHydrationWarning
-                className="w-full h-2 rounded-full appearance-none cursor-pointer bg-white/10 accent-[#00D4FF]"
+                className="w-full h-2 rounded-full appearance-none cursor-pointer bg-white/10 accent-[#D7B56D]"
               />
               <div className="mt-1 flex justify-between text-[10px] text-slate-400">
                 <span>₹0</span>
@@ -129,7 +129,7 @@ export default function EMICalculator() {
                 value={tenure}
                 onChange={(e) => setTenure(Number(e.target.value))}
                 suppressHydrationWarning
-                className="w-full h-2 rounded-full appearance-none cursor-pointer bg-white/10 accent-[#00D4FF]"
+                className="w-full h-2 rounded-full appearance-none cursor-pointer bg-white/10 accent-[#D7B56D]"
               />
               <div className="mt-1 flex justify-between text-[10px] text-slate-400">
                 <span>1 yr</span>
@@ -152,7 +152,7 @@ export default function EMICalculator() {
                 value={rate}
                 onChange={(e) => setRate(Number(e.target.value))}
                 suppressHydrationWarning
-                className="w-full h-2 rounded-full appearance-none cursor-pointer bg-white/10 accent-[#00D4FF]"
+                className="w-full h-2 rounded-full appearance-none cursor-pointer bg-white/10 accent-[#D7B56D]"
               />
               <div className="mt-1 flex justify-between text-[10px] text-slate-400">
                 <span>7%</span>
@@ -167,13 +167,13 @@ export default function EMICalculator() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="rounded-2xl border border-[#00D4FF]/20 bg-gradient-to-br from-[#00D4FF]/[0.06] to-transparent p-6 flex flex-col justify-center"
+            className="rounded-2xl border border-[#D7B56D]/20 bg-gradient-to-br from-[#D7B56D]/[0.06] to-transparent p-6 flex flex-col justify-center"
             suppressHydrationWarning
           >
             {/* Monthly EMI — aria-live announces updates to screen readers */}
             <div className="mb-6" aria-live="polite" aria-atomic="true">
               <p className="text-xs font-medium text-slate-400 mb-1" suppressHydrationWarning>Your Monthly EMI</p>
-              <p className="text-4xl font-bold text-[#00D4FF]" suppressHydrationWarning>
+              <p className="text-4xl font-bold text-[#D7B56D]" suppressHydrationWarning>
                 ₹{emi.toLocaleString('en-IN')}
               </p>
               <p className="mt-1 text-[11px] text-slate-500" suppressHydrationWarning>for {tenureYears} year{tenureYears !== '1' ? 's' : ''} at {rate.toFixed(1)}% p.a.</p>
@@ -198,7 +198,7 @@ export default function EMICalculator() {
             {/* Apply for Finance CTA */}
             <Button
               suppressHydrationWarning
-              className="mt-5 h-11 w-full rounded-xl bg-[#00D4FF] text-[#0A0A0A] font-bold hover:bg-[#00B8E6] transition-all"
+              className="mt-5 h-11 w-full rounded-xl bg-[#D7B56D] text-[#0A0A0A] font-bold hover:bg-[#E7C77B] transition-all"
               onClick={handleApplyFinance}
             >
               Apply for Finance
@@ -207,7 +207,7 @@ export default function EMICalculator() {
 
             {/* Note */}
             <div className="mt-4 flex items-start gap-2 rounded-lg bg-white/[0.02] p-3">
-              <TrendingDown className="mt-0.5 h-3.5 w-3.5 shrink-0 text-[#00D4FF]/60" />
+              <TrendingDown className="mt-0.5 h-3.5 w-3.5 shrink-0 text-[#D7B56D]/60" />
               <p className="text-[11px] leading-relaxed text-slate-500" suppressHydrationWarning>
                 Indicative only. Actual EMI depends on bank approval, credit score, and processing fees. Contact us at {BUSINESS.phones[0].display} for finance assistance.
               </p>

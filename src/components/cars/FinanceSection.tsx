@@ -149,7 +149,7 @@ function SectionHeading({
       suppressHydrationWarning
     >
       <span
-        className="inline-flex items-center gap-2 rounded-full border border-[#00D4FF]/20 bg-[#00D4FF]/5 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-[#00D4FF]"
+        className="inline-flex items-center gap-2 rounded-full border border-[#D7B56D]/20 bg-[#D7B56D]/5 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-[#D7B56D]"
         suppressHydrationWarning
       >
         <Icon className="h-3.5 w-3.5" />
@@ -339,7 +339,7 @@ export default function FinanceSection() {
             suppressHydrationWarning
           >
             <div className="mb-5 flex items-center gap-2" suppressHydrationWarning>
-              <Calculator className="h-5 w-5 text-[#00D4FF]" />
+              <Calculator className="h-5 w-5 text-[#D7B56D]" />
               <h3 className="text-base font-semibold text-white" suppressHydrationWarning>
                 EMI Calculator
               </h3>
@@ -371,7 +371,7 @@ export default function FinanceSection() {
                   step={50000}
                   value={[price]}
                   onValueChange={(v) => setPrice(v[0] ?? price)}
-                  className="[&_[data-slot=slider-track]]:bg-white/10 [&_[data-slot=slider-range]]:bg-[#00D4FF] [&_[data-slot=slider-thumb]]:border-[#00D4FF] [&_[data-slot=slider-thumb]]:bg-[#0A0A0A]"
+                  className="[&_[data-slot=slider-track]]:bg-white/10 [&_[data-slot=slider-range]]:bg-[#D7B56D] [&_[data-slot=slider-thumb]]:border-[#D7B56D] [&_[data-slot=slider-thumb]]:bg-[#0A0A0A]"
                   suppressHydrationWarning
                 />
                 <div className="mt-1.5 flex justify-between text-[10px] text-slate-400" suppressHydrationWarning>
@@ -405,7 +405,7 @@ export default function FinanceSection() {
                   step={5}
                   value={[downPct]}
                   onValueChange={(v) => setDownPct(v[0] ?? downPct)}
-                  className="[&_[data-slot=slider-track]]:bg-white/10 [&_[data-slot=slider-range]]:bg-[#00D4FF] [&_[data-slot=slider-thumb]]:border-[#00D4FF] [&_[data-slot=slider-thumb]]:bg-[#0A0A0A]"
+                  className="[&_[data-slot=slider-track]]:bg-white/10 [&_[data-slot=slider-range]]:bg-[#D7B56D] [&_[data-slot=slider-thumb]]:border-[#D7B56D] [&_[data-slot=slider-thumb]]:bg-[#0A0A0A]"
                   suppressHydrationWarning
                 />
                 <div className="mt-1.5 flex justify-between text-[10px] text-slate-400" suppressHydrationWarning>
@@ -439,7 +439,7 @@ export default function FinanceSection() {
                   step={6}
                   value={[tenure]}
                   onValueChange={(v) => setTenure(v[0] ?? tenure)}
-                  className="[&_[data-slot=slider-track]]:bg-white/10 [&_[data-slot=slider-range]]:bg-[#00D4FF] [&_[data-slot=slider-thumb]]:border-[#00D4FF] [&_[data-slot=slider-thumb]]:bg-[#0A0A0A]"
+                  className="[&_[data-slot=slider-track]]:bg-white/10 [&_[data-slot=slider-range]]:bg-[#D7B56D] [&_[data-slot=slider-thumb]]:border-[#D7B56D] [&_[data-slot=slider-thumb]]:bg-[#0A0A0A]"
                   suppressHydrationWarning
                 />
                 <div className="mt-1.5 flex justify-between text-[10px] text-slate-400" suppressHydrationWarning>
@@ -473,7 +473,7 @@ export default function FinanceSection() {
                   step={0.25}
                   value={[rate]}
                   onValueChange={(v) => setRate(v[0] ?? rate)}
-                  className="[&_[data-slot=slider-track]]:bg-white/10 [&_[data-slot=slider-range]]:bg-[#00D4FF] [&_[data-slot=slider-thumb]]:border-[#00D4FF] [&_[data-slot=slider-thumb]]:bg-[#0A0A0A]"
+                  className="[&_[data-slot=slider-track]]:bg-white/10 [&_[data-slot=slider-range]]:bg-[#D7B56D] [&_[data-slot=slider-thumb]]:border-[#D7B56D] [&_[data-slot=slider-thumb]]:bg-[#0A0A0A]"
                   suppressHydrationWarning
                 />
                 <div className="mt-1.5 flex justify-between text-[10px] text-slate-400" suppressHydrationWarning>
@@ -490,11 +490,11 @@ export default function FinanceSection() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="flex flex-col rounded-2xl border border-[#00D4FF]/20 bg-gradient-to-br from-[#00D4FF]/[0.06] to-transparent p-6"
+            className="flex flex-col rounded-2xl border border-[#D7B56D]/20 bg-gradient-to-br from-[#D7B56D]/[0.06] to-transparent p-6"
             suppressHydrationWarning
           >
             <div className="mb-5 flex items-center gap-2" suppressHydrationWarning>
-              <IndianRupee className="h-5 w-5 text-[#00D4FF]" />
+              <IndianRupee className="h-5 w-5 text-[#D7B56D]" />
               <h3 className="text-base font-semibold text-white" suppressHydrationWarning>
                 Your Monthly EMI
               </h3>
@@ -508,7 +508,7 @@ export default function FinanceSection() {
               suppressHydrationWarning
             >
               <p
-                className="text-4xl font-bold text-[#00D4FF] sm:text-5xl"
+                className="text-4xl font-bold text-[#D7B56D] sm:text-5xl"
                 suppressHydrationWarning
               >
                 {formatEMI(emi)}
@@ -538,7 +538,7 @@ export default function FinanceSection() {
                 suppressHydrationWarning
               >
                 <div
-                  className="h-full bg-[#00D4FF] transition-all duration-300"
+                  className="h-full bg-[#D7B56D] transition-all duration-300"
                   style={{ width: `${principalPct}%` }}
                   suppressHydrationWarning
                 />
@@ -553,7 +553,7 @@ export default function FinanceSection() {
                 suppressHydrationWarning
               >
                 <span className="flex items-center gap-1.5 text-slate-400" suppressHydrationWarning>
-                  <span className="h-2 w-2 rounded-full bg-[#00D4FF]" suppressHydrationWarning />
+                  <span className="h-2 w-2 rounded-full bg-[#D7B56D]" suppressHydrationWarning />
                   Principal {formatPrice(loanAmount)}
                 </span>
                 <span className="flex items-center gap-1.5 text-slate-400" suppressHydrationWarning>
@@ -584,7 +584,7 @@ export default function FinanceSection() {
 
             <Button
               suppressHydrationWarning
-              className="mt-5 h-11 w-full bg-[#00D4FF] text-[#0A0A0A] font-bold hover:bg-[#00B8E6]"
+              className="mt-5 h-11 w-full bg-[#D7B56D] text-[#0A0A0A] font-bold hover:bg-[#E7C77B]"
               onClick={scrollToEligibility}
             >
               Apply for Finance
@@ -592,7 +592,7 @@ export default function FinanceSection() {
             </Button>
 
             <div className="mt-4 flex items-start gap-2 rounded-lg bg-white/[0.02] p-3" suppressHydrationWarning>
-              <TrendingDown className="mt-0.5 h-3.5 w-3.5 shrink-0 text-[#00D4FF]/60" />
+              <TrendingDown className="mt-0.5 h-3.5 w-3.5 shrink-0 text-[#D7B56D]/60" />
               <p className="text-[11px] leading-relaxed text-slate-500" suppressHydrationWarning>
                 Indicative only. Actual EMI depends on bank approval, credit
                 score, and processing fees.
@@ -611,7 +611,7 @@ export default function FinanceSection() {
           suppressHydrationWarning
         >
           <div className="flex items-center gap-2 border-b border-white/[0.06] p-5" suppressHydrationWarning>
-            <Clock className="h-5 w-5 text-[#00D4FF]" />
+            <Clock className="h-5 w-5 text-[#D7B56D]" />
             <h3 className="text-base font-semibold text-white" suppressHydrationWarning>
               Tenure Comparison — 3 / 5 / 7 Years
             </h3>
@@ -764,7 +764,7 @@ export default function FinanceSection() {
 
                 <div className="flex flex-1 flex-col" suppressHydrationWarning>
                   <div className="flex items-center gap-1.5" suppressHydrationWarning>
-                    <Percent className="h-3.5 w-3.5 text-[#00D4FF]/70" />
+                    <Percent className="h-3.5 w-3.5 text-[#D7B56D]/70" />
                     <span
                       className="text-xs font-medium text-slate-400"
                       suppressHydrationWarning
@@ -785,7 +785,7 @@ export default function FinanceSection() {
                   variant="ghost"
                   suppressHydrationWarning
                   onClick={scrollToEligibility}
-                  className="mt-4 h-8 w-full justify-center border border-white/[0.06] text-xs font-medium text-slate-300 hover:bg-[#00D4FF]/10 hover:text-[#00D4FF]"
+                  className="mt-4 h-8 w-full justify-center border border-white/[0.06] text-xs font-medium text-slate-300 hover:bg-[#D7B56D]/10 hover:text-[#D7B56D]"
                 >
                   Get Quote
                   <ChevronRight className="ml-1 h-3.5 w-3.5" />
@@ -805,7 +805,7 @@ export default function FinanceSection() {
           suppressHydrationWarning
         >
           <div className="flex items-center gap-2 border-b border-white/[0.06] p-5" suppressHydrationWarning>
-            <FileText className="h-5 w-5 text-[#00D4FF]" />
+            <FileText className="h-5 w-5 text-[#D7B56D]" />
             <h3 className="text-base font-semibold text-white" suppressHydrationWarning>
               Detailed Interest Rates
             </h3>
@@ -830,7 +830,7 @@ export default function FinanceSection() {
                     suppressHydrationWarning
                   >
                     <TableCell className="font-medium text-white" suppressHydrationWarning>{row.bank}</TableCell>
-                    <TableCell className="text-[#00D4FF]" suppressHydrationWarning>{row.rate}</TableCell>
+                    <TableCell className="text-[#D7B56D]" suppressHydrationWarning>{row.rate}</TableCell>
                     <TableCell className="text-slate-300" suppressHydrationWarning>{row.maxLoan}</TableCell>
                     <TableCell className="text-slate-300" suppressHydrationWarning>{row.maxTenure}</TableCell>
                     <TableCell className="text-slate-300" suppressHydrationWarning>{row.fee}</TableCell>
@@ -885,7 +885,7 @@ export default function FinanceSection() {
                       setForm((f) => ({ ...f, name: e.target.value }))
                     }
                     required
-                    className="h-10 border-white/[0.08] bg-white/[0.02] text-white placeholder:text-slate-400 focus-visible:border-[#00D4FF] focus-visible:ring-[#00D4FF]/20"
+                    className="h-10 border-white/[0.08] bg-white/[0.02] text-white placeholder:text-slate-400 focus-visible:border-[#D7B56D] focus-visible:ring-[#D7B56D]/20"
                     suppressHydrationWarning
                   />
                 </div>
@@ -908,7 +908,7 @@ export default function FinanceSection() {
                       setForm((f) => ({ ...f, phone: e.target.value }))
                     }
                     required
-                    className="h-10 border-white/[0.08] bg-white/[0.02] text-white placeholder:text-slate-400 focus-visible:border-[#00D4FF] focus-visible:ring-[#00D4FF]/20"
+                    className="h-10 border-white/[0.08] bg-white/[0.02] text-white placeholder:text-slate-400 focus-visible:border-[#D7B56D] focus-visible:ring-[#D7B56D]/20"
                     suppressHydrationWarning
                   />
                 </div>
@@ -932,7 +932,7 @@ export default function FinanceSection() {
                       onChange={(e) =>
                         setForm((f) => ({ ...f, income: e.target.value }))
                       }
-                      className="h-10 border-white/[0.08] bg-white/[0.02] text-white placeholder:text-slate-400 focus-visible:border-[#00D4FF] focus-visible:ring-[#00D4FF]/20"
+                      className="h-10 border-white/[0.08] bg-white/[0.02] text-white placeholder:text-slate-400 focus-visible:border-[#D7B56D] focus-visible:ring-[#D7B56D]/20"
                       suppressHydrationWarning
                     />
                   </div>
@@ -955,7 +955,7 @@ export default function FinanceSection() {
                       onChange={(e) =>
                         setForm((f) => ({ ...f, age: e.target.value }))
                       }
-                      className="h-10 border-white/[0.08] bg-white/[0.02] text-white placeholder:text-slate-400 focus-visible:border-[#00D4FF] focus-visible:ring-[#00D4FF]/20"
+                      className="h-10 border-white/[0.08] bg-white/[0.02] text-white placeholder:text-slate-400 focus-visible:border-[#D7B56D] focus-visible:ring-[#D7B56D]/20"
                       suppressHydrationWarning
                     />
                   </div>
@@ -977,7 +977,7 @@ export default function FinanceSection() {
                   >
                     <SelectTrigger
                       id={employmentId}
-                      className="h-10 w-full border-white/[0.08] bg-white/[0.02] text-white data-[placeholder]:text-slate-400 focus-visible:border-[#00D4FF] focus-visible:ring-[#00D4FF]/20"
+                      className="h-10 w-full border-white/[0.08] bg-white/[0.02] text-white data-[placeholder]:text-slate-400 focus-visible:border-[#D7B56D] focus-visible:ring-[#D7B56D]/20"
                       suppressHydrationWarning
                     >
                       <SelectValue placeholder="Select employment type" />
@@ -991,7 +991,7 @@ export default function FinanceSection() {
 
                 {/* Eligibility result */}
                 <div
-                  className="rounded-xl border border-[#00D4FF]/20 bg-[#00D4FF]/[0.04] p-4"
+                  className="rounded-xl border border-[#D7B56D]/20 bg-[#D7B56D]/[0.04] p-4"
                   aria-live="polite"
                   aria-atomic="true"
                   suppressHydrationWarning
@@ -1004,7 +1004,7 @@ export default function FinanceSection() {
                   </p>
                   {eligibility > 0 ? (
                     <p
-                      className="mt-1 text-2xl font-bold text-[#00D4FF]"
+                      className="mt-1 text-2xl font-bold text-[#D7B56D]"
                       suppressHydrationWarning
                     >
                       up to {formatPrice(eligibility)}
@@ -1030,7 +1030,7 @@ export default function FinanceSection() {
                   type="submit"
                   disabled={submitting}
                   suppressHydrationWarning
-                  className="h-11 w-full bg-[#00D4FF] text-[#0A0A0A] font-bold hover:bg-[#00B8E6] disabled:opacity-50"
+                  className="h-11 w-full bg-[#D7B56D] text-[#0A0A0A] font-bold hover:bg-[#E7C77B] disabled:opacity-50"
                 >
                   {submitting ? 'Submitting…' : 'Apply Now'}
                   <ArrowRight className="ml-2 h-4 w-4" />
@@ -1061,7 +1061,7 @@ export default function FinanceSection() {
                 suppressHydrationWarning
               >
                 <CheckCircle2
-                  className="mt-0.5 h-5 w-5 shrink-0 text-[#00D4FF]"
+                  className="mt-0.5 h-5 w-5 shrink-0 text-[#D7B56D]"
                 />
                 <div className="flex-1" suppressHydrationWarning>
                   <p
@@ -1113,7 +1113,7 @@ export default function FinanceSection() {
                   suppressHydrationWarning
                 >
                   <AccordionTrigger
-                    className="py-4 text-left text-sm font-medium text-white hover:no-underline hover:text-[#00D4FF] data-[state=open]:text-[#00D4FF]"
+                    className="py-4 text-left text-sm font-medium text-white hover:no-underline hover:text-[#D7B56D] data-[state=open]:text-[#D7B56D]"
                     suppressHydrationWarning
                   >
                     {faq.q}

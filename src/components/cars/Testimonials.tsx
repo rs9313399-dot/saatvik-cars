@@ -56,7 +56,7 @@ export default function Testimonials() {
           className="mb-10 text-center"
           suppressHydrationWarning
         >
-          <span className="inline-flex items-center gap-2 rounded-full border border-[#00D4FF]/20 bg-[#00D4FF]/5 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-[#00D4FF]" suppressHydrationWarning>
+          <span className="inline-flex items-center gap-2 rounded-full border border-[#D7B56D]/20 bg-[#D7B56D]/5 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-[#D7B56D]" suppressHydrationWarning>
             <Star className="h-3.5 w-3.5" />
             Our Promise
           </span>
@@ -88,15 +88,15 @@ export default function Testimonials() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.45, delay: i * 0.08 }}
-                className="group relative rounded-xl border border-white/[0.06] bg-[#111827]/50 p-5 transition-all duration-300 hover:border-[#00D4FF]/20 hover:bg-[#00D4FF]/[0.02] overflow-hidden"
+                className="group relative rounded-xl border border-white/[0.06] bg-[#111827]/50 p-5 transition-all duration-300 hover:border-[#D7B56D]/20 hover:bg-[#D7B56D]/[0.02] overflow-hidden"
                 suppressHydrationWarning
               >
                 {/* Icon */}
                 <div
-                  className="mb-3 flex h-11 w-11 items-center justify-center rounded-xl border border-[#00D4FF]/20 bg-[#00D4FF]/10 transition-transform duration-300 group-hover:scale-110"
+                  className="mb-3 flex h-11 w-11 items-center justify-center rounded-xl border border-[#D7B56D]/20 bg-[#D7B56D]/10 transition-transform duration-300 group-hover:scale-110"
                   suppressHydrationWarning
                 >
-                  <Icon className="h-5 w-5 text-[#00D4FF]" strokeWidth={1.8} />
+                  <Icon className="h-5 w-5 text-[#D7B56D]" strokeWidth={1.8} />
                 </div>
 
                 {/* Title */}
@@ -125,7 +125,7 @@ export default function Testimonials() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="mt-10 rounded-2xl border border-white/[0.06] bg-gradient-to-r from-[#00D4FF]/[0.04] to-transparent p-6 text-center"
+          className="mt-10 rounded-2xl border border-white/[0.06] bg-gradient-to-r from-[#D7B56D]/[0.04] to-transparent p-6 text-center"
           suppressHydrationWarning
         >
           <p
@@ -137,7 +137,7 @@ export default function Testimonials() {
           <div className="flex flex-wrap items-center justify-center gap-3">
             <Button
               suppressHydrationWarning
-              className="h-10 rounded-xl bg-[#00D4FF] px-5 text-sm font-bold text-[#0A0A0A] hover:bg-[#00B8E6] transition-all"
+              className="h-10 rounded-xl bg-[#D7B56D] px-5 text-sm font-bold text-[#0A0A0A] hover:bg-[#E7C77B] transition-all"
               onClick={() => {
                 const el = document.getElementById('customer-reviews');
                 if (el) el.scrollIntoView({ behavior: 'smooth' });

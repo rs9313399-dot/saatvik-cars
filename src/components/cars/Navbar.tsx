@@ -166,7 +166,7 @@ export default function Navbar() {
         <div className="mx-auto flex h-8 max-w-7xl items-center justify-between gap-5 px-4 sm:px-6 lg:px-8">
           {/* Left: GSTIN badge + email + hours */}
           <div className="flex items-center gap-4 text-[11px]">
-            <span className="hidden lg:flex items-center gap-1.5 rounded-full border border-[#00D4FF]/15 bg-[#00D4FF]/[0.04] px-2 py-0.5 text-[#00D4FF]" suppressHydrationWarning>
+            <span className="hidden lg:flex items-center gap-1.5 rounded-full border border-[#D7B56D]/15 bg-[#D7B56D]/[0.04] px-2 py-0.5 text-[#D7B56D]" suppressHydrationWarning>
               <Shield className="h-2.5 w-2.5" />
               GSTIN: {BUSINESS.gstin}
             </span>
@@ -175,12 +175,12 @@ export default function Navbar() {
               suppressHydrationWarning
               className="flex items-center gap-1.5 text-slate-500 transition-colors hover:text-slate-300"
             >
-              <Mail className="h-3 w-3 text-[#00D4FF]" />
+              <Mail className="h-3 w-3 text-[#D7B56D]" />
               <span className="hidden xl:inline">{BUSINESS.email}</span>
               <span className="xl:hidden">Email us</span>
             </a>
             <span className="hidden lg:flex items-center gap-1.5 text-slate-500">
-              <Clock className="h-3 w-3 text-[#00D4FF]" />
+              <Clock className="h-3 w-3 text-[#D7B56D]" />
               <span>{BUSINESS.hours}</span>
             </span>
           </div>
@@ -195,7 +195,7 @@ export default function Navbar() {
                   suppressHydrationWarning
                   className="flex items-center gap-1.5 text-slate-500 transition-colors hover:text-slate-300"
                 >
-                  <Phone className="h-3 w-3 text-[#00D4FF]" />
+                  <Phone className="h-3 w-3 text-[#D7B56D]" />
                   <span>{phone.display}</span>
                 </a>
               ))}
@@ -283,12 +283,12 @@ export default function Navbar() {
                 }
               }}
               suppressHydrationWarning
-              className="relative hidden md:flex h-8 w-8 items-center justify-center rounded-lg border border-white/[0.08] bg-white/[0.03] text-slate-400 transition-all duration-200 hover:border-[#00D4FF]/30 hover:text-[#00D4FF] hover:bg-[#00D4FF]/5"
+              className="relative hidden md:flex h-8 w-8 items-center justify-center rounded-lg border border-white/[0.08] bg-white/[0.03] text-slate-400 transition-all duration-200 hover:border-[#D7B56D]/30 hover:text-[#D7B56D] hover:bg-[#D7B56D]/5"
               aria-label={`Compare cars (${compareList.length} selected)`}
             >
               <Scale className="h-4 w-4" />
               {compareList.length > 0 && (
-                <span className="absolute -right-1 -top-1 flex h-4 min-w-4 items-center justify-center rounded-full bg-[#00D4FF] px-1 text-[9px] font-bold text-[#0A0A0A]" suppressHydrationWarning>
+                <span className="absolute -right-1 -top-1 flex h-4 min-w-4 items-center justify-center rounded-full bg-[#D7B56D] px-1 text-[9px] font-bold text-[#0A0A0A]" suppressHydrationWarning>
                   {compareList.length}
                 </span>
               )}
@@ -298,7 +298,7 @@ export default function Navbar() {
             <a
               href={`tel:${BUSINESS.primaryPhone}`}
               suppressHydrationWarning
-              className="hidden md:flex h-8 w-8 items-center justify-center rounded-lg border border-white/[0.08] bg-white/[0.03] text-slate-400 transition-all duration-200 hover:border-[#00D4FF]/30 hover:text-[#00D4FF] hover:bg-[#00D4FF]/5"
+              className="hidden md:flex h-8 w-8 items-center justify-center rounded-lg border border-white/[0.08] bg-white/[0.03] text-slate-400 transition-all duration-200 hover:border-[#D7B56D]/30 hover:text-[#D7B56D] hover:bg-[#D7B56D]/5"
               aria-label="Call us"
             >
               <Phone className="h-4 w-4" />
@@ -309,7 +309,7 @@ export default function Navbar() {
               <div className="hidden sm:flex items-center gap-1.5">
                 <Button
                   suppressHydrationWarning
-                  className="h-8 rounded-lg bg-[#00D4FF] px-3.5 text-xs font-bold text-[#0A0A0A] shadow-[0_0_20px_rgba(0,212,255,0.15)] transition-all duration-200 hover:bg-[#00B8E6] hover:shadow-[0_0_24px_rgba(0,212,255,0.25)]"
+                  className="h-8 rounded-lg bg-[#D7B56D] px-3.5 text-xs font-bold text-[#0A0A0A] shadow-[0_0_20px_rgba(215,181,109,0.15)] transition-all duration-200 hover:bg-[#E7C77B] hover:shadow-[0_0_24px_rgba(215,181,109,0.25)]"
                   onClick={handleSellCar}
                 >
                   <Car className="mr-1.5 h-3.5 w-3.5" />
@@ -323,7 +323,7 @@ export default function Navbar() {
                     suppressHydrationWarning
                     aria-label="Admin menu"
                     aria-expanded={adminDropdownOpen}
-                    className="flex items-center gap-1.5 h-8 rounded-lg border border-[#00D4FF]/20 bg-[#00D4FF]/5 px-2.5 text-xs font-semibold text-[#00D4FF] transition-all duration-200 hover:bg-[#00D4FF]/10 hover:border-[#00D4FF]/30"
+                    className="flex items-center gap-1.5 h-8 rounded-lg border border-[#D7B56D]/20 bg-[#D7B56D]/5 px-2.5 text-xs font-semibold text-[#D7B56D] transition-all duration-200 hover:bg-[#D7B56D]/10 hover:border-[#D7B56D]/30"
                   >
                     <Shield className="h-3.5 w-3.5" />
                     Admin
@@ -344,7 +344,7 @@ export default function Navbar() {
                           suppressHydrationWarning
                           className="flex w-full items-center gap-2.5 px-3.5 py-2 text-sm text-slate-300 hover:text-white hover:bg-white/[0.05] transition-colors"
                         >
-                          <LayoutDashboard className="h-4 w-4 text-[#00D4FF]" />
+                          <LayoutDashboard className="h-4 w-4 text-[#D7B56D]" />
                           Dashboard
                         </button>
                         <button
@@ -373,7 +373,7 @@ export default function Navbar() {
               /* ── Not logged in ── */
               <Button
                 suppressHydrationWarning
-                className="hidden sm:inline-flex h-8 rounded-lg border border-[#00D4FF]/20 bg-[#00D4FF]/5 px-3.5 text-xs font-semibold text-[#00D4FF] transition-all duration-200 hover:bg-[#00D4FF]/10 hover:border-[#00D4FF]/30"
+                className="hidden sm:inline-flex h-8 rounded-lg border border-[#D7B56D]/20 bg-[#D7B56D]/5 px-3.5 text-xs font-semibold text-[#D7B56D] transition-all duration-200 hover:bg-[#D7B56D]/10 hover:border-[#D7B56D]/30"
                 onClick={() => setLoginModalOpen(true)}
               >
                 <Shield className="mr-1.5 h-3.5 w-3.5" />
@@ -387,22 +387,7 @@ export default function Navbar() {
                 type="button"
                 suppressHydrationWarning
                 onClick={() => setMobileMenuOpen(true)}
-                style={{
-                  position: 'fixed',
-                  left: 'calc(100vw - 3rem)',
-                  top: '0.75rem',
-                  zIndex: 9999,
-                  display: 'flex',
-                  width: '2rem',
-                  height: '2rem',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  borderRadius: '0.5rem',
-                  border: '1px solid rgba(215,181,109,0.4)',
-                  background: '#D7B56D',
-                  color: '#0A0A0A',
-                }}
-                className="mobile-menu-trigger transition-colors hover:bg-[#E7C77B]"
+                className="mobile-menu-trigger h-8 w-8 items-center justify-center rounded-lg border border-[#D7B56D]/40 bg-[#D7B56D] text-[#0A0A0A] transition-colors hover:bg-[#E7C77B]"
                 aria-label="Open navigation menu"
               >
                 <Menu className="h-5 w-5" />
@@ -431,7 +416,7 @@ export default function Navbar() {
                       </span>
                     </span>
                     {isAdmin && (
-                      <span className="ml-auto flex items-center gap-1 rounded-full bg-[#00D4FF]/10 border border-[#00D4FF]/20 px-2 py-0.5 text-[10px] font-semibold text-[#00D4FF]">
+                      <span className="ml-auto flex items-center gap-1 rounded-full bg-[#D7B56D]/10 border border-[#D7B56D]/20 px-2 py-0.5 text-[10px] font-semibold text-[#D7B56D]">
                         <Shield className="h-2.5 w-2.5" />
                         Admin
                       </span>
@@ -455,13 +440,13 @@ export default function Navbar() {
                           suppressHydrationWarning
                           className={`flex items-center rounded-lg px-3.5 py-2.5 text-sm font-medium transition-colors duration-150 ${
                             isActive
-                              ? 'bg-[#00D4FF]/[0.08] text-white'
+                              ? 'bg-[#D7B56D]/[0.08] text-white'
                               : 'text-slate-400 hover:text-white hover:bg-white/[0.04]'
                           }`}
                         >
                           {link.label}
                           {isActive && (
-                            <span className="ml-auto h-1.5 w-1.5 rounded-full bg-[#00D4FF]" />
+                            <span className="ml-auto h-1.5 w-1.5 rounded-full bg-[#D7B56D]" />
                           )}
                         </a>
                       );
@@ -484,7 +469,7 @@ export default function Navbar() {
                           href="#"
                           onClick={(e) => { e.preventDefault(); setMobileMenuOpen(false); setAdminPanelOpen(true); }}
                           suppressHydrationWarning
-                          className="flex items-center rounded-lg px-3.5 py-2.5 text-sm font-medium text-[#00D4FF] hover:bg-[#00D4FF]/5 transition-colors"
+                          className="flex items-center rounded-lg px-3.5 py-2.5 text-sm font-medium text-[#D7B56D] hover:bg-[#D7B56D]/5 transition-colors"
                         >
                           <LayoutDashboard className="mr-2.5 h-4 w-4" />
                           Admin Dashboard
@@ -511,7 +496,7 @@ export default function Navbar() {
                         </a>
                         <button
                           suppressHydrationWarning
-                          className="mt-4 flex h-10 w-full items-center justify-center rounded-lg bg-[#00D4FF]/5 border border-[#00D4FF]/20 text-sm font-semibold text-[#00D4FF] transition-all duration-200 hover:bg-[#00D4FF]/10"
+                          className="mt-4 flex h-10 w-full items-center justify-center rounded-lg bg-[#D7B56D]/5 border border-[#D7B56D]/20 text-sm font-semibold text-[#D7B56D] transition-all duration-200 hover:bg-[#D7B56D]/10"
                           onClick={() => { setMobileMenuOpen(false); setLoginModalOpen(true); }}
                         >
                           <Shield className="mr-2 h-4 w-4" />
@@ -526,16 +511,16 @@ export default function Navbar() {
                     <div className="flex flex-col gap-2.5 text-[11px] text-slate-500">
                       {BUSINESS.phones.map((phone) => (
                         <a key={phone.tel} href={`tel:${phone.tel}`} suppressHydrationWarning className="flex items-center gap-2 transition-colors hover:text-slate-300">
-                          <Phone className="h-3 w-3 text-[#00D4FF]" />
+                          <Phone className="h-3 w-3 text-[#D7B56D]" />
                           {phone.display}
                         </a>
                       ))}
                       <a href={`mailto:${BUSINESS.email}`} suppressHydrationWarning className="flex items-center gap-2 transition-colors hover:text-slate-300">
-                        <Mail className="h-3 w-3 text-[#00D4FF]" />
+                        <Mail className="h-3 w-3 text-[#D7B56D]" />
                         {BUSINESS.email}
                       </a>
                       <span className="flex items-center gap-2">
-                        <Clock className="h-3 w-3 text-[#00D4FF]" />
+                        <Clock className="h-3 w-3 text-[#D7B56D]" />
                         {BUSINESS.hours}
                       </span>
                     </div>

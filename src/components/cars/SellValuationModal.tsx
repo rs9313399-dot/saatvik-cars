@@ -90,10 +90,10 @@ const CONDITIONS: ConditionOption[] = [
     value: 'Good',
     icon: Check,
     desc: 'Minor wear and tear, runs perfectly',
-    accent: 'text-[#00D4FF]',
-    ring: 'ring-[#00D4FF]/40',
-    bg: 'bg-[#00D4FF]/[0.06]',
-    border: 'border-[#00D4FF]/30',
+    accent: 'text-[#D7B56D]',
+    ring: 'ring-[#D7B56D]/40',
+    bg: 'bg-[#D7B56D]/[0.06]',
+    border: 'border-[#D7B56D]/30',
   },
   {
     value: 'Fair',
@@ -518,7 +518,7 @@ export default function SellValuationModal() {
             suppressHydrationWarning
           >
             {/* Decorative top accent */}
-            <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#00D4FF]/60 to-transparent" />
+            <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#D7B56D]/60 to-transparent" />
 
             {submitted ? (
               <SuccessView
@@ -548,8 +548,8 @@ export default function SellValuationModal() {
                   </button>
 
                   <div className="mb-3 flex items-center gap-3 pr-8">
-                    <div className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-[#00D4FF]/10 ring-1 ring-[#00D4FF]/30">
-                      <Car className="h-5 w-5 text-[#00D4FF]" />
+                    <div className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-[#D7B56D]/10 ring-1 ring-[#D7B56D]/30">
+                      <Car className="h-5 w-5 text-[#D7B56D]" />
                     </div>
                     <div className="min-w-0">
                       <h2 className="truncate text-lg font-semibold tracking-tight text-white sm:text-xl">
@@ -576,9 +576,9 @@ export default function SellValuationModal() {
                             <div
                               className={`grid h-6 w-6 shrink-0 place-items-center rounded-full text-[11px] font-bold transition-colors ${
                                 isCurrent
-                                  ? 'bg-[#00D4FF] text-[#0A0A0A]'
+                                  ? 'bg-[#D7B56D] text-[#0A0A0A]'
                                   : isDone
-                                    ? 'bg-[#00D4FF]/20 text-[#00D4FF]'
+                                    ? 'bg-[#D7B56D]/20 text-[#D7B56D]'
                                     : 'bg-white/[0.05] text-slate-500'
                               }`}
                               suppressHydrationWarning
@@ -604,7 +604,7 @@ export default function SellValuationModal() {
                           {idx < STEP_LABELS.length - 1 ? (
                             <div
                               className={`h-px flex-1 transition-colors ${
-                                isDone ? 'bg-[#00D4FF]/40' : 'bg-white/[0.08]'
+                                isDone ? 'bg-[#D7B56D]/40' : 'bg-white/[0.08]'
                               }`}
                             />
                           ) : null}
@@ -754,7 +754,7 @@ export default function SellValuationModal() {
                         (step === 1 ? !canContinueStep1 : !canContinueStep2)
                       }
                       suppressHydrationWarning
-                      className="ml-auto h-11 gap-1.5 rounded-xl bg-[#00D4FF] px-5 text-sm font-semibold text-[#0A0A0A] shadow-lg shadow-[#00D4FF]/20 hover:bg-[#00B8E6] hover:shadow-[#00B8E6]/25 disabled:cursor-not-allowed disabled:opacity-40"
+                      className="ml-auto h-11 gap-1.5 rounded-xl bg-[#D7B56D] px-5 text-sm font-semibold text-[#0A0A0A] shadow-lg shadow-[#D7B56D]/20 hover:bg-[#E7C77B] hover:shadow-[#E7C77B]/25 disabled:cursor-not-allowed disabled:opacity-40"
                     >
                       Continue
                       <ChevronRight className="h-4 w-4" />
@@ -765,7 +765,7 @@ export default function SellValuationModal() {
                       onClick={handleSubmit}
                       disabled={loading}
                       suppressHydrationWarning
-                      className="ml-auto h-11 gap-2 rounded-xl bg-[#00D4FF] px-5 text-sm font-semibold text-[#0A0A0A] shadow-lg shadow-[#00D4FF]/20 hover:bg-[#00B8E6] hover:shadow-[#00B8E6]/25 disabled:cursor-not-allowed disabled:opacity-60"
+                      className="ml-auto h-11 gap-2 rounded-xl bg-[#D7B56D] px-5 text-sm font-semibold text-[#0A0A0A] shadow-lg shadow-[#D7B56D]/20 hover:bg-[#E7C77B] hover:shadow-[#E7C77B]/25 disabled:cursor-not-allowed disabled:opacity-60"
                     >
                       {loading ? (
                         <>
@@ -858,13 +858,13 @@ function Step1Form(props: Step1FormProps) {
             className="text-sm font-medium text-slate-200"
             suppressHydrationWarning
           >
-            Brand <span className="text-[#00D4FF]">*</span>
+            Brand <span className="text-[#D7B56D]">*</span>
           </Label>
           <Select value={brand} onValueChange={setBrand}>
             <SelectTrigger
               id={idBrand}
               suppressHydrationWarning
-              className="h-11 w-full border-white/[0.08] bg-white/[0.03] text-sm text-white data-[placeholder]:text-slate-500 hover:border-white/15 focus-visible:border-[#00D4FF]/50 focus-visible:ring-[#00D4FF]/20"
+              className="h-11 w-full border-white/[0.08] bg-white/[0.03] text-sm text-white data-[placeholder]:text-slate-500 hover:border-white/15 focus-visible:border-[#D7B56D]/50 focus-visible:ring-[#D7B56D]/20"
             >
               <SelectValue placeholder="Select brand" />
             </SelectTrigger>
@@ -877,7 +877,7 @@ function Step1Form(props: Step1FormProps) {
                   key={b}
                   value={b}
                   suppressHydrationWarning
-                  className="focus:bg-[#00D4FF]/15 focus:text-white"
+                  className="focus:bg-[#D7B56D]/15 focus:text-white"
                 >
                   {b}
                 </SelectItem>
@@ -892,7 +892,7 @@ function Step1Form(props: Step1FormProps) {
             className="text-sm font-medium text-slate-200"
             suppressHydrationWarning
           >
-            Model <span className="text-[#00D4FF]">*</span>
+            Model <span className="text-[#D7B56D]">*</span>
           </Label>
           <Input
             id={idModel}
@@ -901,7 +901,7 @@ function Step1Form(props: Step1FormProps) {
             value={model}
             onChange={(e) => setModel(e.target.value)}
             suppressHydrationWarning
-            className="h-11 border-white/[0.08] bg-white/[0.03] text-white placeholder:text-slate-500 focus-visible:border-[#00D4FF]/50 focus-visible:ring-[#00D4FF]/20"
+            className="h-11 border-white/[0.08] bg-white/[0.03] text-white placeholder:text-slate-500 focus-visible:border-[#D7B56D]/50 focus-visible:ring-[#D7B56D]/20"
           />
         </div>
       </div>
@@ -914,13 +914,13 @@ function Step1Form(props: Step1FormProps) {
             className="text-sm font-medium text-slate-200"
             suppressHydrationWarning
           >
-            Year <span className="text-[#00D4FF]">*</span>
+            Year <span className="text-[#D7B56D]">*</span>
           </Label>
           <Select value={year} onValueChange={setYear}>
             <SelectTrigger
               id={idYear}
               suppressHydrationWarning
-              className="h-11 w-full border-white/[0.08] bg-white/[0.03] text-sm text-white data-[placeholder]:text-slate-500 hover:border-white/15 focus-visible:border-[#00D4FF]/50 focus-visible:ring-[#00D4FF]/20"
+              className="h-11 w-full border-white/[0.08] bg-white/[0.03] text-sm text-white data-[placeholder]:text-slate-500 hover:border-white/15 focus-visible:border-[#D7B56D]/50 focus-visible:ring-[#D7B56D]/20"
             >
               <SelectValue placeholder="Select year" />
             </SelectTrigger>
@@ -933,7 +933,7 @@ function Step1Form(props: Step1FormProps) {
                   key={y}
                   value={String(y)}
                   suppressHydrationWarning
-                  className="focus:bg-[#00D4FF]/15 focus:text-white"
+                  className="focus:bg-[#D7B56D]/15 focus:text-white"
                 >
                   {y}
                 </SelectItem>
@@ -954,7 +954,7 @@ function Step1Form(props: Step1FormProps) {
             <SelectTrigger
               id={idFuel}
               suppressHydrationWarning
-              className="h-11 w-full border-white/[0.08] bg-white/[0.03] text-sm text-white data-[placeholder]:text-slate-500 hover:border-white/15 focus-visible:border-[#00D4FF]/50 focus-visible:ring-[#00D4FF]/20"
+              className="h-11 w-full border-white/[0.08] bg-white/[0.03] text-sm text-white data-[placeholder]:text-slate-500 hover:border-white/15 focus-visible:border-[#D7B56D]/50 focus-visible:ring-[#D7B56D]/20"
             >
               <SelectValue placeholder="Select fuel type" />
             </SelectTrigger>
@@ -967,7 +967,7 @@ function Step1Form(props: Step1FormProps) {
                   key={f}
                   value={f}
                   suppressHydrationWarning
-                  className="focus:bg-[#00D4FF]/15 focus:text-white"
+                  className="focus:bg-[#D7B56D]/15 focus:text-white"
                 >
                   {f}
                 </SelectItem>
@@ -991,7 +991,7 @@ function Step1Form(props: Step1FormProps) {
             <SelectTrigger
               id={idTrans}
               suppressHydrationWarning
-              className="h-11 w-full border-white/[0.08] bg-white/[0.03] text-sm text-white data-[placeholder]:text-slate-500 hover:border-white/15 focus-visible:border-[#00D4FF]/50 focus-visible:ring-[#00D4FF]/20"
+              className="h-11 w-full border-white/[0.08] bg-white/[0.03] text-sm text-white data-[placeholder]:text-slate-500 hover:border-white/15 focus-visible:border-[#D7B56D]/50 focus-visible:ring-[#D7B56D]/20"
             >
               <SelectValue placeholder="Select transmission" />
             </SelectTrigger>
@@ -1004,7 +1004,7 @@ function Step1Form(props: Step1FormProps) {
                   key={t}
                   value={t}
                   suppressHydrationWarning
-                  className="focus:bg-[#00D4FF]/15 focus:text-white"
+                  className="focus:bg-[#D7B56D]/15 focus:text-white"
                 >
                   {t}
                 </SelectItem>
@@ -1019,7 +1019,7 @@ function Step1Form(props: Step1FormProps) {
             className="text-sm font-medium text-slate-200"
             suppressHydrationWarning
           >
-            KM Driven <span className="text-[#00D4FF]">*</span>
+            KM Driven <span className="text-[#D7B56D]">*</span>
           </Label>
           <Input
             id={idKm}
@@ -1030,7 +1030,7 @@ function Step1Form(props: Step1FormProps) {
             value={kmDriven}
             onChange={(e) => setKmDriven(e.target.value)}
             suppressHydrationWarning
-            className="h-11 border-white/[0.08] bg-white/[0.03] text-white placeholder:text-slate-500 focus-visible:border-[#00D4FF]/50 focus-visible:ring-[#00D4FF]/20"
+            className="h-11 border-white/[0.08] bg-white/[0.03] text-white placeholder:text-slate-500 focus-visible:border-[#D7B56D]/50 focus-visible:ring-[#D7B56D]/20"
           />
         </div>
       </div>
@@ -1042,13 +1042,13 @@ function Step1Form(props: Step1FormProps) {
           className="text-sm font-medium text-slate-200"
           suppressHydrationWarning
         >
-          Owner Type <span className="text-[#00D4FF]">*</span>
+          Owner Type <span className="text-[#D7B56D]">*</span>
         </Label>
         <Select value={ownerType} onValueChange={setOwnerType}>
           <SelectTrigger
             id={idOwner}
             suppressHydrationWarning
-            className="h-11 w-full border-white/[0.08] bg-white/[0.03] text-sm text-white data-[placeholder]:text-slate-500 hover:border-white/15 focus-visible:border-[#00D4FF]/50 focus-visible:ring-[#00D4FF]/20"
+            className="h-11 w-full border-white/[0.08] bg-white/[0.03] text-sm text-white data-[placeholder]:text-slate-500 hover:border-white/15 focus-visible:border-[#D7B56D]/50 focus-visible:ring-[#D7B56D]/20"
           >
             <SelectValue placeholder="Select owner type" />
           </SelectTrigger>
@@ -1061,7 +1061,7 @@ function Step1Form(props: Step1FormProps) {
                 key={o}
                 value={o}
                 suppressHydrationWarning
-                className="focus:bg-[#00D4FF]/15 focus:text-white"
+                className="focus:bg-[#D7B56D]/15 focus:text-white"
               >
                 {o}
               </SelectItem>
@@ -1077,7 +1077,7 @@ function Step1Form(props: Step1FormProps) {
           className="text-sm font-medium text-slate-200"
           suppressHydrationWarning
         >
-          Condition <span className="text-[#00D4FF]">*</span>
+          Condition <span className="text-[#D7B56D]">*</span>
         </Label>
         <RadioGroup
           value={condition}
@@ -1102,7 +1102,7 @@ function Step1Form(props: Step1FormProps) {
                 <RadioGroupItem
                   id={`${idCond}-${opt.value}`}
                   value={opt.value}
-                  className="mt-0.5 border-white/20 text-[#00D4FF] focus-visible:ring-[#00D4FF]/30"
+                  className="mt-0.5 border-white/20 text-[#D7B56D] focus-visible:ring-[#D7B56D]/30"
                 />
                 <div className="min-w-0 flex-1">
                   <div className="flex items-center gap-1.5">
@@ -1197,10 +1197,10 @@ function Step2Form(props: Step2FormProps) {
           disabled={photos.length >= MAX_PHOTOS}
           aria-label="Upload car photos"
           suppressHydrationWarning
-          className="flex w-full flex-col items-center justify-center gap-2 rounded-xl border border-dashed border-white/[0.12] bg-white/[0.02] px-4 py-6 text-center transition-colors hover:border-[#00D4FF]/40 hover:bg-[#00D4FF]/[0.03] disabled:cursor-not-allowed disabled:opacity-50"
+          className="flex w-full flex-col items-center justify-center gap-2 rounded-xl border border-dashed border-white/[0.12] bg-white/[0.02] px-4 py-6 text-center transition-colors hover:border-[#D7B56D]/40 hover:bg-[#D7B56D]/[0.03] disabled:cursor-not-allowed disabled:opacity-50"
         >
-          <div className="grid h-11 w-11 place-items-center rounded-full bg-[#00D4FF]/10 ring-1 ring-[#00D4FF]/30">
-            <Camera className="h-5 w-5 text-[#00D4FF]" />
+          <div className="grid h-11 w-11 place-items-center rounded-full bg-[#D7B56D]/10 ring-1 ring-[#D7B56D]/30">
+            <Camera className="h-5 w-5 text-[#D7B56D]" />
           </div>
           <div>
             <p className="text-sm font-medium text-white">Tap to upload photos</p>
@@ -1255,8 +1255,8 @@ function Step2Form(props: Step2FormProps) {
           className="flex items-center gap-1.5 text-sm font-medium text-slate-200"
           suppressHydrationWarning
         >
-          <CalendarIcon className="h-4 w-4 text-[#00D4FF]" />
-          Preferred Inspection Date <span className="text-[#00D4FF]">*</span>
+          <CalendarIcon className="h-4 w-4 text-[#D7B56D]" />
+          Preferred Inspection Date <span className="text-[#D7B56D]">*</span>
         </Label>
         <div className="flex flex-col items-center gap-2 rounded-xl border border-white/[0.08] bg-white/[0.02] p-3 sm:flex-row sm:items-start sm:gap-4">
           <Calendar
@@ -1281,7 +1281,7 @@ function Step2Form(props: Step2FormProps) {
                 'absolute right-1 top-1 grid h-7 w-7 place-items-center rounded-md text-slate-400 hover:bg-white/5 hover:text-white',
             }}
           />
-          <div className="w-full shrink-0 rounded-lg bg-[#00D4FF]/[0.04] p-3 text-sm sm:w-44">
+          <div className="w-full shrink-0 rounded-lg bg-[#D7B56D]/[0.04] p-3 text-sm sm:w-44">
             <p className="text-xs uppercase tracking-wide text-slate-500">
               Selected date
             </p>
@@ -1301,8 +1301,8 @@ function Step2Form(props: Step2FormProps) {
           className="flex items-center gap-1.5 text-sm font-medium text-slate-200"
           suppressHydrationWarning
         >
-          <Clock className="h-4 w-4 text-[#00D4FF]" />
-          Preferred Inspection Slot <span className="text-[#00D4FF]">*</span>
+          <Clock className="h-4 w-4 text-[#D7B56D]" />
+          Preferred Inspection Slot <span className="text-[#D7B56D]">*</span>
         </Label>
         <RadioGroup
           value={inspectionSlot}
@@ -1316,7 +1316,7 @@ function Step2Form(props: Step2FormProps) {
                 key={slot}
                 className={`flex cursor-pointer flex-col items-center gap-1.5 rounded-xl border p-3 transition-all ${
                   selected
-                    ? 'border-[#00D4FF]/40 bg-[#00D4FF]/[0.08] ring-1 ring-[#00D4FF]/30'
+                    ? 'border-[#D7B56D]/40 bg-[#D7B56D]/[0.08] ring-1 ring-[#D7B56D]/30'
                     : 'border-white/[0.08] bg-white/[0.02] hover:border-white/15 hover:bg-white/[0.04]'
                 }`}
                 suppressHydrationWarning
@@ -1328,7 +1328,7 @@ function Step2Form(props: Step2FormProps) {
                 />
                 <Clock
                   className={`h-4 w-4 ${
-                    selected ? 'text-[#00D4FF]' : 'text-slate-400'
+                    selected ? 'text-[#D7B56D]' : 'text-slate-400'
                   }`}
                 />
                 <span
@@ -1404,16 +1404,16 @@ function Step3Form(props: Step3FormProps) {
         className="overflow-hidden rounded-xl border border-white/[0.08] bg-white/[0.02]"
         suppressHydrationWarning
       >
-        {/* Estimated value (cyan, prominent) */}
-        <div className="border-b border-white/[0.06] bg-[#00D4FF]/[0.06] px-4 py-3">
+        {/* Estimated value (champagne, prominent) */}
+        <div className="border-b border-white/[0.06] bg-[#D7B56D]/[0.06] px-4 py-3">
           <div className="flex items-center justify-between gap-3">
             <div className="flex items-center gap-2">
-              <TrendingUp className="h-4 w-4 text-[#00D4FF]" />
+              <TrendingUp className="h-4 w-4 text-[#D7B56D]" />
               <span className="text-xs font-medium uppercase tracking-wide text-slate-400">
                 Estimated Value
               </span>
             </div>
-            <span className="text-xl font-bold text-[#00D4FF]">
+            <span className="text-xl font-bold text-[#D7B56D]">
               {estimate ? formatPrice(estimate) : '—'}
             </span>
           </div>
@@ -1461,7 +1461,7 @@ function Step3Form(props: Step3FormProps) {
             className="text-sm font-medium text-slate-200"
             suppressHydrationWarning
           >
-            Name <span className="text-[#00D4FF]">*</span>
+            Name <span className="text-[#D7B56D]">*</span>
           </Label>
           <Input
             id={idName}
@@ -1471,7 +1471,7 @@ function Step3Form(props: Step3FormProps) {
             value={customerName}
             onChange={(e) => setCustomerName(e.target.value)}
             suppressHydrationWarning
-            className="h-11 border-white/[0.08] bg-white/[0.03] text-white placeholder:text-slate-500 focus-visible:border-[#00D4FF]/50 focus-visible:ring-[#00D4FF]/20"
+            className="h-11 border-white/[0.08] bg-white/[0.03] text-white placeholder:text-slate-500 focus-visible:border-[#D7B56D]/50 focus-visible:ring-[#D7B56D]/20"
           />
         </div>
 
@@ -1481,7 +1481,7 @@ function Step3Form(props: Step3FormProps) {
             className="text-sm font-medium text-slate-200"
             suppressHydrationWarning
           >
-            Phone <span className="text-[#00D4FF]">*</span>
+            Phone <span className="text-[#D7B56D]">*</span>
           </Label>
           <Input
             id={idPhone}
@@ -1493,7 +1493,7 @@ function Step3Form(props: Step3FormProps) {
             onChange={(e) => setPhone(e.target.value)}
             maxLength={10}
             suppressHydrationWarning
-            className="h-11 border-white/[0.08] bg-white/[0.03] text-white placeholder:text-slate-500 focus-visible:border-[#00D4FF]/50 focus-visible:ring-[#00D4FF]/20"
+            className="h-11 border-white/[0.08] bg-white/[0.03] text-white placeholder:text-slate-500 focus-visible:border-[#D7B56D]/50 focus-visible:ring-[#D7B56D]/20"
           />
         </div>
       </div>
@@ -1516,7 +1516,7 @@ function Step3Form(props: Step3FormProps) {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           suppressHydrationWarning
-          className="h-11 border-white/[0.08] bg-white/[0.03] text-white placeholder:text-slate-500 focus-visible:border-[#00D4FF]/50 focus-visible:ring-[#00D4FF]/20"
+          className="h-11 border-white/[0.08] bg-white/[0.03] text-white placeholder:text-slate-500 focus-visible:border-[#D7B56D]/50 focus-visible:ring-[#D7B56D]/20"
         />
       </div>
 
@@ -1537,7 +1537,7 @@ function Step3Form(props: Step3FormProps) {
           onChange={(e) => setMessage(e.target.value)}
           rows={3}
           suppressHydrationWarning
-          className="min-h-[80px] resize-none border-white/[0.08] bg-white/[0.03] text-white placeholder:text-slate-500 focus-visible:border-[#00D4FF]/50 focus-visible:ring-[#00D4FF]/20"
+          className="min-h-[80px] resize-none border-white/[0.08] bg-white/[0.03] text-white placeholder:text-slate-500 focus-visible:border-[#D7B56D]/50 focus-visible:ring-[#D7B56D]/20"
         />
       </div>
 
@@ -1546,7 +1546,7 @@ function Step3Form(props: Step3FormProps) {
         className="flex items-start gap-2 rounded-lg border border-white/[0.06] bg-white/[0.02] p-3 text-xs text-slate-400"
         suppressHydrationWarning
       >
-        <Shield className="mt-0.5 h-3.5 w-3.5 shrink-0 text-[#00D4FF]" />
+        <Shield className="mt-0.5 h-3.5 w-3.5 shrink-0 text-[#D7B56D]" />
         <p>
           Your details are safe with us. We&apos;ll only use them to contact
           you about this valuation request.
@@ -1563,7 +1563,7 @@ function EstimateBox({ estimate }: { estimate: number | null }) {
       layout
       className={`overflow-hidden rounded-xl border transition-colors ${
         estimate
-          ? 'border-[#00D4FF]/30 bg-[#00D4FF]/[0.06]'
+          ? 'border-[#D7B56D]/30 bg-[#D7B56D]/[0.06]'
           : 'border-white/[0.06] bg-white/[0.02]'
       }`}
       suppressHydrationWarning
@@ -1572,13 +1572,13 @@ function EstimateBox({ estimate }: { estimate: number | null }) {
         <div
           className={`grid h-10 w-10 shrink-0 place-items-center rounded-lg ${
             estimate
-              ? 'bg-[#00D4FF]/15 ring-1 ring-[#00D4FF]/40'
+              ? 'bg-[#D7B56D]/15 ring-1 ring-[#D7B56D]/40'
               : 'bg-white/[0.04] ring-1 ring-white/[0.08]'
           }`}
         >
           <TrendingUp
             className={`h-5 w-5 ${
-              estimate ? 'text-[#00D4FF]' : 'text-slate-500'
+              estimate ? 'text-[#D7B56D]' : 'text-slate-500'
             }`}
           />
         </div>
@@ -1593,7 +1593,7 @@ function EstimateBox({ estimate }: { estimate: number | null }) {
                 initial={{ opacity: 0, y: 4 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.2 }}
-                className="text-2xl font-bold text-[#00D4FF]"
+                className="text-2xl font-bold text-[#D7B56D]"
                 suppressHydrationWarning
               >
                 {formatPrice(estimate)}
@@ -1670,15 +1670,15 @@ function SuccessView(props: SuccessViewProps) {
         Your valuation request has been received.
       </p>
 
-      {/* Estimated value — cyan, prominent */}
+      {/* Estimated value — champagne, prominent */}
       <div
-        className="mt-5 w-full max-w-sm rounded-xl border border-[#00D4FF]/30 bg-[#00D4FF]/[0.06] px-4 py-4"
+        className="mt-5 w-full max-w-sm rounded-xl border border-[#D7B56D]/30 bg-[#D7B56D]/[0.06] px-4 py-4"
         suppressHydrationWarning
       >
         <p className="text-[11px] font-medium uppercase tracking-wide text-slate-400">
           Your estimated value
         </p>
-        <p className="mt-1 text-3xl font-bold text-[#00D4FF]">
+        <p className="mt-1 text-3xl font-bold text-[#D7B56D]">
           {estimate ? formatPrice(estimate) : '—'}
         </p>
         <p className="mt-1 text-xs text-slate-500">
@@ -1723,7 +1723,7 @@ function SuccessView(props: SuccessViewProps) {
           type="button"
           onClick={onBrowseCars}
           suppressHydrationWarning
-          className="h-11 w-full gap-2 rounded-xl bg-[#00D4FF] px-5 text-sm font-semibold text-[#0A0A0A] shadow-lg shadow-[#00D4FF]/20 hover:bg-[#00B8E6] hover:shadow-[#00B8E6]/25"
+          className="h-11 w-full gap-2 rounded-xl bg-[#D7B56D] px-5 text-sm font-semibold text-[#0A0A0A] shadow-lg shadow-[#D7B56D]/20 hover:bg-[#E7C77B] hover:shadow-[#E7C77B]/25"
         >
           <Car className="h-4 w-4" />
           Browse cars to buy

@@ -104,8 +104,8 @@ export default function AdminLoginModal() {
 
               {/* Header */}
               <div className="px-6 pt-8 pb-2">
-                <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-[#00D4FF]/10 border border-[#00D4FF]/20">
-                  <Shield className="h-7 w-7 text-[#00D4FF]" />
+                <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-[#D7B56D]/10 border border-[#D7B56D]/20">
+                  <Shield className="h-7 w-7 text-[#D7B56D]" />
                 </div>
                 <h2 className="text-center text-xl font-bold text-white">
                   Admin Login
@@ -147,7 +147,7 @@ export default function AdminLoginModal() {
                       autoComplete="username"
                       disabled={loading}
                       suppressHydrationWarning
-                      className="h-11 rounded-xl border-white/[0.08] bg-white/[0.04] pl-10 pr-4 text-sm text-slate-200 placeholder:text-slate-400 focus:border-[#00D4FF]/40 focus:bg-white/[0.06]"
+                      className="h-11 rounded-xl border-white/[0.08] bg-white/[0.04] pl-10 pr-4 text-sm text-slate-200 placeholder:text-slate-400 focus:border-[#D7B56D]/40 focus:bg-white/[0.06]"
                     />
                   </div>
                 </div>
@@ -167,7 +167,7 @@ export default function AdminLoginModal() {
                       autoComplete="current-password"
                       disabled={loading}
                       suppressHydrationWarning
-                      className="h-11 rounded-xl border-white/[0.08] bg-white/[0.04] pl-10 pr-11 text-sm text-slate-200 placeholder:text-slate-400 focus:border-[#00D4FF]/40 focus:bg-white/[0.06]"
+                      className="h-11 rounded-xl border-white/[0.08] bg-white/[0.04] pl-10 pr-11 text-sm text-slate-200 placeholder:text-slate-400 focus:border-[#D7B56D]/40 focus:bg-white/[0.06]"
                     />
                     <button
                       type="button"
@@ -186,7 +186,7 @@ export default function AdminLoginModal() {
                   type="submit"
                   disabled={loading}
                   suppressHydrationWarning
-                  className="h-11 w-full rounded-xl bg-[#00D4FF] text-sm font-bold text-[#0A0A0A] hover:bg-[#00B8E6] transition-all shadow-[0_0_20px_rgba(0,212,255,0.2)] hover:shadow-[0_0_30px_rgba(0,212,255,0.3)] disabled:opacity-50"
+                  className="h-11 w-full rounded-xl bg-[#D7B56D] text-sm font-bold text-[#0A0A0A] hover:bg-[#E7C77B] transition-all shadow-[0_0_20px_rgba(215,181,109,0.2)] hover:shadow-[0_0_30px_rgba(215,181,109,0.3)] disabled:opacity-50"
                 >
                   {loading ? (
                     <>

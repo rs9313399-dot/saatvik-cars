@@ -4,7 +4,7 @@
  * Saatvik Cars — Live Chat Widget (Task C16)
  * ---------------------------------------------------------------
  * Self-contained floating chat widget:
- *  - Floating action button (cyan #00D4FF) with pulse + unread badge
+ *  - Floating action button (champagne #D7B56D) with pulse + unread badge
  *  - Slide-up chat panel (dark #111827, header gradient)
  *  - Initial bot greeting + 4 quick-reply chips
  *  - Client-side keyword-matching FAQ bot (no AI / no API call)
@@ -169,7 +169,7 @@ const SCROLLBAR_CSS = `
   border-radius: 999px;
 }
 .saatvik-chat-scroll::-webkit-scrollbar-thumb:hover {
-  background: rgba(0, 212, 255, 0.40);
+  background: rgba(215, 181, 109, 0.40);
 }
 .saatvik-chat-scroll {
   scrollbar-width: thin;
@@ -456,7 +456,7 @@ export default function LiveChatWidget() {
                     key={qr.label}
                     type="button"
                     onClick={() => sendMessage(qr.send)}
-                    className="rounded-full border border-[#00D4FF]/30 px-2.5 py-1 text-xs text-[#00D4FF] transition-colors hover:bg-[#00D4FF]/10 disabled:opacity-50"
+                    className="rounded-full border border-[#D7B56D]/30 px-2.5 py-1 text-xs text-[#D7B56D] transition-colors hover:bg-[#D7B56D]/10 disabled:opacity-50"
                     disabled={isTyping}
                     suppressHydrationWarning
                   >
@@ -478,7 +478,7 @@ export default function LiveChatWidget() {
                   onChange={(e) => setInput(e.target.value)}
                   onKeyDown={handleKeyDown}
                   placeholder="Type a message…"
-                  className="h-9 flex-1 border-white/10 bg-white/5 text-sm text-white placeholder:text-slate-500 focus-visible:border-[#00D4FF] focus-visible:ring-[#00D4FF]/20"
+                  className="h-9 flex-1 border-white/10 bg-white/5 text-sm text-white placeholder:text-slate-500 focus-visible:border-[#D7B56D] focus-visible:ring-[#D7B56D]/20"
                   aria-label="Type a message"
                   autoComplete="off"
                   suppressHydrationWarning
@@ -489,7 +489,7 @@ export default function LiveChatWidget() {
                   onClick={() => sendMessage(input)}
                   disabled={!input.trim() || isTyping}
                   aria-label="Send message"
-                  className="h-9 w-9 shrink-0 bg-[#00D4FF] text-[#0A0A0A] hover:bg-[#00B8E6] disabled:opacity-40"
+                  className="h-9 w-9 shrink-0 bg-[#D7B56D] text-[#0A0A0A] hover:bg-[#E7C77B] disabled:opacity-40"
                   suppressHydrationWarning
                 >
                   <Send className="h-4 w-4" />
@@ -510,13 +510,13 @@ export default function LiveChatWidget() {
         aria-label={isOpen ? 'Close chat' : 'Open chat'}
         aria-expanded={isOpen}
         whileTap={{ scale: 0.92 }}
-        className="relative flex h-14 w-14 items-center justify-center rounded-full bg-[#00D4FF] text-[#0A0A0A] shadow-lg shadow-[#00D4FF]/30 transition-colors hover:bg-[#00B8E6]"
+        className="relative flex h-14 w-14 items-center justify-center rounded-full bg-[#D7B56D] text-[#0A0A0A] shadow-lg shadow-[#D7B56D]/30 transition-colors hover:bg-[#E7C77B]"
         suppressHydrationWarning
       >
         {/* Pulse ring (only when closed) */}
         {!isOpen && (
           <span
-            className="absolute inset-0 animate-ping rounded-full bg-[#00D4FF] opacity-40"
+            className="absolute inset-0 animate-ping rounded-full bg-[#D7B56D] opacity-40"
             aria-hidden="true"
           />
         )}
@@ -590,7 +590,7 @@ function MessageBubble({
         <div
           className={`flex h-6 w-6 shrink-0 items-center justify-center rounded-full ${
             isBot
-              ? 'bg-[#00D4FF]/10 text-[#00D4FF]'
+              ? 'bg-[#D7B56D]/10 text-[#D7B56D]'
               : 'bg-white/10 text-slate-300'
           }`}
           aria-hidden="true"
@@ -602,7 +602,7 @@ function MessageBubble({
             className={
               isBot
                 ? 'rounded-2xl rounded-bl-sm bg-white/5 px-3 py-2 text-sm text-slate-200'
-                : 'rounded-2xl rounded-br-sm bg-[#00D4FF] px-3 py-2 text-sm text-[#0A0A0A]'
+                : 'rounded-2xl rounded-br-sm bg-[#D7B56D] px-3 py-2 text-sm text-[#0A0A0A]'
             }
           >
             {msg.text}
@@ -611,7 +611,7 @@ function MessageBubble({
             <button
               type="button"
               onClick={() => onAction(msg.action!)}
-              className="self-start rounded-full border border-[#00D4FF]/30 px-3 py-1 text-xs text-[#00D4FF] transition-colors hover:bg-[#00D4FF]/10"
+              className="self-start rounded-full border border-[#D7B56D]/30 px-3 py-1 text-xs text-[#D7B56D] transition-colors hover:bg-[#D7B56D]/10"
               suppressHydrationWarning
             >
               {msg.action.label}
@@ -634,7 +634,7 @@ function TypingIndicator() {
       suppressHydrationWarning
     >
       <div
-        className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#00D4FF]/10 text-[#00D4FF]"
+        className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#D7B56D]/10 text-[#D7B56D]"
         aria-hidden="true"
       >
         <Bot className="h-3.5 w-3.5" />

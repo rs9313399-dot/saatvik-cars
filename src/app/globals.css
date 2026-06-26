@@ -84,17 +84,17 @@
 
   /* ═══ Brand tokens — Saatvik Cars canonical palette ═══
      ONE palette. All components should use these variables
-     (or the matching hex). Do NOT introduce new cyan shades.
+     (or the matching hex). Keep the accent restrained and premium.
 
      DARK SCALE (3 tiers — use the lowest for body, higher for layering)
      --brand-bg             #0A0A0A  page background (body)
      --brand-bg-elevated    #111827  cards, elevated surfaces
      --brand-bg-elevated-2  #1a1a2e  popovers, nested panels, hover states
 
-     CYAN SCALE (3 tiers — one accent, do NOT mix)
-     --brand-accent         #00D4FF  primary (buttons, links, highlights)
-     --brand-accent-hover   #00B8E6  hover/active
-     --brand-accent-light   #3DDEFF  light text on dark, glows
+     CHAMPAGNE SCALE (3 tiers — one accent, do NOT mix)
+     --brand-accent         #D7B56D  primary (buttons, links, highlights)
+     --brand-accent-hover   #E7C77B  hover/active
+     --brand-accent-light   #F2D98F  light text on dark, glows
 
      AMBER (single)
      --brand-amber          #F5A623  ratings, urgency
@@ -104,15 +104,15 @@
      --brand-red            #EF4444  danger / "urgent"
 
      Soft + ring helpers (derived from accent)
-     --brand-accent-soft    rgba(0,212,255,0.10)  backgrounds, chips
-     --brand-accent-ring    rgba(0,212,255,0.30)  focus/border rings
+     --brand-accent-soft    rgba(215,181,109,0.10)  backgrounds, chips
+     --brand-accent-ring    rgba(215,181,109,0.30)  focus/border rings
      --brand-accent-fg      #0A0A0A  text/icon on top of accent
   */
-  --brand-accent: #00D4FF;
-  --brand-accent-hover: #00B8E6;
-  --brand-accent-light: #3DDEFF;
-  --brand-accent-soft: rgba(0, 212, 255, 0.10);
-  --brand-accent-ring: rgba(0, 212, 255, 0.30);
+  --brand-accent: #D7B56D;
+  --brand-accent-hover: #E7C77B;
+  --brand-accent-light: #F2D98F;
+  --brand-accent-soft: rgba(215, 181, 109, 0.10);
+  --brand-accent-ring: rgba(215, 181, 109, 0.30);
   --brand-accent-fg: #0A0A0A;
   --brand-bg: #0A0A0A;
   --brand-bg-elevated: #111827;
@@ -156,11 +156,11 @@
   --sidebar-ring: oklch(0.65 0.17 200);
 
   /* Brand tokens — identical in light & dark (site is permanently dark) */
-  --brand-accent: #00D4FF;
-  --brand-accent-hover: #00B8E6;
-  --brand-accent-light: #3DDEFF;
-  --brand-accent-soft: rgba(0, 212, 255, 0.10);
-  --brand-accent-ring: rgba(0, 212, 255, 0.30);
+  --brand-accent: #D7B56D;
+  --brand-accent-hover: #E7C77B;
+  --brand-accent-light: #F2D98F;
+  --brand-accent-soft: rgba(215, 181, 109, 0.10);
+  --brand-accent-ring: rgba(215, 181, 109, 0.30);
   --brand-accent-fg: #0A0A0A;
   --brand-bg: #0A0A0A;
   --brand-bg-elevated: #111827;
@@ -204,8 +204,8 @@ body {
 ::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.18); }
 * { scrollbar-width: thin; scrollbar-color: rgba(255,255,255,0.10) transparent; }
 
-::selection { background: rgba(0,212,255,0.22); color: #fff; }
-.dark ::selection { background: rgba(0,212,255,0.30); color: #fff; }
+::selection { background: rgba(215,181,109,0.22); color: #fff; }
+.dark ::selection { background: rgba(215,181,109,0.30); color: #fff; }
 
 /* ═══════════════════════════════════════════════════
    MARQUEE — brand strip
@@ -280,6 +280,57 @@ body {
   border: 1px solid rgba(215,181,109,0.16);
   background: rgba(8,9,11,0.48);
   box-shadow: inset 0 1px 0 rgba(255,255,255,0.055);
+}
+
+.site-premium {
+  background:
+    radial-gradient(circle at 12% 0%, rgba(215,181,109,0.08), transparent 24rem),
+    radial-gradient(circle at 88% 8%, rgba(255,255,255,0.035), transparent 22rem),
+    #0A0A0A;
+}
+
+.site-premium main > section {
+  position: relative;
+  isolation: isolate;
+}
+
+.site-premium main > section:not(.hero-editorial)::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse at 16% 8%, rgba(215,181,109,0.055), transparent 30%),
+    linear-gradient(180deg, rgba(255,255,255,0.018), transparent 34%, rgba(255,255,255,0.012));
+}
+
+.site-premium main > section:nth-of-type(even):not(.hero-editorial)::before {
+  background:
+    radial-gradient(ellipse at 84% 12%, rgba(215,181,109,0.045), transparent 28%),
+    linear-gradient(180deg, rgba(255,255,255,0.01), rgba(215,181,109,0.018), transparent 72%);
+}
+
+.site-premium [class*="bg-[#111827]"],
+.site-premium [class*="bg-[#0d1117]"],
+.site-premium [class*="bg-[#0F1117]"] {
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.05),
+    0 22px 58px -46px rgba(215,181,109,0.34);
+}
+
+.site-premium [class*="border-white/"] {
+  border-color: rgba(215,181,109,0.13);
+}
+
+.site-premium input,
+.site-premium select,
+.site-premium textarea {
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.035);
+}
+
+.site-premium :is(button, a, input, select, textarea):focus-visible {
+  outline-color: #D7B56D;
 }
 
 .mobile-menu-trigger {
@@ -376,7 +427,7 @@ body {
 }
 .premium-car-card:hover {
   transform: translateY(-4px);
-  border-color: rgba(0,212,255,0.32);
+  border-color: rgba(215,181,109,0.32);
   box-shadow: 0 20px 45px -24px rgba(0,0,0,0.75);
 }
 .premium-car-card:hover::after {
@@ -385,7 +436,7 @@ body {
 .car-card-lift:hover,
 .car-card-shine:hover {
   transform: translateY(-4px);
-  border-color: rgba(0,212,255,0.30);
+  border-color: rgba(215,181,109,0.30);
   box-shadow: 0 18px 40px -20px rgba(0,0,0,0.6);
 }
 
@@ -395,7 +446,7 @@ body {
 .cta-band,
 .cta-gradient {
   background:
-    radial-gradient(ellipse 60% 80% at 80% 50%, rgba(0,212,255,0.06) 0%, transparent 70%),
+    radial-gradient(ellipse 60% 80% at 80% 50%, rgba(215,181,109,0.06) 0%, transparent 70%),
     linear-gradient(180deg, #0B0B0E 0%, #0E1218 50%, #0B0B0E 100%);
 }
 
@@ -411,7 +462,7 @@ body {
   transition: border-color 0.3s ease, background 0.3s ease;
 }
 .glass-card:hover {
-  border-color: rgba(0, 212, 255, 0.20);
+  border-color: rgba(215, 181, 109, 0.20);
 }
 
 /* ═══════════════════════════════════════════════════
@@ -421,9 +472,9 @@ body {
   height: 1px;
   background: linear-gradient(90deg,
     transparent 0%,
-    rgba(0, 212, 255, 0.0) 10%,
-    rgba(0, 212, 255, 0.5) 50%,
-    rgba(0, 212, 255, 0.0) 90%,
+    rgba(215, 181, 109, 0.0) 10%,
+    rgba(215, 181, 109, 0.5) 50%,
+    rgba(215, 181, 109, 0.0) 90%,
     transparent 100%);
   background-size: 200% 100%;
   animation: navLineSweep 4s ease-in-out infinite;
@@ -444,7 +495,7 @@ body {
   left: 1rem;
   z-index: 9999;
   padding: 0.75rem 1.25rem;
-  background: #00D4FF;
+  background: #D7B56D;
   color: #0A0A0A;
   font-weight: 600;
   font-size: 0.875rem;
@@ -453,7 +504,7 @@ body {
 }
 .skip-to-content:focus {
   top: 0;
-  outline: 3px solid #3DDEFF;
+  outline: 3px solid #F2D98F;
   outline-offset: 2px;
 }
 
@@ -468,7 +519,7 @@ body {
 
 /* Visible focus ring for keyboard users (not mouse) */
 :focus-visible {
-  outline: 2px solid #00D4FF;
+  outline: 2px solid #D7B56D;
   outline-offset: 2px;
   border-radius: 4px;
 }
@@ -500,6 +551,6 @@ select:focus-visible,
 textarea:focus-visible,
 [role="button"]:focus-visible,
 [tabindex]:focus-visible {
-  outline: 2px solid #00D4FF;
+  outline: 2px solid #D7B56D;
   outline-offset: 2px;
 }

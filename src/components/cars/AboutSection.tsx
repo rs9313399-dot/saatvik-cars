@@ -41,7 +41,7 @@ export default function AboutSection() {
             transition={{ duration: 0.5 }}
             suppressHydrationWarning
           >
-            <span className="inline-flex items-center gap-2 rounded-full border border-[#00D4FF]/20 bg-[#00D4FF]/5 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-[#00D4FF]" suppressHydrationWarning>
+            <span className="inline-flex items-center gap-2 rounded-full border border-[#D7B56D]/20 bg-[#D7B56D]/5 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-[#D7B56D]" suppressHydrationWarning>
               <Building2 className="h-3.5 w-3.5" />
               About Us
             </span>
@@ -64,35 +64,35 @@ export default function AboutSection() {
             {/* Contact info — phone numbers as tel: links, email as mailto: */}
             <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="flex items-start gap-2.5">
-                <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-[#00D4FF]" />
+                <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-[#D7B56D]" />
                 <div>
                   <p className="text-xs font-medium text-slate-300" suppressHydrationWarning>Location</p>
                   <p className="text-xs text-slate-500" suppressHydrationWarning>{FULL_ADDRESS}</p>
                 </div>
               </div>
               <div className="flex items-start gap-2.5">
-                <Phone className="mt-0.5 h-4 w-4 shrink-0 text-[#00D4FF]" />
+                <Phone className="mt-0.5 h-4 w-4 shrink-0 text-[#D7B56D]" />
                 <div>
                   <p className="text-xs font-medium text-slate-300" suppressHydrationWarning>Call Us</p>
                   <p className="text-xs text-slate-500" suppressHydrationWarning>
                     {BUSINESS.phones.map((p, i) => (
                       <span key={p.tel}>
                         {i > 0 && ' · '}
-                        <a href={`tel:${p.tel}`} className="transition-colors hover:text-[#00D4FF]">{p.display}</a>
+                        <a href={`tel:${p.tel}`} className="transition-colors hover:text-[#D7B56D]">{p.display}</a>
                       </span>
                     ))}
                   </p>
                 </div>
               </div>
               <div className="flex items-start gap-2.5">
-                <Mail className="mt-0.5 h-4 w-4 shrink-0 text-[#00D4FF]" />
+                <Mail className="mt-0.5 h-4 w-4 shrink-0 text-[#D7B56D]" />
                 <div>
                   <p className="text-xs font-medium text-slate-300" suppressHydrationWarning>Email</p>
-                  <a href={`mailto:${BUSINESS.email}`} className="text-xs text-slate-500 transition-colors hover:text-[#00D4FF]" suppressHydrationWarning>{BUSINESS.email}</a>
+                  <a href={`mailto:${BUSINESS.email}`} className="text-xs text-slate-500 transition-colors hover:text-[#D7B56D]" suppressHydrationWarning>{BUSINESS.email}</a>
                 </div>
               </div>
               <div className="flex items-start gap-2.5">
-                <ShieldCheck className="mt-0.5 h-4 w-4 shrink-0 text-[#00D4FF]" />
+                <ShieldCheck className="mt-0.5 h-4 w-4 shrink-0 text-[#D7B56D]" />
                 <div>
                   <p className="text-xs font-medium text-slate-300" suppressHydrationWarning>GSTIN</p>
                   <p className="text-xs text-slate-500" suppressHydrationWarning>{BUSINESS.gstin}</p>
@@ -106,7 +106,7 @@ export default function AboutSection() {
               target="_blank"
               rel="noopener noreferrer"
               suppressHydrationWarning
-              className="mt-5 inline-flex h-9 items-center gap-2 rounded-lg border border-[#00D4FF]/30 bg-[#00D4FF]/5 px-4 text-xs font-semibold text-[#00D4FF] transition-all hover:bg-[#00D4FF]/10 hover:border-[#00D4FF]/50"
+              className="mt-5 inline-flex h-9 items-center gap-2 rounded-lg border border-[#D7B56D]/30 bg-[#D7B56D]/5 px-4 text-xs font-semibold text-[#D7B56D] transition-all hover:bg-[#D7B56D]/10 hover:border-[#D7B56D]/50"
             >
               <Navigation className="h-3.5 w-3.5" />
               Get Directions
@@ -146,11 +146,11 @@ export default function AboutSection() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.4, delay: i * 0.1 }}
-                  className="flex gap-4 rounded-xl border border-white/[0.06] bg-[#111827]/50 p-5 transition-all hover:border-[#00D4FF]/20"
+                  className="flex gap-4 rounded-xl border border-white/[0.06] bg-[#111827]/50 p-5 transition-all hover:border-[#D7B56D]/20"
                   suppressHydrationWarning
                 >
-                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-[#00D4FF]/20 bg-[#00D4FF]/10" suppressHydrationWarning>
-                    <Icon className="h-5 w-5 text-[#00D4FF]" strokeWidth={1.8} />
+                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-[#D7B56D]/20 bg-[#D7B56D]/10" suppressHydrationWarning>
+                    <Icon className="h-5 w-5 text-[#D7B56D]" strokeWidth={1.8} />
                   </div>
                   <div>
                     <h3 className="text-sm font-semibold text-white mb-1" suppressHydrationWarning>{item.title}</h3>

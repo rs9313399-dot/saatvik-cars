@@ -17,7 +17,7 @@ import {
 } from '@/lib/business';
 
 /* ─────────────── Constants ─────────────── */
-const CYAN = '#00D4FF';
+const CHAMPAGNE = '#D7B56D';
 
 const BRANDS = [...ALL_BRANDS];
 
@@ -110,7 +110,7 @@ function NativeSelect({
         className={`h-10 w-full appearance-none rounded-lg border bg-white/[0.03] px-3 pr-9 text-sm text-white outline-none transition-all focus:ring-2 hover:border-white/15 cursor-pointer ${
           hasError
             ? 'border-red-500/50 focus:border-red-500/60 focus:ring-red-500/20'
-            : 'border-white/[0.08] focus:border-[#00D4FF]/50 focus:ring-[#00D4FF]/20'
+            : 'border-white/[0.08] focus:border-[#D7B56D]/50 focus:ring-[#D7B56D]/20'
         }`}
       >
         <option value="" disabled className="bg-[#0f172a] text-slate-400">
@@ -123,7 +123,7 @@ function NativeSelect({
         ))}
       </select>
       <svg
-        className="pointer-events-none absolute right-2.5 top-1/2 -translate-y-1/2 h-4 w-4 text-[#00D4FF]/60"
+        className="pointer-events-none absolute right-2.5 top-1/2 -translate-y-1/2 h-4 w-4 text-[#D7B56D]/60"
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24"
         fill="none"
@@ -404,7 +404,7 @@ export default function SellCarModal() {
             exit={{ opacity: 0, scale: 0.92, y: 24 }}
             transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
             onClick={(e) => e.stopPropagation()}
-            className="relative w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-2xl border border-white/10 bg-[#0f172a] shadow-[0_0_80px_rgba(6,182,212,0.08)]"
+            className="relative w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-2xl border border-white/10 bg-[#0f172a] shadow-[0_0_80px_rgba(215,181,109,0.08)]"
           >
             {/* ── Close Button ── */}
             <button
@@ -428,7 +428,7 @@ export default function SellCarModal() {
                 </p>
                 <Button
                   suppressHydrationWarning
-                  className="h-11 rounded-xl bg-[#00D4FF] px-6 text-sm font-bold text-[#0A0A0A] hover:bg-[#00B8E6] transition-all shadow-[0_0_20px_rgba(0,212,255,0.2)]"
+                  className="h-11 rounded-xl bg-[#D7B56D] px-6 text-sm font-bold text-[#0A0A0A] hover:bg-[#E7C77B] transition-all shadow-[0_0_20px_rgba(215,181,109,0.2)]"
                   onClick={() => { handleClose(); setLoginModalOpen(true); }}
                 >
                   <Shield className="mr-2 h-4 w-4" />
@@ -443,8 +443,8 @@ export default function SellCarModal() {
                 <div
                   className="flex h-10 w-10 items-center justify-center rounded-xl"
                   style={{
-                    background: `linear-gradient(135deg, ${CYAN}, ${CYAN}cc)`,
-                    boxShadow: `0 0 20px ${CYAN}25`,
+                    background: `linear-gradient(135deg, ${CHAMPAGNE}, ${CHAMPAGNE}cc)`,
+                    boxShadow: `0 0 20px ${CHAMPAGNE}25`,
                   }}
                 >
                   <Car className="h-5 w-5 text-black" />
@@ -464,22 +464,22 @@ export default function SellCarModal() {
                       style={{
                         backgroundColor:
                           i < currentStep
-                            ? `${CYAN}25`
+                            ? `${CHAMPAGNE}25`
                             : i === currentStep
-                            ? `${CYAN}15`
+                            ? `${CHAMPAGNE}15`
                             : 'transparent',
                         color:
                           i < currentStep
-                            ? CYAN
+                            ? CHAMPAGNE
                             : i === currentStep
-                            ? CYAN
-                            : 'rgba(6,182,212,0.35)',
+                            ? CHAMPAGNE
+                            : 'rgba(215,181,109,0.35)',
                         borderColor:
                           i < currentStep
-                            ? `${CYAN}60`
+                            ? `${CHAMPAGNE}60`
                             : i === currentStep
-                            ? `${CYAN}40`
-                            : `${CYAN}15`,
+                            ? `${CHAMPAGNE}40`
+                            : `${CHAMPAGNE}15`,
                       }}
                     >
                       {i < currentStep ? <Check className="h-3.5 w-3.5" /> : step.num}
@@ -489,10 +489,10 @@ export default function SellCarModal() {
                       style={{
                         color:
                           i < currentStep
-                            ? CYAN
+                            ? CHAMPAGNE
                             : i === currentStep
-                            ? CYAN
-                            : 'rgba(6,182,212,0.35)',
+                            ? CHAMPAGNE
+                            : 'rgba(215,181,109,0.35)',
                       }}
                     >
                       {step.label}
@@ -502,7 +502,7 @@ export default function SellCarModal() {
                         className="flex-1 h-px mx-1 transition-colors"
                         style={{
                           backgroundColor:
-                            i < currentStep ? `${CYAN}30` : 'rgba(6,182,212,0.1)',
+                            i < currentStep ? `${CHAMPAGNE}30` : 'rgba(215,181,109,0.1)',
                         }}
                       />
                     )}
@@ -516,7 +516,7 @@ export default function SellCarModal() {
               {/* ═══════ Step 0: Car Details ═══════ */}
               {currentStep === 0 && (
                 <div>
-                  <h3 className="mb-4 text-xs font-semibold uppercase tracking-widest text-[#00D4FF] pb-2 border-b border-[#00D4FF]/15">
+                  <h3 className="mb-4 text-xs font-semibold uppercase tracking-widest text-[#D7B56D] pb-2 border-b border-[#D7B56D]/15">
                     Car Details
                   </h3>
 
@@ -545,10 +545,10 @@ export default function SellCarModal() {
                           value={form.model}
                           onChange={(e) => updateField('model', e.target.value)}
                           suppressHydrationWarning
-                          className={`h-10 bg-white/[0.03] text-white placeholder:text-slate-500 focus:ring-[#00D4FF]/20 ${
+                          className={`h-10 bg-white/[0.03] text-white placeholder:text-slate-500 focus:ring-[#D7B56D]/20 ${
                             step0Missing && !form.model
                               ? 'border-red-500/50 focus:border-red-500/60'
-                              : 'border-white/[0.08] focus:border-[#00D4FF]/50'
+                              : 'border-white/[0.08] focus:border-[#D7B56D]/50'
                           }`}
                         />
                       </div>
@@ -580,14 +580,14 @@ export default function SellCarModal() {
                           suppressHydrationWarning
                           min={50000}
                           max={50000000}
-                          className={`h-10 bg-white/[0.03] text-white placeholder:text-slate-500 focus:ring-[#00D4FF]/20 ${
+                          className={`h-10 bg-white/[0.03] text-white placeholder:text-slate-500 focus:ring-[#D7B56D]/20 ${
                             step0Missing && !form.price
                               ? 'border-red-500/50 focus:border-red-500/60'
-                              : 'border-white/[0.08] focus:border-[#00D4FF]/50'
+                              : 'border-white/[0.08] focus:border-[#D7B56D]/50'
                           }`}
                         />
                         {form.price && parseInt(form.price, 10) > 0 && (
-                          <p className="mt-1 text-[11px] text-[#00D4FF]/70" suppressHydrationWarning>
+                          <p className="mt-1 text-[11px] text-[#D7B56D]/70" suppressHydrationWarning>
                             = &#x20B9;{parseInt(form.price, 10).toLocaleString('en-IN')}
                             {parseInt(form.price, 10) >= 100000 && ` (${(parseInt(form.price, 10) / 100000).toFixed(2)} L)`}
                             {parseInt(form.price, 10) >= 10000000 && ` (${(parseInt(form.price, 10) / 10000000).toFixed(2)} Cr)`}
@@ -637,10 +637,10 @@ export default function SellCarModal() {
                           suppressHydrationWarning
                           min={0}
                           max={500000}
-                          className="h-10 border-white/[0.08] bg-white/[0.03] text-white placeholder:text-slate-500 focus:border-[#00D4FF]/50 focus:ring-[#00D4FF]/20"
+                          className="h-10 border-white/[0.08] bg-white/[0.03] text-white placeholder:text-slate-500 focus:border-[#D7B56D]/50 focus:ring-[#D7B56D]/20"
                         />
                         {form.kmDriven && parseInt(form.kmDriven, 10) > 0 && (
-                          <p className="mt-1 text-[11px] text-[#00D4FF]/70" suppressHydrationWarning>
+                          <p className="mt-1 text-[11px] text-[#D7B56D]/70" suppressHydrationWarning>
                             = {parseInt(form.kmDriven, 10).toLocaleString('en-IN')} km
                           </p>
                         )}
@@ -659,8 +659,8 @@ export default function SellCarModal() {
                     </div>
 
                     {/* Vehicle Details: Colour, Insurance, RTO, Sunroof, Finance */}
-                    <div className="rounded-xl border border-[#00D4FF]/15 bg-[#00D4FF]/[0.03] p-4 space-y-4">
-                      <p className="text-xs font-semibold uppercase tracking-widest text-[#00D4FF]">
+                    <div className="rounded-xl border border-[#D7B56D]/15 bg-[#D7B56D]/[0.03] p-4 space-y-4">
+                      <p className="text-xs font-semibold uppercase tracking-widest text-[#D7B56D]">
                         Vehicle Details
                       </p>
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -683,7 +683,7 @@ export default function SellCarModal() {
                             value={form.rto}
                             onChange={(e) => updateField('rto', e.target.value.toUpperCase())}
                             suppressHydrationWarning
-                            className="h-10 border-white/[0.08] bg-white/[0.03] text-white placeholder:text-slate-500 focus:border-[#00D4FF]/50 focus:ring-[#00D4FF]/20"
+                            className="h-10 border-white/[0.08] bg-white/[0.03] text-white placeholder:text-slate-500 focus:border-[#D7B56D]/50 focus:ring-[#D7B56D]/20"
                           />
                         </div>
                         {/* Insurance */}
@@ -695,7 +695,7 @@ export default function SellCarModal() {
                             value={form.insurance}
                             onChange={(e) => updateField('insurance', e.target.value)}
                             suppressHydrationWarning
-                            className="h-10 border-white/[0.08] bg-white/[0.03] text-white placeholder:text-slate-500 focus:border-[#00D4FF]/50 focus:ring-[#00D4FF]/20"
+                            className="h-10 border-white/[0.08] bg-white/[0.03] text-white placeholder:text-slate-500 focus:border-[#D7B56D]/50 focus:ring-[#D7B56D]/20"
                           />
                         </div>
                         {/* Sunroof */}
@@ -727,17 +727,17 @@ export default function SellCarModal() {
                         Upload Photos
                       </label>
                       <div
-                        className="flex flex-col items-center justify-center gap-3 rounded-lg border-2 border-dashed border-white/[0.08] bg-white/[0.02] px-6 py-8 transition-colors hover:border-[#00D4FF]/30 hover:bg-white/[0.04] cursor-pointer"
+                        className="flex flex-col items-center justify-center gap-3 rounded-lg border-2 border-dashed border-white/[0.08] bg-white/[0.02] px-6 py-8 transition-colors hover:border-[#D7B56D]/30 hover:bg-white/[0.04] cursor-pointer"
                         onClick={() => document.getElementById('car-photos')?.click()}
                       >
                         <div
                           className="flex h-12 w-12 items-center justify-center rounded-xl"
                           style={{
-                            backgroundColor: `${CYAN}10`,
-                            border: `1px solid ${CYAN}20`,
+                            backgroundColor: `${CHAMPAGNE}10`,
+                            border: `1px solid ${CHAMPAGNE}20`,
                           }}
                         >
-                          <Upload className="h-5 w-5" style={{ color: CYAN }} />
+                          <Upload className="h-5 w-5" style={{ color: CHAMPAGNE }} />
                         </div>
                         <div className="text-center">
                           <p className="text-sm font-medium text-slate-300">
@@ -825,7 +825,7 @@ export default function SellCarModal() {
               {/* ═══════ Step 1: Contact Info ═══════ */}
               {currentStep === 1 && (
                 <div>
-                  <h3 className="mb-4 text-xs font-semibold uppercase tracking-widest text-[#00D4FF] pb-2 border-b border-[#00D4FF]/15">
+                  <h3 className="mb-4 text-xs font-semibold uppercase tracking-widest text-[#D7B56D] pb-2 border-b border-[#D7B56D]/15">
                     Contact Info
                   </h3>
 
@@ -842,10 +842,10 @@ export default function SellCarModal() {
                           value={form.location}
                           onChange={(e) => updateField('location', e.target.value)}
                           suppressHydrationWarning
-                          className={`h-10 bg-white/[0.03] text-white placeholder:text-slate-500 focus:ring-[#00D4FF]/20 ${
+                          className={`h-10 bg-white/[0.03] text-white placeholder:text-slate-500 focus:ring-[#D7B56D]/20 ${
                             step1Missing && !form.location
                               ? 'border-red-500/50 focus:border-red-500/60'
-                              : 'border-white/[0.08] focus:border-[#00D4FF]/50'
+                              : 'border-white/[0.08] focus:border-[#D7B56D]/50'
                           }`}
                         />
                       </div>
@@ -859,10 +859,10 @@ export default function SellCarModal() {
                           value={form.contactPhone}
                           onChange={(e) => updateField('contactPhone', e.target.value)}
                           suppressHydrationWarning
-                          className={`h-10 bg-white/[0.03] text-white placeholder:text-slate-500 focus:ring-[#00D4FF]/20 ${
+                          className={`h-10 bg-white/[0.03] text-white placeholder:text-slate-500 focus:ring-[#D7B56D]/20 ${
                             step1Missing && !form.contactPhone
                               ? 'border-red-500/50 focus:border-red-500/60'
-                              : 'border-white/[0.08] focus:border-[#00D4FF]/50'
+                              : 'border-white/[0.08] focus:border-[#D7B56D]/50'
                           }`}
                         />
                       </div>
@@ -879,7 +879,7 @@ export default function SellCarModal() {
                         value={form.carNumber}
                         onChange={(e) => updateField('carNumber', e.target.value)}
                         suppressHydrationWarning
-                        className="h-10 border-white/[0.08] bg-white/[0.03] text-white placeholder:text-slate-500 focus:border-[#00D4FF]/50 focus:ring-[#00D4FF]/20"
+                        className="h-10 border-white/[0.08] bg-white/[0.03] text-white placeholder:text-slate-500 focus:border-[#D7B56D]/50 focus:ring-[#D7B56D]/20"
                       />
                     </div>
                   </div>
@@ -889,7 +889,7 @@ export default function SellCarModal() {
               {/* ═══════ Step 2: Review & Submit ═══════ */}
               {currentStep === 2 && (
                 <div>
-                  <h3 className="mb-4 text-xs font-semibold uppercase tracking-widest text-[#00D4FF] pb-2 border-b border-[#00D4FF]/15">
+                  <h3 className="mb-4 text-xs font-semibold uppercase tracking-widest text-[#D7B56D] pb-2 border-b border-[#D7B56D]/15">
                     Review & Submit
                   </h3>
 
@@ -943,7 +943,7 @@ export default function SellCarModal() {
                           </div>
                         )}
                         <div className="col-span-2 pt-2 border-t border-white/[0.06]">
-                          <span className="text-[#00D4FF]/70 text-[11px] font-semibold uppercase tracking-wider">Vehicle Details</span>
+                          <span className="text-[#D7B56D]/70 text-[11px] font-semibold uppercase tracking-wider">Vehicle Details</span>
                         </div>
                         <div>
                           <span className="text-slate-500">Colour:</span>{' '}
@@ -1001,7 +1001,7 @@ export default function SellCarModal() {
                         onChange={(e) => updateField('description', e.target.value)}
                         rows={4}
                         suppressHydrationWarning
-                        className="w-full resize-none rounded-lg border border-white/[0.08] bg-white/[0.03] px-3 py-2.5 text-sm text-white placeholder:text-slate-500 outline-none transition-all focus:border-[#00D4FF]/50 focus:ring-2 focus:ring-[#00D4FF]/20 hover:border-white/15"
+                        className="w-full resize-none rounded-lg border border-white/[0.08] bg-white/[0.03] px-3 py-2.5 text-sm text-white placeholder:text-slate-500 outline-none transition-all focus:border-[#D7B56D]/50 focus:ring-2 focus:ring-[#D7B56D]/20 hover:border-white/15"
                       />
                     </div>
 
@@ -1021,12 +1021,12 @@ export default function SellCarModal() {
                               <div
                                 className="flex h-5 w-5 items-center justify-center rounded border transition-all"
                                 style={{
-                                  backgroundColor: isChecked ? `${CYAN}25` : 'transparent',
-                                  borderColor: isChecked ? `${CYAN}60` : 'rgba(255,255,255,0.12)',
-                                  boxShadow: isChecked ? `0 0 8px ${CYAN}20` : 'none',
+                                  backgroundColor: isChecked ? `${CHAMPAGNE}25` : 'transparent',
+                                  borderColor: isChecked ? `${CHAMPAGNE}60` : 'rgba(255,255,255,0.12)',
+                                  boxShadow: isChecked ? `0 0 8px ${CHAMPAGNE}20` : 'none',
                                 }}
                               >
-                                {isChecked && <Check className="h-3 w-3 text-[#00D4FF]" />}
+                                {isChecked && <Check className="h-3 w-3 text-[#D7B56D]" />}
                               </div>
                               <input
                                 type="checkbox"
@@ -1038,7 +1038,7 @@ export default function SellCarModal() {
                               <span
                                 className="text-xs font-medium transition-colors"
                                 style={{
-                                  color: isChecked ? CYAN : 'rgba(148,163,184,0.8)',
+                                  color: isChecked ? CHAMPAGNE : 'rgba(148,163,184,0.8)',
                                 }}
                               >
                                 {tag.label}
@@ -1070,7 +1070,7 @@ export default function SellCarModal() {
               {currentStep < 2 ? (
                 <Button
                   type="button"
-                  className="bg-[#00D4FF] text-[#0A0A0A] font-bold hover:bg-[#00B8E6]"
+                  className="bg-[#D7B56D] text-[#0A0A0A] font-bold hover:bg-[#E7C77B]"
                   onClick={handleNext}
                 >
                   Next Step
@@ -1079,7 +1079,7 @@ export default function SellCarModal() {
                 <Button
                   type="submit"
                   disabled={submitting}
-                  className="bg-[#00D4FF] text-[#0A0A0A] font-bold hover:bg-[#00B8E6] disabled:opacity-60"
+                  className="bg-[#D7B56D] text-[#0A0A0A] font-bold hover:bg-[#E7C77B] disabled:opacity-60"
                   onClick={handleSubmit}
                 >
                   {submitting ? (
@@ -1105,7 +1105,7 @@ export default function SellCarModal() {
             <div
               className="pointer-events-none absolute bottom-0 left-1/2 -translate-x-1/2 h-24 w-3/4 rounded-full opacity-[0.06]"
               style={{
-                background: `radial-gradient(ellipse at center, ${CYAN}, transparent)`,
+                background: `radial-gradient(ellipse at center, ${CHAMPAGNE}, transparent)`,
               }}
             />
           </motion.div>

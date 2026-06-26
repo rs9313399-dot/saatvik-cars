@@ -42,7 +42,7 @@ export default function CTA() {
           suppressHydrationWarning
         >
           Ready to Drive Your{' '}
-          <span className="text-[#00D4FF]" suppressHydrationWarning>
+          <span className="text-[#D7B56D]" suppressHydrationWarning>
             Dream Car
           </span>
           ?
@@ -72,7 +72,7 @@ export default function CTA() {
         >
           <Button
             suppressHydrationWarning
-            className="h-12 min-w-[200px] rounded-xl bg-[#00D4FF] text-[#0A0A0A] font-bold hover:bg-[#00B8E6] shadow-lg shadow-[#00D4FF]/25 transition-all duration-300 text-sm hover:scale-[1.03]"
+            className="h-12 min-w-[200px] rounded-xl bg-[#D7B56D] text-[#0A0A0A] font-bold hover:bg-[#E7C77B] shadow-lg shadow-[#D7B56D]/25 transition-all duration-300 text-sm hover:scale-[1.03]"
             onClick={handleBrowseCars}
           >
             <Car className="mr-2 h-4 w-4" suppressHydrationWarning />
@@ -80,7 +80,7 @@ export default function CTA() {
           </Button>
           <Button
             suppressHydrationWarning
-            className="h-12 min-w-[200px] rounded-xl border-2 border-[#00D4FF]/40 text-[#00D4FF] font-bold hover:bg-[#00D4FF]/10 hover:border-[#00D4FF]/60 transition-all duration-300 text-sm hover:scale-[1.03]"
+            className="h-12 min-w-[200px] rounded-xl border-2 border-[#D7B56D]/40 text-[#D7B56D] font-bold hover:bg-[#D7B56D]/10 hover:border-[#D7B56D]/60 transition-all duration-300 text-sm hover:scale-[1.03]"
             variant="outline"
             onClick={handleSellCar}
           >
@@ -132,9 +132,9 @@ export default function CTA() {
             <a
               href={`mailto:${BUSINESS.email}`}
               suppressHydrationWarning
-              className="inline-flex items-center gap-1.5 text-sm text-white/80 hover:text-[#00D4FF] transition-colors"
+              className="inline-flex items-center gap-1.5 text-sm text-white/80 hover:text-[#D7B56D] transition-colors"
             >
-              <Mail className="h-4 w-4 text-[#00D4FF]" />
+              <Mail className="h-4 w-4 text-[#D7B56D]" />
               {BUSINESS.email}
             </a>
             <span className="text-white/10">·</span>
@@ -150,8 +150,8 @@ export default function CTA() {
             </a>
           </div>
           <div className="flex items-center gap-2">
-            <Phone className="h-4 w-4 text-[#00D4FF]" suppressHydrationWarning />
-            <span className="text-sm text-[#00D4FF] font-medium" suppressHydrationWarning>
+            <Phone className="h-4 w-4 text-[#D7B56D]" suppressHydrationWarning />
+            <span className="text-sm text-[#D7B56D] font-medium" suppressHydrationWarning>
               Or call us:
             </span>
           </div>
@@ -159,7 +159,7 @@ export default function CTA() {
             {BUSINESS.phones.map((phone, i) => (
               <Fragment key={phone.tel}>
                 {i > 0 && <span className="text-white/10">·</span>}
-                <a href={`tel:${phone.tel}`} suppressHydrationWarning className="text-sm text-white/80 hover:text-[#00D4FF] transition-colors">{phone.display}</a>
+                <a href={`tel:${phone.tel}`} suppressHydrationWarning className="text-sm text-white/80 hover:text-[#D7B56D] transition-colors">{phone.display}</a>
               </Fragment>
             ))}
           </div>

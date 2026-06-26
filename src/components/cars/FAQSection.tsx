@@ -63,7 +63,7 @@ function FAQItem({ faq, isOpen, onToggle }: { faq: FAQ; isOpen: boolean; onToggl
       >
         <span className="text-sm font-medium text-white" suppressHydrationWarning>{faq.q}</span>
         <ChevronDown
-          className={`h-4 w-4 shrink-0 text-[#00D4FF] transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}
+          className={`h-4 w-4 shrink-0 text-[#D7B56D] transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}
         />
       </button>
       <AnimatePresence initial={false}>
@@ -124,7 +124,7 @@ export default function FAQSection() {
           className="mb-8 text-center"
           suppressHydrationWarning
         >
-          <span className="inline-flex items-center gap-2 rounded-full border border-[#00D4FF]/20 bg-[#00D4FF]/5 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-[#00D4FF]" suppressHydrationWarning>
+          <span className="inline-flex items-center gap-2 rounded-full border border-[#D7B56D]/20 bg-[#D7B56D]/5 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-[#D7B56D]" suppressHydrationWarning>
             <HelpCircle className="h-3.5 w-3.5" />
             FAQ
           </span>

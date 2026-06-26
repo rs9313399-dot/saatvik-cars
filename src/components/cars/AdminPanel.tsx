@@ -18,7 +18,7 @@ import { formatPrice, formatKM, formatEMI, calcEMI, parseImages, getTagLabel, ge
 import { BUSINESS } from '@/lib/business';
 import { toast } from 'sonner';
 
-const CYAN = '#00D4FF';
+const CHAMPAGNE = '#D7B56D';
 
 const BRANDS = [
   'Maruti Suzuki', 'Hyundai', 'Tata', 'Honda', 'Toyota',
@@ -239,8 +239,8 @@ export default function AdminPanel() {
                     <ArrowLeft className="h-4 w-4" />
                   </button>
                 )}
-                <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-[#00D4FF]/10 border border-[#00D4FF]/20">
-                  <Shield className="h-4.5 w-4.5 text-[#00D4FF]" />
+                <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-[#D7B56D]/10 border border-[#D7B56D]/20">
+                  <Shield className="h-4.5 w-4.5 text-[#D7B56D]" />
                 </div>
                 <div>
                   <h2 className="text-base font-bold text-white">
@@ -259,7 +259,7 @@ export default function AdminPanel() {
                     <Button
                       onClick={handleAdd}
                       suppressHydrationWarning
-                      className="h-8 rounded-lg bg-[#00D4FF] px-3 text-xs font-bold text-[#0A0A0A] hover:bg-[#00B8E6] transition-all"
+                      className="h-8 rounded-lg bg-[#D7B56D] px-3 text-xs font-bold text-[#0A0A0A] hover:bg-[#E7C77B] transition-all"
                     >
                       <Plus className="mr-1 h-3.5 w-3.5" />
                       Add Car
@@ -267,7 +267,7 @@ export default function AdminPanel() {
                     <Button
                       onClick={() => setSellModalOpen(true)}
                       suppressHydrationWarning
-                      className="h-8 rounded-lg border border-[#00D4FF]/30 bg-[#00D4FF]/5 px-3 text-xs font-semibold text-[#00D4FF] hover:bg-[#00D4FF]/10 transition-all"
+                      className="h-8 rounded-lg border border-[#D7B56D]/30 bg-[#D7B56D]/5 px-3 text-xs font-semibold text-[#D7B56D] hover:bg-[#D7B56D]/10 transition-all"
                     >
                       <Car className="mr-1 h-3.5 w-3.5" />
                       Sell Car
@@ -308,7 +308,7 @@ export default function AdminPanel() {
                       <button
                         onClick={loadCars}
                         suppressHydrationWarning
-                        className="absolute right-2 top-1/2 -translate-y-1/2 flex h-7 w-7 items-center justify-center rounded-lg text-slate-500 hover:text-[#00D4FF] hover:bg-[#00D4FF]/5 transition-colors"
+                        className="absolute right-2 top-1/2 -translate-y-1/2 flex h-7 w-7 items-center justify-center rounded-lg text-slate-500 hover:text-[#D7B56D] hover:bg-[#D7B56D]/5 transition-colors"
                       >
                         <RefreshCw className={`h-3.5 w-3.5 ${loading ? 'animate-spin' : ''}`} />
                       </button>
@@ -317,7 +317,7 @@ export default function AdminPanel() {
                     {/* Cars list */}
                     {loading ? (
                       <div className="flex flex-col items-center justify-center py-20">
-                        <Loader2 className="h-8 w-8 text-[#00D4FF] animate-spin mb-3" />
+                        <Loader2 className="h-8 w-8 text-[#D7B56D] animate-spin mb-3" />
                         <p className="text-sm text-slate-400">Loading cars...</p>
                       </div>
                     ) : filteredCars.length === 0 ? (
@@ -373,7 +373,7 @@ export default function AdminPanel() {
                                     </div>
                                     <div className="text-right shrink-0">
                                       <p className="text-sm font-bold text-white">{formatPrice(car.price)}</p>
-                                      <p className="text-[11px] text-[#00D4FF]">EMI from {formatEMI(calcEMI(car.price))}/mo</p>
+                                      <p className="text-[11px] text-[#D7B56D]">EMI from {formatEMI(calcEMI(car.price))}/mo</p>
                                     </div>
                                   </div>
 
@@ -407,7 +407,7 @@ export default function AdminPanel() {
                                       <button
                                         onClick={() => handleEdit(car)}
                                         suppressHydrationWarning
-                                        className="flex h-7 w-7 items-center justify-center rounded-lg text-slate-400 hover:text-[#00D4FF] hover:bg-[#00D4FF]/5 transition-colors"
+                                        className="flex h-7 w-7 items-center justify-center rounded-lg text-slate-400 hover:text-[#D7B56D] hover:bg-[#D7B56D]/5 transition-colors"
                                         title="Edit"
                                       >
                                         <Edit3 className="h-3.5 w-3.5" />
@@ -464,9 +464,9 @@ export default function AdminPanel() {
                       {/* Section: Basic Info */}
                       <div>
                         <h3 className="mb-3 flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-slate-400">
-                          <Car className="h-3.5 w-3.5 text-[#00D4FF]" />
+                          <Car className="h-3.5 w-3.5 text-[#D7B56D]" />
                           Car Details
-                          <span className="flex-1 h-px bg-gradient-to-r from-[#00D4FF]/20 to-transparent ml-2" />
+                          <span className="flex-1 h-px bg-gradient-to-r from-[#D7B56D]/20 to-transparent ml-2" />
                         </h3>
                         <div className="grid grid-cols-2 gap-3">
                           <div className="col-span-2">
@@ -535,9 +535,9 @@ export default function AdminPanel() {
                       {/* Section: Specs */}
                       <div>
                         <h3 className="mb-3 flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-slate-400">
-                          <Gauge className="h-3.5 w-3.5 text-[#00D4FF]" />
+                          <Gauge className="h-3.5 w-3.5 text-[#D7B56D]" />
                           Specifications
-                          <span className="flex-1 h-px bg-gradient-to-r from-[#00D4FF]/20 to-transparent ml-2" />
+                          <span className="flex-1 h-px bg-gradient-to-r from-[#D7B56D]/20 to-transparent ml-2" />
                         </h3>
                         <div className="grid grid-cols-2 gap-3">
                           <div>
@@ -599,9 +599,9 @@ export default function AdminPanel() {
                       {/* Section: Location & Contact */}
                       <div>
                         <h3 className="mb-3 flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-slate-400">
-                          <Phone className="h-3.5 w-3.5 text-[#00D4FF]" />
+                          <Phone className="h-3.5 w-3.5 text-[#D7B56D]" />
                           Location & Contact
-                          <span className="flex-1 h-px bg-gradient-to-r from-[#00D4FF]/20 to-transparent ml-2" />
+                          <span className="flex-1 h-px bg-gradient-to-r from-[#D7B56D]/20 to-transparent ml-2" />
                         </h3>
                         <div className="grid grid-cols-2 gap-3">
                           <div>
@@ -652,7 +652,7 @@ export default function AdminPanel() {
                               placeholder="Describe the car..."
                               rows={3}
                               suppressHydrationWarning
-                              className="w-full rounded-lg border border-white/[0.06] bg-white/[0.03] px-3 py-2.5 text-sm text-slate-200 placeholder:text-slate-400 outline-none hover:bg-white/[0.05] focus:border-[#00D4FF]/30 resize-none"
+                              className="w-full rounded-lg border border-white/[0.06] bg-white/[0.03] px-3 py-2.5 text-sm text-slate-200 placeholder:text-slate-400 outline-none hover:bg-white/[0.05] focus:border-[#D7B56D]/30 resize-none"
                             />
                           </div>
                           <div className="col-span-2 flex items-center gap-3">
@@ -680,7 +680,7 @@ export default function AdminPanel() {
                           onClick={handleSaveEdit}
                           disabled={saving}
                           suppressHydrationWarning
-                          className="h-11 w-full rounded-xl bg-[#00D4FF] text-sm font-bold text-[#0A0A0A] hover:bg-[#00B8E6] transition-all shadow-[0_0_20px_rgba(0,212,255,0.15)] disabled:opacity-50"
+                          className="h-11 w-full rounded-xl bg-[#D7B56D] text-sm font-bold text-[#0A0A0A] hover:bg-[#E7C77B] transition-all shadow-[0_0_20px_rgba(215,181,109,0.15)] disabled:opacity-50"
                         >
                           {saving ? (
                             <>

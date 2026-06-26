@@ -9,7 +9,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Badge } from '@/components/ui/badge';
 import { toast } from 'sonner';
 
-const CYAN = '#00D4FF';
+const CHAMPAGNE = '#D7B56D';
 const AMBER = '#F5A623';
 
 interface Testimonial {
@@ -176,10 +176,10 @@ export default function CustomerReviews() {
           suppressHydrationWarning
         >
           <span
-            className="inline-flex items-center gap-2 rounded-full border border-[#00D4FF]/20 bg-[#00D4FF]/5 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-[#00D4FF]"
+            className="inline-flex items-center gap-2 rounded-full border border-[#D7B56D]/20 bg-[#D7B56D]/5 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-[#D7B56D]"
             suppressHydrationWarning
           >
-            <Star className="h-3.5 w-3.5" style={{ color: CYAN }} />
+            <Star className="h-3.5 w-3.5" style={{ color: CHAMPAGNE }} />
             Customer Reviews
           </span>
           <h2
@@ -211,7 +211,7 @@ export default function CustomerReviews() {
               suppressHydrationWarning
             >
               <div
-                className="flex h-14 w-14 flex-col items-center justify-center rounded-xl border border-[#00D4FF]/20 bg-[#00D4FF]/5"
+                className="flex h-14 w-14 flex-col items-center justify-center rounded-xl border border-[#D7B56D]/20 bg-[#D7B56D]/5"
                 suppressHydrationWarning
               >
                 <span
@@ -248,7 +248,7 @@ export default function CustomerReviews() {
                 setSubmitted(false);
                 setFormOpen((v) => !v);
               }}
-              className="h-10 rounded-xl bg-[#00D4FF] px-5 text-sm font-bold text-[#0A0A0A] hover:bg-[#00B8E6] transition-all"
+              className="h-10 rounded-xl bg-[#D7B56D] px-5 text-sm font-bold text-[#0A0A0A] hover:bg-[#E7C77B] transition-all"
             >
               <Pencil className="mr-2 h-4 w-4" />
               Write a Review
@@ -269,7 +269,7 @@ export default function CustomerReviews() {
               suppressHydrationWarning
             >
               <div
-                className="mb-8 rounded-2xl border border-[#00D4FF]/20 bg-[#111827]/60 p-5 sm:p-6"
+                className="mb-8 rounded-2xl border border-[#D7B56D]/20 bg-[#111827]/60 p-5 sm:p-6"
                 suppressHydrationWarning
               >
                 <div
@@ -303,7 +303,7 @@ export default function CustomerReviews() {
                       className="text-xs font-medium text-slate-300"
                       suppressHydrationWarning
                     >
-                      Name <span className="text-[#00D4FF]">*</span>
+                      Name <span className="text-[#D7B56D]">*</span>
                     </label>
                     <Input
                       id="cr-name"
@@ -314,7 +314,7 @@ export default function CustomerReviews() {
                       }
                       placeholder="e.g. Rohan Mehta"
                       maxLength={120}
-                      className="h-10 rounded-lg border-white/10 bg-[#0A0A0A]/60 text-sm text-white placeholder:text-slate-400 focus-visible:border-[#00D4FF]/50"
+                      className="h-10 rounded-lg border-white/10 bg-[#0A0A0A]/60 text-sm text-white placeholder:text-slate-400 focus-visible:border-[#D7B56D]/50"
                     />
                   </div>
 
@@ -335,7 +335,7 @@ export default function CustomerReviews() {
                       }
                       placeholder="e.g. Mumbai, Maharashtra"
                       maxLength={120}
-                      className="h-10 rounded-lg border-white/10 bg-[#0A0A0A]/60 text-sm text-white placeholder:text-slate-400 focus-visible:border-[#00D4FF]/50"
+                      className="h-10 rounded-lg border-white/10 bg-[#0A0A0A]/60 text-sm text-white placeholder:text-slate-400 focus-visible:border-[#D7B56D]/50"
                     />
                   </div>
 
@@ -395,7 +395,7 @@ export default function CustomerReviews() {
                       }
                       placeholder="e.g. Hyundai Creta SX"
                       maxLength={200}
-                      className="h-10 rounded-lg border-white/10 bg-[#0A0A0A]/60 text-sm text-white placeholder:text-slate-400 focus-visible:border-[#00D4FF]/50"
+                      className="h-10 rounded-lg border-white/10 bg-[#0A0A0A]/60 text-sm text-white placeholder:text-slate-400 focus-visible:border-[#D7B56D]/50"
                     />
                   </div>
 
@@ -419,7 +419,7 @@ export default function CustomerReviews() {
                       }
                       placeholder="Summarise your experience in a few words"
                       maxLength={200}
-                      className="h-10 rounded-lg border-white/10 bg-[#0A0A0A]/60 text-sm text-white placeholder:text-slate-400 focus-visible:border-[#00D4FF]/50"
+                      className="h-10 rounded-lg border-white/10 bg-[#0A0A0A]/60 text-sm text-white placeholder:text-slate-400 focus-visible:border-[#D7B56D]/50"
                     />
                   </div>
 
@@ -432,7 +432,7 @@ export default function CustomerReviews() {
                       className="text-xs font-medium text-slate-300"
                       suppressHydrationWarning
                     >
-                      Your review <span className="text-[#00D4FF]">*</span>
+                      Your review <span className="text-[#D7B56D]">*</span>
                     </label>
                     <Textarea
                       id="cr-body"
@@ -443,7 +443,7 @@ export default function CustomerReviews() {
                       }
                       placeholder="Tell us about your buying experience, the car's condition, paperwork, transparency…"
                       maxLength={4000}
-                      className="min-h-28 rounded-lg border-white/10 bg-[#0A0A0A]/60 text-sm text-white placeholder:text-slate-400 focus-visible:border-[#00D4FF]/50"
+                      className="min-h-28 rounded-lg border-white/10 bg-[#0A0A0A]/60 text-sm text-white placeholder:text-slate-400 focus-visible:border-[#D7B56D]/50"
                     />
                   </div>
                 </div>
@@ -466,7 +466,7 @@ export default function CustomerReviews() {
                     suppressHydrationWarning
                     disabled={submitting}
                     onClick={handleSubmit}
-                    className="h-10 rounded-xl bg-[#00D4FF] px-6 text-sm font-bold text-[#0A0A0A] hover:bg-[#00B8E6] transition-all disabled:opacity-60"
+                    className="h-10 rounded-xl bg-[#D7B56D] px-6 text-sm font-bold text-[#0A0A0A] hover:bg-[#E7C77B] transition-all disabled:opacity-60"
                   >
                     {submitting ? (
                       <>
@@ -495,7 +495,7 @@ export default function CustomerReviews() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -12 }}
               transition={{ duration: 0.35 }}
-              className="mb-8 flex flex-col sm:flex-row items-center justify-between gap-4 rounded-2xl border border-[#00D4FF]/30 bg-[#00D4FF]/[0.06] p-5"
+              className="mb-8 flex flex-col sm:flex-row items-center justify-between gap-4 rounded-2xl border border-[#D7B56D]/30 bg-[#D7B56D]/[0.06] p-5"
               suppressHydrationWarning
             >
               <div
@@ -503,12 +503,12 @@ export default function CustomerReviews() {
                 suppressHydrationWarning
               >
                 <div
-                  className="flex h-10 w-10 items-center justify-center rounded-full bg-[#00D4FF]/15"
+                  className="flex h-10 w-10 items-center justify-center rounded-full bg-[#D7B56D]/15"
                   suppressHydrationWarning
                 >
                   <CheckCircle2
                     className="h-5 w-5"
-                    style={{ color: CYAN }}
+                    style={{ color: CHAMPAGNE }}
                   />
                 </div>
                 <div suppressHydrationWarning>
@@ -590,7 +590,7 @@ export default function CustomerReviews() {
                 viewport={{ once: true, margin: '-40px' }}
                 transition={{ duration: 0.45, delay: Math.min(i * 0.06, 0.36) }}
                 suppressHydrationWarning
-                className="group relative flex flex-col rounded-xl border border-white/[0.06] bg-[#111827]/50 p-5 transition-all duration-300 hover:border-[#00D4FF]/20 hover:bg-[#00D4FF]/[0.02] overflow-hidden"
+                className="group relative flex flex-col rounded-xl border border-white/[0.06] bg-[#111827]/50 p-5 transition-all duration-300 hover:border-[#D7B56D]/20 hover:bg-[#D7B56D]/[0.02] overflow-hidden"
               >
                 {/* Decorative quote mark */}
                 <Quote
@@ -607,7 +607,7 @@ export default function CustomerReviews() {
                     <Badge
                       variant="outline"
                       suppressHydrationWarning
-                      className="border-[#00D4FF]/20 bg-[#00D4FF]/5 text-[10px] font-medium text-[#00D4FF]"
+                      className="border-[#D7B56D]/20 bg-[#D7B56D]/5 text-[10px] font-medium text-[#D7B56D]"
                     >
                       {t.carPurchased}
                     </Badge>
@@ -635,7 +635,7 @@ export default function CustomerReviews() {
                   suppressHydrationWarning
                 >
                   <div
-                    className="flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-br from-[#00D4FF]/30 to-[#00D4FF]/5 text-xs font-bold text-[#00D4FF] border border-[#00D4FF]/20"
+                    className="flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-br from-[#D7B56D]/30 to-[#D7B56D]/5 text-xs font-bold text-[#D7B56D] border border-[#D7B56D]/20"
                     suppressHydrationWarning
                   >
                     {t.name.charAt(0).toUpperCase()}
@@ -674,12 +674,12 @@ export default function CustomerReviews() {
             suppressHydrationWarning
           >
             <div
-              className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full border border-[#00D4FF]/20 bg-[#00D4FF]/5"
+              className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full border border-[#D7B56D]/20 bg-[#D7B56D]/5"
               suppressHydrationWarning
             >
               <Star
                 className="h-6 w-6"
-                style={{ color: CYAN }}
+                style={{ color: CHAMPAGNE }}
                 strokeWidth={1.6}
               />
             </div>
@@ -703,7 +703,7 @@ export default function CustomerReviews() {
               <Button
                 suppressHydrationWarning
                 onClick={() => setFormOpen(true)}
-                className="h-10 rounded-xl bg-[#00D4FF] px-6 text-sm font-bold text-[#0A0A0A] hover:bg-[#00B8E6] transition-all"
+                className="h-10 rounded-xl bg-[#D7B56D] px-6 text-sm font-bold text-[#0A0A0A] hover:bg-[#E7C77B] transition-all"
               >
                 <Pencil className="mr-2 h-4 w-4" />
                 Write the First Review

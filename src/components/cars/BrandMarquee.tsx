@@ -36,7 +36,7 @@ export default function BrandMarquee() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, ease: 'easeOut' }}
-          className="inline-flex items-center gap-2 rounded-full border border-[#00D4FF]/20 bg-[#00D4FF]/5 px-4 py-1.5 text-xs uppercase tracking-widest font-semibold text-[#00D4FF]"
+          className="inline-flex items-center gap-2 rounded-full border border-[#D7B56D]/20 bg-[#D7B56D]/5 px-4 py-1.5 text-xs uppercase tracking-widest font-semibold text-[#D7B56D]"
           suppressHydrationWarning
         >
           <span
@@ -44,11 +44,11 @@ export default function BrandMarquee() {
             suppressHydrationWarning
           >
             <span
-              className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#00D4FF] opacity-75"
+              className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#D7B56D] opacity-75"
               suppressHydrationWarning
             />
             <span
-              className="relative inline-flex h-2 w-2 rounded-full bg-[#00D4FF]"
+              className="relative inline-flex h-2 w-2 rounded-full bg-[#D7B56D]"
               suppressHydrationWarning
             />
           </span>
@@ -69,21 +69,21 @@ export default function BrandMarquee() {
             <button
               type="button"
               key={`${brand}-${i}`}
-              className="group relative flex-shrink-0 overflow-hidden rounded-xl border border-white/[0.08] bg-white/[0.02] px-5 py-2 transition-all duration-300 hover:border-[#00D4FF]/30 hover:bg-[#00D4FF]/5 hover:shadow-[0_0_16px_rgba(0,212,255,0.08)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#00D4FF]/40"
+              className="group relative flex-shrink-0 overflow-hidden rounded-xl border border-white/[0.08] bg-white/[0.02] px-5 py-2 transition-all duration-300 hover:border-[#D7B56D]/30 hover:bg-[#D7B56D]/5 hover:shadow-[0_0_16px_rgba(215,181,109,0.08)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#D7B56D]/40"
               suppressHydrationWarning
               onClick={() => handleBrandClick(brand)}
               aria-label={`Browse ${brand} cars`}
             >
               {/* Watermark initial letter */}
               <span
-                className="pointer-events-none absolute -top-1 -right-0.5 select-none text-5xl font-black text-white/[0.025] transition-colors duration-300 group-hover:text-[#00D4FF]/[0.06]"
+                className="pointer-events-none absolute -top-1 -right-0.5 select-none text-5xl font-black text-white/[0.025] transition-colors duration-300 group-hover:text-[#D7B56D]/[0.06]"
                 aria-hidden="true"
                 suppressHydrationWarning
               >
                 {brand[0]}
               </span>
               <span
-                className="relative text-sm font-medium text-white/40 transition-colors duration-300 group-hover:text-[#00D4FF]"
+                className="relative text-sm font-medium text-white/40 transition-colors duration-300 group-hover:text-[#D7B56D]"
                 suppressHydrationWarning
               >
                 {brand}

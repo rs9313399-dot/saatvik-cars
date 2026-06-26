@@ -118,7 +118,7 @@ export default function WishlistDrawer() {
                         initial={{ opacity: 0, y: 8 }}
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, x: 40 }}
-                        className="group flex gap-3 rounded-xl border border-white/[0.06] bg-white/[0.02] p-3 transition-colors hover:border-[#00D4FF]/20"
+                        className="group flex gap-3 rounded-xl border border-white/[0.06] bg-white/[0.02] p-3 transition-colors hover:border-[#D7B56D]/20"
                         suppressHydrationWarning
                       >
                         {/* Thumbnail */}
@@ -141,13 +141,13 @@ export default function WishlistDrawer() {
                           <div className="mt-auto flex items-center justify-between">
                             <div>
                               <p className="text-sm font-bold text-white" suppressHydrationWarning>{formatPrice(car.price)}</p>
-                              <p className="text-[10px] text-[#00D4FF]" suppressHydrationWarning>EMI {formatEMI(calcEMI(car.price))}/mo</p>
+                              <p className="text-[10px] text-[#D7B56D]" suppressHydrationWarning>EMI {formatEMI(calcEMI(car.price))}/mo</p>
                             </div>
                             <div className="flex items-center gap-1">
                               <a
                                 href={getCallLink(car.contactPhone)}
                                 suppressHydrationWarning
-                                className="flex h-7 w-7 items-center justify-center rounded-lg bg-[#00D4FF]/10 text-[#00D4FF] hover:bg-[#00D4FF]/20 transition-colors"
+                                className="flex h-7 w-7 items-center justify-center rounded-lg bg-[#D7B56D]/10 text-[#D7B56D] hover:bg-[#D7B56D]/20 transition-colors"
                                 aria-label={`Call about ${car.name}`}
                                 onClick={() => toast.success('Calling seller...', { duration: 1500 })}
                               >
@@ -190,7 +190,7 @@ export default function WishlistDrawer() {
                   <Button
                     suppressHydrationWarning
                     variant="outline"
-                    className="mt-4 border-[#00D4FF]/30 text-[#00D4FF] hover:bg-[#00D4FF]/10 hover:text-[#00D4FF]"
+                    className="mt-4 border-[#D7B56D]/30 text-[#D7B56D] hover:bg-[#D7B56D]/10 hover:text-[#D7B56D]"
                     onClick={() => {
                       setWishlistOpen(false);
                       setTimeout(() => {

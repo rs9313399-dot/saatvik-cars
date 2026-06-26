@@ -69,7 +69,7 @@ export default function HowItWorks() {
         suppressHydrationWarning
       >
         <div
-          className="absolute left-1/2 top-0 h-[500px] w-[800px] -translate-x-1/2 rounded-full bg-[#00D4FF]/[0.03] blur-[120px]"
+          className="absolute left-1/2 top-0 h-[500px] w-[800px] -translate-x-1/2 rounded-full bg-[#D7B56D]/[0.03] blur-[120px]"
           suppressHydrationWarning
         />
       </div>
@@ -124,14 +124,14 @@ export default function HowItWorks() {
                 {/* Gradient connector line (rendered on every step except last) */}
                 {!isLast && (
                   <div
-                    className="absolute left-[calc(50%+28px)] top-[19px] z-0 h-[2px] w-[calc(100%-56px)] bg-gradient-to-r from-slate-700 via-[#00D4FF] to-slate-700"
+                    className="absolute left-[calc(50%+28px)] top-[19px] z-0 h-[2px] w-[calc(100%-56px)] bg-gradient-to-r from-slate-700 via-[#D7B56D] to-slate-700"
                     suppressHydrationWarning
                   />
                 )}
 
                 {/* Step number circle */}
                 <div
-                  className="relative z-10 flex h-10 w-10 items-center justify-center rounded-full bg-[#00D4FF] font-bold text-[#0A0A0A] text-sm shadow-[0_0_12px_rgba(0,212,255,0.4)]"
+                  className="relative z-10 flex h-10 w-10 items-center justify-center rounded-full bg-[#D7B56D] font-bold text-[#0A0A0A] text-sm shadow-[0_0_12px_rgba(215,181,109,0.4)]"
                   suppressHydrationWarning
                 >
                   {i + 1}
@@ -143,7 +143,7 @@ export default function HowItWorks() {
                   suppressHydrationWarning
                 >
                   <Icon
-                    className="h-5 w-5 text-[#00D4FF]"
+                    className="h-5 w-5 text-[#D7B56D]"
                     strokeWidth={1.8}
                     suppressHydrationWarning
                   />
@@ -151,7 +151,7 @@ export default function HowItWorks() {
 
                 {/* Step label (Search / Inspect / Verify / Drive) */}
                 <span
-                  className="mt-3 text-[11px] font-semibold uppercase tracking-widest text-[#00D4FF]/60"
+                  className="mt-3 text-[11px] font-semibold uppercase tracking-widest text-[#D7B56D]/60"
                   suppressHydrationWarning
                 >
                   {step.label}
@@ -204,7 +204,7 @@ export default function HowItWorks() {
                 >
                   {/* Number circle */}
                   <div
-                    className="relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#00D4FF] font-bold text-[#0A0A0A] text-sm shadow-[0_0_12px_rgba(0,212,255,0.4)]"
+                    className="relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#D7B56D] font-bold text-[#0A0A0A] text-sm shadow-[0_0_12px_rgba(215,181,109,0.4)]"
                     suppressHydrationWarning
                   >
                     {i + 1}
@@ -213,7 +213,7 @@ export default function HowItWorks() {
                   {/* Vertical gradient connector */}
                   {!isLast && (
                     <div
-                      className="my-1 h-full w-[2px] bg-gradient-to-b from-slate-700 via-[#00D4FF] to-slate-700"
+                      className="my-1 h-full w-[2px] bg-gradient-to-b from-slate-700 via-[#D7B56D] to-slate-700"
                       suppressHydrationWarning
                     />
                   )}
@@ -234,13 +234,13 @@ export default function HowItWorks() {
                       suppressHydrationWarning
                     >
                       <Icon
-                        className="h-3.5 w-3.5 text-[#00D4FF]"
+                        className="h-3.5 w-3.5 text-[#D7B56D]"
                         strokeWidth={1.8}
                         suppressHydrationWarning
                       />
                     </div>
                     <span
-                      className="text-[10px] font-semibold uppercase tracking-widest text-[#00D4FF]/60"
+                      className="text-[10px] font-semibold uppercase tracking-widest text-[#D7B56D]/60"
                       suppressHydrationWarning
                     >
                       {step.label}

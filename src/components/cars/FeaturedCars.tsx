@@ -278,7 +278,7 @@ function CarImageCarousel({
               aria-label={`Go to photo ${i + 1}`}
               className={`h-1.5 rounded-full transition-all duration-300 ${
                 i === current
-                  ? 'w-6 bg-[#00D4FF]'
+                  ? 'w-6 bg-[#D7B56D]'
                   : 'w-1.5 bg-white/40 hover:bg-white/70'
               }`}
             />
@@ -410,7 +410,7 @@ function PhotoLightbox({
               onClick={(e) => { e.stopPropagation(); setCurrent(i); }}
               suppressHydrationWarning
               className={`relative h-14 w-20 shrink-0 overflow-hidden rounded-md transition-all ${
-                i === current ? 'ring-2 ring-[#00D4FF]' : 'opacity-60 hover:opacity-100'
+                i === current ? 'ring-2 ring-[#D7B56D]' : 'opacity-60 hover:opacity-100'
               }`}
             >
               <img src={src} alt="" className="h-full w-full object-cover" loading="lazy" suppressHydrationWarning draggable={false} />
@@ -611,17 +611,17 @@ function CarDetailModal({ car, onClose, wishlisted, onToggleWishlist, onBookTest
             suppressHydrationWarning
             onClick={handleScrollToEmi}
             aria-label="Open full EMI calculator"
-            className="w-full text-left rounded-xl border border-[#00D4FF]/20 bg-[#00D4FF]/[0.06] px-4 py-3 mb-4 transition-all hover:border-[#00D4FF]/40 hover:bg-[#00D4FF]/[0.10]"
+            className="w-full text-left rounded-xl border border-[#D7B56D]/20 bg-[#D7B56D]/[0.06] px-4 py-3 mb-4 transition-all hover:border-[#D7B56D]/40 hover:bg-[#D7B56D]/[0.10]"
           >
             <div className="flex items-center justify-between gap-2">
-              <span className="text-sm font-semibold text-[#00D4FF]" suppressHydrationWarning>
+              <span className="text-sm font-semibold text-[#D7B56D]" suppressHydrationWarning>
                 EMI from {formatEMI(emi)}/mo
               </span>
-              <span className="flex items-center gap-1 text-[10px] font-medium text-[#00D4FF]/70" suppressHydrationWarning>
+              <span className="flex items-center gap-1 text-[10px] font-medium text-[#D7B56D]/70" suppressHydrationWarning>
                 <SlidersHorizontal className="h-3 w-3" /> Calculate
               </span>
             </div>
-            <p className="mt-0.5 text-[11px] text-[#00D4FF]/50" suppressHydrationWarning>
+            <p className="mt-0.5 text-[11px] text-[#D7B56D]/50" suppressHydrationWarning>
               Indicative • 80% loan • 9.5% interest • 60 months
             </p>
           </button>
@@ -648,8 +648,8 @@ function CarDetailModal({ car, onClose, wishlisted, onToggleWishlist, onBookTest
 
           {/* Vehicle Details: Reg No, Colour, RTO, Insurance, Sunroof, Finance */}
           {(car.carNumber || car.color || car.rto || car.insurance || car.sunroof || car.finance) && (
-            <div className="rounded-xl border border-[#00D4FF]/15 bg-[#00D4FF]/[0.03] p-4 mb-4">
-              <p className="mb-3 text-[11px] font-semibold uppercase tracking-widest text-[#00D4FF]/80">Vehicle Details</p>
+            <div className="rounded-xl border border-[#D7B56D]/15 bg-[#D7B56D]/[0.03] p-4 mb-4">
+              <p className="mb-3 text-[11px] font-semibold uppercase tracking-widest text-[#D7B56D]/80">Vehicle Details</p>
               <div className="grid grid-cols-2 gap-x-4 gap-y-2.5 text-xs">
                 {car.carNumber && (
                   <div className="flex items-center gap-2">
@@ -687,7 +687,7 @@ function CarDetailModal({ car, onClose, wishlisted, onToggleWishlist, onBookTest
                 {car.finance && car.finance !== 'Not available' && (
                   <div className="col-span-2 flex items-center gap-2">
                     <span className="text-slate-500">Finance:</span>
-                    <span className="font-medium text-[#00D4FF]" suppressHydrationWarning>{car.finance}</span>
+                    <span className="font-medium text-[#D7B56D]" suppressHydrationWarning>{car.finance}</span>
                   </div>
                 )}
               </div>
@@ -698,7 +698,7 @@ function CarDetailModal({ car, onClose, wishlisted, onToggleWishlist, onBookTest
               Rows with no value (e.g. Body Type, RC Available, Service History, Road Tax,
               Seller Type — not stored in the Car schema) are filtered out at render time. */}
           <div className="rounded-xl border border-white/[0.06] bg-white/[0.02] p-4 mb-4">
-            <p className="mb-3 text-[11px] font-semibold uppercase tracking-widest text-[#00D4FF]/80">Full Specs</p>
+            <p className="mb-3 text-[11px] font-semibold uppercase tracking-widest text-[#D7B56D]/80">Full Specs</p>
             <div className="overflow-hidden rounded-lg border border-white/[0.05]">
               <table className="w-full text-xs">
                 <tbody>
@@ -752,7 +752,7 @@ function CarDetailModal({ car, onClose, wishlisted, onToggleWishlist, onBookTest
             <div className="flex gap-3">
               <Button
                 suppressHydrationWarning
-                className="flex-1 h-11 bg-[#00D4FF] text-[#0A0A0A] hover:bg-[#00B8E6] font-semibold text-sm shadow-lg shadow-[#00D4FF]/20"
+                className="flex-1 h-11 bg-[#D7B56D] text-[#0A0A0A] hover:bg-[#E7C77B] font-semibold text-sm shadow-lg shadow-[#D7B56D]/20"
                 onClick={() => {
                   window.open(getCallLink(car.contactPhone || '+919644924777'), '_self');
                   toast.success('Calling seller...', { description: `Connecting to ${car.contactPhone}` });
@@ -774,7 +774,7 @@ function CarDetailModal({ car, onClose, wishlisted, onToggleWishlist, onBookTest
             <Button
               suppressHydrationWarning
               variant="outline"
-              className="w-full h-10 border-[#00D4FF]/30 text-[#00D4FF] hover:bg-[#00D4FF]/10 hover:text-[#00D4FF] hover:border-[#00D4FF]/50 font-semibold text-sm"
+              className="w-full h-10 border-[#D7B56D]/30 text-[#D7B56D] hover:bg-[#D7B56D]/10 hover:text-[#D7B56D] hover:border-[#D7B56D]/50 font-semibold text-sm"
               onClick={() => onBookTestDrive(car)}
             >
               <CalendarCheck className="mr-2 h-4 w-4" /> Book Test Drive
@@ -785,7 +785,7 @@ function CarDetailModal({ car, onClose, wishlisted, onToggleWishlist, onBookTest
               Clicking a card calls onSelectCar which swaps the modal content + scrolls to top. */}
           {relatedCars.length > 0 && (
             <div className="mt-6 pt-5 border-t border-white/[0.06]">
-              <p className="mb-3 text-[11px] font-semibold uppercase tracking-widest text-[#00D4FF]/80 flex items-center gap-1.5" suppressHydrationWarning>
+              <p className="mb-3 text-[11px] font-semibold uppercase tracking-widest text-[#D7B56D]/80 flex items-center gap-1.5" suppressHydrationWarning>
                 <Sparkles className="h-3 w-3" /> Similar cars you may like
               </p>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
@@ -797,7 +797,7 @@ function CarDetailModal({ car, onClose, wishlisted, onToggleWishlist, onBookTest
                       key={rc.id}
                       suppressHydrationWarning
                       onClick={() => onSelectCar(rc)}
-                      className="flex items-center gap-3 rounded-lg border border-white/[0.06] bg-white/[0.02] p-2.5 text-left transition-all hover:border-[#00D4FF]/30 hover:bg-[#00D4FF]/[0.04]"
+                      className="flex items-center gap-3 rounded-lg border border-white/[0.06] bg-white/[0.02] p-2.5 text-left transition-all hover:border-[#D7B56D]/30 hover:bg-[#D7B56D]/[0.04]"
                       aria-label={`View ${rc.name}`}
                     >
                       <div className="h-12 w-16 shrink-0 overflow-hidden rounded-md bg-black/30">
@@ -810,7 +810,7 @@ function CarDetailModal({ car, onClose, wishlisted, onToggleWishlist, onBookTest
                       <div className="min-w-0 flex-1">
                         <p className="text-xs font-medium text-white truncate" suppressHydrationWarning>{rc.name}</p>
                         <p className="text-[10px] text-slate-500 mb-0.5" suppressHydrationWarning>{rc.year} • {formatKM(rc.kmDriven)}</p>
-                        <p className="text-xs font-semibold text-[#00D4FF]" suppressHydrationWarning>{formatPrice(rc.price)}</p>
+                        <p className="text-xs font-semibold text-[#D7B56D]" suppressHydrationWarning>{formatPrice(rc.price)}</p>
                       </div>
                       <ArrowRight className="h-3.5 w-3.5 shrink-0 text-slate-400" />
                     </button>
@@ -865,7 +865,7 @@ function CompareModal({ cars, onClose }: { cars: Car[]; onClose: () => void }) {
           <GitCompare className="mx-auto mb-3 h-10 w-10 text-slate-400" />
           <h3 className="text-lg font-bold text-white">Select Cars to Compare</h3>
           <p className="mt-1 text-sm text-slate-400">Add at least 2 cars using the compare button to see a side-by-side comparison with up to 4 cars.</p>
-          <Button suppressHydrationWarning className="mt-4 bg-[#00D4FF] text-[#0A0A0A] hover:bg-[#00B8E6] font-medium" onClick={onClose}>Got it</Button>
+          <Button suppressHydrationWarning className="mt-4 bg-[#D7B56D] text-[#0A0A0A] hover:bg-[#E7C77B] font-medium" onClick={onClose}>Got it</Button>
         </motion.div>
       </motion.div>
     );
@@ -1070,7 +1070,7 @@ function CompareModal({ cars, onClose }: { cars: Car[]; onClose: () => void }) {
         {
           label: 'Contact',
           render: (c) => c.contactPhone ? (
-            <a href={getCallLink(c.contactPhone)} className="inline-flex items-center gap-1 text-[#00D4FF] hover:underline" suppressHydrationWarning>
+            <a href={getCallLink(c.contactPhone)} className="inline-flex items-center gap-1 text-[#D7B56D] hover:underline" suppressHydrationWarning>
               <Phone className="h-3 w-3" /> {c.contactPhone}
             </a>
           ) : <span className="text-slate-500">—</span>,
@@ -1092,7 +1092,7 @@ function CompareModal({ cars, onClose }: { cars: Car[]; onClose: () => void }) {
         {/* Header / Toolbar */}
         <div className="flex items-center justify-between gap-2 border-b border-white/10 bg-[#111827] px-4 py-3">
           <div className="flex min-w-0 items-center gap-2">
-            <GitCompare className="h-5 w-5 shrink-0 text-[#00D4FF]" />
+            <GitCompare className="h-5 w-5 shrink-0 text-[#D7B56D]" />
             <div className="min-w-0">
               <h2 className="truncate text-base font-bold leading-tight text-white">Compare Cars</h2>
               <p className="text-[11px] text-slate-500" suppressHydrationWarning>
@@ -1155,7 +1155,7 @@ function CompareModal({ cars, onClose }: { cars: Car[]; onClose: () => void }) {
                       <p className="mt-1 text-[11px] text-slate-500" suppressHydrationWarning>
                         {car.year} · {formatKM(car.kmDriven)}
                       </p>
-                      <p className="mt-1 text-base font-bold text-[#00D4FF]" suppressHydrationWarning>{formatPrice(car.price)}</p>
+                      <p className="mt-1 text-base font-bold text-[#D7B56D]" suppressHydrationWarning>{formatPrice(car.price)}</p>
                     </th>
                   );
                 })}
@@ -1165,7 +1165,7 @@ function CompareModal({ cars, onClose }: { cars: Car[]; onClose: () => void }) {
               {sections.map((section) => (
                 <Fragment key={section.title}>
                   <tr>
-                    <td colSpan={cars.length + 1} className="border-y border-white/[0.06] bg-white/[0.03] px-3 py-2 text-[11px] font-semibold uppercase tracking-wider text-[#00D4FF]/80">
+                    <td colSpan={cars.length + 1} className="border-y border-white/[0.06] bg-white/[0.03] px-3 py-2 text-[11px] font-semibold uppercase tracking-wider text-[#D7B56D]/80">
                       {section.title}
                     </td>
                   </tr>
@@ -1254,13 +1254,13 @@ function CarCard({
       transition={{ duration: 0.4, delay: index * 0.05 }}
       className={`premium-car-card group relative overflow-hidden rounded-xl border transition-all duration-300 ${
         isCompared
-          ? 'border-[#00D4FF]/45 shadow-md shadow-[#00D4FF]/10'
+          ? 'border-[#D7B56D]/45 shadow-md shadow-[#D7B56D]/10'
           : 'border-white/[0.07] bg-[#111827]'
       }`}
       suppressHydrationWarning
     >
       {isCompared && (
-        <div className="absolute left-2.5 top-2.5 z-20 flex h-6 w-6 items-center justify-center rounded-full bg-[#00D4FF] text-xs text-white font-bold shadow-lg shadow-[#00D4FF]/30">
+        <div className="absolute left-2.5 top-2.5 z-20 flex h-6 w-6 items-center justify-center rounded-full bg-[#D7B56D] text-xs text-white font-bold shadow-lg shadow-[#D7B56D]/30">
           <Check className="h-3.5 w-3.5" />
         </div>
       )}
@@ -1275,7 +1275,7 @@ function CarCard({
           className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
         />
         <div className="absolute left-2.5 bottom-2.5 z-10 inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-black/50 px-2.5 py-1 text-[10px] font-semibold text-white/85 backdrop-blur-sm">
-          <ShieldCheck className="h-3 w-3 text-[#00D4FF]" />
+          <ShieldCheck className="h-3 w-3 text-[#D7B56D]" />
           Verified
         </div>
         {/* Tags as colored pills */}
@@ -1306,7 +1306,7 @@ function CarCard({
       <div className="p-4 pt-3">
         <div className="mb-2 flex items-start justify-between gap-3">
           <div className="min-w-0">
-            <p className="text-[11px] text-[#00D4FF]/80 mb-0.5 tracking-wide uppercase" suppressHydrationWarning>{car.brand}</p>
+            <p className="text-[11px] text-[#D7B56D]/80 mb-0.5 tracking-wide uppercase" suppressHydrationWarning>{car.brand}</p>
             <h3 className="text-[15px] font-semibold text-white leading-tight line-clamp-1" suppressHydrationWarning>{car.name}</h3>
           </div>
           <span className="shrink-0 rounded-full border border-white/[0.08] bg-white/[0.035] px-2 py-1 text-[10px] font-medium text-slate-300" suppressHydrationWarning>
@@ -1331,7 +1331,7 @@ function CarCard({
             </div>
             <div className="text-right">
               <p className="text-[10px] font-medium uppercase tracking-wider text-slate-500">EMI from</p>
-              <p className="text-sm font-semibold text-[#00D4FF]" suppressHydrationWarning>{formatEMI(emi)}/mo</p>
+              <p className="text-sm font-semibold text-[#D7B56D]" suppressHydrationWarning>{formatEMI(emi)}/mo</p>
             </div>
           </div>
         </div>
@@ -1346,7 +1346,7 @@ function CarCard({
         {/* Action Buttons */}
         <div className="grid grid-cols-[1fr_auto_auto] gap-2">
           <Button
-            className="h-9 rounded-lg bg-[#00D4FF] text-[#0A0A0A] hover:bg-[#00B8E6] text-xs font-semibold transition-all duration-200"
+            className="h-9 rounded-lg bg-[#D7B56D] text-[#0A0A0A] hover:bg-[#E7C77B] text-xs font-semibold transition-all duration-200"
             suppressHydrationWarning
             onClick={(e) => { e.stopPropagation(); onDetails(car); }}
           >
@@ -1366,7 +1366,7 @@ function CarCard({
             variant="outline"
             className={`h-9 w-9 rounded-lg p-0 border-white/10 transition-all text-xs font-medium ${
               isCompared
-                ? 'bg-[#00D4FF]/10 text-[#00D4FF] border-[#00D4FF]/30 hover:bg-[#00D4FF]/20'
+                ? 'bg-[#D7B56D]/10 text-[#D7B56D] border-[#D7B56D]/30 hover:bg-[#D7B56D]/20'
                 : 'bg-transparent text-slate-500 hover:text-white hover:border-white/20'
             }`}
             suppressHydrationWarning
@@ -1557,7 +1557,7 @@ export default function FeaturedCars() {
             <button
               suppressHydrationWarning
               onClick={() => setShowFilters((v) => !v)}
-              className="flex h-9 items-center gap-1.5 rounded-lg border border-[#00D4FF]/30 bg-[#00D4FF]/5 px-3 text-xs font-semibold text-[#00D4FF] transition-all hover:bg-[#00D4FF]/10 lg:hidden"
+              className="flex h-9 items-center gap-1.5 rounded-lg border border-[#D7B56D]/30 bg-[#D7B56D]/5 px-3 text-xs font-semibold text-[#D7B56D] transition-all hover:bg-[#D7B56D]/10 lg:hidden"
               aria-label="Toggle filters"
             >
               <SlidersHorizontal className="h-3.5 w-3.5" />
@@ -1568,7 +1568,7 @@ export default function FeaturedCars() {
               value={sortBy}
               onChange={(e) => setSortBy(e.target.value as typeof sortBy)}
               suppressHydrationWarning
-              className="h-9 appearance-none rounded-lg border border-white/[0.08] bg-white/[0.03] px-3 pr-8 text-xs text-white outline-none cursor-pointer hover:border-white/15 focus:border-[#00D4FF]/50 focus:ring-2 focus:ring-[#00D4FF]/20"
+              className="h-9 appearance-none rounded-lg border border-white/[0.08] bg-white/[0.03] px-3 pr-8 text-xs text-white outline-none cursor-pointer hover:border-white/15 focus:border-[#D7B56D]/50 focus:ring-2 focus:ring-[#D7B56D]/20"
             >
               <option value="newest" className="bg-[#0f172a]">Newest</option>
               <option value="price_asc" className="bg-[#0f172a]">Price ↑</option>
@@ -1585,21 +1585,21 @@ export default function FeaturedCars() {
           <div className="mb-6 grid gap-2 sm:grid-cols-2 xl:grid-cols-4" suppressHydrationWarning>
             <div className="rounded-xl border border-white/[0.06] bg-white/[0.025] px-3 py-3">
               <div className="mb-1 flex items-center gap-2 text-[11px] font-medium uppercase tracking-wider text-slate-500">
-                <Tag className="h-3.5 w-3.5 text-[#00D4FF]" />
+                <Tag className="h-3.5 w-3.5 text-[#D7B56D]" />
                 Starts From
               </div>
               <p className="text-sm font-semibold text-white">{formatPrice(inventoryInsights.lowestPrice)}</p>
             </div>
             <div className="rounded-xl border border-white/[0.06] bg-white/[0.025] px-3 py-3">
               <div className="mb-1 flex items-center gap-2 text-[11px] font-medium uppercase tracking-wider text-slate-500">
-                <CalendarCheck className="h-3.5 w-3.5 text-[#00D4FF]" />
+                <CalendarCheck className="h-3.5 w-3.5 text-[#D7B56D]" />
                 Latest Model
               </div>
               <p className="text-sm font-semibold text-white">{inventoryInsights.latestYear || 'Available'}</p>
             </div>
             <div className="rounded-xl border border-white/[0.06] bg-white/[0.025] px-3 py-3">
               <div className="mb-1 flex items-center gap-2 text-[11px] font-medium uppercase tracking-wider text-slate-500">
-                <Sparkles className="h-3.5 w-3.5 text-[#00D4FF]" />
+                <Sparkles className="h-3.5 w-3.5 text-[#D7B56D]" />
                 Brands
               </div>
               <p className="text-sm font-semibold text-white">{inventoryInsights.brandCount}+ in stock</p>
@@ -1648,12 +1648,12 @@ export default function FeaturedCars() {
           <motion.div
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
-            className="mb-6 flex items-center justify-between rounded-xl border border-[#00D4FF]/20 bg-[#00D4FF]/[0.06] px-4 py-2.5"
+            className="mb-6 flex items-center justify-between rounded-xl border border-[#D7B56D]/20 bg-[#D7B56D]/[0.06] px-4 py-2.5"
             suppressHydrationWarning
           >
             <div className="flex items-center gap-2">
-              <GitCompare className="h-4 w-4 text-[#00D4FF]" />
-              <span className="text-xs font-medium text-[#00D4FF]" suppressHydrationWarning>
+              <GitCompare className="h-4 w-4 text-[#D7B56D]" />
+              <span className="text-xs font-medium text-[#D7B56D]" suppressHydrationWarning>
                 {compareList.length} car{compareList.length !== 1 ? 's' : ''} selected
               </span>
             </div>
@@ -1661,7 +1661,7 @@ export default function FeaturedCars() {
               <Button
                 size="sm"
                 suppressHydrationWarning
-                className="h-7 bg-[#00D4FF] text-[#0A0A0A] hover:bg-[#00B8E6] font-medium text-xs shadow-lg shadow-[#00D4FF]/20"
+                className="h-7 bg-[#D7B56D] text-[#0A0A0A] hover:bg-[#E7C77B] font-medium text-xs shadow-lg shadow-[#D7B56D]/20"
                 onClick={() => setShowCompare(true)}
               >
                 Compare Now
@@ -1718,7 +1718,7 @@ export default function FeaturedCars() {
                 <p className="mt-1 text-sm text-slate-500">Please check your connection and try again.</p>
                 <Button
                   variant="outline"
-                  className="mt-4 border-[#00D4FF]/30 text-[#00D4FF] hover:bg-[#00D4FF]/10 hover:text-[#00D4FF] hover:border-[#00D4FF]/50 text-sm font-medium"
+                  className="mt-4 border-[#D7B56D]/30 text-[#D7B56D] hover:bg-[#D7B56D]/10 hover:text-[#D7B56D] hover:border-[#D7B56D]/50 text-sm font-medium"
                   suppressHydrationWarning
                   onClick={() => useStore.getState().bumpCarListVersion()}
                 >
@@ -1736,7 +1736,7 @@ export default function FeaturedCars() {
                 <div className="mt-4 flex flex-wrap justify-center gap-2">
                   <Button
                     suppressHydrationWarning
-                    className="bg-[#00D4FF] text-[#0A0A0A] hover:bg-[#00B8E6] text-sm font-medium"
+                    className="bg-[#D7B56D] text-[#0A0A0A] hover:bg-[#E7C77B] text-sm font-medium"
                     onClick={() => window.open(getCallLink(BUSINESS.phones[0].tel), '_self')}
                   >
                     <Phone className="mr-2 h-4 w-4" /> Call us
@@ -1761,7 +1761,7 @@ export default function FeaturedCars() {
                 <p className="mt-1 text-sm text-slate-500">Try adjusting or clearing your filters to see more options.</p>
                 <Button
                   variant="outline"
-                  className="mt-4 border-[#00D4FF]/30 text-[#00D4FF] hover:bg-[#00D4FF]/10 hover:text-[#00D4FF] hover:border-[#00D4FF]/50 text-sm font-medium"
+                  className="mt-4 border-[#D7B56D]/30 text-[#D7B56D] hover:bg-[#D7B56D]/10 hover:text-[#D7B56D] hover:border-[#D7B56D]/50 text-sm font-medium"
                   suppressHydrationWarning
                   onClick={() => { useStore.getState().clearFilters(); toast.success('Filters cleared', { duration: 2000 }); }}
                 >
@@ -1771,28 +1771,28 @@ export default function FeaturedCars() {
                   <button
                     suppressHydrationWarning
                     onClick={() => { useStore.getState().setActiveFilters({ category: 'suv' }); }}
-                    className="rounded-full border border-white/[0.08] bg-white/[0.02] px-3 py-1.5 text-xs text-slate-400 hover:border-[#00D4FF]/30 hover:text-[#00D4FF] transition-all"
+                    className="rounded-full border border-white/[0.08] bg-white/[0.02] px-3 py-1.5 text-xs text-slate-400 hover:border-[#D7B56D]/30 hover:text-[#D7B56D] transition-all"
                   >
                     Browse all SUVs
                   </button>
                   <button
                     suppressHydrationWarning
                     onClick={() => { useStore.getState().setActiveFilters({ maxPrice: 1000000 }); }}
-                    className="rounded-full border border-white/[0.08] bg-white/[0.02] px-3 py-1.5 text-xs text-slate-400 hover:border-[#00D4FF]/30 hover:text-[#00D4FF] transition-all"
+                    className="rounded-full border border-white/[0.08] bg-white/[0.02] px-3 py-1.5 text-xs text-slate-400 hover:border-[#D7B56D]/30 hover:text-[#D7B56D] transition-all"
                   >
                     Try expanding your budget
                   </button>
                   <button
                     suppressHydrationWarning
                     onClick={() => { useStore.getState().setActiveFilters({ tags: 'best_deal' }); }}
-                    className="rounded-full border border-white/[0.08] bg-white/[0.02] px-3 py-1.5 text-xs text-slate-400 hover:border-[#00D4FF]/30 hover:text-[#00D4FF] transition-all"
+                    className="rounded-full border border-white/[0.08] bg-white/[0.02] px-3 py-1.5 text-xs text-slate-400 hover:border-[#D7B56D]/30 hover:text-[#D7B56D] transition-all"
                   >
                     Best deals
                   </button>
                   <button
                     suppressHydrationWarning
                     onClick={() => { useStore.getState().setActiveFilters({ fuelType: 'Petrol' }); }}
-                    className="rounded-full border border-white/[0.08] bg-white/[0.02] px-3 py-1.5 text-xs text-slate-400 hover:border-[#00D4FF]/30 hover:text-[#00D4FF] transition-all"
+                    className="rounded-full border border-white/[0.08] bg-white/[0.02] px-3 py-1.5 text-xs text-slate-400 hover:border-[#D7B56D]/30 hover:text-[#D7B56D] transition-all"
                   >
                     Petrol cars
                   </button>
@@ -1827,7 +1827,7 @@ export default function FeaturedCars() {
                     <Button
                       variant="outline"
                       suppressHydrationWarning
-                      className="border-[#00D4FF]/30 text-[#00D4FF] hover:bg-[#00D4FF]/10 hover:text-[#00D4FF] hover:border-[#00D4FF]/50 text-sm font-medium"
+                      className="border-[#D7B56D]/30 text-[#D7B56D] hover:bg-[#D7B56D]/10 hover:text-[#D7B56D] hover:border-[#D7B56D]/50 text-sm font-medium"
                       onClick={() => setShowAll(!showAll)}
                     >
                       {showAll ? 'Show Less' : `Load More (${sortedFilteredCars.length - 9} more)`}

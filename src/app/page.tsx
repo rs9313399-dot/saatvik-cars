@@ -34,7 +34,7 @@ export default function Home() {
   }, [hydrate]);
 
   return (
-    <div className="min-h-screen flex flex-col overflow-x-hidden bg-[#0A0A0A] text-foreground">
+    <div className="site-premium min-h-screen flex flex-col overflow-x-hidden bg-[#0A0A0A] text-foreground">
       <Navbar />
       <main id="main-content" className="flex-1">
         <Hero />

@@ -60,11 +60,11 @@ interface CategoryStyle {
 const CATEGORY_STYLES: Record<Category, CategoryStyle> = {
   Guides: {
     icon: BookOpen,
-    gradient: 'bg-gradient-to-br from-[#00D4FF]/20 to-[#00D4FF]/5',
-    badge: 'border-[#00D4FF]/30 bg-[#00D4FF]/10 text-[#00D4FF]',
-    ring: 'border-[#00D4FF]/30 bg-[#00D4FF]/10',
-    iconText: 'text-[#00D4FF]',
-    chip: 'bg-[#00D4FF] text-[#0A0A0A] border-[#00D4FF]',
+    gradient: 'bg-gradient-to-br from-[#D7B56D]/20 to-[#D7B56D]/5',
+    badge: 'border-[#D7B56D]/30 bg-[#D7B56D]/10 text-[#D7B56D]',
+    ring: 'border-[#D7B56D]/30 bg-[#D7B56D]/10',
+    iconText: 'text-[#D7B56D]',
+    chip: 'bg-[#D7B56D] text-[#0A0A0A] border-[#D7B56D]',
   },
   Maintenance: {
     icon: Wrench,
@@ -238,7 +238,7 @@ function ArticleCard({ post, onOpen, index }: ArticleCardProps) {
       whileHover={{ scale: 1.02, y: -4 }}
       whileTap={{ scale: 0.99 }}
       aria-label={`Read article: ${post.title}`}
-      className="group flex min-h-[420px] w-full flex-col overflow-hidden rounded-2xl border border-white/[0.06] bg-[#111827]/50 text-left transition-colors duration-300 hover:border-[#00D4FF]/25 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00D4FF]/60"
+      className="group flex min-h-[420px] w-full flex-col overflow-hidden rounded-2xl border border-white/[0.06] bg-[#111827]/50 text-left transition-colors duration-300 hover:border-[#D7B56D]/25 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D7B56D]/60"
       suppressHydrationWarning
     >
       {/* Cover gradient block with category icon */}
@@ -276,7 +276,7 @@ function ArticleCard({ post, onOpen, index }: ArticleCardProps) {
         suppressHydrationWarning
       >
         <h3
-          className="line-clamp-2 text-base font-semibold leading-snug text-white transition-colors group-hover:text-[#00D4FF]"
+          className="line-clamp-2 text-base font-semibold leading-snug text-white transition-colors group-hover:text-[#D7B56D]"
           suppressHydrationWarning
         >
           {post.title}
@@ -322,7 +322,7 @@ function ArticleCard({ post, onOpen, index }: ArticleCardProps) {
           suppressHydrationWarning
         >
           <span
-            className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#00D4FF] transition-all group-hover:gap-2.5"
+            className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#D7B56D] transition-all group-hover:gap-2.5"
             suppressHydrationWarning
           >
             Read more
@@ -433,7 +433,7 @@ function ReaderModal({ post, onClose }: ReaderModalProps) {
               type="button"
               onClick={onClose}
               aria-label="Close article reader"
-              className="absolute right-3 top-3 z-20 flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-black/40 text-slate-300 backdrop-blur-sm transition-colors hover:bg-white/10 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00D4FF]/60"
+              className="absolute right-3 top-3 z-20 flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-black/40 text-slate-300 backdrop-blur-sm transition-colors hover:bg-white/10 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D7B56D]/60"
               suppressHydrationWarning
             >
               <X className="h-4 w-4" strokeWidth={2.4} />
@@ -598,7 +598,7 @@ function ReaderModal({ post, onClose }: ReaderModalProps) {
                       size="sm"
                       onClick={handleCopyLink}
                       aria-label="Copy article link"
-                      className="h-9 rounded-lg bg-[#00D4FF] px-3 text-xs font-bold text-[#0A0A0A] hover:bg-[#00B8E6]"
+                      className="h-9 rounded-lg bg-[#D7B56D] px-3 text-xs font-bold text-[#0A0A0A] hover:bg-[#E7C77B]"
                       suppressHydrationWarning
                     >
                       <Link2 className="mr-1.5 h-3.5 w-3.5" />
@@ -665,7 +665,7 @@ function NewsletterInline() {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5, delay: 0.1 }}
-      className="mt-12 overflow-hidden rounded-2xl border border-white/[0.06] bg-gradient-to-r from-[#00D4FF]/[0.06] via-[#111827]/40 to-transparent p-6 sm:p-8"
+      className="mt-12 overflow-hidden rounded-2xl border border-white/[0.06] bg-gradient-to-r from-[#D7B56D]/[0.06] via-[#111827]/40 to-transparent p-6 sm:p-8"
       suppressHydrationWarning
     >
       <div
@@ -713,7 +713,7 @@ function NewsletterInline() {
               onChange={(e) => setEmail(e.target.value)}
               disabled={loading}
               aria-label="Email address"
-              className="h-11 rounded-xl border-white/10 bg-white/5 text-sm text-white placeholder:text-slate-500 focus-visible:border-[#00D4FF]/60 focus-visible:ring-[#00D4FF]/30"
+              className="h-11 rounded-xl border-white/10 bg-white/5 text-sm text-white placeholder:text-slate-500 focus-visible:border-[#D7B56D]/60 focus-visible:ring-[#D7B56D]/30"
               suppressHydrationWarning
             />
           </div>
@@ -721,7 +721,7 @@ function NewsletterInline() {
             type="submit"
             disabled={loading}
             aria-label="Subscribe to newsletter"
-            className="h-11 shrink-0 rounded-xl bg-[#00D4FF] px-5 text-sm font-bold text-[#0A0A0A] hover:bg-[#00B8E6] disabled:opacity-60"
+            className="h-11 shrink-0 rounded-xl bg-[#D7B56D] px-5 text-sm font-bold text-[#0A0A0A] hover:bg-[#E7C77B] disabled:opacity-60"
             suppressHydrationWarning
           >
             {loading ? (
@@ -807,7 +807,7 @@ export default function BlogSection() {
           suppressHydrationWarning
         >
           <span
-            className="inline-flex items-center gap-2 rounded-full border border-[#00D4FF]/20 bg-[#00D4FF]/5 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-[#00D4FF]"
+            className="inline-flex items-center gap-2 rounded-full border border-[#D7B56D]/20 bg-[#D7B56D]/5 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-[#D7B56D]"
             suppressHydrationWarning
           >
             <Newspaper className="h-3.5 w-3.5" />
@@ -838,7 +838,7 @@ export default function BlogSection() {
             const isActive = activeFilter === f;
             const activeStyle =
               f === 'All'
-                ? 'bg-[#00D4FF] text-[#0A0A0A] border-[#00D4FF]'
+                ? 'bg-[#D7B56D] text-[#0A0A0A] border-[#D7B56D]'
                 : getCategoryStyle(f).chip;
             return (
               <button

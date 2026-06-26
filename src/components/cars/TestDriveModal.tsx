@@ -168,7 +168,7 @@ export default function TestDriveModal({ car, onClose }: TestDriveModalProps) {
             suppressHydrationWarning
           >
             {/* Decorative top accent */}
-            <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#00D4FF]/60 to-transparent" />
+            <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#D7B56D]/60 to-transparent" />
 
             {/* Close button */}
             <button
@@ -188,8 +188,8 @@ export default function TestDriveModal({ car, onClose }: TestDriveModalProps) {
               <div className="px-6 pb-6 pt-7 sm:px-7 sm:pb-7 sm:pt-8">
                 {/* Header */}
                 <div className="mb-6 pr-8">
-                  <div className="mb-3 inline-flex h-10 w-10 items-center justify-center rounded-xl bg-[#00D4FF]/10 ring-1 ring-[#00D4FF]/30">
-                    <CalendarCheck className="h-5 w-5 text-[#00D4FF]" />
+                  <div className="mb-3 inline-flex h-10 w-10 items-center justify-center rounded-xl bg-[#D7B56D]/10 ring-1 ring-[#D7B56D]/30">
+                    <CalendarCheck className="h-5 w-5 text-[#D7B56D]" />
                   </div>
                   <h2 className="text-xl font-semibold tracking-tight text-white sm:text-2xl">
                     Book a Test Drive
@@ -217,7 +217,7 @@ export default function TestDriveModal({ car, onClose }: TestDriveModalProps) {
                       className="text-slate-200"
                       suppressHydrationWarning
                     >
-                      Name <span className="text-[#00D4FF]">*</span>
+                      Name <span className="text-[#D7B56D]">*</span>
                     </Label>
                     <Input
                       id="td-name"
@@ -228,7 +228,7 @@ export default function TestDriveModal({ car, onClose }: TestDriveModalProps) {
                       onChange={(e) => setName(e.target.value)}
                       disabled={isBusy}
                       suppressHydrationWarning
-                      className="h-11 border-white/[0.08] bg-white/[0.03] text-white placeholder:text-slate-500 focus-visible:border-[#00D4FF]/50 focus-visible:ring-[#00D4FF]/20"
+                      className="h-11 border-white/[0.08] bg-white/[0.03] text-white placeholder:text-slate-500 focus-visible:border-[#D7B56D]/50 focus-visible:ring-[#D7B56D]/20"
                     />
                   </div>
 
@@ -239,7 +239,7 @@ export default function TestDriveModal({ car, onClose }: TestDriveModalProps) {
                       className="text-slate-200"
                       suppressHydrationWarning
                     >
-                      Phone <span className="text-[#00D4FF]">*</span>
+                      Phone <span className="text-[#D7B56D]">*</span>
                     </Label>
                     <Input
                       id="td-phone"
@@ -250,7 +250,7 @@ export default function TestDriveModal({ car, onClose }: TestDriveModalProps) {
                       onChange={(e) => setPhone(e.target.value)}
                       disabled={isBusy}
                       suppressHydrationWarning
-                      className="h-11 border-white/[0.08] bg-white/[0.03] text-white placeholder:text-slate-500 focus-visible:border-[#00D4FF]/50 focus-visible:ring-[#00D4FF]/20"
+                      className="h-11 border-white/[0.08] bg-white/[0.03] text-white placeholder:text-slate-500 focus-visible:border-[#D7B56D]/50 focus-visible:ring-[#D7B56D]/20"
                     />
                   </div>
 
@@ -273,7 +273,7 @@ export default function TestDriveModal({ car, onClose }: TestDriveModalProps) {
                       onChange={(e) => setEmail(e.target.value)}
                       disabled={isBusy}
                       suppressHydrationWarning
-                      className="h-11 border-white/[0.08] bg-white/[0.03] text-white placeholder:text-slate-500 focus-visible:border-[#00D4FF]/50 focus-visible:ring-[#00D4FF]/20"
+                      className="h-11 border-white/[0.08] bg-white/[0.03] text-white placeholder:text-slate-500 focus-visible:border-[#D7B56D]/50 focus-visible:ring-[#D7B56D]/20"
                     />
                   </div>
 
@@ -284,7 +284,7 @@ export default function TestDriveModal({ car, onClose }: TestDriveModalProps) {
                       className="text-slate-200"
                       suppressHydrationWarning
                     >
-                      Preferred Date <span className="text-[#00D4FF]">*</span>
+                      Preferred Date <span className="text-[#D7B56D]">*</span>
                     </Label>
                     <Input
                       id="td-date"
@@ -294,7 +294,7 @@ export default function TestDriveModal({ car, onClose }: TestDriveModalProps) {
                       onChange={(e) => setPreferredDate(e.target.value)}
                       disabled={isBusy}
                       suppressHydrationWarning
-                      className="h-11 border-white/[0.08] bg-white/[0.03] text-white placeholder:text-slate-500 focus-visible:border-[#00D4FF]/50 focus-visible:ring-[#00D4FF]/20 [color-scheme:dark]"
+                      className="h-11 border-white/[0.08] bg-white/[0.03] text-white placeholder:text-slate-500 focus-visible:border-[#D7B56D]/50 focus-visible:ring-[#D7B56D]/20 [color-scheme:dark]"
                     />
                   </div>
 
@@ -316,7 +316,7 @@ export default function TestDriveModal({ car, onClose }: TestDriveModalProps) {
                       disabled={isBusy}
                       rows={3}
                       suppressHydrationWarning
-                      className="min-h-[80px] resize-none border-white/[0.08] bg-white/[0.03] text-white placeholder:text-slate-500 focus-visible:border-[#00D4FF]/50 focus-visible:ring-[#00D4FF]/20"
+                      className="min-h-[80px] resize-none border-white/[0.08] bg-white/[0.03] text-white placeholder:text-slate-500 focus-visible:border-[#D7B56D]/50 focus-visible:ring-[#D7B56D]/20"
                     />
                   </div>
 
@@ -325,7 +325,7 @@ export default function TestDriveModal({ car, onClose }: TestDriveModalProps) {
                     type="submit"
                     disabled={isBusy}
                     suppressHydrationWarning
-                    className="mt-2 h-11 w-full rounded-xl bg-[#00D4FF] text-[#0A0A0A] font-semibold text-sm shadow-lg shadow-[#00D4FF]/20 hover:bg-[#00B8E6] hover:shadow-[#00B8E6]/25 transition-all"
+                    className="mt-2 h-11 w-full rounded-xl bg-[#D7B56D] text-[#0A0A0A] font-semibold text-sm shadow-lg shadow-[#D7B56D]/20 hover:bg-[#E7C77B] hover:shadow-[#E7C77B]/25 transition-all"
                   >
                     {isBusy ? (
                       <>
@@ -361,13 +361,13 @@ function SuccessView({ onClose }: { onClose: () => void }) {
       suppressHydrationWarning
     >
       <motion.div
-        className="mb-5 grid h-16 w-16 place-items-center rounded-full bg-[#00D4FF]/15 ring-1 ring-[#00D4FF]/40"
+        className="mb-5 grid h-16 w-16 place-items-center rounded-full bg-[#D7B56D]/15 ring-1 ring-[#D7B56D]/40"
         initial={{ scale: 0.5, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         transition={{ type: 'spring', damping: 14, stiffness: 220, delay: 0.05 }}
         suppressHydrationWarning
       >
-        <Check className="h-8 w-8 text-[#00D4FF]" strokeWidth={3} />
+        <Check className="h-8 w-8 text-[#D7B56D]" strokeWidth={3} />
       </motion.div>
 
       <h3 className="text-xl font-semibold text-white sm:text-2xl">
@@ -381,7 +381,7 @@ function SuccessView({ onClose }: { onClose: () => void }) {
         type="button"
         onClick={onClose}
         suppressHydrationWarning
-        className="mt-6 h-11 w-full max-w-xs rounded-xl bg-[#00D4FF] text-[#0A0A0A] font-semibold text-sm shadow-lg shadow-[#00D4FF]/20 hover:bg-[#00B8E6] transition-all"
+        className="mt-6 h-11 w-full max-w-xs rounded-xl bg-[#D7B56D] text-[#0A0A0A] font-semibold text-sm shadow-lg shadow-[#D7B56D]/20 hover:bg-[#E7C77B] transition-all"
       >
         Close
       </Button>

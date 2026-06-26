@@ -43,7 +43,7 @@ function ContactBlock() {
         Email:{' '}
         <a
           href={`mailto:${BUSINESS.email}`}
-          className="text-[#00D4FF] underline-offset-2 hover:underline"
+          className="text-[#D7B56D] underline-offset-2 hover:underline"
         >
           {BUSINESS.email}
         </a>
@@ -163,7 +163,7 @@ function PrivacyContent() {
             To delete your data, email{' '}
             <a
               href={`mailto:${BUSINESS.email}`}
-              className="text-[#00D4FF] underline-offset-2 hover:underline"
+              className="text-[#D7B56D] underline-offset-2 hover:underline"
             >
               {BUSINESS.email}
             </a>{' '}
@@ -311,7 +311,7 @@ function RefundContent() {
             To initiate a return, email{' '}
             <a
               href={`mailto:${BUSINESS.email}`}
-              className="text-[#00D4FF] underline-offset-2 hover:underline"
+              className="text-[#D7B56D] underline-offset-2 hover:underline"
             >
               {BUSINESS.email}
             </a>{' '}

@@ -61,7 +61,7 @@ export default function TrustSection() {
           </p>
         </motion.div>
 
-        {/* Stat cards grid — single cyan accent for visual consistency */}
+        {/* Stat cards grid — single champagne accent for visual consistency */}
         <div
           className="grid grid-cols-2 lg:grid-cols-4 gap-4"
           suppressHydrationWarning
@@ -75,7 +75,7 @@ export default function TrustSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.45, delay: i * 0.1 }}
-                className="glass-card group relative rounded-xl p-5 sm:p-6 transition-all duration-300 hover:border-[#00D4FF]/20"
+                className="glass-card group relative rounded-xl p-5 sm:p-6 transition-all duration-300 hover:border-[#D7B56D]/20"
                 suppressHydrationWarning
               >
                 {/* Subtle gradient border on hover */}
@@ -83,22 +83,22 @@ export default function TrustSection() {
                   className="pointer-events-none absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
                   style={{
                     background:
-                      'linear-gradient(135deg, rgba(0,212,255,0.06) 0%, transparent 50%, rgba(0,212,255,0.03) 100%)',
+                      'linear-gradient(135deg, rgba(215,181,109,0.06) 0%, transparent 50%, rgba(215,181,109,0.03) 100%)',
                   }}
                   suppressHydrationWarning
                 />
 
-                {/* Icon circle at top-right — unified cyan */}
+                {/* Icon circle at top-right — unified champagne */}
                 <div
-                  className="absolute top-4 right-4 flex h-9 w-9 items-center justify-center rounded-full bg-[#00D4FF]/10"
+                  className="absolute top-4 right-4 flex h-9 w-9 items-center justify-center rounded-full bg-[#D7B56D]/10"
                   suppressHydrationWarning
                 >
-                  <Icon className="h-4 w-4 text-[#00D4FF]" suppressHydrationWarning />
+                  <Icon className="h-4 w-4 text-[#D7B56D]" suppressHydrationWarning />
                 </div>
 
-                {/* Stat number — unified cyan */}
+                {/* Stat number — unified champagne */}
                 <p
-                  className="font-bold text-[#00D4FF] mb-1 text-3xl"
+                  className="font-bold text-[#D7B56D] mb-1 text-3xl"
                   suppressHydrationWarning
                 >
                   {item.stat}
