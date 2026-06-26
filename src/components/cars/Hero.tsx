@@ -40,9 +40,9 @@ const fuelTypes = [
 ];
 
 const stats = [
+  { number: '9+', label: 'Ready cars' },
   { number: '150-pt', label: 'Inspection' },
   { number: '7-day', label: 'Return policy' },
-  { number: '100%', label: 'Verified papers' },
   { number: 'GST', label: 'Registered dealer' },
 ];
 
@@ -121,7 +121,7 @@ export default function Hero() {
     >
       {/* ── Full-bleed car photograph ── */}
       <img
-        src="/images/hero-showroom.png"
+        src="/images/hero-bg-main.jpg"
         alt="Premium pre-owned car at Saatvik Cars"
         className="absolute inset-0 h-full w-full object-cover object-center"
         suppressHydrationWarning
@@ -153,9 +153,9 @@ export default function Hero() {
             transition={{ duration: 0.6, ease: 'easeOut', delay: 0.08 }}
             className="text-[2.6rem] leading-[1.05] sm:text-5xl lg:text-[3.7rem] lg:leading-[1.02] font-bold text-white"
           >
-            Find your next car,
+            Drive home a verified car,
             <br />
-            <span className="text-white/55">with trust you can feel.</span>
+            <span className="text-white/55">without the guesswork.</span>
           </motion.h1>
 
           {/* Subtitle */}
@@ -165,8 +165,8 @@ export default function Hero() {
             transition={{ duration: 0.6, delay: 0.18, ease: 'easeOut' }}
             className="mt-5 max-w-lg text-base sm:text-lg text-white/70 leading-relaxed"
           >
-            Every car is inspected across 150 points, comes with verified papers,
-            and is backed by Tarang Marketing — a GST-registered dealer you can rely on.
+            Browse inspected used cars, compare EMI-friendly options, and speak directly
+            with Saatvik Cars before you visit.
           </motion.p>
 
           {/* ── Search bar — wrapped in <form> so Enter submits ── */}

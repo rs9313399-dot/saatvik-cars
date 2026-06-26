@@ -1,5 +1,11 @@
 import { PrismaClient } from '@prisma/client'
 
+if (!process.env.DATABASE_URL) {
+  process.env.DATABASE_URL = process.env.NODE_ENV === 'production'
+    ? 'file:/tmp/saatvik-cars.db'
+    : 'file:./dev.db';
+}
+
 const globalForPrisma = globalThis as unknown as {
   prisma: PrismaClient | undefined
 }
@@ -335,14 +341,80 @@ const demoCars = [
     callClicks: 22,
     whatsappClicks: 28,
   },
+  {
+    name: 'Mahindra XUV700 AX7',
+    slug: 'mahindra-xuv700-ax7',
+    brand: 'Mahindra',
+    model: 'XUV700 AX7',
+    year: 2022,
+    price: 1680000,
+    fuelType: 'Diesel',
+    transmission: 'Automatic',
+    kmDriven: 26000,
+    ownerType: '1st Owner',
+    location: 'Raipur, Chhattisgarh',
+    description: 'Spacious XUV700 AX7 with automatic transmission, premium cabin features, and strong highway comfort.',
+    tags: 'best_deal',
+    contactPhone: '+919644924777',
+    bodyType: 'MUV/MPV',
+    images: JSON.stringify(['/uploads/bb9c9097-e8bd-4626-a170-3e8516775367.jpg']),
+    active: true,
+    views: 193,
+    callClicks: 20,
+    whatsappClicks: 26,
+  },
+  {
+    name: 'Mercedes-Benz C-Class C200',
+    slug: 'mercedes-benz-c-class-c200',
+    brand: 'Mercedes-Benz',
+    model: 'C-Class C200',
+    year: 2022,
+    price: 2850000,
+    fuelType: 'Petrol',
+    transmission: 'Automatic',
+    kmDriven: 22000,
+    ownerType: '1st Owner',
+    location: 'Raipur, Chhattisgarh',
+    description: 'Elegant C-Class C200 with refined petrol performance, premium interiors, and luxury sedan presence.',
+    tags: 'featured',
+    contactPhone: '+919644924777',
+    bodyType: 'Luxury',
+    images: JSON.stringify(['/uploads/ccc87f84-f202-4361-8d88-868fb5ae388f.jpg']),
+    active: true,
+    views: 214,
+    callClicks: 24,
+    whatsappClicks: 31,
+  },
+  {
+    name: 'MG Hector Sharp',
+    slug: 'mg-hector-sharp',
+    brand: 'MG',
+    model: 'Hector Sharp',
+    year: 2022,
+    price: 1350000,
+    fuelType: 'Petrol',
+    transmission: 'Automatic',
+    kmDriven: 19000,
+    ownerType: '1st Owner',
+    location: 'Bhilai, Chhattisgarh',
+    description: 'Tech-loaded MG Hector Sharp automatic with panoramic comfort, connected features, and generous space.',
+    tags: 'urgent,best_deal',
+    contactPhone: '+919644924777',
+    bodyType: 'SUV',
+    images: JSON.stringify(['/uploads/efdc16d4-a5be-4144-bf40-7b3f2fae7801.jpg']),
+    active: true,
+    views: 184,
+    callClicks: 17,
+    whatsappClicks: 23,
+  },
 ];
 
 async function seedDemoCars() {
-  const carCount = await prisma.car.count();
-  if (carCount > 0) return;
-
   for (const car of demoCars) {
-    await prisma.car.create({ data: car });
+    const existing = await prisma.car.findUnique({ where: { slug: car.slug } });
+    if (!existing) {
+      await prisma.car.create({ data: car });
+    }
   }
 }
 

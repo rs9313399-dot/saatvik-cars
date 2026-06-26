@@ -1468,6 +1468,20 @@ export default function FeaturedCars() {
   const hasMoreCars = sortedFilteredCars.length > 9;
 
   const hasActiveFilters = Object.keys(activeFilters).length > 0;
+  const inventoryInsights = useMemo(() => {
+    const source = sortedFilteredCars.length > 0 ? sortedFilteredCars : cars;
+    const prices = source.map((car) => car.price).filter((price) => price > 0);
+    const years = source.map((car) => car.year).filter((year) => year > 0);
+    const brands = new Set(source.map((car) => car.brand).filter(Boolean));
+    const featuredCount = source.filter((car) => car.tags?.toLowerCase().includes('featured')).length;
+
+    return {
+      lowestPrice: prices.length > 0 ? Math.min(...prices) : 0,
+      latestYear: years.length > 0 ? Math.max(...years) : 0,
+      brandCount: brands.size,
+      featuredCount,
+    };
+  }, [cars, sortedFilteredCars]);
 
   const handleToggleCompare = (carId: string) => {
     const isCurrentlyCompared = compareList.includes(carId);
@@ -1506,13 +1520,13 @@ export default function FeaturedCars() {
         <div className="mb-8 flex flex-wrap items-start justify-between gap-3">
           <div>
             <div className="flex items-center gap-3 mb-1">
-              <h2 className="text-2xl font-bold text-white sm:text-3xl" suppressHydrationWarning>Available Cars</h2>
+              <h2 className="text-2xl font-bold text-white sm:text-3xl" suppressHydrationWarning>Ready-To-Drive Cars</h2>
               <Badge variant="outline" className="border-white/10 bg-white/[0.03] text-slate-400 text-xs font-medium" suppressHydrationWarning>
                 {filteredCars.length}
               </Badge>
             </div>
             <p className="text-sm text-slate-500" suppressHydrationWarning>
-              Verified pre-owned cars with transparent pricing
+              Verified pre-owned cars with transparent pricing, quick contact, and EMI support
             </p>
           </div>
           {/* Sort Dropdown + Mobile Filter Toggle */}
@@ -1543,6 +1557,39 @@ export default function FeaturedCars() {
             </select>
           </div>
         </div>
+
+        {!loading && cars.length > 0 && (
+          <div className="mb-6 grid gap-2 sm:grid-cols-2 xl:grid-cols-4" suppressHydrationWarning>
+            <div className="rounded-xl border border-white/[0.06] bg-white/[0.025] px-3 py-3">
+              <div className="mb-1 flex items-center gap-2 text-[11px] font-medium uppercase tracking-wider text-slate-500">
+                <Tag className="h-3.5 w-3.5 text-[#00D4FF]" />
+                Starts From
+              </div>
+              <p className="text-sm font-semibold text-white">{formatPrice(inventoryInsights.lowestPrice)}</p>
+            </div>
+            <div className="rounded-xl border border-white/[0.06] bg-white/[0.025] px-3 py-3">
+              <div className="mb-1 flex items-center gap-2 text-[11px] font-medium uppercase tracking-wider text-slate-500">
+                <CalendarCheck className="h-3.5 w-3.5 text-[#00D4FF]" />
+                Latest Model
+              </div>
+              <p className="text-sm font-semibold text-white">{inventoryInsights.latestYear || 'Available'}</p>
+            </div>
+            <div className="rounded-xl border border-white/[0.06] bg-white/[0.025] px-3 py-3">
+              <div className="mb-1 flex items-center gap-2 text-[11px] font-medium uppercase tracking-wider text-slate-500">
+                <Sparkles className="h-3.5 w-3.5 text-[#00D4FF]" />
+                Brands
+              </div>
+              <p className="text-sm font-semibold text-white">{inventoryInsights.brandCount}+ in stock</p>
+            </div>
+            <div className="rounded-xl border border-white/[0.06] bg-white/[0.025] px-3 py-3">
+              <div className="mb-1 flex items-center gap-2 text-[11px] font-medium uppercase tracking-wider text-slate-500">
+                <CheckCircle2 className="h-3.5 w-3.5 text-[#10B981]" />
+                Featured Picks
+              </div>
+              <p className="text-sm font-semibold text-white">{inventoryInsights.featuredCount} inspected highlights</p>
+            </div>
+          </div>
+        )}
 
         {/* Active Filters */}
         {hasActiveFilters && (
