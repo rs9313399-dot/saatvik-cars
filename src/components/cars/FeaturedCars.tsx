@@ -43,6 +43,45 @@ function SkeletonCard() {
   );
 }
 
+const BAD_DEMO_IMAGE_PATHS = new Set([
+  '/uploads/0bfee020-1823-48f3-b819-84a234f3d369.jpeg',
+  '/uploads/26162f59-3424-40b8-9791-9ffa518583a9.jpg',
+  '/uploads/284e27e0-df05-4ad3-a9ae-7618fb814e02.jpg',
+  '/uploads/3dc86405-9b8f-4c6d-9f3c-e2ea40a0f50b.jpg',
+  '/uploads/423ae36c-9a32-416f-8d85-5f4310a80067.jpg',
+  '/uploads/63943f32-f58c-4ae9-9451-077b3b20ae74.jpg',
+  '/uploads/bb9c9097-e8bd-4626-a170-3e8516775367.jpg',
+  '/uploads/ccc87f84-f202-4361-8d88-868fb5ae388f.jpg',
+  '/uploads/efdc16d4-a5be-4144-bf40-7b3f2fae7801.jpg',
+]);
+
+function getTrustedImages(images: string[]) {
+  return images.filter((src) => src && !BAD_DEMO_IMAGE_PATHS.has(src));
+}
+
+function PremiumCarVisual({ brand, name }: { brand: string; name: string }) {
+  return (
+    <div className="relative flex h-full w-full items-center justify-center overflow-hidden bg-[radial-gradient(circle_at_50%_20%,rgba(215,181,109,0.16),transparent_30%),linear-gradient(145deg,#161922_0%,#08090C_70%)]">
+      <div className="absolute inset-x-8 bottom-[18%] h-px bg-[#D7B56D]/20" />
+      <div className="absolute bottom-[18%] h-[38%] w-[78%] max-w-sm">
+        <div className="absolute bottom-[26%] left-[12%] h-[38%] w-[76%] rounded-t-[55%] border border-[#D7B56D]/50 bg-[#D7B56D]/10 shadow-[0_24px_70px_-44px_rgba(215,181,109,0.85)]" />
+        <div className="absolute bottom-[28%] left-[29%] h-[30%] w-[42%] skew-x-[-18deg] rounded-t-xl border border-white/10 bg-white/[0.08]" />
+        <div className="absolute bottom-[16%] left-[7%] h-[24%] w-[86%] rounded-[999px] border border-[#D7B56D]/45 bg-[#0D0F14]" />
+        <div className="absolute bottom-[4%] left-[18%] h-[24%] w-[24%] rounded-full border-[6px] border-[#111827] bg-[#D7B56D]/70 ring-1 ring-[#D7B56D]/30" />
+        <div className="absolute bottom-[4%] right-[18%] h-[24%] w-[24%] rounded-full border-[6px] border-[#111827] bg-[#D7B56D]/70 ring-1 ring-[#D7B56D]/30" />
+        <div className="absolute bottom-[31%] right-[9%] h-2 w-8 rounded-full bg-[#F2D98F]/80" />
+      </div>
+      <div className="absolute left-4 top-4 rounded-full border border-[#D7B56D]/25 bg-black/35 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-[#D7B56D] backdrop-blur">
+        Premium visual
+      </div>
+      <div className="absolute inset-x-4 bottom-4">
+        <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-[#D7B56D]/80">{brand || 'Saatvik Cars'}</p>
+        <p className="mt-1 truncate text-sm font-semibold text-white/90">{name}</p>
+      </div>
+    </div>
+  );
+}
+
 /* ─── Car Image with graceful fallback ─── */
 function CarImage({
   src,
@@ -64,11 +103,7 @@ function CarImage({
 
   if (!src || isErrored) {
     return (
-      <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-[#1a1a2e] to-[#0d0d0d]">
-        <span className="text-4xl font-bold text-white/[0.06]" suppressHydrationWarning>
-          {brand?.charAt(0) || 'C'}
-        </span>
-      </div>
+      <PremiumCarVisual brand={brand} name={alt} />
     );
   }
 
@@ -110,7 +145,7 @@ function CarImageCarousel({
 
   // Filter to only valid (non-errored) images for navigation math
   const validImages = useMemo(
-    () => images.filter((src) => !erroredSrcs.has(src)),
+    () => getTrustedImages(images).filter((src) => !erroredSrcs.has(src)),
     [images, erroredSrcs]
   );
   const total = validImages.length;
@@ -164,11 +199,7 @@ function CarImageCarousel({
   if (total === 0) {
     return (
       <div className="relative aspect-[16/10] w-full overflow-hidden rounded-t-2xl bg-gradient-to-br from-[#1a1a2e] to-[#0d0d0d]">
-        <div className="flex h-full w-full items-center justify-center">
-          <span className="text-6xl font-bold text-white/[0.06]" suppressHydrationWarning>
-            {brand?.charAt(0) || 'C'}
-          </span>
-        </div>
+        <PremiumCarVisual brand={brand} name={alt} />
       </div>
     );
   }
@@ -424,7 +455,7 @@ function PhotoLightbox({
 
 /* ─── Car Detail Modal ─── */
 function CarDetailModal({ car, onClose, wishlisted, onToggleWishlist, onBookTestDrive, allCars, onSelectCar }: { car: Car; onClose: () => void; wishlisted: boolean; onToggleWishlist: (carId: string) => void; onBookTestDrive: (car: Car) => void; allCars: Car[]; onSelectCar: (car: Car) => void }) {
-  const images = parseImages(car.images);
+  const images = getTrustedImages(parseImages(car.images));
   const tagsList = car.tags ? car.tags.split(',').filter(Boolean) : [];
   // Indicative EMI — assumes 80% loan amount at 9.5% interest over 60 months.
   // Clicking the badge scrolls to the main EMI calculator section (#emi).
@@ -790,7 +821,7 @@ function CarDetailModal({ car, onClose, wishlisted, onToggleWishlist, onBookTest
               </p>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                 {relatedCars.map(rc => {
-                  const rcImgs = parseImages(rc.images);
+                  const rcImgs = getTrustedImages(parseImages(rc.images));
                   const thumb = rcImgs[0];
                   return (
                     <button
@@ -1128,7 +1159,7 @@ function CompareModal({ cars, onClose }: { cars: Car[]; onClose: () => void }) {
                   Specification
                 </th>
                 {cars.map((car) => {
-                  const imgs = parseImages(car.images);
+                  const imgs = getTrustedImages(parseImages(car.images));
                   const thumb = imgs[0];
                   return (
                     <th key={car.id} className="relative min-w-[200px] border-l border-white/[0.06] px-3 py-3 text-left align-top sm:min-w-[240px]">
@@ -1240,7 +1271,7 @@ function CarCard({
   wishlisted: boolean;
   onToggleWishlist: (carId: string) => void;
 }) {
-  const images = parseImages(car.images);
+  const images = getTrustedImages(parseImages(car.images));
   const mainImage = images[0] || '';
   const tagsList = car.tags ? car.tags.split(',').filter(Boolean) : [];
   const emi = calcEMI(car.price);
@@ -1324,14 +1355,14 @@ function CarCard({
 
         {/* Price + EMI */}
         <div className="mb-2 rounded-xl border border-white/[0.06] bg-black/20 px-3 py-2.5">
-          <div className="flex items-end justify-between gap-3">
-            <div>
+          <div className="grid grid-cols-[minmax(0,1fr)_minmax(5.25rem,auto)] items-end gap-3">
+            <div className="min-w-0">
               <p className="text-[10px] font-medium uppercase tracking-wider text-slate-500">Price</p>
-              <p className="text-xl font-bold text-white" suppressHydrationWarning>{formatPrice(car.price)}</p>
+              <p className="truncate text-lg font-bold text-white sm:text-xl" suppressHydrationWarning>{formatPrice(car.price)}</p>
             </div>
-            <div className="text-right">
+            <div className="min-w-0 text-right">
               <p className="text-[10px] font-medium uppercase tracking-wider text-slate-500">EMI from</p>
-              <p className="text-sm font-semibold text-[#D7B56D]" suppressHydrationWarning>{formatEMI(emi)}/mo</p>
+              <p className="truncate text-xs font-semibold text-[#D7B56D] sm:text-sm" suppressHydrationWarning>{formatEMI(emi)}/mo</p>
             </div>
           </div>
         </div>
@@ -1582,30 +1613,30 @@ export default function FeaturedCars() {
         </div>
 
         {!loading && cars.length > 0 && (
-          <div className="mb-6 grid gap-2 sm:grid-cols-2 xl:grid-cols-4" suppressHydrationWarning>
-            <div className="rounded-xl border border-white/[0.06] bg-white/[0.025] px-3 py-3">
-              <div className="mb-1 flex items-center gap-2 text-[11px] font-medium uppercase tracking-wider text-slate-500">
+          <div className="mb-6 grid grid-cols-2 gap-2 xl:grid-cols-4" suppressHydrationWarning>
+            <div className="rounded-lg border border-white/[0.06] bg-white/[0.025] px-2.5 py-2.5 sm:rounded-xl sm:px-3 sm:py-3">
+              <div className="mb-1 flex items-center gap-1.5 text-[9px] font-medium uppercase tracking-wider text-slate-500 sm:gap-2 sm:text-[11px]">
                 <Tag className="h-3.5 w-3.5 text-[#D7B56D]" />
                 Starts From
               </div>
               <p className="text-sm font-semibold text-white">{formatPrice(inventoryInsights.lowestPrice)}</p>
             </div>
-            <div className="rounded-xl border border-white/[0.06] bg-white/[0.025] px-3 py-3">
-              <div className="mb-1 flex items-center gap-2 text-[11px] font-medium uppercase tracking-wider text-slate-500">
+            <div className="rounded-lg border border-white/[0.06] bg-white/[0.025] px-2.5 py-2.5 sm:rounded-xl sm:px-3 sm:py-3">
+              <div className="mb-1 flex items-center gap-1.5 text-[9px] font-medium uppercase tracking-wider text-slate-500 sm:gap-2 sm:text-[11px]">
                 <CalendarCheck className="h-3.5 w-3.5 text-[#D7B56D]" />
                 Latest Model
               </div>
               <p className="text-sm font-semibold text-white">{inventoryInsights.latestYear || 'Available'}</p>
             </div>
-            <div className="rounded-xl border border-white/[0.06] bg-white/[0.025] px-3 py-3">
-              <div className="mb-1 flex items-center gap-2 text-[11px] font-medium uppercase tracking-wider text-slate-500">
+            <div className="rounded-lg border border-white/[0.06] bg-white/[0.025] px-2.5 py-2.5 sm:rounded-xl sm:px-3 sm:py-3">
+              <div className="mb-1 flex items-center gap-1.5 text-[9px] font-medium uppercase tracking-wider text-slate-500 sm:gap-2 sm:text-[11px]">
                 <Sparkles className="h-3.5 w-3.5 text-[#D7B56D]" />
                 Brands
               </div>
               <p className="text-sm font-semibold text-white">{inventoryInsights.brandCount}+ in stock</p>
             </div>
-            <div className="rounded-xl border border-white/[0.06] bg-white/[0.025] px-3 py-3">
-              <div className="mb-1 flex items-center gap-2 text-[11px] font-medium uppercase tracking-wider text-slate-500">
+            <div className="rounded-lg border border-white/[0.06] bg-white/[0.025] px-2.5 py-2.5 sm:rounded-xl sm:px-3 sm:py-3">
+              <div className="mb-1 flex items-center gap-1.5 text-[9px] font-medium uppercase tracking-wider text-slate-500 sm:gap-2 sm:text-[11px]">
                 <CheckCircle2 className="h-3.5 w-3.5 text-[#10B981]" />
                 Featured Picks
               </div>

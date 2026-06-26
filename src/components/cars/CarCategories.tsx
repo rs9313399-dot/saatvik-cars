@@ -52,20 +52,20 @@ function CategoryCard({
     <motion.button
       type="button"
       variants={cardVariants}
-      className="group cursor-pointer rounded-xl border border-white/[0.06] bg-[#111827] p-4 text-left transition-all duration-300 hover:border-[#D7B56D]/30 hover:shadow-[0_0_20px_rgba(215,181,109,0.08)] hover:-translate-y-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#D7B56D]/40"
+      className="group min-h-[112px] cursor-pointer rounded-xl border border-white/[0.06] bg-[#111827] p-3 text-left transition-all duration-300 hover:border-[#D7B56D]/30 hover:shadow-[0_0_20px_rgba(215,181,109,0.08)] hover:-translate-y-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#D7B56D]/40 sm:min-h-0 sm:p-4"
       suppressHydrationWarning
       onClick={() => onExplore(category)}
       aria-label={`Browse ${category.name} cars`}
     >
       {/* Icon — unified champagne accent for all categories */}
       <div
-        className="mb-3 flex h-10 w-10 items-center justify-center rounded-full bg-[#D7B56D]/15 text-[#D7B56D] transition-transform duration-300 group-hover:scale-110"
+        className="mb-3 flex h-9 w-9 items-center justify-center rounded-full bg-[#D7B56D]/15 text-[#D7B56D] transition-transform duration-300 group-hover:scale-110 sm:h-10 sm:w-10"
         suppressHydrationWarning
       >
         <Icon className="h-5 w-5" strokeWidth={1.5} />
       </div>
       <h3
-        className="text-sm font-semibold text-white"
+        className="text-[13px] font-semibold text-white sm:text-sm"
         suppressHydrationWarning
       >
         {category.name}

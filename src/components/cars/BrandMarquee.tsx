@@ -58,7 +58,7 @@ export default function BrandMarquee() {
 
       {/* Marquee */}
       <div
-        className="marquee-container pb-10"
+        className="marquee-container px-4 pb-10 sm:px-6"
         suppressHydrationWarning
       >
         <div

@@ -360,7 +360,7 @@ export default function LiveChatWidget() {
   const showQuickReplies = !messages.some((m) => m.role === 'user');
 
   return (
-    <div className="fixed bottom-4 right-4 z-50" suppressHydrationWarning>
+    <div className="fixed bottom-20 right-3 z-50 sm:bottom-4 sm:right-4" suppressHydrationWarning>
       {/* Scoped scrollbar styles */}
       <style dangerouslySetInnerHTML={{ __html: SCROLLBAR_CSS }} />
 

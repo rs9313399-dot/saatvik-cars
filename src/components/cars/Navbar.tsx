@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
-import { Car, Menu, Phone, Mail, Clock, Instagram, Twitter, Youtube, Shield, LogOut, LayoutDashboard, ChevronDown, Heart, Scale } from 'lucide-react';
+import { Car, Phone, Mail, Clock, Instagram, Twitter, Youtube, Shield, LogOut, LayoutDashboard, ChevronDown, Heart, Scale } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Sheet, SheetContent, SheetTitle } from '@/components/ui/sheet';
 import { Button } from '@/components/ui/button';
@@ -387,10 +387,16 @@ export default function Navbar() {
                 type="button"
                 suppressHydrationWarning
                 onClick={() => setMobileMenuOpen(true)}
-                className="mobile-menu-trigger h-8 w-8 items-center justify-center rounded-lg border border-[#D7B56D]/40 bg-[#D7B56D] text-[#0A0A0A] transition-colors hover:bg-[#E7C77B]"
+                style={{
+                  position: 'fixed',
+                  left: '10rem',
+                  top: '0.75rem',
+                  zIndex: 9999,
+                }}
+                className="mobile-menu-trigger h-8 w-14 shrink-0 items-center justify-center rounded-lg border border-[#D7B56D]/40 bg-[#D7B56D] text-[11px] font-bold text-[#0A0A0A] shadow-lg shadow-black/20 transition-colors hover:bg-[#E7C77B]"
                 aria-label="Open navigation menu"
               >
-                <Menu className="h-5 w-5" />
+                Menu
               </button>
               <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
                 <SheetContent

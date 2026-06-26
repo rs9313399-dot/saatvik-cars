@@ -128,7 +128,7 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="hero-editorial relative min-h-[640px] lg:min-h-[88vh] flex items-center overflow-hidden"
+      className="hero-editorial relative flex min-h-[700px] items-center overflow-hidden sm:min-h-[760px] lg:min-h-[820px]"
     >
       {/* ── Full-bleed car photograph ── */}
       <img
@@ -139,7 +139,7 @@ export default function Hero() {
       />
 
       {/* ── Content ── */}
-      <div className="relative z-10 mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 py-20 lg:py-28">
+      <div className="relative z-10 mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-24">
         <div className="w-full max-w-[calc(100vw-2rem)] sm:max-w-2xl">
           {/* Eyebrow */}
           <motion.div
