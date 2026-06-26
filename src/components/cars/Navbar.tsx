@@ -238,7 +238,7 @@ export default function Navbar() {
             aria-label="Saatvik Cars Home"
           >
             <img
-              src="/saatvik-cars-logo.png"
+              src="/logo.svg"
               alt="Saatvik Cars logo"
               className="h-9 w-9 rounded-lg object-contain transition-transform duration-300 group-hover:scale-105"
               suppressHydrationWarning
@@ -400,7 +400,7 @@ export default function Navbar() {
                   {/* Drawer header */}
                   <div className="flex items-center gap-2.5 border-b border-white/[0.06] px-5 py-4">
                     <img
-                      src="/saatvik-cars-logo.png"
+                      src="/logo.svg"
                       alt="Saatvik Cars logo"
                       className="h-8 w-8 rounded-lg object-contain"
                       suppressHydrationWarning

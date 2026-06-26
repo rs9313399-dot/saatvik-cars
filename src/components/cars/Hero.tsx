@@ -1,7 +1,7 @@
 'use client';
 
-import { useState, useRef } from 'react';
-import { motion, useInView } from 'framer-motion';
+import { useState } from 'react';
+import { motion } from 'framer-motion';
 import {
   Search,
   ChevronDown,
@@ -67,9 +67,6 @@ export default function Hero() {
   const [fuel, setFuel] = useState('any');
   const { setActiveFilters } = useStore();
 
-  const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: true, margin: '-100px' });
-
   const handleSearch = () => {
     const filters: Record<string, string | number> = {};
     if (brand !== 'all') {
@@ -115,7 +112,6 @@ export default function Hero() {
 
   return (
     <section
-      ref={ref}
       id="hero"
       className="hero-editorial relative min-h-[640px] lg:min-h-[88vh] flex items-center overflow-hidden"
     >
@@ -129,41 +125,44 @@ export default function Hero() {
 
       {/* ── Content ── */}
       <div className="relative z-10 mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 py-20 lg:py-28">
-        <div className="max-w-2xl">
+        <div className="w-full max-w-[calc(100vw-2rem)] sm:max-w-2xl">
           {/* Eyebrow */}
           <motion.div
             initial={{ opacity: 0, y: 16 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, ease: 'easeOut' }}
             className="mb-6"
           >
-            <span className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3.5 py-1.5 text-[11px] font-semibold uppercase tracking-[0.14em] text-white/80 backdrop-blur-sm" suppressHydrationWarning>
+            <span className="inline-flex max-w-full items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3.5 py-1.5 text-[11px] font-semibold uppercase tracking-[0.12em] text-white/80 backdrop-blur-sm" suppressHydrationWarning>
               <span className="relative flex h-1.5 w-1.5" suppressHydrationWarning>
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" suppressHydrationWarning />
                 <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-emerald-400" suppressHydrationWarning />
               </span>
-              Open Now · {BUSINESS.hours} · A unit of Tarang Marketing
+              <span className="truncate">
+                Open Now · {BUSINESS.hours}
+                <span className="hidden sm:inline"> · A unit of Tarang Marketing</span>
+              </span>
             </span>
           </motion.div>
 
           {/* Headline */}
           <motion.h1
             initial={{ opacity: 0, y: 24 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: 'easeOut', delay: 0.08 }}
-            className="text-[2.6rem] leading-[1.05] sm:text-5xl lg:text-[3.7rem] lg:leading-[1.02] font-bold text-white"
+            className="max-w-[22rem] text-[2.35rem] leading-[1.06] sm:max-w-none sm:text-5xl lg:text-[3.7rem] lg:leading-[1.02] font-bold text-white"
           >
-            Drive home a verified car,
+            Drive a verified car,
             <br />
-            <span className="text-white/55">without the guesswork.</span>
+            <span className="text-white/55">no guesswork.</span>
           </motion.h1>
 
           {/* Subtitle */}
           <motion.p
             initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.18, ease: 'easeOut' }}
-            className="mt-5 max-w-lg text-base sm:text-lg text-white/70 leading-relaxed"
+            className="mt-5 max-w-[21rem] text-base sm:max-w-lg sm:text-lg text-white/70 leading-relaxed"
           >
             Browse inspected used cars, compare EMI-friendly options, and speak directly
             with Saatvik Cars before you visit.
@@ -172,12 +171,12 @@ export default function Hero() {
           {/* ── Search bar — wrapped in <form> so Enter submits ── */}
           <motion.form
             initial={{ opacity: 0, y: 22 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.28, ease: 'easeOut' }}
             onSubmit={(e) => { e.preventDefault(); handleSearch(); }}
             role="search"
             aria-label="Find cars"
-            className="mt-9 search-bar-focus flex flex-col sm:flex-row items-stretch gap-2 sm:gap-0 rounded-xl border border-white/12 bg-black/40 backdrop-blur-md p-2"
+            className="mt-9 search-bar-focus flex w-full flex-col sm:flex-row items-stretch gap-2 sm:gap-0 rounded-xl border border-white/12 bg-black/40 backdrop-blur-md p-2"
           >
             {/* Brand */}
             <div className="relative flex-1 min-w-0">
@@ -242,9 +241,9 @@ export default function Hero() {
           {/* Popular searches */}
           <motion.div
             initial={{ opacity: 0, y: 16 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.38, ease: 'easeOut' }}
-            className="mt-5 flex flex-wrap items-center gap-2"
+            className="mt-5 flex max-w-full flex-wrap items-center gap-2"
           >
             <span className="flex items-center gap-1.5 text-[11px] font-medium uppercase tracking-wider text-white/45" suppressHydrationWarning>
               <TrendingUp className="h-3.5 w-3.5" />
@@ -266,7 +265,7 @@ export default function Hero() {
           {/* Stats row */}
           <motion.div
             initial={{ opacity: 0, y: 18 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.48, ease: 'easeOut' }}
             className="mt-10 grid grid-cols-2 sm:grid-cols-4 gap-px overflow-hidden rounded-xl border border-white/10 bg-white/5 backdrop-blur-sm"
           >
@@ -281,9 +280,9 @@ export default function Hero() {
           {/* Trust line */}
           <motion.div
             initial={{ opacity: 0, y: 14 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.56, ease: 'easeOut' }}
-            className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-2"
+            className="mt-6 grid max-w-full grid-cols-1 gap-2 min-[380px]:grid-cols-2 sm:flex sm:flex-wrap sm:items-center sm:gap-x-6 sm:gap-y-2"
           >
             {trustItems.map((item, i) => (
               <div key={i} className="flex items-center gap-2 text-[13px] text-white/60" suppressHydrationWarning>
@@ -311,7 +310,7 @@ export default function Hero() {
       {/* Secondary CTA pinned bottom-right (desktop) */}
       <motion.div
         initial={{ opacity: 0, y: 16 }}
-        animate={isInView ? { opacity: 1, y: 0 } : {}}
+        animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.64, ease: 'easeOut' }}
         className="absolute bottom-8 right-8 z-10 hidden lg:block"
       >

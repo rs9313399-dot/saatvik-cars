@@ -149,7 +149,7 @@ export default function Footer() {
             {/* Logo */}
             <div className="flex items-center gap-2.5">
               <img
-                src="/saatvik-cars-logo.png"
+                src="/logo.svg"
                 alt="Saatvik Cars logo"
                 className="h-9 w-9 rounded-lg object-contain"
                 loading="lazy"

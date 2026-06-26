@@ -381,7 +381,7 @@ export default function LiveChatWidget() {
             {/* ===== Header ===== */}
             <div className="flex items-center gap-3 border-b border-white/10 bg-gradient-to-b from-[#0F0F0F] to-[#0A0A0A] px-4 py-3">
               <img
-                src="/saatvik-cars-logo.png"
+                src="/logo.svg"
                 alt="Saatvik Cars logo"
                 className="h-9 w-9 shrink-0 rounded-lg object-contain"
                 suppressHydrationWarning
