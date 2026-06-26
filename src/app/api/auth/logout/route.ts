@@ -31,6 +31,14 @@ export async function POST() {
       path: '/',
     });
 
+    response.cookies.set('admin-token', '', {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'lax',
+      maxAge: 0,
+      path: '/',
+    });
+
     return response;
   } catch (error) {
     console.error('Logout error:', error);

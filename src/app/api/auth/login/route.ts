@@ -2,6 +2,9 @@ import { NextRequest, NextResponse } from 'next/server';
 import { db } from '@/lib/db';
 import crypto from 'crypto';
 
+const DEFAULT_ADMIN_USERNAME = process.env.ADMIN_USERNAME || 'admin';
+const DEFAULT_ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'admin123';
+
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
@@ -14,16 +17,16 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Seed default admin if no admin exists
-    const adminCount = await db.admin.count();
-    if (adminCount === 0) {
-      await db.admin.create({
-        data: {
-          username: 'admin',
-          password: 'admin123',
-        },
-      });
-    }
+    // Keep the configured admin login available in production even if an older
+    // database already has a stale admin password.
+    await db.admin.upsert({
+      where: { username: DEFAULT_ADMIN_USERNAME },
+      update: { password: DEFAULT_ADMIN_PASSWORD },
+      create: {
+        username: DEFAULT_ADMIN_USERNAME,
+        password: DEFAULT_ADMIN_PASSWORD,
+      },
+    });
 
     // Find admin with matching credentials
     const admin = await db.admin.findFirst({
@@ -57,6 +60,14 @@ export async function POST(request: NextRequest) {
 
     // Also set cookie as fallback
     response.cookies.set('admin_token', token, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'lax',
+      maxAge: 60 * 60 * 24 * 7, // 7 days
+      path: '/',
+    });
+
+    response.cookies.set('admin-token', token, {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
       sameSite: 'lax',
