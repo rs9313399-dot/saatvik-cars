@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { db } from '@/lib/db';
+import { seedBlogPosts } from '@/lib/seed-blog';
 
 const ALLOWED_CATEGORIES = new Set([
   'Guides',
@@ -8,6 +9,17 @@ const ALLOWED_CATEGORIES = new Set([
   'Reviews',
   'Updates',
 ]);
+
+let seedPromise: Promise<number> | null = null;
+function ensureSeeded(): Promise<number> {
+  if (!seedPromise) {
+    seedPromise = seedBlogPosts().catch((error) => {
+      seedPromise = null;
+      throw error;
+    });
+  }
+  return seedPromise;
+}
 
 /**
  * GET /api/blog — Public endpoint.
@@ -21,6 +33,8 @@ const ALLOWED_CATEGORIES = new Set([
  */
 export async function GET(request: NextRequest) {
   try {
+    await ensureSeeded().catch(() => {});
+
     const { searchParams } = new URL(request.url);
     const category = searchParams.get('category')?.trim() || '';
     const limitRaw = searchParams.get('limit')?.trim() || '';

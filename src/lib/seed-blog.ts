@@ -189,13 +189,12 @@ We surveyed rates from major lenders this quarter. State Bank of India used car 
 ];
 
 /**
- * Seed 6 blog posts into the BlogPost table IF it is currently empty.
- * Idempotent — safe to run multiple times.
+ * Seed blog posts into the BlogPost table IF it is currently empty.
+ * Idempotent - safe to run multiple times.
  */
-async function main(): Promise<void> {
+export async function seedBlogPosts(): Promise<number> {
   if ((await db.blogPost.count()) > 0) {
-    console.log('Blog posts already seeded');
-    process.exit(0);
+    return 0;
   }
 
   await db.blogPost.createMany({
@@ -214,14 +213,19 @@ async function main(): Promise<void> {
     })),
   });
 
-  console.log(`Seeded ${SEED_POSTS.length} blog posts`);
+  return SEED_POSTS.length;
 }
 
-main()
-  .catch((error) => {
-    console.error('Blog seed failed:', error);
-    process.exit(1);
-  })
-  .finally(async () => {
-    await db.$disconnect();
-  });
+if (process.argv[1]?.endsWith('seed-blog.ts')) {
+  seedBlogPosts()
+    .then((count) => {
+      console.log(count ? `Seeded ${count} blog posts` : 'Blog posts already seeded');
+    })
+    .catch((error) => {
+      console.error('Blog seed failed:', error);
+      process.exitCode = 1;
+    })
+    .finally(async () => {
+      await db.$disconnect();
+    });
+}
