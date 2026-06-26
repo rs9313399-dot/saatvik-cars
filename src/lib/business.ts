@@ -53,7 +53,7 @@ export const ALL_BRANDS = [
   'Jaguar',
 ] as const;
 
-/** Brands shown in the marquee strip (subset of ALL_BRANDS) */
+/** Brands shown in the premium brand strip (subset of ALL_BRANDS) */
 export const MARQUEE_BRANDS = ALL_BRANDS.slice(0, 15);
 
 /** Brands shown in the Hero dropdown (subset) */

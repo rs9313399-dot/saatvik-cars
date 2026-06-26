@@ -5,8 +5,6 @@ import { MARQUEE_BRANDS } from '@/lib/business';
 import { useStore } from '@/lib/store';
 import { toast } from 'sonner';
 
-const TRIPLED = [...MARQUEE_BRANDS, ...MARQUEE_BRANDS, ...MARQUEE_BRANDS];
-
 export default function BrandMarquee() {
   const { setActiveFilters, activeFilters } = useStore();
 
@@ -57,33 +55,30 @@ export default function BrandMarquee() {
       </div>
 
       {/* Marquee */}
-      <div
-        className="marquee-container px-4 pb-10 sm:px-6"
-        suppressHydrationWarning
-      >
+      <div className="px-4 pb-10 sm:px-6" suppressHydrationWarning>
         <div
-          className="marquee-track flex items-center gap-4"
+          className="mx-0 grid w-full max-w-[22rem] grid-cols-2 gap-3 sm:mx-auto sm:flex sm:max-w-7xl sm:flex-wrap sm:items-center sm:justify-center sm:gap-4"
           suppressHydrationWarning
         >
-          {TRIPLED.map((brand, i) => (
+          {MARQUEE_BRANDS.map((brand) => (
             <button
               type="button"
-              key={`${brand}-${i}`}
-              className="group relative flex-shrink-0 overflow-hidden rounded-xl border border-white/[0.08] bg-white/[0.02] px-5 py-2 transition-all duration-300 hover:border-[#D7B56D]/30 hover:bg-[#D7B56D]/5 hover:shadow-[0_0_16px_rgba(215,181,109,0.08)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#D7B56D]/40"
+              key={brand}
+              className="group relative flex min-w-0 justify-center overflow-hidden rounded-xl border border-white/[0.08] bg-white/[0.02] px-3 py-2 transition-all duration-300 hover:border-[#D7B56D]/30 hover:bg-[#D7B56D]/5 hover:shadow-[0_0_16px_rgba(215,181,109,0.08)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#D7B56D]/40 sm:flex-shrink-0 sm:px-5"
               suppressHydrationWarning
               onClick={() => handleBrandClick(brand)}
               aria-label={`Browse ${brand} cars`}
             >
               {/* Watermark initial letter */}
               <span
-                className="pointer-events-none absolute -top-1 -right-0.5 select-none text-5xl font-black text-white/[0.025] transition-colors duration-300 group-hover:text-[#D7B56D]/[0.06]"
+                className="pointer-events-none absolute -top-1 -right-0.5 select-none text-4xl font-black text-white/[0.025] transition-colors duration-300 group-hover:text-[#D7B56D]/[0.06] sm:text-5xl"
                 aria-hidden="true"
                 suppressHydrationWarning
               >
                 {brand[0]}
               </span>
               <span
-                className="relative text-sm font-medium text-white/40 transition-colors duration-300 group-hover:text-[#D7B56D]"
+                className="relative truncate text-xs font-medium text-white/40 transition-colors duration-300 group-hover:text-[#D7B56D] sm:text-sm"
                 suppressHydrationWarning
               >
                 {brand}

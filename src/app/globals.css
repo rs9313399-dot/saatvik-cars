@@ -208,26 +208,6 @@ body {
 .dark ::selection { background: rgba(215,181,109,0.30); color: #fff; }
 
 /* ═══════════════════════════════════════════════════
-   MARQUEE — brand strip
-   ═══════════════════════════════════════════════════ */
-.marquee-container {
-  overflow: hidden;
-  mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
-  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
-}
-.marquee-track {
-  display: flex;
-  gap: 1.5rem;
-  animation: marqueeScroll 32s linear infinite;
-  width: max-content;
-}
-.marquee-track:hover { animation-play-state: paused; }
-@keyframes marqueeScroll {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
-}
-
-/* ═══════════════════════════════════════════════════
    HIDE HORIZONTAL SCROLLBAR (chips, galleries)
    ═══════════════════════════════════════════════════ */
 .overflow-x-auto::-webkit-scrollbar { display: none; }
@@ -538,7 +518,6 @@ body {
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
-  .marquee-track { animation: none !important; }
   .skeleton-shimmer { animation: none !important; }
   .nav-gradient-line-animated { animation: none !important; }
 }
