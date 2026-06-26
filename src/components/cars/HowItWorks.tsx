@@ -1,6 +1,6 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { motion, type Variants } from "framer-motion";
 import { Search, Wrench, FileCheck, KeyRound } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 
@@ -47,7 +47,7 @@ const containerVariants = {
   },
 };
 
-const stepVariants = {
+const stepVariants: Variants = {
   hidden: { opacity: 0, y: 30 },
   visible: {
     opacity: 1,

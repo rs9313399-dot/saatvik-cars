@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion, type Variants } from 'framer-motion';
 import {
   Dumbbell,
   Zap,
@@ -102,7 +102,7 @@ const difficultyColor: Record<Difficulty, string> = {
   Advanced: 'bg-rose-500/15 text-rose-400 border-rose-500/20',
 };
 
-const containerVariants = {
+const containerVariants: Variants = {
   hidden: {},
   visible: {
     transition: {
@@ -111,12 +111,15 @@ const containerVariants = {
   },
 };
 
-const cardVariants = {
+const cardVariants: Variants = {
   hidden: { opacity: 0, y: 30 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.5, ease: 'easeOut' },
+    transition: {
+      duration: 0.5,
+      ease: 'easeOut',
+    },
   },
 };
 
@@ -127,7 +130,6 @@ export default function Programs() {
       className="relative py-24 px-4 sm:px-6 lg:px-8"
       suppressHydrationWarning
     >
-      {/* Section header */}
       <div className="mx-auto max-w-7xl text-center mb-14">
         <Badge
           variant="outline"
@@ -135,6 +137,7 @@ export default function Programs() {
         >
           Our Programs
         </Badge>
+
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -147,6 +150,7 @@ export default function Programs() {
             Way
           </span>
         </motion.h2>
+
         <motion.p
           initial={{ opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -159,7 +163,6 @@ export default function Programs() {
         </motion.p>
       </div>
 
-      {/* Scrollable card row */}
       <motion.div
         variants={containerVariants}
         initial="hidden"
@@ -167,7 +170,6 @@ export default function Programs() {
         viewport={{ once: true, margin: '-60px' }}
         className="mx-auto max-w-7xl"
       >
-        {/* Mobile: horizontal snap scroll — Desktop: responsive grid */}
         <div className="flex gap-6 overflow-x-auto snap-x snap-mandatory pb-4 scrollbar-hide lg:grid lg:grid-cols-3 lg:overflow-visible lg:pb-0">
           {programs.map((program) => {
             const Icon = program.icon;
@@ -193,12 +195,10 @@ export default function Programs() {
                   cursor-pointer
                 "
               >
-                {/* Gradient top portion with icon */}
                 <div
                   className="relative flex items-center justify-center h-40 rounded-t-2xl overflow-hidden"
                   style={{ background: program.gradient }}
                 >
-                  {/* Decorative circles */}
                   <div
                     className="absolute -top-8 -right-8 w-32 h-32 rounded-full opacity-10"
                     style={{ background: program.iconColor }}
@@ -215,19 +215,15 @@ export default function Programs() {
                   />
                 </div>
 
-                {/* Card body */}
                 <div className="p-6 flex flex-col gap-4">
-                  {/* Program name */}
                   <h3 className="text-xl font-semibold text-white tracking-tight">
                     {program.name}
                   </h3>
 
-                  {/* Description */}
                   <p className="text-sm text-zinc-400 leading-relaxed">
                     {program.description}
                   </p>
 
-                  {/* Meta row: difficulty + duration */}
                   <div className="flex items-center gap-3 flex-wrap">
                     <span
                       className={`inline-flex items-center rounded-md border px-2.5 py-0.5 text-xs font-medium ${difficultyColor[program.difficulty]}`}
@@ -241,7 +237,6 @@ export default function Programs() {
                     </span>
                   </div>
 
-                  {/* Learn More link */}
                   <a
                     href="#programs"
                     className="inline-flex items-center gap-1.5 text-sm font-medium text-emerald-400 mt-1 transition-colors duration-200 hover:text-emerald-300 group/link"

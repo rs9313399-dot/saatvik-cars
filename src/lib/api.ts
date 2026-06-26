@@ -108,7 +108,7 @@ export async function fetchCar(idOrSlug: string): Promise<Car> {
   return result.car;
 }
 
-export async function createCar(data: Partial<Car> & { name: string; brand: string; model: string; year: number; price: number; fuelType: string; transmission: string; kmDriven: number; ownerType: string; location: string; description: string; contactPhone: string }): Promise<Car> {
+export async function createCar(data: Omit<Partial<Car>, 'tags'> & { tags?: string | string[] } & { name: string; brand: string; model: string; year: number; price: number; fuelType: string; transmission: string; kmDriven: number; ownerType: string; location: string; description: string; contactPhone: string }): Promise<Car> {
   const result = await request<{ car: Car }>('/cars', {
     method: 'POST',
     body: JSON.stringify(data),

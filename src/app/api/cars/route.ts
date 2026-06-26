@@ -46,16 +46,32 @@ export async function GET(request: NextRequest) {
     }
 
     if (minPrice || maxPrice) {
-      where.price = {};
-      if (minPrice) where.price.gte = parseInt(minPrice, 10);
-      if (maxPrice) where.price.lte = parseInt(maxPrice, 10);
-    }
+ 	    const priceFilter: { gte?: number; lte?: number } = {};
 
-    if (minYear || maxYear) {
-      where.year = {};
-      if (minYear) where.year.gte = parseInt(minYear, 10);
-      if (maxYear) where.year.lte = parseInt(maxYear, 10);
-    }
+    if (minPrice) {
+         priceFilter.gte = parseInt(minPrice, 10);
+     }
+
+     if (maxPrice) {
+    	priceFilter.lte = parseInt(maxPrice, 10);
+     }
+
+    where.price = priceFilter;
+   }
+
+   if (minYear || maxYear) {
+  const yearFilter: { gte?: number; lte?: number } = {};
+
+  if (minYear) {
+    yearFilter.gte = parseInt(minYear, 10);
+  }
+
+  if (maxYear) {
+    yearFilter.lte = parseInt(maxYear, 10);
+  }
+
+  where.year = yearFilter;
+}
 
     if (search) {
       where.OR = [

@@ -77,7 +77,7 @@ export default function FilterSidebar({ cars }: FilterSidebarProps) {
     Object.keys(patch).forEach(k => {
       const key = k as keyof CarFilters;
       if (patch[key] === undefined || patch[key] === '') delete cleaned[key];
-      else cleaned[key] = patch[key];
+      else (cleaned as any)[key] = patch[key];
     });
     setActiveFilters(cleaned);
   };

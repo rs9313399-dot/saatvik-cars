@@ -21,7 +21,10 @@ export interface Car {
   sunroof: string;
   finance: string;
   bodyType: string; // D7: Hatchback / Sedan / SUV / MUV / Luxury / Electric
-  images: string; // JSON string array
+
+  // Frontend me images parsed array ke form me aa rahi hai
+  images: string[];
+
   active: boolean;
   views: number;
   callClicks: number;

@@ -1,6 +1,6 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { motion, type Variants } from "framer-motion";
 import { Mountain, Car, Zap, Crown, Users, Bolt, ArrowRight } from 'lucide-react';
 import { useStore } from '@/lib/store';
 import { toast } from 'sonner';
@@ -30,12 +30,12 @@ const containerVariants = {
   },
 };
 
-const cardVariants = {
+const cardVariants: Variants = {
   hidden: { opacity: 0, y: 24 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.45, ease: [0.25, 0.46, 0.45, 0.94] },
+    transition: { duration: 0.45,ease: "easeOut", },
   },
 };
 

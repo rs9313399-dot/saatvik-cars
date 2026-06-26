@@ -10,13 +10,13 @@ import { Button } from '@/components/ui/button'
 const fadeSlideLeft = (delay = 0) => ({
   initial: { opacity: 0, x: -60 },
   animate: { opacity: 1, x: 0 },
-  transition: { duration: 0.7, delay, ease: [0.22, 1, 0.36, 1] },
+  transition: { duration: 0.7, delay, ease: "easeOut" as const, },
 })
 
 const fadeSlideRight = (delay = 0) => ({
   initial: { opacity: 0, x: 60 },
   animate: { opacity: 1, x: 0 },
-  transition: { duration: 0.7, delay, ease: [0.22, 1, 0.36, 1] },
+  transition: { duration: 0.7, delay, ease: "easeOut" as const, },
 })
 
 /* ──────────────────────────── stat-card data ──────────────────────────────── */
