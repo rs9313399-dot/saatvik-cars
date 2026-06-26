@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { db } from '@/lib/db';
 import { estimateCarValue } from '@/lib/valuation';
+import { checkAuth } from '@/lib/auth';
 
 const ALLOWED_CONDITIONS = new Set(['Excellent', 'Good', 'Fair', 'Poor']);
 const ALLOWED_STATUSES = new Set(['new', 'reviewed', 'offered', 'closed']);
@@ -188,14 +189,8 @@ export async function POST(request: NextRequest) {
  */
 export async function GET(request: NextRequest) {
   try {
-    // ── Auth check (admin-token cookie — same convention as /api/leads) ──
-    const token = request.cookies.get('admin-token')?.value;
-    if (!token) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-    }
-
-    const admin = await db.admin.findFirst({ where: { token } });
-    if (!admin) {
+    const authenticated = await checkAuth(request);
+    if (!authenticated) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 

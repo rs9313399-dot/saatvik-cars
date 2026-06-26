@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { db } from '@/lib/db';
+import { checkAuth } from '@/lib/auth';
 
 // Allowed service inquiry types per C7/C8/C9 + C6 finance
 const ALLOWED_TYPES = new Set([
@@ -109,14 +110,8 @@ export async function POST(request: NextRequest) {
  */
 export async function GET(request: NextRequest) {
   try {
-    // --- Auth check (admin-token cookie) ---
-    const token = request.cookies.get('admin-token')?.value;
-    if (!token) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-    }
-
-    const admin = await db.admin.findFirst({ where: { token } });
-    if (!admin) {
+    const authenticated = await checkAuth(request);
+    if (!authenticated) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 

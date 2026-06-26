@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { db } from '@/lib/db';
+import { checkAuth } from '@/lib/auth';
 
 export async function POST(request: NextRequest) {
   try {
@@ -56,13 +57,8 @@ export async function POST(request: NextRequest) {
 // GET — list subscribers (admin only)
 export async function GET(request: NextRequest) {
   try {
-    const token = request.cookies.get('admin-token')?.value;
-    if (!token) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-    }
-
-    const admin = await db.admin.findFirst({ where: { token } });
-    if (!admin) {
+    const authenticated = await checkAuth(request);
+    if (!authenticated) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 

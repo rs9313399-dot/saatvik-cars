@@ -1,15 +1,14 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { db } from '@/lib/db';
+import { checkAuth } from '@/lib/auth';
 
 const ALLOWED_STATUSES = new Set(['new', 'contacted', 'closed']);
 
 /**
- * Verify admin via `admin-token` cookie. Returns the admin record or null.
+ * Verify admin via the shared admin auth helper.
  */
-async function requireAdmin(request: NextRequest) {
-  const token = request.cookies.get('admin-token')?.value;
-  if (!token) return null;
-  return db.admin.findFirst({ where: { token } });
+async function requireAdmin(request: NextRequest): Promise<boolean> {
+  return checkAuth(request);
 }
 
 /**
@@ -18,8 +17,8 @@ async function requireAdmin(request: NextRequest) {
  */
 export async function PATCH(request: NextRequest) {
   try {
-    const admin = await requireAdmin(request);
-    if (!admin) {
+    const authenticated = await requireAdmin(request);
+    if (!authenticated) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
@@ -73,8 +72,8 @@ export async function PATCH(request: NextRequest) {
  */
 export async function DELETE(request: NextRequest) {
   try {
-    const admin = await requireAdmin(request);
-    if (!admin) {
+    const authenticated = await requireAdmin(request);
+    if (!authenticated) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
