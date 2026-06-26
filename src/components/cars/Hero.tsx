@@ -11,6 +11,7 @@ import {
   TrendingUp,
   ArrowRight,
   Star,
+  MessageCircle,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { toast } from 'sonner';
@@ -50,6 +51,12 @@ const trustItems = [
   { icon: ShieldCheck, text: '150-point inspection' },
   { icon: BadgeCheck, text: 'Verified documents' },
   { icon: RefreshCw, text: '7-day return' },
+];
+
+const conciergeItems = [
+  'Private showroom viewing',
+  'Finance guidance',
+  'RC transfer support',
 ];
 
 const popularSearches = [
@@ -98,6 +105,14 @@ export default function Hero() {
     if (carsSection) carsSection.scrollIntoView({ behavior: 'smooth' });
   };
 
+  const handleAdvisorChat = () => {
+    window.open(
+      `https://wa.me/${BUSINESS.phones[0].digits}?text=${encodeURIComponent('Hi Saatvik Cars, I want help choosing a premium used car.')}`,
+      '_blank',
+      'noopener,noreferrer'
+    );
+  };
+
   const handlePopularSearch = (searchBrand: string) => {
     const matchedBrand = brands.find((b) => b.label.toLowerCase() === searchBrand.toLowerCase());
     if (matchedBrand) {
@@ -133,7 +148,7 @@ export default function Hero() {
             transition={{ duration: 0.5, ease: 'easeOut' }}
             className="mb-6"
           >
-            <span className="inline-flex max-w-full items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3.5 py-1.5 text-[11px] font-semibold uppercase tracking-[0.12em] text-white/80 backdrop-blur-sm" suppressHydrationWarning>
+            <span className="premium-eyebrow inline-flex max-w-full items-center gap-2 rounded-full px-3.5 py-1.5 text-[11px] font-semibold uppercase tracking-[0.12em] text-white/80 backdrop-blur-sm" suppressHydrationWarning>
               <span className="relative flex h-1.5 w-1.5" suppressHydrationWarning>
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" suppressHydrationWarning />
                 <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-emerald-400" suppressHydrationWarning />
@@ -150,11 +165,11 @@ export default function Hero() {
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: 'easeOut', delay: 0.08 }}
-            className="max-w-[22rem] text-[2.35rem] leading-[1.06] sm:max-w-none sm:text-5xl lg:text-[3.7rem] lg:leading-[1.02] font-bold text-white"
+            className="max-w-[22rem] text-[2.35rem] leading-[1.06] sm:max-w-none sm:text-5xl lg:text-[3.8rem] lg:leading-[1.01] font-bold text-white"
           >
-            Drive a verified car,
+            Premium cars,
             <br />
-            <span className="text-white/55">no guesswork.</span>
+            <span className="text-white/55">verified confidence.</span>
           </motion.h1>
 
           {/* Subtitle */}
@@ -164,9 +179,53 @@ export default function Hero() {
             transition={{ duration: 0.6, delay: 0.18, ease: 'easeOut' }}
             className="mt-5 max-w-[21rem] text-base sm:max-w-lg sm:text-lg text-white/70 leading-relaxed"
           >
-            Browse inspected used cars, compare EMI-friendly options, and speak directly
-            with Saatvik Cars before you visit.
+            A curated used-car buying experience with inspected inventory,
+            refined guidance, and complete paperwork support.
           </motion.p>
+
+          <motion.div
+            initial={{ opacity: 0, y: 18 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.24, ease: 'easeOut' }}
+            className="mt-6 flex flex-wrap gap-2"
+          >
+            <Button
+              type="button"
+              className="h-11 rounded-lg bg-[#D7B56D] px-5 text-sm font-semibold text-[#0A0A0A] hover:bg-[#E7C77B]"
+              suppressHydrationWarning
+              onClick={handleBrowseCars}
+            >
+              Explore Collection
+              <ArrowRight className="ml-2 h-4 w-4" />
+            </Button>
+            <Button
+              type="button"
+              variant="outline"
+              className="h-11 rounded-lg border-[#D7B56D]/25 bg-white/[0.04] px-5 text-sm font-semibold text-white backdrop-blur-md hover:bg-[#D7B56D]/10 hover:text-white"
+              suppressHydrationWarning
+              onClick={handleAdvisorChat}
+            >
+              <MessageCircle className="mr-2 h-4 w-4 text-[#D7B56D]" />
+              Talk to Advisor
+            </Button>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 14 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.3, ease: 'easeOut' }}
+            className="mt-5 grid max-w-[21rem] grid-cols-1 gap-2 min-[360px]:grid-cols-2 sm:max-w-[34rem] sm:flex sm:flex-wrap"
+          >
+            {conciergeItems.map((item) => (
+              <span
+                key={item}
+                className="shrink-0 rounded-full border border-[#D7B56D]/20 bg-[#D7B56D]/[0.055] px-3 py-1 text-center text-[11px] font-medium text-[#E8D4A2] sm:text-left"
+                suppressHydrationWarning
+              >
+                {item}
+              </span>
+            ))}
+          </motion.div>
 
           {/* ── Search bar — wrapped in <form> so Enter submits ── */}
           <motion.form
@@ -176,7 +235,7 @@ export default function Hero() {
             onSubmit={(e) => { e.preventDefault(); handleSearch(); }}
             role="search"
             aria-label="Find cars"
-            className="mt-9 search-bar-focus flex w-full flex-col sm:flex-row items-stretch gap-2 sm:gap-0 rounded-xl border border-white/12 bg-black/40 backdrop-blur-md p-2"
+            className="mt-8 premium-search search-bar-focus flex w-full max-w-[21rem] flex-col items-stretch gap-2 rounded-xl p-2 sm:max-w-none sm:flex-row sm:gap-0"
           >
             {/* Brand */}
             <div className="relative flex-1 min-w-0">
@@ -231,7 +290,7 @@ export default function Hero() {
             <Button
               type="submit"
               suppressHydrationWarning
-              className="h-11 rounded-lg bg-[#00D4FF] px-6 text-sm font-semibold text-[#0A0A0A] hover:bg-[#00B8E6] active:scale-[0.98] transition-all shrink-0"
+              className="h-11 rounded-lg bg-[#D7B56D] px-6 text-sm font-semibold text-[#0A0A0A] hover:bg-[#E7C77B] active:scale-[0.98] transition-all shrink-0"
             >
               <Search className="mr-2 h-4 w-4" />
               Search
@@ -267,7 +326,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.48, ease: 'easeOut' }}
-            className="mt-10 grid grid-cols-2 sm:grid-cols-4 gap-px overflow-hidden rounded-xl border border-white/10 bg-white/5 backdrop-blur-sm"
+            className="mt-10 premium-stat-grid grid grid-cols-2 sm:grid-cols-4 gap-px overflow-hidden rounded-xl backdrop-blur-sm"
           >
             {stats.map((stat, i) => (
               <div key={i} className="bg-black/20 px-4 py-3.5" suppressHydrationWarning>
@@ -286,7 +345,7 @@ export default function Hero() {
           >
             {trustItems.map((item, i) => (
               <div key={i} className="flex items-center gap-2 text-[13px] text-white/60" suppressHydrationWarning>
-                <item.icon className="h-4 w-4 text-[#00D4FF]" />
+                <item.icon className="h-4 w-4 text-[#D7B56D]" />
                 <span>{item.text}</span>
               </div>
             ))}
@@ -317,7 +376,7 @@ export default function Hero() {
         <Button
           suppressHydrationWarning
           variant="outline"
-          className="h-11 rounded-xl border-white/20 bg-white/5 px-5 text-sm font-semibold text-white backdrop-blur-md hover:bg-white/10 hover:text-white"
+          className="h-11 rounded-xl border-[#D7B56D]/25 bg-white/5 px-5 text-sm font-semibold text-white backdrop-blur-md hover:bg-[#D7B56D]/10 hover:text-white"
           onClick={handleBrowseCars}
         >
           Browse all cars

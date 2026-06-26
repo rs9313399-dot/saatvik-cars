@@ -3,7 +3,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { Car, Menu, Phone, Mail, Clock, Instagram, Twitter, Youtube, Shield, LogOut, LayoutDashboard, ChevronDown, Heart, Scale } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Sheet, SheetContent, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
+import { Sheet, SheetContent, SheetTitle } from '@/components/ui/sheet';
 import { Button } from '@/components/ui/button';
 import { useStore } from '@/lib/store';
 import { logoutAdmin } from '@/lib/api';
@@ -56,7 +56,7 @@ function DesktopNavLinks({
             {isActive && (
               <motion.span
                 layoutId="nav-active-indicator"
-                className="absolute bottom-0 left-3.5 right-3.5 h-[2px] rounded-full bg-[#00D4FF]"
+                className="absolute bottom-0 left-3.5 right-3.5 h-[2px] rounded-full bg-[#D7B56D]"
                 transition={{ type: 'spring', stiffness: 380, damping: 30 }}
               />
             )}
@@ -154,7 +154,7 @@ export default function Navbar() {
   return (
     <header
       suppressHydrationWarning
-      className="sticky top-0 z-50 w-full"
+      className="sticky top-0 z-50 w-full overflow-x-clip"
       role="banner"
     >
       {/* ─── Top Utility Bar ─── */}
@@ -228,13 +228,13 @@ export default function Navbar() {
             : 'bg-[#0A0A0A]'
         }`}
       >
-        <div className="mx-auto flex h-14 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto flex h-14 w-full max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
           {/* Logo */}
           <a
             href="#hero"
             onClick={handleLogoClick}
             suppressHydrationWarning
-            className="group flex items-center gap-2.5"
+            className="group flex min-w-0 items-center gap-2.5"
             aria-label="Saatvik Cars Home"
           >
             <img
@@ -243,8 +243,13 @@ export default function Navbar() {
               className="h-9 w-9 rounded-lg object-contain transition-transform duration-300 group-hover:scale-105"
               suppressHydrationWarning
             />
-            <span className="text-[17px] font-extrabold tracking-tight text-white">
-              Saatvik<span className="text-[#00D4FF]">Cars</span>
+            <span className="flex flex-col leading-none">
+              <span className="text-[17px] font-extrabold text-white">
+                Saatvik<span className="text-[#D7B56D]">Cars</span>
+              </span>
+              <span className="mt-0.5 hidden text-[9px] font-semibold uppercase tracking-[0.24em] text-[#D7B56D]/70 sm:block">
+                Premium Pre-Owned
+              </span>
             </span>
           </a>
 
@@ -252,7 +257,7 @@ export default function Navbar() {
           <DesktopNavLinks activeSection={activeSection} onLinkClick={handleLinkClick} />
 
           {/* Right side CTAs */}
-          <div className="flex items-center gap-2.5">
+          <div className="flex shrink-0 items-center gap-2.5">
             {/* Wishlist button — visible on md+ */}
             <button
               onClick={() => setWishlistOpen(true)}
@@ -377,20 +382,32 @@ export default function Navbar() {
             )}
 
             {/* Mobile Menu Trigger */}
-            <div className="flex items-center lg:hidden">
+            <div className="flex items-center">
+              <button
+                type="button"
+                suppressHydrationWarning
+                onClick={() => setMobileMenuOpen(true)}
+                style={{
+                  position: 'fixed',
+                  left: 'calc(100vw - 3rem)',
+                  top: '0.75rem',
+                  zIndex: 9999,
+                  display: 'flex',
+                  width: '2rem',
+                  height: '2rem',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  borderRadius: '0.5rem',
+                  border: '1px solid rgba(215,181,109,0.4)',
+                  background: '#D7B56D',
+                  color: '#0A0A0A',
+                }}
+                className="mobile-menu-trigger transition-colors hover:bg-[#E7C77B]"
+                aria-label="Open navigation menu"
+              >
+                <Menu className="h-5 w-5" />
+              </button>
               <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
-                <SheetTrigger asChild>
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    suppressHydrationWarning
-                    className="h-8 w-8 text-slate-400 hover:text-white hover:bg-white/[0.05]"
-                    aria-label="Open navigation menu"
-                  >
-                    <Menu className="h-5 w-5" />
-                  </Button>
-                </SheetTrigger>
-
                 <SheetContent
                   side="right"
                   className="w-[280px] border-0 bg-[#060a12] p-0 gap-0 [&>button]:text-slate-500 [&>button]:hover:text-white"
@@ -405,8 +422,13 @@ export default function Navbar() {
                       className="h-8 w-8 rounded-lg object-contain"
                       suppressHydrationWarning
                     />
-                    <span className="text-base font-extrabold tracking-tight text-white">
-                      Saatvik<span className="text-[#00D4FF]">Cars</span>
+                    <span className="flex flex-col leading-none">
+                      <span className="text-base font-extrabold text-white">
+                        Saatvik<span className="text-[#D7B56D]">Cars</span>
+                      </span>
+                      <span className="mt-0.5 text-[8px] font-semibold uppercase tracking-[0.22em] text-[#D7B56D]/70">
+                        Premium Pre-Owned
+                      </span>
                     </span>
                     {isAdmin && (
                       <span className="ml-auto flex items-center gap-1 rounded-full bg-[#00D4FF]/10 border border-[#00D4FF]/20 px-2 py-0.5 text-[10px] font-semibold text-[#00D4FF]">
