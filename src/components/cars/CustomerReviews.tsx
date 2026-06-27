@@ -159,7 +159,7 @@ export default function CustomerReviews() {
   return (
     <section
       id="customer-reviews"
-      className="py-16 sm:py-20 bg-[#0A0A0A]"
+      className="py-12 sm:py-14 bg-[#0A0A0A]"
       suppressHydrationWarning
     >
       <div

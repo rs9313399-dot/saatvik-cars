@@ -183,14 +183,19 @@ const SAMPLE_CARS = [
 export async function seed(): Promise<void> {
   // Create default admin if none exists
   const adminCount = await db.admin.count();
-  if (adminCount === 0) {
+  const adminPassword =
+    process.env.ADMIN_PASSWORD ||
+    (process.env.NODE_ENV === 'production' ? '' : 'admin123');
+  if (adminCount === 0 && adminPassword) {
     await db.admin.create({
       data: {
-        username: 'admin',
-        password: 'admin123',
+        username: process.env.ADMIN_USERNAME || 'admin',
+        password: adminPassword,
       },
     });
-    console.log('✅ Default admin created (username: admin, password: admin123)');
+    console.log('✅ Default admin created.');
+  } else if (adminCount === 0) {
+    console.log('ℹ️ ADMIN_PASSWORD is not configured; skipping default admin.');
   } else {
     console.log('ℹ️ Admin already exists, skipping.');
   }

@@ -238,7 +238,7 @@ function ArticleCard({ post, onOpen, index }: ArticleCardProps) {
       whileHover={{ scale: 1.02, y: -4 }}
       whileTap={{ scale: 0.99 }}
       aria-label={`Read article: ${post.title}`}
-      className="group flex min-h-[420px] w-full flex-col overflow-hidden rounded-2xl border border-white/[0.06] bg-[#111827]/50 text-left transition-colors duration-300 hover:border-[#D7B56D]/25 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D7B56D]/60"
+      className="group flex min-h-[360px] w-full flex-col overflow-hidden rounded-2xl border border-white/[0.06] bg-[#111827]/50 text-left transition-colors duration-300 hover:border-[#D7B56D]/25 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D7B56D]/60"
       suppressHydrationWarning
     >
       {/* Cover gradient block with category icon */}
@@ -790,7 +790,7 @@ export default function BlogSection() {
   return (
     <section
       id="blog"
-      className="bg-[#0A0A0A] py-16 sm:py-20"
+      className="bg-[#0A0A0A] py-12 sm:py-14"
       suppressHydrationWarning
     >
       <div

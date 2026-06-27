@@ -533,3 +533,11 @@ textarea:focus-visible,
   outline: 2px solid #D7B56D;
   outline-offset: 2px;
 }
+
+.car-detail-fallback {
+  display: none;
+}
+
+.car-detail-fallback:target {
+  display: flex;
+}

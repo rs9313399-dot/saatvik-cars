@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useMemo, useRef, useCallback, Fragment, type ReactNode } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { MapPin, Fuel, Gauge, Settings2, Calendar, ArrowRight, X, Phone, MessageCircle, Eye, Tag, GitCompare, Check, Heart, ChevronLeft, ChevronRight, Maximize2, SlidersHorizontal, CalendarCheck, Link2, Mail, AlertCircle, RefreshCw, SearchX, Sparkles, Printer, Trash2, CheckCircle2, XCircle, ShieldCheck } from 'lucide-react';
+import { MapPin, Fuel, Gauge, Settings2, Calendar, ArrowRight, X, Phone, MessageCircle, Eye, Tag, GitCompare, Check, Heart, ChevronLeft, ChevronRight, Maximize2, SlidersHorizontal, CalendarCheck, Link2, Mail, AlertCircle, RefreshCw, SearchX, Sparkles, Printer, Trash2, CheckCircle2, XCircle, ShieldCheck, Camera, ImageOff } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Skeleton } from '@/components/ui/skeleton';
@@ -43,7 +43,7 @@ function SkeletonCard() {
   );
 }
 
-const BAD_DEMO_IMAGE_PATHS = new Set([
+const NON_CAR_IMAGE_PATHS = new Set([
   '/uploads/0bfee020-1823-48f3-b819-84a234f3d369.jpeg',
   '/uploads/26162f59-3424-40b8-9791-9ffa518583a9.jpg',
   '/uploads/284e27e0-df05-4ad3-a9ae-7618fb814e02.jpg',
@@ -56,27 +56,67 @@ const BAD_DEMO_IMAGE_PATHS = new Set([
 ]);
 
 function getTrustedImages(images: string[]) {
-  return images.filter((src) => src && !BAD_DEMO_IMAGE_PATHS.has(src));
+  return images.filter((src) => src && !NON_CAR_IMAGE_PATHS.has(src));
+}
+
+function isRepresentativeImage(src: string) {
+  return src.includes('/images/cars/') && src.includes('-representative.');
+}
+
+function getIndicativeEmi(price: number) {
+  return calcEMI(price * 0.8, 9.5, 60);
+}
+
+function getFallbackDetailId(carId: string) {
+  return `car-detail-${carId.replace(/[^a-zA-Z0-9_-]/g, '-')}`;
+}
+
+function getEngineLabel(car: Pick<Car, 'brand' | 'model' | 'fuelType'>) {
+  const model = `${car.brand} ${car.model}`.toLowerCase();
+  if (model.includes('swift')) return '1.2L K-Series Petrol';
+  if (model.includes('creta')) return '1.5L CRDi Diesel';
+  if (model.includes('nexon')) return '1.2L Revotron Petrol';
+  if (model.includes('fortuner')) return '2.8L GD Diesel';
+  if (model.includes('city')) return '1.5L i-VTEC Petrol';
+  if (model.includes('320d') || model.includes('3 series')) return '2.0L TwinPower Diesel';
+  if (model.includes('xuv700')) return '2.2L mHawk Diesel';
+  if (model.includes('c200') || model.includes('c-class')) return '1.5L Turbo Petrol';
+  if (model.includes('hector')) return '1.5L Turbo Petrol';
+  return car.fuelType ? `${car.fuelType} engine` : '';
 }
 
 function PremiumCarVisual({ brand, name }: { brand: string; name: string }) {
+  const checklist = ['Exterior', 'Interior', 'Odometer', 'Tyres'];
+
   return (
-    <div className="relative flex h-full w-full items-center justify-center overflow-hidden bg-[radial-gradient(circle_at_50%_20%,rgba(215,181,109,0.16),transparent_30%),linear-gradient(145deg,#161922_0%,#08090C_70%)]">
-      <div className="absolute inset-x-8 bottom-[18%] h-px bg-[#D7B56D]/20" />
-      <div className="absolute bottom-[18%] h-[38%] w-[78%] max-w-sm">
-        <div className="absolute bottom-[26%] left-[12%] h-[38%] w-[76%] rounded-t-[55%] border border-[#D7B56D]/50 bg-[#D7B56D]/10 shadow-[0_24px_70px_-44px_rgba(215,181,109,0.85)]" />
-        <div className="absolute bottom-[28%] left-[29%] h-[30%] w-[42%] skew-x-[-18deg] rounded-t-xl border border-white/10 bg-white/[0.08]" />
-        <div className="absolute bottom-[16%] left-[7%] h-[24%] w-[86%] rounded-[999px] border border-[#D7B56D]/45 bg-[#0D0F14]" />
-        <div className="absolute bottom-[4%] left-[18%] h-[24%] w-[24%] rounded-full border-[6px] border-[#111827] bg-[#D7B56D]/70 ring-1 ring-[#D7B56D]/30" />
-        <div className="absolute bottom-[4%] right-[18%] h-[24%] w-[24%] rounded-full border-[6px] border-[#111827] bg-[#D7B56D]/70 ring-1 ring-[#D7B56D]/30" />
-        <div className="absolute bottom-[31%] right-[9%] h-2 w-8 rounded-full bg-[#F2D98F]/80" />
+    <div className="relative flex h-full w-full flex-col justify-between overflow-hidden bg-[linear-gradient(145deg,#151922_0%,#090A0D_72%)] p-4">
+      <div className="flex items-center justify-between gap-3">
+        <div>
+          <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#D7B56D]/80">
+            Photos required
+          </p>
+          <p className="mt-1 max-w-[14rem] truncate text-sm font-semibold text-white/90">{name}</p>
+        </div>
+        <div className="grid h-10 w-10 place-items-center rounded-full border border-[#D7B56D]/25 bg-[#D7B56D]/10">
+          <ImageOff className="h-5 w-5 text-[#D7B56D]" />
+        </div>
       </div>
-      <div className="absolute left-4 top-4 rounded-full border border-[#D7B56D]/25 bg-black/35 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-[#D7B56D] backdrop-blur">
-        Premium visual
+
+      <div className="grid grid-cols-2 gap-2">
+        {checklist.map((item) => (
+          <div key={item} className="flex items-center gap-1.5 rounded-lg border border-white/[0.06] bg-white/[0.035] px-2 py-1.5 text-[10px] font-medium text-slate-300">
+            <Camera className="h-3 w-3 text-[#D7B56D]" />
+            {item}
+          </div>
+        ))}
       </div>
-      <div className="absolute inset-x-4 bottom-4">
-        <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-[#D7B56D]/80">{brand || 'Saatvik Cars'}</p>
-        <p className="mt-1 truncate text-sm font-semibold text-white/90">{name}</p>
+
+      <div className="rounded-lg border border-amber-400/20 bg-amber-400/[0.06] px-3 py-2 text-[11px] leading-relaxed text-amber-100/80">
+        Real inventory photos are pending. Ask for latest showroom photos before booking.
+      </div>
+
+      <div>
+        <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#D7B56D]/80">{brand || 'Saatvik Cars'}</p>
       </div>
     </div>
   );
@@ -234,6 +274,12 @@ function CarImageCarousel({
 
       {/* Gradient overlay at bottom for legibility */}
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#111827] via-transparent to-transparent" />
+
+      {validImages.some(isRepresentativeImage) && (
+        <div className="absolute left-3 bottom-3 z-20 rounded-full border border-[#D7B56D]/25 bg-black/55 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wide text-[#D7B56D] backdrop-blur-sm">
+          Representative photo
+        </div>
+      )}
 
       {/* Tags */}
       {tagsList.length > 0 && (
@@ -459,7 +505,7 @@ function CarDetailModal({ car, onClose, wishlisted, onToggleWishlist, onBookTest
   const tagsList = car.tags ? car.tags.split(',').filter(Boolean) : [];
   // Indicative EMI — assumes 80% loan amount at 9.5% interest over 60 months.
   // Clicking the badge scrolls to the main EMI calculator section (#emi).
-  const emi = calcEMI(car.price * 0.8, 9.5, 60);
+  const emi = getIndicativeEmi(car.price);
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
   const modalScrollRef = useRef<HTMLDivElement>(null);
 
@@ -734,7 +780,7 @@ function CarDetailModal({ car, onClose, wishlisted, onToggleWishlist, onBookTest
               <table className="w-full text-xs">
                 <tbody>
                   {[
-                    { label: 'Engine', value: car.fuelType || '' },
+                    { label: 'Engine', value: getEngineLabel(car) },
                     { label: 'Fuel Type', value: car.fuelType || '' },
                     { label: 'Transmission', value: car.transmission || '' },
                     { label: 'Year', value: car.year ? String(car.year) : '' },
@@ -1254,6 +1300,112 @@ function CompareModal({ cars, onClose }: { cars: Car[]; onClose: () => void }) {
 }
 
 /* ─── Car Card ─── */
+function FallbackCarDetailPopup({ car }: { car: Car }) {
+  const images = getTrustedImages(parseImages(car.images));
+  const mainImage = images[0] || '';
+  const emi = getIndicativeEmi(car.price);
+  const fallbackId = getFallbackDetailId(car.id);
+
+  return (
+    <div id={fallbackId} className="car-detail-fallback fixed inset-0 z-[120] items-center justify-center p-4" role="dialog" aria-modal="true" aria-label={`${car.name} details`}>
+      <a href="#cars" className="absolute inset-0 bg-black/75 backdrop-blur-md" aria-label="Close details" />
+      <div className="relative z-10 max-h-[90vh] w-full max-w-2xl overflow-y-auto rounded-2xl border border-white/10 bg-[#111827] shadow-2xl shadow-black/40">
+        <a
+          href="#cars"
+          aria-label="Close details"
+          className="absolute right-3 top-3 z-30 flex h-9 w-9 items-center justify-center rounded-full bg-black/55 text-white/75 transition-all hover:bg-black/75 hover:text-white"
+        >
+          <X className="h-4 w-4" />
+        </a>
+
+        <div className="relative aspect-[16/10] overflow-hidden bg-black">
+          <CarImage
+            src={mainImage}
+            alt={car.name}
+            brand={car.brand}
+            loading="eager"
+            className="h-full w-full object-cover"
+          />
+          {isRepresentativeImage(mainImage) && (
+            <div className="absolute left-3 bottom-3 rounded-full border border-[#D7B56D]/25 bg-black/60 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wide text-[#D7B56D]">
+              Representative photo
+            </div>
+          )}
+        </div>
+
+        <div className="space-y-4 p-5">
+          <div className="flex flex-wrap items-start justify-between gap-3">
+            <div>
+              <p className="text-xs text-slate-500">{car.brand}</p>
+              <h2 className="text-xl font-bold leading-tight text-white">{car.name}</h2>
+            </div>
+            <p className="text-2xl font-bold text-white">{formatPrice(car.price)}</p>
+          </div>
+
+          <div className="rounded-xl border border-[#D7B56D]/20 bg-[#D7B56D]/[0.06] px-4 py-3">
+            <p className="text-sm font-semibold text-[#D7B56D]">EMI from {formatEMI(emi)}/mo</p>
+            <p className="mt-0.5 text-[11px] text-[#D7B56D]/60">Indicative • 80% loan • 9.5% interest • 60 months</p>
+          </div>
+
+          <div className="grid grid-cols-2 gap-2">
+            {[
+              { label: 'Year', value: car.year },
+              { label: 'Fuel Type', value: car.fuelType },
+              { label: 'KM Driven', value: formatKM(car.kmDriven) },
+              { label: 'Transmission', value: car.transmission },
+            ].map((item) => (
+              <div key={item.label} className="rounded-lg border border-white/[0.06] bg-white/[0.02] p-3">
+                <p className="mb-1 text-[10px] text-slate-500">{item.label}</p>
+                <p className="text-sm font-medium text-white">{item.value}</p>
+              </div>
+            ))}
+          </div>
+
+          <div className="rounded-xl border border-white/[0.06] bg-white/[0.02] p-4">
+            <p className="mb-3 text-[11px] font-semibold uppercase tracking-widest text-[#D7B56D]/80">Vehicle Details</p>
+            <div className="grid grid-cols-1 gap-2 text-xs sm:grid-cols-2">
+              {[
+                ['Engine', getEngineLabel(car)],
+                ['Reg No', car.carNumber],
+                ['Colour', car.color],
+                ['RTO', car.rto],
+                ['Insurance', car.insurance],
+                ['Finance', car.finance],
+                ['Owner', car.ownerType],
+                ['Location', car.location],
+              ].filter(([, value]) => value && String(value).trim().length > 0).map(([label, value]) => (
+                <div key={label} className="flex gap-2">
+                  <span className="text-slate-500">{label}:</span>
+                  <span className="font-medium text-white">{value}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <p className="text-sm leading-relaxed text-slate-400">{car.description}</p>
+
+          <div className="flex gap-3">
+            <a
+              href={getCallLink(car.contactPhone || BUSINESS.primaryPhone)}
+              className="inline-flex h-11 flex-1 items-center justify-center rounded-lg bg-[#D7B56D] text-sm font-semibold text-[#0A0A0A] hover:bg-[#E7C77B]"
+            >
+              <Phone className="mr-2 h-4 w-4" /> Call Seller
+            </a>
+            <a
+              href={getWhatsAppLink(car.contactPhone || BUSINESS.primaryPhone, car.name)}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex h-11 flex-1 items-center justify-center rounded-lg bg-green-600 text-sm font-semibold text-white hover:bg-green-700"
+            >
+              <MessageCircle className="mr-2 h-4 w-4" /> WhatsApp
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function CarCard({
   car,
   index,
@@ -1274,22 +1426,30 @@ function CarCard({
   const images = getTrustedImages(parseImages(car.images));
   const mainImage = images[0] || '';
   const tagsList = car.tags ? car.tags.split(',').filter(Boolean) : [];
-  const emi = calcEMI(car.price);
+  const emi = getIndicativeEmi(car.price);
   const quickWhatsappLink = getWhatsAppLink(car.contactPhone || BUSINESS.primaryPhone, car.name);
+  const fallbackDetailId = getFallbackDetailId(car.id);
+  const openDetails = useCallback((event?: { stopPropagation: () => void; preventDefault?: () => void }) => {
+    event?.stopPropagation();
+    event?.preventDefault?.();
+    onDetails(car);
+  }, [car, onDetails]);
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-50px' }}
-      transition={{ duration: 0.4, delay: index * 0.05 }}
-      className={`premium-car-card group relative overflow-hidden rounded-xl border transition-all duration-300 ${
-        isCompared
-          ? 'border-[#D7B56D]/45 shadow-md shadow-[#D7B56D]/10'
-          : 'border-white/[0.07] bg-[#111827]'
-      }`}
-      suppressHydrationWarning
-    >
+    <>
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: '-50px' }}
+        transition={{ duration: 0.4, delay: index * 0.05 }}
+        className={`premium-car-card group relative overflow-hidden rounded-xl border transition-all duration-300 ${
+          isCompared
+            ? 'border-[#D7B56D]/45 shadow-md shadow-[#D7B56D]/10'
+            : 'border-white/[0.07] bg-[#111827]'
+        }`}
+        suppressHydrationWarning
+        onClick={() => onDetails(car)}
+      >
       {isCompared && (
         <div className="absolute left-2.5 top-2.5 z-20 flex h-6 w-6 items-center justify-center rounded-full bg-[#D7B56D] text-xs text-white font-bold shadow-lg shadow-[#D7B56D]/30">
           <Check className="h-3.5 w-3.5" />
@@ -1297,7 +1457,7 @@ function CarCard({
       )}
 
       {/* Image Area */}
-      <div className="relative aspect-[16/10] overflow-hidden bg-gradient-to-b from-[#1a1a2e] to-[#0d0d0d]">
+      <div className="relative aspect-[16/10] cursor-pointer overflow-hidden bg-gradient-to-b from-[#1a1a2e] to-[#0d0d0d]">
         <CarImage
           src={mainImage}
           alt={car.name}
@@ -1305,6 +1465,11 @@ function CarCard({
           loading={index < 3 ? 'eager' : 'lazy'}
           className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
         />
+        {isRepresentativeImage(mainImage) && (
+          <div className="absolute right-2.5 bottom-2.5 z-10 rounded-full border border-[#D7B56D]/25 bg-black/55 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wide text-[#D7B56D] backdrop-blur-sm">
+            Representative photo
+          </div>
+        )}
         <div className="absolute left-2.5 bottom-2.5 z-10 inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-black/50 px-2.5 py-1 text-[10px] font-semibold text-white/85 backdrop-blur-sm">
           <ShieldCheck className="h-3 w-3 text-[#D7B56D]" />
           Verified
@@ -1321,6 +1486,7 @@ function CarCard({
         )}
         {/* Heart/Wishlist button */}
         <button
+          type="button"
           suppressHydrationWarning
           aria-label={wishlisted ? `Remove ${car.name} from wishlist` : `Add ${car.name} to wishlist`}
           aria-pressed={wishlisted}
@@ -1376,14 +1542,21 @@ function CarCard({
 
         {/* Action Buttons */}
         <div className="grid grid-cols-[1fr_auto_auto] gap-2">
-          <Button
-            className="h-9 rounded-lg bg-[#D7B56D] text-[#0A0A0A] hover:bg-[#E7C77B] text-xs font-semibold transition-all duration-200"
-            suppressHydrationWarning
-            onClick={(e) => { e.stopPropagation(); onDetails(car); }}
+          <a
+            href={`#${fallbackDetailId}`}
+            className="inline-flex h-9 items-center justify-center rounded-lg bg-[#D7B56D] px-3 text-xs font-semibold text-[#0A0A0A] transition-all duration-200 hover:bg-[#E7C77B] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D7B56D]/60"
+            aria-label={`Open details for ${car.name}`}
+            data-open-car-details={car.id}
+            onPointerDown={openDetails}
+            onMouseDown={openDetails}
+            onTouchStart={openDetails}
+            onClickCapture={openDetails}
+            onClick={openDetails}
           >
             Details <ArrowRight className="ml-1 h-3 w-3" />
-          </Button>
+          </a>
           <Button
+            type="button"
             variant="outline"
             className="h-9 w-9 rounded-lg border-green-500/25 bg-green-500/[0.08] p-0 text-green-400 hover:bg-green-500/15 hover:text-green-300"
             suppressHydrationWarning
@@ -1394,6 +1567,7 @@ function CarCard({
             <MessageCircle className="h-4 w-4" />
           </Button>
           <Button
+            type="button"
             variant="outline"
             className={`h-9 w-9 rounded-lg p-0 border-white/10 transition-all text-xs font-medium ${
               isCompared
@@ -1409,7 +1583,9 @@ function CarCard({
           </Button>
         </div>
       </div>
-    </motion.div>
+      </motion.div>
+      <FallbackCarDetailPopup car={car} />
+    </>
   );
 }
 
@@ -1520,6 +1696,36 @@ export default function FeaturedCars() {
 
   const displayedCars = showAll ? sortedFilteredCars : sortedFilteredCars.slice(0, 9);
   const hasMoreCars = sortedFilteredCars.length > 9;
+
+  useEffect(() => {
+    const openFromDetailsTrigger = (event: Event) => {
+      const target = event.target as Element | null;
+      const trigger = target?.closest?.('[data-open-car-details]');
+      if (!trigger) return;
+
+      const carId = trigger.getAttribute('data-open-car-details');
+      const car = cars.find((item) => item.id === carId);
+      if (!car) return;
+
+      event.preventDefault();
+      event.stopPropagation();
+      setSelectedCar(car);
+    };
+
+    document.addEventListener('pointerdown', openFromDetailsTrigger, true);
+    document.addEventListener('mousedown', openFromDetailsTrigger, true);
+    document.addEventListener('touchstart', openFromDetailsTrigger, true);
+    document.addEventListener('pointerup', openFromDetailsTrigger, true);
+    document.addEventListener('click', openFromDetailsTrigger, true);
+
+    return () => {
+      document.removeEventListener('pointerdown', openFromDetailsTrigger, true);
+      document.removeEventListener('mousedown', openFromDetailsTrigger, true);
+      document.removeEventListener('touchstart', openFromDetailsTrigger, true);
+      document.removeEventListener('pointerup', openFromDetailsTrigger, true);
+      document.removeEventListener('click', openFromDetailsTrigger, true);
+    };
+  }, [cars]);
 
   const hasActiveFilters = Object.keys(activeFilters).length > 0;
   const inventoryInsights = useMemo(() => {

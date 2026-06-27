@@ -173,7 +173,7 @@ function SectionHeader({ eyebrow, title, subtitle }: { eyebrow: string; title: s
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5 }}
-      className="mb-10 text-center"
+      className="mb-7 text-center"
       suppressHydrationWarning
     >
       <span
@@ -1250,7 +1250,7 @@ export default function ServicesSection() {
   const [active, setActive] = useState('insurance');
 
   return (
-    <section id="services" className="py-12 sm:py-16 bg-[#0A0A0A]" suppressHydrationWarning>
+    <section id="services" className="py-10 sm:py-12 bg-[#0A0A0A]" suppressHydrationWarning>
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <SectionHeader
           eyebrow="Our Services"
@@ -1309,7 +1309,7 @@ export default function ServicesSection() {
 
         {/* Footer CTA — call us */}
         <div
-          className="mt-10 flex flex-col items-center justify-between gap-4 rounded-2xl border border-white/[0.06] bg-white/[0.02] p-5 sm:flex-row sm:p-6"
+          className="mt-7 flex flex-col items-center justify-between gap-4 rounded-2xl border border-white/[0.06] bg-white/[0.02] p-5 sm:flex-row sm:p-6"
           suppressHydrationWarning
         >
           <div className="flex items-center gap-3" suppressHydrationWarning>

@@ -279,6 +279,15 @@ export default function SellCarModal() {
       setSubmitting(true);
 
       try {
+        if (uploadedImages.length === 0) {
+          toast.error('Upload real car photos before publishing.', {
+            description: 'Add exterior, interior, odometer, tyre, and condition photos so buyers can trust the listing.',
+            duration: 5000,
+          });
+          setSubmitting(false);
+          return;
+        }
+
         // ── Step 1: Upload selected images (if any) to the server ──
         let imagePaths: string[] = [];
         if (uploadedImages.length > 0) {

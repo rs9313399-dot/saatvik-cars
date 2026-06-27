@@ -179,8 +179,11 @@ export default function AdminPanel() {
         await updateCar(editForm.id, updateData);
         toast.success('Car updated successfully');
       } else {
-        await createCar({ ...updateData, images: [] });
-        toast.success('Car added successfully');
+        await createCar({ ...updateData, images: [], active: false });
+        toast.success('Car saved as draft', {
+          description: 'Upload real photos from the full listing form before publishing it.',
+          duration: 4000,
+        });
       }
       bumpCarListVersion();
       setViewMode('list');

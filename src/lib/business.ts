@@ -10,7 +10,7 @@ export const BUSINESS = {
   legalName: 'Saatvik Cars — A unit of Tarang Marketing',
   gstin: '22AAWPL4412H1ZQ',
   email: 'saatvikcars@tarangmarketing.in',
-  address: 'Chhattisgarh, India',
+  address: 'Plot 14, Industrial Area, Bilaspur, Chhattisgarh 495001, India',
   hours: 'Mon–Sat 9AM–8PM IST',
   // Canonical phone order (display order)
   phones: [

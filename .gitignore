@@ -50,6 +50,7 @@ test
 prompt
 
 server.log
+prisma/dev.db
 # Skills directory
 /skills/
 .vercel

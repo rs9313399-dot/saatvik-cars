@@ -86,6 +86,17 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  useEffect(() => {
+    const handleAdminShortcut = (e: KeyboardEvent) => {
+      if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === 'a') {
+        e.preventDefault();
+        setLoginModalOpen(true);
+      }
+    };
+    window.addEventListener('keydown', handleAdminShortcut);
+    return () => window.removeEventListener('keydown', handleAdminShortcut);
+  }, [setLoginModalOpen]);
+
   /* Close dropdown on outside click */
   useEffect(() => {
     if (!adminDropdownOpen) return;
@@ -369,17 +380,7 @@ export default function Navbar() {
                   </AnimatePresence>
                 </div>
               </div>
-            ) : (
-              /* ── Not logged in ── */
-              <Button
-                suppressHydrationWarning
-                className="hidden sm:inline-flex h-8 rounded-lg border border-[#D7B56D]/20 bg-[#D7B56D]/5 px-3.5 text-xs font-semibold text-[#D7B56D] transition-all duration-200 hover:bg-[#D7B56D]/10 hover:border-[#D7B56D]/30"
-                onClick={() => setLoginModalOpen(true)}
-              >
-                <Shield className="mr-1.5 h-3.5 w-3.5" />
-                Admin Login
-              </Button>
-            )}
+            ) : null}
 
             {/* Mobile Menu Trigger */}
             <div className="flex items-center">
@@ -387,12 +388,6 @@ export default function Navbar() {
                 type="button"
                 suppressHydrationWarning
                 onClick={() => setMobileMenuOpen(true)}
-                style={{
-                  position: 'fixed',
-                  left: '10rem',
-                  top: '0.75rem',
-                  zIndex: 9999,
-                }}
                 className="mobile-menu-trigger h-8 w-14 shrink-0 items-center justify-center rounded-lg border border-[#D7B56D]/40 bg-[#D7B56D] text-[11px] font-bold text-[#0A0A0A] shadow-lg shadow-black/20 transition-colors hover:bg-[#E7C77B]"
                 aria-label="Open navigation menu"
               >
@@ -490,25 +485,15 @@ export default function Navbar() {
                         </button>
                       </>
                     ) : (
-                      <>
-                        <a
-                          href="#"
-                          onClick={(e) => { e.preventDefault(); setMobileMenuOpen(false); setSellValuationOpen(true); }}
-                          suppressHydrationWarning
-                          className="flex items-center rounded-lg px-3.5 py-2.5 text-sm font-medium text-emerald-400 hover:text-emerald-300 hover:bg-emerald-500/5 transition-colors"
-                        >
-                          <Car className="mr-2.5 h-4 w-4" />
-                          Sell / Trade Your Car
-                        </a>
-                        <button
-                          suppressHydrationWarning
-                          className="mt-4 flex h-10 w-full items-center justify-center rounded-lg bg-[#D7B56D]/5 border border-[#D7B56D]/20 text-sm font-semibold text-[#D7B56D] transition-all duration-200 hover:bg-[#D7B56D]/10"
-                          onClick={() => { setMobileMenuOpen(false); setLoginModalOpen(true); }}
-                        >
-                          <Shield className="mr-2 h-4 w-4" />
-                          Admin Login
-                        </button>
-                      </>
+                      <a
+                        href="#"
+                        onClick={(e) => { e.preventDefault(); setMobileMenuOpen(false); setSellValuationOpen(true); }}
+                        suppressHydrationWarning
+                        className="flex items-center rounded-lg px-3.5 py-2.5 text-sm font-medium text-emerald-400 hover:text-emerald-300 hover:bg-emerald-500/5 transition-colors"
+                      >
+                        <Car className="mr-2.5 h-4 w-4" />
+                        Sell / Trade Your Car
+                      </a>
                     )}
                   </nav>
 

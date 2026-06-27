@@ -145,7 +145,7 @@ function SectionHeading({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5 }}
-      className="mb-8 text-center"
+      className="mb-6 text-center"
       suppressHydrationWarning
     >
       <span
@@ -317,7 +317,7 @@ export default function FinanceSection() {
   };
 
   return (
-    <section id="finance" className="bg-[#0A0A0A] py-16 sm:py-20" suppressHydrationWarning>
+    <section id="finance" className="bg-[#0A0A0A] py-12 sm:py-14" suppressHydrationWarning>
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* --- Section heading --- */}
         <SectionHeading
@@ -729,7 +729,7 @@ export default function FinanceSection() {
         </motion.div>
 
         {/* --- 3. Partner banks grid --- */}
-        <div className="mt-14" suppressHydrationWarning>
+        <div className="mt-10" suppressHydrationWarning>
           <SectionHeading
             eyebrow="Partner Banks"
             title="Trusted by India's Leading Lenders"
@@ -801,7 +801,7 @@ export default function FinanceSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="mt-14 overflow-hidden rounded-2xl border border-white/[0.06] bg-[#111827]/50"
+          className="mt-10 overflow-hidden rounded-2xl border border-white/[0.06] bg-[#111827]/50"
           suppressHydrationWarning
         >
           <div className="flex items-center gap-2 border-b border-white/[0.06] p-5" suppressHydrationWarning>
@@ -848,7 +848,7 @@ export default function FinanceSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="mt-14 scroll-mt-24"
+          className="mt-10 scroll-mt-24"
           suppressHydrationWarning
         >
           <SectionHeading
@@ -1041,7 +1041,7 @@ export default function FinanceSection() {
         </motion.div>
 
         {/* --- 6. Documents required --- */}
-        <div className="mt-14" suppressHydrationWarning>
+        <div className="mt-10" suppressHydrationWarning>
           <SectionHeading
             eyebrow="Documents"
             title="Documents Required for Car Finance"
@@ -1083,7 +1083,7 @@ export default function FinanceSection() {
         </div>
 
         {/* --- 7. Finance FAQ --- */}
-        <div className="mt-14" suppressHydrationWarning>
+        <div className="mt-10" suppressHydrationWarning>
           <SectionHeading
             eyebrow="FAQ"
             title="Finance Frequently Asked Questions"

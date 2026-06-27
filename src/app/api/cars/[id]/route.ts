@@ -2,6 +2,22 @@ import { NextRequest, NextResponse } from 'next/server';
 import { db } from '@/lib/db';
 import { checkAuth } from '@/lib/auth';
 
+function parseStoredImages(images: string | null | undefined): string[] {
+  if (!images) return [];
+  try {
+    const parsed = JSON.parse(images);
+    return Array.isArray(parsed) ? parsed.filter((src) => typeof src === 'string' && src.trim().length > 0) : [];
+  } catch {
+    return [];
+  }
+}
+
+function normalizeImageInput(images: unknown): string[] {
+  return Array.isArray(images)
+    ? images.filter((src) => typeof src === 'string' && src.trim().length > 0)
+    : [];
+}
+
 // GET /api/cars/[id] - Get single car by ID or slug, increment views
 export async function GET(
   request: NextRequest,
@@ -90,6 +106,18 @@ export async function PUT(
           updateData[field] = body[field];
         }
       }
+    }
+
+    const nextImages = body.images !== undefined
+      ? normalizeImageInput(body.images)
+      : parseStoredImages(existingCar.images);
+    const nextActive = body.active !== undefined ? Boolean(body.active) : existingCar.active;
+
+    if (nextActive && nextImages.length === 0) {
+      return NextResponse.json(
+        { error: 'Please upload real car photos before publishing this listing.' },
+        { status: 400 }
+      );
     }
 
     // Regenerate slug if name changed
@@ -184,6 +212,13 @@ export async function PATCH(
     const existingCar = await db.car.findUnique({ where: { id } });
     if (!existingCar) {
       return NextResponse.json({ error: 'Car not found' }, { status: 404 });
+    }
+
+    if (Boolean(body.active) && parseStoredImages(existingCar.images).length === 0) {
+      return NextResponse.json(
+        { error: 'Please upload real car photos before publishing this listing.' },
+        { status: 400 }
+      );
     }
 
     const car = await db.car.update({

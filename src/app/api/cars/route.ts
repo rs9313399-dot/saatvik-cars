@@ -2,6 +2,10 @@ import { NextRequest, NextResponse } from 'next/server';
 import { db } from '@/lib/db';
 import { checkAuth } from '@/lib/auth';
 
+function hasUploadedImages(images: unknown): boolean {
+  return Array.isArray(images) && images.some((src) => typeof src === 'string' && src.trim().length > 0);
+}
+
 // GET /api/cars - List cars with filtering and sorting
 export async function GET(request: NextRequest) {
   try {
@@ -157,6 +161,13 @@ export async function POST(request: NextRequest) {
     if (!name || !brand || !model || !year || !price || !fuelType || !transmission || !kmDriven || !ownerType || !location || !description || !contactPhone) {
       return NextResponse.json(
         { error: 'Missing required fields' },
+        { status: 400 }
+      );
+    }
+
+    if (active !== false && !hasUploadedImages(images)) {
+      return NextResponse.json(
+        { error: 'Please upload real car photos before publishing this listing.' },
         { status: 400 }
       );
     }
