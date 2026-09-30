@@ -88,9 +88,9 @@ export default function TrustSection() {
                   suppressHydrationWarning
                 />
 
-                {/* Icon circle at top-right — unified champagne */}
+                {/* Icon box at top-right */}
                 <div
-                  className="absolute top-4 right-4 flex h-9 w-9 items-center justify-center rounded-full bg-[#D7B56D]/10"
+                  className="absolute top-4 right-4 flex h-9 w-9 items-center justify-center rounded-xl bg-[#D7B56D]/10"
                   suppressHydrationWarning
                 >
                   <Icon className="h-4 w-4 text-[#D7B56D]" suppressHydrationWarning />

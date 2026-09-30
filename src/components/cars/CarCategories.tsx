@@ -57,9 +57,9 @@ function CategoryCard({
       onClick={() => onExplore(category)}
       aria-label={`Browse ${category.name} cars`}
     >
-      {/* Icon — unified champagne accent for all categories */}
+      {/* Icon: unified champagne accent for all categories */}
       <div
-        className="mb-3 flex h-9 w-9 items-center justify-center rounded-full bg-[#D7B56D]/15 text-[#D7B56D] transition-transform duration-300 group-hover:scale-110 sm:h-10 sm:w-10"
+        className="mb-3 flex h-9 w-9 items-center justify-center rounded-xl bg-[#D7B56D]/15 text-[#D7B56D] transition-transform duration-300 group-hover:scale-110 sm:h-10 sm:w-10"
         suppressHydrationWarning
       >
         <Icon className="h-5 w-5" strokeWidth={1.5} />

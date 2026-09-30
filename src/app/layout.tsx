@@ -24,16 +24,24 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  title: { default: "Saatvik Cars — Certified Pre-Owned Cars by Tarang Marketing", template: "%s | Saatvik Cars" },
-  description: `Saatvik Cars (A unit of Tarang Marketing) — certified pre-owned cars with transparent pricing. Browse BMW, Mercedes, Honda, Toyota, Maruti & more. GSTIN: ${BUSINESS.gstin}.`,
-  keywords: ["Saatvik Cars", "Tarang Marketing", "used cars", "pre-owned cars", "car dealer", "second hand cars", "certified pre-owned", "buy used cars", "car marketplace"],
+  title: { default: "Saatvik Cars: Certified Pre-Owned Cars by Tarang Marketing", template: "%s | Saatvik Cars" },
+  description: `Saatvik Cars (A unit of Tarang Marketing) - certified pre-owned cars with transparent pricing in Bilaspur, Chhattisgarh. Browse inspected BMW, Mercedes, Honda, Toyota, Maruti and more. GSTIN: ${BUSINESS.gstin}.`,
+  keywords: ["Saatvik Cars", "Tarang Marketing", "used cars", "pre-owned cars", "car dealer", "second hand cars", "certified pre-owned", "buy used cars", "car marketplace", "Bilaspur cars"],
   authors: [{ name: "Saatvik Cars" }],
   creator: "Saatvik Cars",
   publisher: "Saatvik Cars",
-  icons: { icon: "/icon.svg" },
+  icons: {
+    icon: [
+      { url: '/favicon.svg', type: 'image/svg+xml' },
+      { url: '/icon.svg', type: 'image/svg+xml' },
+      { url: '/favicon.ico', sizes: 'any' },
+    ],
+    shortcut: '/favicon.ico',
+    apple: '/icon.svg',
+  },
   openGraph: {
-    title: "Saatvik Cars — Certified Pre-Owned Cars by Tarang Marketing",
-    description: "Saatvik Cars (A unit of Tarang Marketing) — certified pre-owned cars with transparent pricing.",
+    title: "Saatvik Cars: Certified Pre-Owned Cars by Tarang Marketing",
+    description: "Saatvik Cars (A unit of Tarang Marketing) - certified pre-owned cars with transparent pricing.",
     url: "https://saatvikcars.in",
     siteName: "Saatvik Cars",
     locale: "en_IN",
@@ -41,8 +49,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Saatvik Cars — Certified Pre-Owned Cars by Tarang Marketing",
-    description: "Saatvik Cars (A unit of Tarang Marketing) — certified pre-owned cars with transparent pricing.",
+    title: "Saatvik Cars: Certified Pre-Owned Cars by Tarang Marketing",
+    description: "Saatvik Cars (A unit of Tarang Marketing) - certified pre-owned cars with transparent pricing.",
   },
   robots: {
     index: true,
@@ -58,8 +66,9 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     <html lang="en" className="dark" suppressHydrationWarning>
       <head suppressHydrationWarning>
         <meta name="darkreader-lock" />
-        <link rel="icon" href="/icon.svg" type="image/svg+xml" />
-        {/* JSON-LD Structured Data — AutoDealer + Organization */}
+        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+        <link rel="alternate icon" href="/favicon.ico" />
+        {/* JSON-LD Structured Data: AutoDealer + Organization */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{

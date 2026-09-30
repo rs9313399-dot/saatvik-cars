@@ -34,22 +34,13 @@ export default function BrandMarquee() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, ease: 'easeOut' }}
-          className="inline-flex items-center gap-2 rounded-full border border-[#D7B56D]/20 bg-[#D7B56D]/5 px-4 py-1.5 text-xs uppercase tracking-widest font-semibold text-[#D7B56D]"
+          className="inline-flex items-center gap-2 rounded-md border border-[#D7B56D]/20 bg-[#D7B56D]/5 px-4 py-1.5 text-xs uppercase tracking-widest font-semibold text-[#D7B56D]"
           suppressHydrationWarning
         >
           <span
-            className="relative flex h-2 w-2"
+            className="inline-flex h-2 w-2 rounded-sm bg-[#D7B56D]"
             suppressHydrationWarning
-          >
-            <span
-              className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#D7B56D] opacity-75"
-              suppressHydrationWarning
-            />
-            <span
-              className="relative inline-flex h-2 w-2 rounded-full bg-[#D7B56D]"
-              suppressHydrationWarning
-            />
-          </span>
+          />
           Brands Available in Our Inventory
         </motion.div>
       </div>

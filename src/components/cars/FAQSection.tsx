@@ -16,7 +16,7 @@ const faqs: FAQ[] = [
   },
   {
     q: 'What documents do I get with the car?',
-    a: 'You receive: original RC (Registration Certificate), insurance papers, service history, PUC certificate, and sale agreement. We also handle the RC transfer to your name — no need to visit the RTO yourself.',
+    a: 'You receive: original RC (Registration Certificate), insurance papers, service history, PUC certificate, and sale agreement. We also handle the RC transfer to your name, so you do not need to visit the RTO yourself.',
   },
   {
     q: 'How does the 7-day return policy work?',
@@ -28,11 +28,11 @@ const faqs: FAQ[] = [
   },
   {
     q: 'Can I exchange my old car?',
-    a: 'Absolutely. We accept exchange of your existing car. Bring your car for a free valuation — our team will inspect it and offer a fair price that can be adjusted against your new purchase. The exchange value depends on the car\'s condition, age, and market demand.',
+    a: 'Absolutely. We accept exchange of your existing car. Bring your car for a free valuation and our team will inspect it and offer a fair price that can be adjusted against your new purchase. The exchange value depends on the car\'s condition, age, and market demand.',
   },
   {
     q: 'What is RC transfer and how long does it take?',
-    a: 'RC (Registration Certificate) transfer is the process of changing the vehicle\'s ownership from the previous owner to you. We handle all the paperwork and RTO procedures. Typically, RC transfer takes 15-30 working days depending on the RTO. You don\'t need to visit the RTO — we do it for you.',
+    a: 'RC (Registration Certificate) transfer is the process of changing the vehicle\'s ownership from the previous owner to you. We handle all the paperwork and RTO procedures. Typically, RC transfer takes 15-30 working days depending on the RTO. You do not need to visit the RTO; we handle it for you.',
   },
   {
     q: 'Are the prices negotiable?',
@@ -124,7 +124,7 @@ export default function FAQSection() {
           className="mb-8 text-center"
           suppressHydrationWarning
         >
-          <span className="inline-flex items-center gap-2 rounded-full border border-[#D7B56D]/20 bg-[#D7B56D]/5 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-[#D7B56D]" suppressHydrationWarning>
+          <span className="inline-flex items-center gap-2 rounded-md border border-[#D7B56D]/20 bg-[#D7B56D]/5 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-[#D7B56D]" suppressHydrationWarning>
             <HelpCircle className="h-3.5 w-3.5" />
             FAQ
           </span>

@@ -38,9 +38,9 @@ export default function Home() {
       <Navbar />
       <main id="main-content" className="flex-1">
         <Hero />
+        <FeaturedCars />
         <BrandMarquee />
         <CarCategories />
-        <FeaturedCars />
         <FinanceSection />
         <HowItWorks />
         <ServicesSection />

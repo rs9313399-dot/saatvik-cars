@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Link from 'next/link';
 import {
   Car,
   ArrowRight,
@@ -122,7 +123,6 @@ export default function Footer() {
 
   const handleBottomLink = (label: string) => {
     if (label === 'Privacy Policy') {
-      setPolicyType('privacy');
       return;
     }
     if (label === 'Terms of Service') {
@@ -334,13 +334,13 @@ export default function Footer() {
             &copy; {new Date().getFullYear()} {BUSINESS.dealerName} (A unit of {BUSINESS.parentCompany}). All rights reserved. GSTIN: {BUSINESS.gstin}
           </p>
           <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-1">
-            <button
-              onClick={() => handleBottomLink('Privacy Policy')}
+            <Link
+              href="/privacy-policy"
               suppressHydrationWarning
-              className="text-[11px] text-slate-400 transition-colors hover:text-slate-400"
+              className="text-[11px] text-slate-400 transition-colors hover:text-slate-300"
             >
               Privacy Policy
-            </button>
+            </Link>
             <span className="text-white/[0.06]">|</span>
             <button
               onClick={() => handleBottomLink('Terms of Service')}

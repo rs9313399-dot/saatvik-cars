@@ -5,11 +5,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const base = 'https://saatvikcars.in';
   const lastModified = new Date();
 
-  // Single-page app — declare the homepage + main section anchors so
-  // search engines know the key navigation targets exist on the page.
-  // Priority: homepage 1.0, sections 0.8.
+  // Single-page app: declare homepage, privacy policy, and key navigation targets.
+  // Priority: homepage 1.0, privacy 0.6, sections 0.8.
   const sections: Array<{ hash: string; priority: number; changeFrequency: MetadataRoute.Sitemap[number]['changeFrequency'] }> = [
     { hash: '', priority: 1.0, changeFrequency: 'weekly' },
+    { hash: 'privacy', priority: 0.6, changeFrequency: 'monthly' },
     { hash: '#cars', priority: 0.8, changeFrequency: 'daily' },
     { hash: '#finance', priority: 0.8, changeFrequency: 'monthly' },
     { hash: '#services', priority: 0.8, changeFrequency: 'monthly' },

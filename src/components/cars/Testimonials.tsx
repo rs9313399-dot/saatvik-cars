@@ -14,12 +14,12 @@ const promises: Promise[] = [
   {
     icon: ShieldCheck,
     title: '150-Point Inspection',
-    desc: 'Every car undergoes a rigorous 150-point check by certified mechanics — engine, transmission, brakes, electricals, and more. You get a full health report before you buy.',
+    desc: 'Every car undergoes a rigorous 150-point check by certified mechanics: engine, transmission, brakes, electricals, and more. You get a full health report before you buy.',
   },
   {
     icon: FileCheck,
     title: 'Verified Papers & RC Transfer',
-    desc: 'We verify RC, insurance, service history, and loan clearance. Our team handles the entire RC transfer process — zero paperwork worries for you.',
+    desc: 'We verify RC, insurance, service history, and loan clearance. Our team handles the entire RC transfer process with zero paperwork worries for you.',
   },
   {
     icon: RefreshCw,
@@ -34,7 +34,7 @@ const promises: Promise[] = [
   {
     icon: Wrench,
     title: 'Service & Support',
-    desc: 'Free first service on select cars. Our relationship doesn\'t end at the sale — we\'re here for maintenance, repairs, and advice.',
+    desc: 'Free first service on select cars. Our relationship does not end at the sale - we are here for maintenance, repairs, and advice.',
   },
   {
     icon: BadgeIndianRupee,
@@ -56,7 +56,7 @@ export default function Testimonials() {
           className="mb-10 text-center"
           suppressHydrationWarning
         >
-          <span className="inline-flex items-center gap-2 rounded-full border border-[#D7B56D]/20 bg-[#D7B56D]/5 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-[#D7B56D]" suppressHydrationWarning>
+          <span className="inline-flex items-center gap-2 rounded-md border border-[#D7B56D]/20 bg-[#D7B56D]/5 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-[#D7B56D]" suppressHydrationWarning>
             <Star className="h-3.5 w-3.5" />
             Our Promise
           </span>
@@ -67,10 +67,10 @@ export default function Testimonials() {
             Why Customers Choose Saatvik Cars
           </h2>
           <p
-            className="mt-2 text-slate-500 text-sm sm:text-base"
+            className="mt-2 text-slate-400 text-sm sm:text-base"
             suppressHydrationWarning
           >
-            Real guarantees, not just promises — backed by Tarang Marketing
+            Real guarantees, not just promises - backed by Tarang Marketing
           </p>
         </motion.div>
 
@@ -93,7 +93,7 @@ export default function Testimonials() {
               >
                 {/* Icon */}
                 <div
-                  className="mb-3 flex h-11 w-11 items-center justify-center rounded-xl border border-[#D7B56D]/20 bg-[#D7B56D]/10 transition-transform duration-300 group-hover:scale-110"
+                  className="mb-3 flex h-11 w-11 items-center justify-center rounded-xl border border-[#D7B56D]/20 bg-[#D7B56D]/10"
                   suppressHydrationWarning
                 >
                   <Icon className="h-5 w-5 text-[#D7B56D]" strokeWidth={1.8} />

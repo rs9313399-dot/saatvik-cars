@@ -3,12 +3,14 @@
   "version": "0.2.0",
   "private": true,
   "scripts": {
+    "postinstall": "prisma generate",
     "dev": "next dev -p 3000",
     "build": "next build && node scripts/copy-standalone-assets.mjs",
     "start": "node scripts/start-standalone.mjs",
     "lint": "eslint .",
     "db:push": "prisma db push",
     "db:generate": "prisma generate",
+    "db:check": "node --env-file=.env scripts/check-db.ts",
     "db:migrate": "prisma migrate dev",
     "db:reset": "prisma migrate reset"
   },

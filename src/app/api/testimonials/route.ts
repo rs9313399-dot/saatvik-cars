@@ -1,26 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { db } from '@/lib/db';
-import { seedTestimonials } from '@/lib/seed-testimonials';
 
-// Ensure seed testimonials are inserted once per server process (idempotent).
-let seedPromise: Promise<void> | null = null;
-function ensureSeeded(): Promise<void> {
-  if (!seedPromise) {
-    seedPromise = seedTestimonials().catch((err) => {
-      // Allow a retry on the next request if seeding failed.
-      seedPromise = null;
-      throw err;
-    });
-  }
-  return seedPromise;
-}
-
-// GET /api/testimonials — public list of approved testimonials, newest first
+// GET /api/testimonials: public list of genuine approved customer testimonials, newest first
 export async function GET() {
   try {
-    // Best-effort seed; ignore failures so the public endpoint still works.
-    await ensureSeeded().catch(() => {});
-
     const testimonials = await db.testimonial.findMany({
       where: { approved: true },
       orderBy: { createdAt: 'desc' },

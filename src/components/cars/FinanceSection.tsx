@@ -323,7 +323,7 @@ export default function FinanceSection() {
         <SectionHeading
           eyebrow="Finance"
           title="Drive Now, Pay Later"
-          subtitle="Easy car finance with India's leading banks. Compare rates, calculate your EMI, and get instant pre-approval — all in one place."
+          subtitle="Easy car finance with partner banks. Compare rates, calculate your EMI, and check eligibility in one place."
           icon={Landmark}
         />
 
@@ -854,7 +854,7 @@ export default function FinanceSection() {
           <SectionHeading
             eyebrow="Eligibility Check"
             title="Check Your Loan Eligibility Instantly"
-            subtitle="Fill in your details to see your estimated eligible loan amount — no paperwork required."
+            subtitle="Fill in your details to see your estimated eligible loan amount. No paperwork required for this estimate."
             icon={ShieldCheck}
           />
 

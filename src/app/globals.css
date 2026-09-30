@@ -225,15 +225,15 @@ body {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(circle at 78% 34%, rgba(215,181,109,0.12), transparent 26%),
-    linear-gradient(90deg, rgba(6,7,9,0.95) 0%, rgba(6,7,9,0.78) 40%, rgba(6,7,9,0.32) 70%, rgba(6,7,9,0.62) 100%),
-    linear-gradient(180deg, rgba(6,7,9,0.28) 0%, transparent 34%, rgba(6,7,9,0.92) 100%);
+    radial-gradient(circle at 78% 34%, rgba(215,181,109,0.10), transparent 25%),
+    linear-gradient(90deg, rgba(6,7,9,0.88) 0%, rgba(6,7,9,0.62) 42%, rgba(6,7,9,0.18) 72%, rgba(6,7,9,0.34) 100%),
+    linear-gradient(180deg, rgba(6,7,9,0.18) 0%, transparent 36%, rgba(6,7,9,0.72) 100%);
   pointer-events: none;
   z-index: 1;
 }
 
 .hero-editorial img {
-  filter: saturate(0.96) contrast(1.08) brightness(0.9);
+  filter: saturate(1.06) contrast(1.06) brightness(1.08);
 }
 
 .premium-eyebrow {
@@ -452,16 +452,8 @@ body {
   height: 1px;
   background: linear-gradient(90deg,
     transparent 0%,
-    rgba(215, 181, 109, 0.0) 10%,
-    rgba(215, 181, 109, 0.5) 50%,
-    rgba(215, 181, 109, 0.0) 90%,
+    rgba(215, 181, 109, 0.25) 50%,
     transparent 100%);
-  background-size: 200% 100%;
-  animation: navLineSweep 4s ease-in-out infinite;
-}
-@keyframes navLineSweep {
-  0%, 100% { background-position: 0% 0%; }
-  50% { background-position: 100% 0%; }
 }
 
 /* ═══════════════════════════════════════════════════

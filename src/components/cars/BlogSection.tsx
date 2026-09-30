@@ -84,11 +84,11 @@ const CATEGORY_STYLES: Record<Category, CategoryStyle> = {
   },
   Reviews: {
     icon: Star,
-    gradient: 'bg-gradient-to-br from-violet-500/20 to-violet-500/5',
-    badge: 'border-violet-500/30 bg-violet-500/10 text-violet-300',
-    ring: 'border-violet-500/30 bg-violet-500/10',
-    iconText: 'text-violet-300',
-    chip: 'bg-violet-500 text-[#0A0A0A] border-violet-500',
+    gradient: 'bg-gradient-to-br from-[#D7B56D]/20 to-[#D7B56D]/5',
+    badge: 'border-[#D7B56D]/30 bg-[#D7B56D]/10 text-[#D7B56D]',
+    ring: 'border-[#D7B56D]/30 bg-[#D7B56D]/10',
+    iconText: 'text-[#D7B56D]',
+    chip: 'bg-[#D7B56D] text-[#0A0A0A] border-[#D7B56D]',
   },
   Updates: {
     icon: BellRing,
@@ -807,7 +807,7 @@ export default function BlogSection() {
           suppressHydrationWarning
         >
           <span
-            className="inline-flex items-center gap-2 rounded-full border border-[#D7B56D]/20 bg-[#D7B56D]/5 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-[#D7B56D]"
+            className="inline-flex items-center gap-2 rounded-md border border-[#D7B56D]/20 bg-[#D7B56D]/5 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-[#D7B56D]"
             suppressHydrationWarning
           >
             <Newspaper className="h-3.5 w-3.5" />
@@ -823,9 +823,8 @@ export default function BlogSection() {
             className="mx-auto mt-3 max-w-2xl text-sm text-slate-400 sm:text-base"
             suppressHydrationWarning
           >
-            Expert buying guides, maintenance tips, and the latest news from
-            the Saatvik Cars desk — everything you need to make a smart
-            used-car decision.
+            Expert buying guides, maintenance tips, and dealership updates to
+            help you make a clear used-car decision.
           </p>
         </motion.div>
 
@@ -849,8 +848,8 @@ export default function BlogSection() {
                 aria-label={`Filter posts by ${f}`}
                 className={
                   isActive
-                    ? `inline-flex items-center rounded-full border px-4 py-1.5 text-xs font-semibold transition-colors ${activeStyle}`
-                    : 'inline-flex items-center rounded-full border border-white/10 bg-white/[0.03] px-4 py-1.5 text-xs font-medium text-slate-400 transition-colors hover:border-white/20 hover:text-white'
+                    ? `inline-flex items-center rounded-md border px-4 py-1.5 text-xs font-semibold transition-colors ${activeStyle}`
+                    : 'inline-flex items-center rounded-md border border-white/10 bg-white/[0.03] px-4 py-1.5 text-xs font-medium text-slate-400 transition-colors hover:border-white/20 hover:text-white'
                 }
                 suppressHydrationWarning
               >

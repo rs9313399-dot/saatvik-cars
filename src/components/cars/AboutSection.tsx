@@ -41,7 +41,7 @@ export default function AboutSection() {
             transition={{ duration: 0.5 }}
             suppressHydrationWarning
           >
-            <span className="inline-flex items-center gap-2 rounded-full border border-[#D7B56D]/20 bg-[#D7B56D]/5 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-[#D7B56D]" suppressHydrationWarning>
+            <span className="inline-flex items-center gap-2 rounded-md border border-[#D7B56D]/20 bg-[#D7B56D]/5 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-[#D7B56D]" suppressHydrationWarning>
               <Building2 className="h-3.5 w-3.5" />
               About Us
             </span>
@@ -51,14 +51,14 @@ export default function AboutSection() {
             <p className="mt-4 text-sm leading-relaxed text-slate-400" suppressHydrationWarning>
               Saatvik Cars is the pre-owned car dealership arm of Tarang Marketing, a
               GST-registered business based in Bilaspur, Chhattisgarh. We specialise in certified
-              used cars that have passed our rigorous 150-point inspection — so you can
-              buy with confidence, knowing every vehicle meets our quality standards.
+              used cars that have passed our rigorous 150-point inspection, so you can
+              buy with confidence knowing every vehicle meets our quality standards.
             </p>
             <p className="mt-3 text-sm leading-relaxed text-slate-400" suppressHydrationWarning>
               Whether you&apos;re looking for a budget hatchback, a family SUV, or a
               premium sedan, our inventory is hand-picked and honestly priced. We handle
-              RC transfer, finance assistance, and exchange — making your car buying
-              journey smooth from start to finish.
+              RC transfer, finance assistance, and exchange to keep your buying
+              process straightforward from start to finish.
             </p>
 
             {/* Contact info — phone numbers as tel: links, email as mailto: */}

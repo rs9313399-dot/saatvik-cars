@@ -176,7 +176,7 @@ export default function CustomerReviews() {
           suppressHydrationWarning
         >
           <span
-            className="inline-flex items-center gap-2 rounded-full border border-[#D7B56D]/20 bg-[#D7B56D]/5 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-[#D7B56D]"
+            className="inline-flex items-center gap-2 rounded-md border border-[#D7B56D]/20 bg-[#D7B56D]/5 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-[#D7B56D]"
             suppressHydrationWarning
           >
             <Star className="h-3.5 w-3.5" style={{ color: CHAMPAGNE }} />
@@ -366,11 +366,11 @@ export default function CustomerReviews() {
                         {[5, 4, 3, 2, 1].map((r) => (
                           <option key={r} value={r}>
                             {r} star{r > 1 ? 's' : ''}
-                            {r === 5 ? ' — Excellent' : ''}
-                            {r === 4 ? ' — Good' : ''}
-                            {r === 3 ? ' — Average' : ''}
-                            {r === 2 ? ' — Poor' : ''}
-                            {r === 1 ? ' — Terrible' : ''}
+                            {r === 5 ? ' (Excellent)' : ''}
+                            {r === 4 ? ' (Good)' : ''}
+                            {r === 3 ? ' (Average)' : ''}
+                            {r === 2 ? ' (Poor)' : ''}
+                            {r === 1 ? ' (Terrible)' : ''}
                           </option>
                         ))}
                       </select>

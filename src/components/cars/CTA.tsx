@@ -41,11 +41,10 @@ export default function CTA() {
           className="text-3xl sm:text-4xl font-bold text-white leading-tight"
           suppressHydrationWarning
         >
-          Ready to Drive Your{' '}
+          Visit Our Showroom in{' '}
           <span className="text-[#D7B56D]" suppressHydrationWarning>
-            Dream Car
+            Bilaspur
           </span>
-          ?
         </motion.h2>
 
         {/* Subtitle */}
@@ -57,8 +56,8 @@ export default function CTA() {
           className="mx-auto mt-4 max-w-lg text-slate-400 text-sm sm:text-base leading-relaxed"
           suppressHydrationWarning
         >
-          Join a GST-registered dealer you can trust. Verified cars, transparent
-          pricing, and a hassle-free experience — every single time.
+          GST-registered dealer with verified paperwork, transparent pricing, and
+          in-person support at Plot 14, Industrial Area.
         </motion.p>
 
         {/* CTA Buttons */}
@@ -72,7 +71,7 @@ export default function CTA() {
         >
           <Button
             suppressHydrationWarning
-            className="h-12 min-w-[200px] rounded-xl bg-[#D7B56D] text-[#0A0A0A] font-bold hover:bg-[#E7C77B] shadow-lg shadow-[#D7B56D]/25 transition-all duration-300 text-sm hover:scale-[1.03]"
+            className="h-12 min-w-[200px] rounded-xl bg-[#D7B56D] text-[#0A0A0A] font-bold hover:bg-[#E7C77B] shadow-lg shadow-[#D7B56D]/25 transition-colors duration-200 text-sm"
             onClick={handleBrowseCars}
           >
             <Car className="mr-2 h-4 w-4" suppressHydrationWarning />
@@ -80,7 +79,7 @@ export default function CTA() {
           </Button>
           <Button
             suppressHydrationWarning
-            className="h-12 min-w-[200px] rounded-xl border-2 border-[#D7B56D]/40 text-[#D7B56D] font-bold hover:bg-[#D7B56D]/10 hover:border-[#D7B56D]/60 transition-all duration-300 text-sm hover:scale-[1.03]"
+            className="h-12 min-w-[200px] rounded-xl border-2 border-[#D7B56D]/40 text-[#D7B56D] font-bold hover:bg-[#D7B56D]/10 hover:border-[#D7B56D]/60 transition-colors duration-200 text-sm"
             variant="outline"
             onClick={handleSellCar}
           >
@@ -110,7 +109,7 @@ export default function CTA() {
           {['No Hidden Fees', 'Verified Papers', '7-Day Return', 'RC Transfer Included'].map((item) => (
             <span
               key={item}
-              className="inline-flex items-center gap-1.5 rounded-full border border-emerald-500/20 bg-emerald-500/10 px-3 py-1.5 text-xs font-medium text-emerald-400"
+              className="inline-flex items-center gap-1.5 rounded-md border border-[#D7B56D]/20 bg-[#D7B56D]/10 px-3 py-1.5 text-xs font-medium text-[#E8D4A2]"
               suppressHydrationWarning
             >
               <Check className="h-3 w-3" />

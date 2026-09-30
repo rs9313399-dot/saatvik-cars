@@ -26,9 +26,9 @@ const brands = [
 const budgets = [
   { value: 'any', label: 'Any Budget' },
   { value: 'under-5l', label: 'Under ₹5 Lakh' },
-  { value: '5l-10l', label: '₹5–10 Lakh' },
-  { value: '10l-20l', label: '₹10–20 Lakh' },
-  { value: '20l-40l', label: '₹20–40 Lakh' },
+  { value: '5l-10l', label: '₹5-10 Lakh' },
+  { value: '10l-20l', label: '₹10-20 Lakh' },
+  { value: '20l-40l', label: '₹20-40 Lakh' },
   { value: 'above-40l', label: 'Above ₹40 Lakh' },
 ];
 
@@ -41,10 +41,10 @@ const fuelTypes = [
 ];
 
 const stats = [
-  { number: '9+', label: 'Ready cars' },
-  { number: '150-pt', label: 'Inspection' },
-  { number: '7-day', label: 'Return policy' },
-  { number: 'GST', label: 'Registered dealer' },
+  { number: '150-Point', label: 'Mechanical Inspection' },
+  { number: '100%', label: 'Verified RC & Papers' },
+  { number: '7 Days', label: 'Money-Back Guarantee' },
+  { number: 'GSTIN', label: 'Tax-Compliant Dealer' },
 ];
 
 const trustItems = [
@@ -54,9 +54,9 @@ const trustItems = [
 ];
 
 const conciergeItems = [
-  'Private showroom viewing',
-  'Finance guidance',
-  'RC transfer support',
+  'Showroom inspection in Bilaspur',
+  'Transparent valuation & finance',
+  'Complete RC transfer handling',
 ];
 
 const popularSearches = [
@@ -94,7 +94,7 @@ export default function Hero() {
     setActiveFilters(filters);
     const carsSection = document.getElementById('cars');
     if (carsSection) carsSection.scrollIntoView({ behavior: 'smooth' });
-    toast.success('Searching cars', {
+    toast.success('Finding cars', {
       description: `${brand !== 'all' ? brands.find((b) => b.value === brand)?.label : 'All brands'} · ${budget !== 'any' ? budgets.find((b) => b.value === budget)?.label : 'Any budget'}`,
       duration: 3000,
     });
@@ -128,7 +128,7 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="hero-editorial relative flex min-h-[700px] items-center overflow-hidden sm:min-h-[760px] lg:min-h-[820px]"
+      className="hero-editorial relative flex min-h-[620px] items-center overflow-hidden sm:min-h-[760px] lg:min-h-[820px]"
     >
       {/* ── Full-bleed car photograph ── */}
       <img
@@ -139,20 +139,17 @@ export default function Hero() {
       />
 
       {/* ── Content ── */}
-      <div className="relative z-10 mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-24">
+      <div className="relative z-10 mx-auto w-full max-w-7xl px-4 py-10 sm:px-6 sm:py-20 lg:px-8 lg:py-24">
         <div className="w-full max-w-[calc(100vw-2rem)] sm:max-w-2xl">
           {/* Eyebrow */}
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, ease: 'easeOut' }}
-            className="mb-6"
+            className="mb-5 sm:mb-6"
           >
-            <span className="premium-eyebrow inline-flex max-w-full items-center gap-2 rounded-full px-3.5 py-1.5 text-[11px] font-semibold uppercase tracking-[0.12em] text-white/80 backdrop-blur-sm" suppressHydrationWarning>
-              <span className="relative flex h-1.5 w-1.5" suppressHydrationWarning>
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" suppressHydrationWarning />
-                <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-emerald-400" suppressHydrationWarning />
-              </span>
+            <span className="premium-eyebrow inline-flex max-w-full items-center gap-2 rounded-md px-3.5 py-1.5 text-[11px] font-semibold uppercase tracking-[0.12em] text-white/90 backdrop-blur-sm" suppressHydrationWarning>
+              <span className="inline-flex h-1.5 w-1.5 rounded-sm bg-emerald-400" suppressHydrationWarning />
               <span className="truncate">
                 Open Now · {BUSINESS.hours}
                 <span className="hidden sm:inline"> · A unit of Tarang Marketing</span>
@@ -160,34 +157,34 @@ export default function Hero() {
             </span>
           </motion.div>
 
-          {/* Headline */}
+          {/* Headline - Direct, truthful, local, no vague buzzwords */}
           <motion.h1
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: 'easeOut', delay: 0.08 }}
-            className="max-w-[22rem] text-[2.35rem] leading-[1.06] sm:max-w-none sm:text-5xl lg:text-[3.8rem] lg:leading-[1.01] font-bold text-white"
+            className="max-w-[21rem] text-[2.15rem] leading-[1.06] sm:max-w-none sm:text-5xl lg:text-[3.6rem] lg:leading-[1.04] font-bold text-white"
           >
-            Premium cars,
+            Certified Pre-Owned Cars.
             <br />
-            <span className="text-white/55">verified confidence.</span>
+            <span className="text-[#D7B56D]">Inspected & Transparent.</span>
           </motion.h1>
 
-          {/* Subtitle */}
+          {/* Subtitle - Exact, concrete details */}
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.18, ease: 'easeOut' }}
-            className="mt-5 max-w-[21rem] text-base sm:max-w-lg sm:text-lg text-white/70 leading-relaxed"
+            className="mt-4 max-w-[21rem] text-[15px] sm:mt-5 sm:max-w-xl sm:text-base text-slate-300 leading-relaxed"
           >
-            A curated used-car buying experience with inspected inventory,
-            refined guidance, and complete paperwork support.
+            Buy, sell, or exchange verified cars in Bilaspur with complete paperwork.
+            Every vehicle passes our 150-point inspection and includes verified RC transfer and an honest 7-day return policy.
           </motion.p>
 
           <motion.div
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.24, ease: 'easeOut' }}
-            className="mt-6 flex flex-wrap gap-2"
+            className="mt-5 flex flex-wrap gap-2 sm:mt-6"
           >
             <Button
               type="button"
@@ -195,13 +192,13 @@ export default function Hero() {
               suppressHydrationWarning
               onClick={handleBrowseCars}
             >
-              Explore Collection
+              View Available Cars
               <ArrowRight className="ml-2 h-4 w-4" />
             </Button>
             <Button
               type="button"
               variant="outline"
-              className="h-11 rounded-lg border-[#D7B56D]/25 bg-white/[0.04] px-5 text-sm font-semibold text-white backdrop-blur-md hover:bg-[#D7B56D]/10 hover:text-white"
+              className="hidden h-11 rounded-lg border-[#D7B56D]/25 bg-white/[0.04] px-5 text-sm font-semibold text-white backdrop-blur-md hover:bg-[#D7B56D]/10 hover:text-white sm:inline-flex"
               suppressHydrationWarning
               onClick={handleAdvisorChat}
             >
@@ -214,12 +211,12 @@ export default function Hero() {
             initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3, ease: 'easeOut' }}
-            className="mt-5 grid max-w-[21rem] grid-cols-1 gap-2 min-[360px]:grid-cols-2 sm:max-w-[34rem] sm:flex sm:flex-wrap"
+            className="mt-5 hidden max-w-[21rem] grid-cols-1 gap-2 min-[360px]:grid-cols-2 sm:flex sm:max-w-[34rem] sm:flex-wrap"
           >
             {conciergeItems.map((item) => (
               <span
                 key={item}
-                className="shrink-0 rounded-full border border-[#D7B56D]/20 bg-[#D7B56D]/[0.055] px-3 py-1 text-center text-[11px] font-medium text-[#E8D4A2] sm:text-left"
+                className="shrink-0 rounded-md border border-[#D7B56D]/20 bg-[#D7B56D]/[0.055] px-3 py-1 text-center text-[11px] font-medium text-[#E8D4A2] sm:text-left"
                 suppressHydrationWarning
               >
                 {item}
@@ -235,7 +232,7 @@ export default function Hero() {
             onSubmit={(e) => { e.preventDefault(); handleSearch(); }}
             role="search"
             aria-label="Find cars"
-            className="mt-8 premium-search search-bar-focus flex w-full max-w-[21rem] flex-col items-stretch gap-2 rounded-xl p-2 sm:max-w-none sm:flex-row sm:gap-0"
+            className="mt-6 premium-search search-bar-focus flex w-full max-w-[21rem] flex-col items-stretch gap-2 rounded-xl p-2 sm:mt-8 sm:max-w-none sm:flex-row sm:gap-0"
           >
             {/* Brand */}
             <div className="relative flex-1 min-w-0">
@@ -293,7 +290,7 @@ export default function Hero() {
               className="h-11 rounded-lg bg-[#D7B56D] px-6 text-sm font-semibold text-[#0A0A0A] hover:bg-[#E7C77B] active:scale-[0.98] transition-all shrink-0"
             >
               <Search className="mr-2 h-4 w-4" />
-              Search
+              Find Cars
             </Button>
           </motion.form>
 
@@ -302,7 +299,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.38, ease: 'easeOut' }}
-            className="mt-5 flex max-w-full flex-wrap items-center gap-2"
+            className="mt-5 hidden max-w-full flex-wrap items-center gap-2 sm:flex"
           >
             <span className="flex items-center gap-1.5 text-[11px] font-medium uppercase tracking-wider text-white/45" suppressHydrationWarning>
               <TrendingUp className="h-3.5 w-3.5" />
@@ -313,7 +310,7 @@ export default function Hero() {
                 key={i}
                 suppressHydrationWarning
                 onClick={() => handlePopularSearch(search.brand)}
-                className="group inline-flex items-center gap-1 rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 text-[12px] font-medium text-white/65 transition-all hover:text-white hover:border-white/25 hover:bg-white/[0.08]"
+                className="group inline-flex items-center gap-1 rounded-md border border-white/10 bg-white/[0.04] px-3 py-1 text-[12px] font-medium text-white/75 transition-all hover:text-white hover:border-[#D7B56D]/40 hover:bg-[#D7B56D]/10"
               >
                 {search.label}
                 <ArrowRight className="h-3 w-3 opacity-0 -translate-x-1 transition-all group-hover:opacity-100 group-hover:translate-x-0" />
@@ -326,7 +323,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.48, ease: 'easeOut' }}
-            className="mt-10 premium-stat-grid grid grid-cols-2 sm:grid-cols-4 gap-px overflow-hidden rounded-xl backdrop-blur-sm"
+            className="mt-10 premium-stat-grid hidden grid-cols-2 gap-px overflow-hidden rounded-xl backdrop-blur-sm sm:grid sm:grid-cols-4"
           >
             {stats.map((stat, i) => (
               <div key={i} className="bg-black/20 px-4 py-3.5" suppressHydrationWarning>
@@ -341,7 +338,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.56, ease: 'easeOut' }}
-            className="mt-6 grid max-w-full grid-cols-1 gap-2 min-[380px]:grid-cols-2 sm:flex sm:flex-wrap sm:items-center sm:gap-x-6 sm:gap-y-2"
+            className="mt-6 hidden max-w-full grid-cols-1 gap-2 min-[380px]:grid-cols-2 sm:flex sm:flex-wrap sm:items-center sm:gap-x-6 sm:gap-y-2"
           >
             {trustItems.map((item, i) => (
               <div key={i} className="flex items-center gap-2 text-[13px] text-white/60" suppressHydrationWarning>
@@ -366,23 +363,6 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Secondary CTA pinned bottom-right (desktop) */}
-      <motion.div
-        initial={{ opacity: 0, y: 16 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 0.64, ease: 'easeOut' }}
-        className="absolute bottom-8 right-8 z-10 hidden lg:block"
-      >
-        <Button
-          suppressHydrationWarning
-          variant="outline"
-          className="h-11 rounded-xl border-[#D7B56D]/25 bg-white/5 px-5 text-sm font-semibold text-white backdrop-blur-md hover:bg-[#D7B56D]/10 hover:text-white"
-          onClick={handleBrowseCars}
-        >
-          Browse all cars
-          <ArrowRight className="ml-2 h-4 w-4" />
-        </Button>
-      </motion.div>
     </section>
   );
 }

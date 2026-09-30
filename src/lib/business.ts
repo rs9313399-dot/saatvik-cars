@@ -1,5 +1,5 @@
 /**
- * Saatvik Cars — Business Constants
+ * Saatvik Cars: Business Constants
  * Single source of truth for business info, contact details, and brand lists.
  * Import from here instead of hardcoding everywhere.
  */
@@ -7,11 +7,11 @@
 export const BUSINESS = {
   dealerName: 'Saatvik Cars',
   parentCompany: 'Tarang Marketing',
-  legalName: 'Saatvik Cars — A unit of Tarang Marketing',
+  legalName: 'Saatvik Cars - A unit of Tarang Marketing',
   gstin: '22AAWPL4412H1ZQ',
   email: 'saatvikcars@tarangmarketing.in',
   address: 'Plot 14, Industrial Area, Bilaspur, Chhattisgarh 495001, India',
-  hours: 'Mon–Sat 9AM–8PM IST',
+  hours: 'Mon-Sat 9AM-8PM IST',
   // Canonical phone order (display order)
   phones: [
     { display: '+91 75828 5000', tel: '+91758285000', digits: '91758285000' },

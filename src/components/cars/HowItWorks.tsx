@@ -52,7 +52,7 @@ const stepVariants: Variants = {
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] },
+    transition: { duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] as const },
   },
 };
 
@@ -94,10 +94,10 @@ export default function HowItWorks() {
             How Saatvik Cars Works
           </h2>
           <p
-            className="mt-3 text-base text-slate-500 sm:text-lg"
+            className="mt-3 text-base text-slate-400 sm:text-lg"
             suppressHydrationWarning
           >
-            From search to drive — in 4 simple steps
+            From search to drive in 4 simple steps
           </p>
         </motion.div>
 
@@ -129,9 +129,9 @@ export default function HowItWorks() {
                   />
                 )}
 
-                {/* Step number circle */}
+                {/* Step number box */}
                 <div
-                  className="relative z-10 flex h-10 w-10 items-center justify-center rounded-full bg-[#D7B56D] font-bold text-[#0A0A0A] text-sm shadow-[0_0_12px_rgba(215,181,109,0.4)]"
+                  className="relative z-10 flex h-10 w-10 items-center justify-center rounded-xl bg-[#D7B56D] font-bold text-[#0A0A0A] text-sm shadow-[0_0_12px_rgba(215,181,109,0.4)]"
                   suppressHydrationWarning
                 >
                   {i + 1}
@@ -202,9 +202,9 @@ export default function HowItWorks() {
                   className="relative flex flex-col items-center"
                   suppressHydrationWarning
                 >
-                  {/* Number circle */}
+                  {/* Number box */}
                   <div
-                    className="relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#D7B56D] font-bold text-[#0A0A0A] text-sm shadow-[0_0_12px_rgba(215,181,109,0.4)]"
+                    className="relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#D7B56D] font-bold text-[#0A0A0A] text-sm shadow-[0_0_12px_rgba(215,181,109,0.4)]"
                     suppressHydrationWarning
                   >
                     {i + 1}

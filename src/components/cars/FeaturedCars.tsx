@@ -55,12 +55,36 @@ const NON_CAR_IMAGE_PATHS = new Set([
   '/uploads/efdc16d4-a5be-4144-bf40-7b3f2fae7801.jpg',
 ]);
 
+const LEGACY_CAR_IMAGE_PATHS: Record<string, string> = {
+  '/images/cars/bmw-3series.png': '/images/cars/bmw-3-series-320d-sport-representative.webp',
+  '/images/cars/creta-sx.png': '/images/cars/hyundai-creta-sx-representative.webp',
+  '/images/cars/fortuner.png': '/images/cars/toyota-fortuner-legender-representative.webp',
+  '/images/cars/honda-city-grey.png': '/images/cars/honda-city-zx-cvt-representative.webp',
+  '/images/cars/honda-city.png': '/images/cars/honda-city-zx-cvt-representative.webp',
+  '/images/cars/mercedes-cclass.png': '/images/cars/mercedes-benz-c-class-c200-representative.webp',
+  '/images/cars/mg-hector.png': '/images/cars/mg-hector-sharp-representative.webp',
+  '/images/cars/swift-vxi.png': '/images/cars/maruti-suzuki-swift-vxi-representative.webp',
+  '/images/cars/tata-nexon.png': '/images/cars/tata-nexon-xz-plus-representative.webp',
+};
+
+function normalizeCarImage(src: string) {
+  if (LEGACY_CAR_IMAGE_PATHS[src]) return LEGACY_CAR_IMAGE_PATHS[src];
+  if (/^\/images\/cars\/.+\.png$/i.test(src)) return '';
+  return src;
+}
+
 function getTrustedImages(images: string[]) {
-  return images.filter((src) => src && !NON_CAR_IMAGE_PATHS.has(src));
+  return images.map(normalizeCarImage).filter((src) => src && !NON_CAR_IMAGE_PATHS.has(src));
 }
 
 function isRepresentativeImage(src: string) {
   return src.includes('/images/cars/') && src.includes('-representative.');
+}
+
+function getPhotoTrustScore(car: Pick<Car, 'images'>) {
+  const images = getTrustedImages(parseImages(car.images));
+  if (images.length === 0) return 0;
+  return images.some((src) => !isRepresentativeImage(src)) ? 2 : 1;
 }
 
 function getIndicativeEmi(price: number) {
@@ -86,14 +110,14 @@ function getEngineLabel(car: Pick<Car, 'brand' | 'model' | 'fuelType'>) {
 }
 
 function PremiumCarVisual({ brand, name }: { brand: string; name: string }) {
-  const checklist = ['Exterior', 'Interior', 'Odometer', 'Tyres'];
+  const checklist = ['Inspection', 'Documents', 'RC transfer', 'Video call'];
 
   return (
     <div className="relative flex h-full w-full flex-col justify-between overflow-hidden bg-[linear-gradient(145deg,#151922_0%,#090A0D_72%)] p-4">
       <div className="flex items-center justify-between gap-3">
         <div>
           <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#D7B56D]/80">
-            Photos required
+            Photos updating
           </p>
           <p className="mt-1 max-w-[14rem] truncate text-sm font-semibold text-white/90">{name}</p>
         </div>
@@ -112,7 +136,7 @@ function PremiumCarVisual({ brand, name }: { brand: string; name: string }) {
       </div>
 
       <div className="rounded-lg border border-amber-400/20 bg-amber-400/[0.06] px-3 py-2 text-[11px] leading-relaxed text-amber-100/80">
-        Real inventory photos are pending. Ask for latest showroom photos before booking.
+        Live showroom photos or a video walkaround can be shared before booking.
       </div>
 
       <div>
@@ -262,7 +286,7 @@ function CarImageCarousel({
             <img
               src={src}
               alt={`${alt} - photo ${i + 1}`}
-              className="h-full w-full object-cover"
+              className="h-full w-full object-cover brightness-[1.06] contrast-[1.04] saturate-[1.05]"
               loading={i === 0 ? 'eager' : 'lazy'}
               suppressHydrationWarning
               onError={() => markErrored(src)}
@@ -273,11 +297,11 @@ function CarImageCarousel({
       </div>
 
       {/* Gradient overlay at bottom for legibility */}
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#111827] via-transparent to-transparent" />
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-[#111827]/70 via-[#111827]/25 to-transparent" />
 
       {validImages.some(isRepresentativeImage) && (
         <div className="absolute left-3 bottom-3 z-20 rounded-full border border-[#D7B56D]/25 bg-black/55 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wide text-[#D7B56D] backdrop-blur-sm">
-          Representative photo
+          Reference image
         </div>
       )}
 
@@ -1324,11 +1348,11 @@ function FallbackCarDetailPopup({ car }: { car: Car }) {
             alt={car.name}
             brand={car.brand}
             loading="eager"
-            className="h-full w-full object-cover"
+            className="h-full w-full object-cover brightness-[1.06] contrast-[1.04] saturate-[1.05]"
           />
           {isRepresentativeImage(mainImage) && (
             <div className="absolute left-3 bottom-3 rounded-full border border-[#D7B56D]/25 bg-black/60 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wide text-[#D7B56D]">
-              Representative photo
+              Reference image
             </div>
           )}
         </div>
@@ -1467,7 +1491,7 @@ function CarCard({
         />
         {isRepresentativeImage(mainImage) && (
           <div className="absolute right-2.5 bottom-2.5 z-10 rounded-full border border-[#D7B56D]/25 bg-black/55 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wide text-[#D7B56D] backdrop-blur-sm">
-            Representative photo
+            Reference image
           </div>
         )}
         <div className="absolute left-2.5 bottom-2.5 z-10 inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-black/50 px-2.5 py-1 text-[10px] font-semibold text-white/85 backdrop-blur-sm">
@@ -1496,7 +1520,7 @@ function CarCard({
           <Heart className={`h-4 w-4 transition-all ${wishlisted ? 'fill-red-400 text-red-400 scale-110' : ''}`} />
         </button>
         {/* Bottom gradient for smooth visual */}
-        <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-[#111827] via-[#111827]/55 to-transparent pointer-events-none" />
+        <div className="absolute inset-x-0 bottom-0 h-14 bg-gradient-to-t from-[#111827]/70 via-[#111827]/25 to-transparent pointer-events-none" />
       </div>
 
       {/* Content Area */}
@@ -1689,7 +1713,7 @@ export default function FeaturedCars() {
       case 'km_desc': arr.sort((a, b) => b.kmDriven - a.kmDriven); break;
       case 'year_desc': arr.sort((a, b) => b.year - a.year); break;
       case 'year_asc': arr.sort((a, b) => a.year - b.year); break;
-      default: break; // newest keeps original order (createdAt desc from API)
+      default: arr.sort((a, b) => getPhotoTrustScore(b) - getPhotoTrustScore(a)); break;
     }
     return arr;
   }, [filteredCars, sortBy]);

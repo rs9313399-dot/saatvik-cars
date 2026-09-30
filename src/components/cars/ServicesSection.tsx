@@ -1255,7 +1255,7 @@ export default function ServicesSection() {
         <SectionHeader
           eyebrow="Our Services"
           title="Beyond Just Selling Cars"
-          subtitle="End-to-end services — insurance, RC transfer, and exchange/buyback — all under one roof. Sit back, we handle the paperwork."
+          subtitle="Insurance, RC transfer, and exchange or buyback in one place. We handle the paperwork with you."
         />
 
         <Tabs

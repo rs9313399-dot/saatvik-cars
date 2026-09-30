@@ -58,15 +58,15 @@ const WHATSAPP_URL = `https://wa.me/${WHATSAPP_DIGITS}?text=${encodeURIComponent
 
 const INITIAL_GREETING: ChatMessage = {
   role: 'bot',
-  text: 'Hi! 👋 Welcome to Saatvik Cars. How can I help you today?',
+  text: 'Welcome to Saatvik Cars. How can our team assist you today?',
   ts: 0,
 };
 
 const QUICK_REPLIES: { label: string; send: string }[] = [
-  { label: '🚗 Browse cars', send: 'Browse cars' },
-  { label: '💰 Finance options', send: 'Finance options' },
-  { label: '🔧 Sell my car', send: 'Sell my car' },
-  { label: '📞 Talk to a human', send: 'Talk to a human' },
+  { label: 'Browse inventory', send: 'Browse cars' },
+  { label: 'Finance options', send: 'Finance options' },
+  { label: 'Sell / Trade car', send: 'Sell my car' },
+  { label: 'Talk to an advisor', send: 'Talk to a human' },
 ];
 
 // ===== Bot logic (client-side keyword matching) =====
@@ -360,7 +360,7 @@ export default function LiveChatWidget() {
   const showQuickReplies = !messages.some((m) => m.role === 'user');
 
   return (
-    <div className="fixed bottom-20 right-3 z-50 sm:bottom-4 sm:right-4" suppressHydrationWarning>
+    <div className="fixed bottom-4 right-4 z-50 hidden sm:block" suppressHydrationWarning>
       {/* Scoped scrollbar styles */}
       <style dangerouslySetInnerHTML={{ __html: SCROLLBAR_CSS }} />
 
@@ -391,11 +391,8 @@ export default function LiveChatWidget() {
                   <span className="truncate text-sm font-semibold text-white">
                     Saatvik Cars
                   </span>
-                  <span className="flex items-center gap-1 rounded-full bg-emerald-500/10 px-1.5 py-0.5 text-[10px] font-medium text-emerald-400">
-                    <span className="relative flex h-1.5 w-1.5">
-                      <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
-                      <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-emerald-400" />
-                    </span>
+                  <span className="flex items-center gap-1 rounded-md bg-emerald-500/10 px-1.5 py-0.5 text-[10px] font-medium text-emerald-400">
+                    <span className="inline-flex h-1.5 w-1.5 rounded-sm bg-emerald-400" />
                     Online
                   </span>
                 </div>
@@ -456,7 +453,7 @@ export default function LiveChatWidget() {
                     key={qr.label}
                     type="button"
                     onClick={() => sendMessage(qr.send)}
-                    className="rounded-full border border-[#D7B56D]/30 px-2.5 py-1 text-xs text-[#D7B56D] transition-colors hover:bg-[#D7B56D]/10 disabled:opacity-50"
+                    className="rounded-md border border-[#D7B56D]/30 px-2.5 py-1 text-xs text-[#D7B56D] transition-colors hover:bg-[#D7B56D]/10 disabled:opacity-50"
                     disabled={isTyping}
                     suppressHydrationWarning
                   >
@@ -510,17 +507,9 @@ export default function LiveChatWidget() {
         aria-label={isOpen ? 'Close chat' : 'Open chat'}
         aria-expanded={isOpen}
         whileTap={{ scale: 0.92 }}
-        className="relative flex h-14 w-14 items-center justify-center rounded-full bg-[#D7B56D] text-[#0A0A0A] shadow-lg shadow-[#D7B56D]/30 transition-colors hover:bg-[#E7C77B]"
+        className="relative flex h-12 w-12 items-center justify-center rounded-lg bg-[#D7B56D] text-[#0A0A0A] shadow-lg shadow-[#D7B56D]/30 transition-colors hover:bg-[#E7C77B]"
         suppressHydrationWarning
       >
-        {/* Pulse ring (only when closed) */}
-        {!isOpen && (
-          <span
-            className="absolute inset-0 animate-ping rounded-full bg-[#D7B56D] opacity-40"
-            aria-hidden="true"
-          />
-        )}
-
         <AnimatePresence mode="wait" initial={false}>
           {isOpen ? (
             <motion.span
@@ -611,7 +600,7 @@ function MessageBubble({
             <button
               type="button"
               onClick={() => onAction(msg.action!)}
-              className="self-start rounded-full border border-[#D7B56D]/30 px-3 py-1 text-xs text-[#D7B56D] transition-colors hover:bg-[#D7B56D]/10"
+              className="self-start rounded-md border border-[#D7B56D]/30 px-3 py-1 text-xs text-[#D7B56D] transition-colors hover:bg-[#D7B56D]/10"
               suppressHydrationWarning
             >
               {msg.action.label}
