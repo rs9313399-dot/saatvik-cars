@@ -136,34 +136,28 @@ export async function toggleCarActive(id: string, active: boolean): Promise<void
 export async function uploadImages(files: File[]): Promise<string[]> {
   const paths: string[] = [];
   for (const file of files) {
-    const formData = new FormData();
-    formData.append('image', file);
-
-    const response = await fetch(`${API_BASE}/upload`, {
+    const authorization = await request<{
+      uploadUrl: string;
+      path: string;
+    }>('/upload', {
       method: 'POST',
-      body: formData,
-      credentials: 'include',
+      body: JSON.stringify({ contentType: file.type }),
+    });
+    const response = await fetch(authorization.uploadUrl, {
+      method: 'PUT',
+      headers: { 'Content-Type': file.type },
+      body: file,
     });
 
     if (!response.ok) {
-      if (response.status === 401) {
-        throw new ApiError(
-          'Your session has expired. Please log out and log back in as admin, then try again.',
-          401,
-        );
-      }
-      if (response.status === 404) {
-        throw new ApiError(
-          'Photo upload is not available in this deployment yet. Deploy the latest upload API route and try again.',
-          404,
-        );
-      }
-      const body = await response.json().catch(() => ({ error: 'Upload failed' }));
-      throw new ApiError(body.error || 'Upload failed', response.status);
+      const body = await response.json().catch(() => ({ message: 'Upload failed' }));
+      throw new ApiError(
+        body.message || `Image storage upload failed (HTTP ${response.status}).`,
+        response.status,
+      );
     }
 
-    const result = await response.json() as { paths: string[] };
-    paths.push(...result.paths);
+    paths.push(authorization.path);
   }
 
   return paths;

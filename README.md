@@ -19,7 +19,7 @@ Saatvik Cars is a premium used-car marketplace and dealership website built with
 | --- | --- |
 | Framework | Next.js, React, TypeScript |
 | Styling | Tailwind CSS, Radix UI, shadcn/ui patterns |
-| Database | Prisma, PostgreSQL (Supabase source; Neon migration branch) |
+| Database and object storage | Prisma, Neon Postgres, Neon Object Storage |
 | State | Zustand-style local store |
 | UX | Framer Motion, Sonner toasts, Lucide React |
 | Deployment | Standalone Next.js build helpers |
@@ -52,16 +52,17 @@ cd saatvik-cars
 bun install
 ```
 
-Create `.env`:
+Create `.env` and supply the branch-scoped Neon values:
 
 ```env
-DATABASE_URL="YOUR_POSTGRES_POOLED_CONNECTION_STRING"
-DIRECT_URL="YOUR_POSTGRES_DIRECT_CONNECTION_STRING"
+DATABASE_URL="YOUR_NEON_POOLED_CONNECTION_STRING"
+DIRECT_URL="YOUR_NEON_DIRECT_CONNECTION_STRING"
 ADMIN_USERNAME="YOUR_ADMIN_USERNAME"
 ADMIN_PASSWORD="YOUR_ADMIN_PASSWORD"
-SUPABASE_URL="YOUR_SUPABASE_PROJECT_URL"
-SUPABASE_SERVICE_ROLE_KEY="YOUR_SERVER_ONLY_STORAGE_KEY"
-SUPABASE_STORAGE_BUCKET="car-images"
+AWS_ACCESS_KEY_ID="YOUR_BRANCH_STORAGE_ACCESS_KEY"
+AWS_SECRET_ACCESS_KEY="YOUR_BRANCH_STORAGE_SECRET_KEY"
+AWS_ENDPOINT_URL_S3="YOUR_BRANCH_STORAGE_ENDPOINT"
+AWS_REGION="YOUR_BRANCH_STORAGE_REGION"
 ```
 
 Prepare the database:
@@ -80,30 +81,9 @@ bun run dev
 
 Open `http://localhost:3000`.
 
-### Database migration
+### Database and image storage
 
-The app uses Prisma with PostgreSQL. Use the pooled `DATABASE_URL` for application traffic and the direct `DIRECT_URL` for schema migrations and database exports. Keep both values server-side.
-
-On Windows, create a consistent, DPAPI-encrypted snapshot of the current source database:
-
-```powershell
-.\scripts\backup-db.ps1
-```
-
-The encrypted snapshot is stored under `%LOCALAPPDATA%\SaatvikCars\migration-backups` and can only be decrypted by the same Windows account. The importer accepts decrypted snapshot JSON on standard input, requires `NEON_TARGET_DATABASE_URL` to be a direct Neon connection, and refuses to write to a non-empty database:
-
-```powershell
-$backupFile = Get-ChildItem "$env:LOCALAPPDATA\SaatvikCars\migration-backups\saatvik-cars-supabase-*.json.dpapi" |
-  Sort-Object LastWriteTime -Descending |
-  Select-Object -First 1
-$secure = ConvertTo-SecureString (Get-Content $backupFile.FullName -Raw).Trim()
-$snapshot = [System.Net.NetworkCredential]::new('', $secure).Password
-$env:NEON_TARGET_DATABASE_URL = (npx neon connection-string YOUR_TARGET_BRANCH --project-id YOUR_PROJECT_ID --output table | Out-String).Trim()
-$snapshot | bun run db:import-snapshot
-Remove-Item Env:NEON_TARGET_DATABASE_URL
-```
-
-The importer preserves row IDs and timestamps, hashes imported admin passwords, invalidates old sessions, and verifies row counts and row contents inside one transaction. Supabase Storage remains separate; database migration preserves stored image references but does not copy image files.
+Use the pooled `DATABASE_URL` for application traffic and the direct `DIRECT_URL` for Prisma migrations. Neon's `neon.ts` provisions a public-read `car-images` bucket; uploads are authorized by the server and sent directly to the branch's object storage with short-lived presigned URLs. Keep all database and storage credentials server-side.
 
 ## Useful Scripts
 
