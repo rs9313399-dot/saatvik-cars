@@ -7,7 +7,6 @@ import Hero from '@/components/cars/Hero';
 import BrandMarquee from '@/components/cars/BrandMarquee';
 import CarCategories from '@/components/cars/CarCategories';
 import FeaturedCars from '@/components/cars/FeaturedCars';
-import FinanceSection from '@/components/cars/FinanceSection';
 import HowItWorks from '@/components/cars/HowItWorks';
 import AboutSection from '@/components/cars/AboutSection';
 import CustomerReviews from '@/components/cars/CustomerReviews';
@@ -40,7 +39,6 @@ export default function Home() {
         <FeaturedCars />
         <BrandMarquee />
         <CarCategories />
-        <FinanceSection />
         <HowItWorks />
         <AboutSection />
         <CustomerReviews />
