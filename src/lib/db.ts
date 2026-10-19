@@ -7,7 +7,7 @@ const globalForPrisma = globalThis as unknown as {
 function assertDatabaseUrl() {
   if (!process.env.DATABASE_URL) {
     throw new Error(
-      'DATABASE_URL is not configured. Add your Supabase Postgres connection string to .env.local or your deployment environment.',
+      'DATABASE_URL is not configured. Set the PostgreSQL connection string in your local or deployment environment.',
     )
   }
 }

@@ -19,7 +19,7 @@ Saatvik Cars is a premium used-car marketplace and dealership website built with
 | --- | --- |
 | Framework | Next.js, React, TypeScript |
 | Styling | Tailwind CSS, Radix UI, shadcn/ui patterns |
-| Database | Prisma, SQLite |
+| Database | Prisma, PostgreSQL (Supabase source; Neon migration branch) |
 | State | Zustand-style local store |
 | UX | Framer Motion, Sonner toasts, Lucide React |
 | Deployment | Standalone Next.js build helpers |
@@ -42,7 +42,7 @@ saatvik-cars/
 ### Prerequisites
 
 - Node.js 20+ or Bun
-- SQLite-compatible Prisma database
+- PostgreSQL database and a direct connection URL for Prisma migrations
 
 ### Installation
 
@@ -55,14 +55,21 @@ bun install
 Create `.env`:
 
 ```env
-DATABASE_URL="file:./dev.db"
+DATABASE_URL="YOUR_POSTGRES_POOLED_CONNECTION_STRING"
+DIRECT_URL="YOUR_POSTGRES_DIRECT_CONNECTION_STRING"
+ADMIN_USERNAME="YOUR_ADMIN_USERNAME"
+ADMIN_PASSWORD="YOUR_ADMIN_PASSWORD"
+SUPABASE_URL="YOUR_SUPABASE_PROJECT_URL"
+SUPABASE_SERVICE_ROLE_KEY="YOUR_SERVER_ONLY_STORAGE_KEY"
+SUPABASE_STORAGE_BUCKET="car-images"
 ```
 
 Prepare the database:
 
 ```bash
 bun run db:generate
-bun run db:push
+bun run db:deploy
+bun run db:check
 ```
 
 Run locally:
@@ -73,6 +80,31 @@ bun run dev
 
 Open `http://localhost:3000`.
 
+### Database migration
+
+The app uses Prisma with PostgreSQL. Use the pooled `DATABASE_URL` for application traffic and the direct `DIRECT_URL` for schema migrations and database exports. Keep both values server-side.
+
+On Windows, create a consistent, DPAPI-encrypted snapshot of the current source database:
+
+```powershell
+.\scripts\backup-db.ps1
+```
+
+The encrypted snapshot is stored under `%LOCALAPPDATA%\SaatvikCars\migration-backups` and can only be decrypted by the same Windows account. The importer accepts decrypted snapshot JSON on standard input, requires `NEON_TARGET_DATABASE_URL` to be a direct Neon connection, and refuses to write to a non-empty database:
+
+```powershell
+$backupFile = Get-ChildItem "$env:LOCALAPPDATA\SaatvikCars\migration-backups\saatvik-cars-supabase-*.json.dpapi" |
+  Sort-Object LastWriteTime -Descending |
+  Select-Object -First 1
+$secure = ConvertTo-SecureString (Get-Content $backupFile.FullName -Raw).Trim()
+$snapshot = [System.Net.NetworkCredential]::new('', $secure).Password
+$env:NEON_TARGET_DATABASE_URL = (npx neon connection-string YOUR_TARGET_BRANCH --project-id YOUR_PROJECT_ID --output table | Out-String).Trim()
+$snapshot | bun run db:import-snapshot
+Remove-Item Env:NEON_TARGET_DATABASE_URL
+```
+
+The importer preserves row IDs and timestamps, hashes imported admin passwords, invalidates old sessions, and verifies row counts and row contents inside one transaction. Supabase Storage remains separate; database migration preserves stored image references but does not copy image files.
+
 ## Useful Scripts
 
 | Command | Purpose |
@@ -82,6 +114,7 @@ Open `http://localhost:3000`.
 | `bun run start` | Start the standalone production server |
 | `bun run lint` | Run lint checks |
 | `bun run db:reset` | Reset the local Prisma database |
+| `bun run db:import-snapshot` | Import a verified snapshot into an empty PostgreSQL database |
 
 ## Main API Areas
 
@@ -96,4 +129,3 @@ Open `http://localhost:3000`.
 ## Author
 
 Built by [Ratnesh Singh](https://github.com/rs9313399-dot).
-

@@ -11,6 +11,8 @@
     "db:push": "prisma db push",
     "db:generate": "prisma generate",
     "db:check": "node --env-file=.env scripts/check-db.ts",
+    "db:deploy": "prisma migrate deploy",
+    "db:import-snapshot": "node scripts/import-db-snapshot.ts",
     "db:migrate": "prisma migrate dev",
     "db:reset": "prisma migrate reset"
   },
