@@ -189,7 +189,8 @@ export async function loginAdmin(username: string, password: string): Promise<bo
 
     useStore.getState().setIsAdmin(true);
     return true;
-  } catch {
+  } catch (error) {
+    if (error instanceof ApiError) throw error;
     return false;
   }
 }
