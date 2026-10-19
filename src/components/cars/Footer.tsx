@@ -53,7 +53,7 @@ export default function Footer() {
   const [email, setEmail] = useState('');
   const [subscribing, setSubscribing] = useState(false);
   const [policyType, setPolicyType] = useState<PolicyType | null>(null);
-  const { setSellModalOpen, setLoginModalOpen, isAdmin, setActiveFilters, activeFilters } = useStore();
+  const { setSellModalOpen, setLoginModalOpen, setAdminPanelOpen, isAdmin, setActiveFilters, activeFilters } = useStore();
 
   const handleSubscribe = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -341,6 +341,20 @@ export default function Footer() {
             >
               Privacy Policy
             </Link>
+            <button
+              type="button"
+              onClick={() => {
+                if (isAdmin) {
+                  setAdminPanelOpen(true);
+                } else {
+                  setLoginModalOpen(true);
+                }
+              }}
+              className="inline-flex items-center gap-1.5 text-[11px] text-slate-400 transition-colors hover:text-[#D7B56D]"
+            >
+              <Shield className="h-3 w-3" aria-hidden="true" />
+              {isAdmin ? 'Admin Panel' : 'Admin Login'}
+            </button>
             <span className="text-white/[0.06]">|</span>
             <button
               onClick={() => handleBottomLink('Terms of Service')}
