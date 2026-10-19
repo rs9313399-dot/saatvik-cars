@@ -11,6 +11,7 @@ export function proxy(request: NextRequest) {
     "img-src 'self' data: blob: https:",
     "font-src 'self' data:",
     "connect-src 'self' https:",
+    "frame-src https://www.google.com https://maps.google.com",
     "object-src 'none'",
     "base-uri 'self'",
     "form-action 'self'",
