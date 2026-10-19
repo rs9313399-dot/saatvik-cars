@@ -13,7 +13,7 @@ const ALLOWED_TYPES = new Set([
 ]);
 
 /**
- * POST /api/service-inquiry — Public submission endpoint.
+ * POST /api/service-inquiry - Public submission endpoint.
  * Used by the Finance eligibility form (type: "finance") and other service inquiry forms.
  * Creates a new ServiceInquiry record and returns 201 on success.
  */
@@ -105,7 +105,7 @@ export async function POST(request: NextRequest) {
 }
 
 /**
- * GET /api/service-inquiry — Admin-only. Returns all service inquiries, newest first.
+ * GET /api/service-inquiry - Admin-only. Returns all service inquiries, newest first.
  * Supports optional `?type=` filter (insurance, rc_transfer, exchange, warranty, rsa, finance).
  */
 export async function GET(request: NextRequest) {

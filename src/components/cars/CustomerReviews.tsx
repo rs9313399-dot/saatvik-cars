@@ -192,7 +192,7 @@ export default function CustomerReviews() {
             className="mt-2 text-sm sm:text-base text-slate-400"
             suppressHydrationWarning
           >
-            Real stories from real Saatvik Cars owners
+            Reviews are shown after moderation.
           </p>
         </motion.div>
 
@@ -237,7 +237,7 @@ export default function CustomerReviews() {
                   <span className="font-semibold text-white">
                     {testimonials.length}
                   </span>{' '}
-                  verified {testimonials.length === 1 ? 'review' : 'reviews'}
+                  published {testimonials.length === 1 ? 'review' : 'reviews'}
                 </p>
               </div>
             </div>

@@ -26,13 +26,12 @@ export async function GET(
   try {
     const { id } = await params;
 
-    // Try to find by ID first, then by slug
-    let car = await db.car.findUnique({ where: { id } });
-
-    if (!car) {
-      // Try finding by slug
-      car = await db.car.findFirst({ where: { slug: id } });
-    }
+    const car = await db.car.findFirst({
+      where: {
+        active: true,
+        OR: [{ id }, { slug: id }],
+      },
+    });
 
     if (!car) {
       return NextResponse.json({ error: 'Car not found' }, { status: 404 });

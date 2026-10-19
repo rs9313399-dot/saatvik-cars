@@ -10,7 +10,7 @@ const ALLOWED_STATUSES = new Set(['new', 'reviewed', 'offered', 'closed']);
 const PHONE_RE = /^[6-9]\d{9}$/;
 
 /**
- * POST /api/sell-inquiry — Public customer endpoint.
+ * POST /api/sell-inquiry - Public customer endpoint.
  * Creates a sell/trade valuation request from a customer.
  * Computes estimatedPrice server-side using the SAME algorithm
  * the client uses (shared via @/lib/valuation).
@@ -184,7 +184,7 @@ export async function POST(request: NextRequest) {
 }
 
 /**
- * GET /api/sell-inquiry — Admin-only. Returns all sell inquiries,
+ * GET /api/sell-inquiry - Admin-only. Returns all sell inquiries,
  * newest first. Supports optional `?status=` filter.
  */
 export async function GET(request: NextRequest) {

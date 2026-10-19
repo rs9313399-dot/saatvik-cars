@@ -3,11 +3,11 @@
 import { useMemo } from 'react';
 
 /**
- * SeoBreadcrumbs — emits a BreadcrumbList JSON-LD script so search
+ * SeoBreadcrumbs - emits a BreadcrumbList JSON-LD script so search
  * engines can render breadcrumb rich results for the Saatvik Cars
  * single-page site.
  *
- * Renders NO visible UI — just the `<script>` tag. Drop `<SeoBreadcrumbs />`
+ * Renders NO visible UI - just the `<script>` tag. Drop `<SeoBreadcrumbs />`
  * anywhere on the page (e.g. near the top of page.tsx) to enable.
  *
  * Main agent owns layout.tsx / page.tsx, so this is a self-contained
@@ -40,8 +40,8 @@ export default function SeoBreadcrumbs() {
         {
           '@type': 'ListItem',
           position: 4,
-          name: 'Services',
-          item: 'https://saatvikcars.in/#services',
+          name: 'About',
+          item: 'https://saatvikcars.in/#about',
         },
       ],
     }),

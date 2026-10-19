@@ -1,16 +1,10 @@
 'use client';
 
 import { useState } from 'react';
-import { motion } from 'framer-motion';
 import {
   Search,
   ChevronDown,
-  ShieldCheck,
-  BadgeCheck,
-  RefreshCw,
-  TrendingUp,
   ArrowRight,
-  Star,
   MessageCircle,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -38,25 +32,6 @@ const fuelTypes = [
   { value: 'diesel', label: 'Diesel' },
   { value: 'cng', label: 'CNG' },
   { value: 'electric', label: 'Electric' },
-];
-
-const stats = [
-  { number: '150-Point', label: 'Mechanical Inspection' },
-  { number: '100%', label: 'Verified RC & Papers' },
-  { number: '7 Days', label: 'Money-Back Guarantee' },
-  { number: 'GSTIN', label: 'Tax-Compliant Dealer' },
-];
-
-const trustItems = [
-  { icon: ShieldCheck, text: '150-point inspection' },
-  { icon: BadgeCheck, text: 'Verified documents' },
-  { icon: RefreshCw, text: '7-day return' },
-];
-
-const conciergeItems = [
-  'Showroom inspection in Bilaspur',
-  'Transparent valuation & finance',
-  'Complete RC transfer handling',
 ];
 
 const popularSearches = [
@@ -128,64 +103,34 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="hero-editorial relative flex min-h-[620px] items-center overflow-hidden sm:min-h-[760px] lg:min-h-[820px]"
+      className="hero-editorial relative flex min-h-[520px] items-center overflow-hidden sm:min-h-[600px]"
     >
-      {/* ── Full-bleed car photograph ── */}
-      <img
-        src="/images/hero-bg-main.jpg"
-        alt="Premium pre-owned car at Saatvik Cars"
-        className="absolute inset-0 h-full w-full object-cover object-center"
-        suppressHydrationWarning
-      />
-
-      {/* ── Content ── */}
       <div className="relative z-10 mx-auto w-full max-w-7xl px-4 py-10 sm:px-6 sm:py-20 lg:px-8 lg:py-24">
         <div className="w-full max-w-[calc(100vw-2rem)] sm:max-w-2xl">
-          {/* Eyebrow */}
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, ease: 'easeOut' }}
-            className="mb-5 sm:mb-6"
-          >
+          <div className="mb-5 sm:mb-6">
             <span className="premium-eyebrow inline-flex max-w-full items-center gap-2 rounded-md px-3.5 py-1.5 text-[11px] font-semibold uppercase tracking-[0.12em] text-white/90 backdrop-blur-sm" suppressHydrationWarning>
               <span className="inline-flex h-1.5 w-1.5 rounded-sm bg-emerald-400" suppressHydrationWarning />
               <span className="truncate">
-                Open Now · {BUSINESS.hours}
-                <span className="hidden sm:inline"> · A unit of Tarang Marketing</span>
+                Used cars in Bilaspur, Chhattisgarh
               </span>
             </span>
-          </motion.div>
+          </div>
 
-          {/* Headline - Direct, truthful, local, no vague buzzwords */}
-          <motion.h1
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, ease: 'easeOut', delay: 0.08 }}
+          <h1
             className="max-w-[21rem] text-[2.15rem] leading-[1.06] sm:max-w-none sm:text-5xl lg:text-[3.6rem] lg:leading-[1.04] font-bold text-white"
           >
-            Certified Pre-Owned Cars.
+            Used cars in Bilaspur.
             <br />
-            <span className="text-[#D7B56D]">Inspected & Transparent.</span>
-          </motion.h1>
+            <span className="text-[#D7B56D]">See the details before you visit.</span>
+          </h1>
 
-          {/* Subtitle - Exact, concrete details */}
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.18, ease: 'easeOut' }}
+          <p
             className="mt-4 max-w-[21rem] text-[15px] sm:mt-5 sm:max-w-xl sm:text-base text-slate-300 leading-relaxed"
           >
-            Buy, sell, or exchange verified cars in Bilaspur with complete paperwork.
-            Every vehicle passes our 150-point inspection and includes verified RC transfer and an honest 7-day return policy.
-          </motion.p>
+            Browse current listings with their price, model year, fuel type and kilometres. Contact Saatvik Cars to confirm availability and arrange a visit.
+          </p>
 
-          <motion.div
-            initial={{ opacity: 0, y: 18 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.24, ease: 'easeOut' }}
-            className="mt-5 flex flex-wrap gap-2 sm:mt-6"
-          >
+          <div className="mt-5 flex flex-wrap gap-2 sm:mt-6">
             <Button
               type="button"
               className="h-11 rounded-lg bg-[#D7B56D] px-5 text-sm font-semibold text-[#0A0A0A] hover:bg-[#E7C77B]"
@@ -205,30 +150,9 @@ export default function Hero() {
               <MessageCircle className="mr-2 h-4 w-4 text-[#D7B56D]" />
               Talk to Advisor
             </Button>
-          </motion.div>
+          </div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 14 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3, ease: 'easeOut' }}
-            className="mt-5 hidden max-w-[21rem] grid-cols-1 gap-2 min-[360px]:grid-cols-2 sm:flex sm:max-w-[34rem] sm:flex-wrap"
-          >
-            {conciergeItems.map((item) => (
-              <span
-                key={item}
-                className="shrink-0 rounded-md border border-[#D7B56D]/20 bg-[#D7B56D]/[0.055] px-3 py-1 text-center text-[11px] font-medium text-[#E8D4A2] sm:text-left"
-                suppressHydrationWarning
-              >
-                {item}
-              </span>
-            ))}
-          </motion.div>
-
-          {/* ── Search bar — wrapped in <form> so Enter submits ── */}
-          <motion.form
-            initial={{ opacity: 0, y: 22 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.28, ease: 'easeOut' }}
+          <form
             onSubmit={(e) => { e.preventDefault(); handleSearch(); }}
             role="search"
             aria-label="Find cars"
@@ -292,18 +216,12 @@ export default function Hero() {
               <Search className="mr-2 h-4 w-4" />
               Find Cars
             </Button>
-          </motion.form>
+          </form>
 
-          {/* Popular searches */}
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.38, ease: 'easeOut' }}
-            className="mt-5 hidden max-w-full flex-wrap items-center gap-2 sm:flex"
-          >
+          <div className="mt-5 hidden max-w-full flex-wrap items-center gap-2 sm:flex">
             <span className="flex items-center gap-1.5 text-[11px] font-medium uppercase tracking-wider text-white/45" suppressHydrationWarning>
-              <TrendingUp className="h-3.5 w-3.5" />
-              Trending
+              <Search className="h-3.5 w-3.5" />
+              Quick searches
             </span>
             {popularSearches.map((search, i) => (
               <button
@@ -316,50 +234,7 @@ export default function Hero() {
                 <ArrowRight className="h-3 w-3 opacity-0 -translate-x-1 transition-all group-hover:opacity-100 group-hover:translate-x-0" />
               </button>
             ))}
-          </motion.div>
-
-          {/* Stats row */}
-          <motion.div
-            initial={{ opacity: 0, y: 18 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.48, ease: 'easeOut' }}
-            className="mt-10 premium-stat-grid hidden grid-cols-2 gap-px overflow-hidden rounded-xl backdrop-blur-sm sm:grid sm:grid-cols-4"
-          >
-            {stats.map((stat, i) => (
-              <div key={i} className="bg-black/20 px-4 py-3.5" suppressHydrationWarning>
-                <p className="text-lg font-bold text-white" suppressHydrationWarning>{stat.number}</p>
-                <p className="text-[11px] text-white/50 mt-0.5" suppressHydrationWarning>{stat.label}</p>
-              </div>
-            ))}
-          </motion.div>
-
-          {/* Trust line */}
-          <motion.div
-            initial={{ opacity: 0, y: 14 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.56, ease: 'easeOut' }}
-            className="mt-6 hidden max-w-full grid-cols-1 gap-2 min-[380px]:grid-cols-2 sm:flex sm:flex-wrap sm:items-center sm:gap-x-6 sm:gap-y-2"
-          >
-            {trustItems.map((item, i) => (
-              <div key={i} className="flex items-center gap-2 text-[13px] text-white/60" suppressHydrationWarning>
-                <item.icon className="h-4 w-4 text-[#D7B56D]" />
-                <span>{item.text}</span>
-              </div>
-            ))}
-            <button
-              type="button"
-              suppressHydrationWarning
-              onClick={() => {
-                const el = document.getElementById('customer-reviews');
-                if (el) el.scrollIntoView({ behavior: 'smooth' });
-              }}
-              className="flex items-center gap-1.5 text-[13px] text-white/60 hover:text-white transition-colors"
-              aria-label="See customer reviews"
-            >
-              <Star className="h-3.5 w-3.5 fill-[#F5A623] text-[#F5A623]" />
-              <span>See customer reviews</span>
-            </button>
-          </motion.div>
+          </div>
         </div>
       </div>
 

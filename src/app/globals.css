@@ -45,7 +45,7 @@
 }
 
 /* ═══════════════════════════════════════════════════
-   DESIGN TOKENS — Editorial Premium Automotive
+   DESIGN TOKENS - Editorial Premium Automotive
    Refined, restrained palette. No neon glows.
    ═══════════════════════════════════════════════════ */
 :root {
@@ -82,16 +82,16 @@
   --sidebar-border: oklch(0.9 0.01 240);
   --sidebar-ring: oklch(0.55 0.15 220);
 
-  /* ═══ Brand tokens — Saatvik Cars canonical palette ═══
+  /* ═══ Brand tokens - Saatvik Cars canonical palette ═══
      ONE palette. All components should use these variables
      (or the matching hex). Keep the accent restrained and premium.
 
-     DARK SCALE (3 tiers — use the lowest for body, higher for layering)
+     DARK SCALE (3 tiers - use the lowest for body, higher for layering)
      --brand-bg             #0A0A0A  page background (body)
      --brand-bg-elevated    #111827  cards, elevated surfaces
      --brand-bg-elevated-2  #1a1a2e  popovers, nested panels, hover states
 
-     CHAMPAGNE SCALE (3 tiers — one accent, do NOT mix)
+     CHAMPAGNE SCALE (3 tiers - one accent, do NOT mix)
      --brand-accent         #D7B56D  primary (buttons, links, highlights)
      --brand-accent-hover   #E7C77B  hover/active
      --brand-accent-light   #F2D98F  light text on dark, glows
@@ -155,7 +155,7 @@
   --sidebar-border: oklch(1 0 0 / 8%);
   --sidebar-ring: oklch(0.65 0.17 200);
 
-  /* Brand tokens — identical in light & dark (site is permanently dark) */
+  /* Brand tokens - identical in light & dark (site is permanently dark) */
   --brand-accent: #D7B56D;
   --brand-accent-hover: #E7C77B;
   --brand-accent-light: #F2D98F;
@@ -196,7 +196,7 @@ body {
 }
 
 /* ═══════════════════════════════════════════════════
-   SCROLLBAR — minimal, professional
+   SCROLLBAR - minimal, professional
    ═══════════════════════════════════════════════════ */
 ::-webkit-scrollbar { width: 8px; height: 8px; }
 ::-webkit-scrollbar-track { background: transparent; }
@@ -214,7 +214,7 @@ body {
 .overflow-x-auto { -ms-overflow-style: none; scrollbar-width: none; }
 
 /* ═══════════════════════════════════════════════════
-   HERO — full-bleed editorial background
+   HERO - full-bleed editorial background
    ═══════════════════════════════════════════════════ */
 .hero-editorial {
   position: relative;
@@ -224,16 +224,9 @@ body {
   content: '';
   position: absolute;
   inset: 0;
-  background:
-    radial-gradient(circle at 78% 34%, rgba(215,181,109,0.10), transparent 25%),
-    linear-gradient(90deg, rgba(6,7,9,0.88) 0%, rgba(6,7,9,0.62) 42%, rgba(6,7,9,0.18) 72%, rgba(6,7,9,0.34) 100%),
-    linear-gradient(180deg, rgba(6,7,9,0.18) 0%, transparent 36%, rgba(6,7,9,0.72) 100%);
+  background: radial-gradient(circle at 78% 34%, rgba(215,181,109,0.06), transparent 30%);
   pointer-events: none;
   z-index: 1;
-}
-
-.hero-editorial img {
-  filter: saturate(1.06) contrast(1.06) brightness(1.08);
 }
 
 .premium-eyebrow {
@@ -362,7 +355,7 @@ body {
 }
 
 /* ═══════════════════════════════════════════════════
-   SEARCH BAR — subtle focus ring (not a glow)
+   SEARCH BAR - subtle focus ring (not a glow)
    ═══════════════════════════════════════════════════ */
 .search-bar-focus {
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
@@ -375,7 +368,7 @@ body {
 }
 
 /* ═══════════════════════════════════════════════════
-   SECTION DIVIDER — hairline
+   SECTION DIVIDER - hairline
    ═══════════════════════════════════════════════════ */
 .section-divider,
 .section-separator {
@@ -384,7 +377,7 @@ body {
 }
 
 /* ═══════════════════════════════════════════════════
-   CAR CARD — hover lift (no shine sweep)
+   CAR CARD - hover lift (no shine sweep)
    ═══════════════════════════════════════════════════ */
 .car-card-lift,
 .car-card-shine {
@@ -431,7 +424,7 @@ body {
 }
 
 /* ═══════════════════════════════════════════════════
-   GLASS CARD — frosted premium card
+   GLASS CARD - frosted premium card
    ═══════════════════════════════════════════════════ */
 .glass-card {
   background: rgba(255, 255, 255, 0.025);
@@ -446,7 +439,7 @@ body {
 }
 
 /* ═══════════════════════════════════════════════════
-   NAVBAR — animated gradient bottom line
+   NAVBAR - animated gradient bottom line
    ═══════════════════════════════════════════════════ */
 .nav-gradient-line-animated {
   height: 1px;
@@ -457,10 +450,10 @@ body {
 }
 
 /* ═══════════════════════════════════════════════════
-   ACCESSIBILITY — Part D (D4)
+   ACCESSIBILITY - Part D (D4)
    ═══════════════════════════════════════════════════ */
 
-/* Skip to content link — visible only on focus */
+/* Skip to content link - visible only on focus */
 .skip-to-content {
   position: absolute;
   top: -100px;
@@ -500,7 +493,7 @@ body {
   outline: none;
 }
 
-/* prefers-reduced-motion — disable all animations/transitions for users who request it */
+/* prefers-reduced-motion - disable all animations/transitions for users who request it */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

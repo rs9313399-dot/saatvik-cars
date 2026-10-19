@@ -18,6 +18,8 @@ import {
 
 /* ─────────────── Constants ─────────────── */
 const CHAMPAGNE = '#D7B56D';
+const MAX_CAR_PHOTO_COUNT = 8;
+const SUPPORTED_CAR_PHOTO_TYPES = new Set(['image/jpeg', 'image/png', 'image/webp']);
 
 const BRANDS = [...ALL_BRANDS];
 
@@ -35,7 +37,7 @@ const FINANCE_OPTIONS = [...FINANCE_OPTIONS_LIB];
 
 const COLORS = [...CAR_COLORS];
 
-/* Tag options for the form (excludes 'sold' — admins can't mark a new car as sold) */
+/* Tag options for the form (excludes 'sold' - admins can't mark a new car as sold) */
 const FORM_TAGS = TAG_OPTIONS.filter((t) => t.value !== 'sold');
 
 const STEPS = [
@@ -243,7 +245,7 @@ export default function SellCarModal() {
     }
     if (form.model.toLowerCase().includes(form.brand.toLowerCase())) {
       toast.error('Model name issue', {
-        description: `Don't repeat the brand in the model name. You selected "${form.brand}" — just enter the model (e.g. "Nexon XZ+" not "Tata Nexon XZ+").`,
+        description: `Don't repeat the brand in the model name. You selected "${form.brand}" - just enter the model (e.g. "Nexon XZ+" not "Tata Nexon XZ+").`,
         duration: 6000,
       });
       return false;
@@ -300,7 +302,7 @@ export default function SellCarModal() {
               ? (uploadErr as { status: number }).status
               : 0;
             if (status === 401) {
-              // Session expired — guide the user to re-login.
+              // Session expired - guide the user to re-login.
               toast.error('Session expired', {
                 description: 'Please log in again as admin. Your form data will be kept.',
                 duration: 5000,
@@ -753,7 +755,7 @@ export default function SellCarModal() {
                             Drag & drop photos here
                           </p>
                           <p className="mt-1 text-xs text-slate-500">
-                            or click to browse (PNG, JPG up to 5MB each)
+                            or click to browse (JPG, PNG, WebP)
                           </p>
                         </div>
                         <Button
@@ -772,27 +774,31 @@ export default function SellCarModal() {
                       <input
                         type="file"
                         multiple
-                        accept="image/*"
+                        accept="image/jpeg,image/png,image/webp"
                         className="hidden"
                         id="car-photos"
                         onChange={(e) => {
                           const files = Array.from(e.target.files || []);
                           if (files.length === 0) return;
-                          const newEntries: ImageEntry[] = files.map((f) => ({
+                          const validFiles = files.filter((file) =>
+                            SUPPORTED_CAR_PHOTO_TYPES.has(file.type) &&
+                            file.size > 0
+                          );
+                          if (validFiles.length < files.length) {
+                            toast.error('Some photos were skipped', {
+                              description: 'Use non-empty JPEG, PNG, or WebP files.',
+                            });
+                          }
+                          const availableSlots = Math.max(0, MAX_CAR_PHOTO_COUNT - uploadedImages.length);
+                          const acceptedFiles = validFiles.slice(0, availableSlots);
+                          if (acceptedFiles.length < validFiles.length) {
+                            toast.error(`You can add up to ${MAX_CAR_PHOTO_COUNT} photos.`);
+                          }
+                          const newEntries: ImageEntry[] = acceptedFiles.map((f) => ({
                             preview: URL.createObjectURL(f),
                             file: f,
                           }));
-                          setUploadedImages((prev) => {
-                            const next = [...prev, ...newEntries].slice(0, 8);
-                            // If we exceeded the limit, revoke the URLs that didn't make the cut
-                            if (next.length < prev.length + newEntries.length) {
-                              for (let i = next.length; i < prev.length + newEntries.length; i++) {
-                                const entry = [...prev, ...newEntries][i];
-                                if (entry) URL.revokeObjectURL(entry.preview);
-                              }
-                            }
-                            return next;
-                          });
+                          setUploadedImages((prev) => [...prev, ...newEntries]);
                           // Reset the input value so selecting the same file again still triggers onChange
                           e.target.value = '';
                         }}
@@ -911,39 +917,39 @@ export default function SellCarModal() {
                       <div className="grid grid-cols-2 gap-y-2 gap-x-4 text-xs">
                         <div>
                           <span className="text-slate-500">Year:</span>{' '}
-                          <span className="text-slate-300">{form.year || '—'}</span>
+                          <span className="text-slate-300">{form.year || '-'}</span>
                         </div>
                         <div>
                           <span className="text-slate-500">Price:</span>{' '}
                           <span className="text-slate-300">
-                            {form.price ? `₹${parseInt(form.price).toLocaleString('en-IN')}` : '—'}
+                            {form.price ? `₹${parseInt(form.price).toLocaleString('en-IN')}` : '-'}
                           </span>
                         </div>
                         <div>
                           <span className="text-slate-500">Fuel:</span>{' '}
-                          <span className="text-slate-300">{form.fuelType || '—'}</span>
+                          <span className="text-slate-300">{form.fuelType || '-'}</span>
                         </div>
                         <div>
                           <span className="text-slate-500">Transmission:</span>{' '}
-                          <span className="text-slate-300">{form.transmission || '—'}</span>
+                          <span className="text-slate-300">{form.transmission || '-'}</span>
                         </div>
                         <div>
                           <span className="text-slate-500">KM Driven:</span>{' '}
                           <span className="text-slate-300">
-                            {form.kmDriven ? `${parseInt(form.kmDriven).toLocaleString('en-IN')} km` : '—'}
+                            {form.kmDriven ? `${parseInt(form.kmDriven).toLocaleString('en-IN')} km` : '-'}
                           </span>
                         </div>
                         <div>
                           <span className="text-slate-500">Owner:</span>{' '}
-                          <span className="text-slate-300">{form.ownerType || '—'}</span>
+                          <span className="text-slate-300">{form.ownerType || '-'}</span>
                         </div>
                         <div>
                           <span className="text-slate-500">Location:</span>{' '}
-                          <span className="text-slate-300">{form.location || '—'}</span>
+                          <span className="text-slate-300">{form.location || '-'}</span>
                         </div>
                         <div>
                           <span className="text-slate-500">Phone:</span>{' '}
-                          <span className="text-slate-300">{form.contactPhone || '—'}</span>
+                          <span className="text-slate-300">{form.contactPhone || '-'}</span>
                         </div>
                         {form.carNumber && (
                           <div className="col-span-2">
@@ -956,15 +962,15 @@ export default function SellCarModal() {
                         </div>
                         <div>
                           <span className="text-slate-500">Colour:</span>{' '}
-                          <span className="text-slate-300">{form.color || '—'}</span>
+                          <span className="text-slate-300">{form.color || '-'}</span>
                         </div>
                         <div>
                           <span className="text-slate-500">RTO:</span>{' '}
-                          <span className="text-slate-300">{form.rto || '—'}</span>
+                          <span className="text-slate-300">{form.rto || '-'}</span>
                         </div>
                         <div>
                           <span className="text-slate-500">Insurance:</span>{' '}
-                          <span className="text-slate-300">{form.insurance || '—'}</span>
+                          <span className="text-slate-300">{form.insurance || '-'}</span>
                         </div>
                         <div>
                           <span className="text-slate-500">Sunroof:</span>{' '}
@@ -972,7 +978,7 @@ export default function SellCarModal() {
                         </div>
                         <div className="col-span-2">
                           <span className="text-slate-500">Finance:</span>{' '}
-                          <span className="text-slate-300">{form.finance || '—'}</span>
+                          <span className="text-slate-300">{form.finance || '-'}</span>
                         </div>
                       </div>
                       {uploadedImages.length > 0 && (

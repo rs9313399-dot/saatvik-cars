@@ -12,7 +12,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { hash: 'privacy', priority: 0.6, changeFrequency: 'monthly' },
     { hash: '#cars', priority: 0.8, changeFrequency: 'daily' },
     { hash: '#finance', priority: 0.8, changeFrequency: 'monthly' },
-    { hash: '#services', priority: 0.8, changeFrequency: 'monthly' },
+    { hash: '#how-it-works', priority: 0.7, changeFrequency: 'monthly' },
+    { hash: '#about', priority: 0.8, changeFrequency: 'monthly' },
     { hash: '#about', priority: 0.8, changeFrequency: 'monthly' },
     { hash: '#blog', priority: 0.7, changeFrequency: 'weekly' },
     { hash: '#contact', priority: 0.8, changeFrequency: 'monthly' },
@@ -25,7 +26,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: s.priority,
   }));
 
-  // Published blog posts — the blog opens in a modal on the same page,
+  // Published blog posts - the blog opens in a modal on the same page,
   // so each post points to the #blog anchor with its own lastModified date.
   let blogPosts: { slug: string; updatedAt: Date }[] = [];
   try {

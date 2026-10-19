@@ -94,7 +94,6 @@ Use the pooled `DATABASE_URL` for application traffic and the direct `DIRECT_URL
 | `bun run start` | Start the standalone production server |
 | `bun run lint` | Run lint checks |
 | `bun run db:reset` | Reset the local Prisma database |
-| `bun run db:import-snapshot` | Import a verified snapshot into an empty PostgreSQL database |
 
 ## Main API Areas
 

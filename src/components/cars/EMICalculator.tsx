@@ -170,7 +170,7 @@ export default function EMICalculator() {
             className="rounded-2xl border border-[#D7B56D]/20 bg-gradient-to-br from-[#D7B56D]/[0.06] to-transparent p-6 flex flex-col justify-center"
             suppressHydrationWarning
           >
-            {/* Monthly EMI — aria-live announces updates to screen readers */}
+            {/* Monthly EMI - aria-live announces updates to screen readers */}
             <div className="mb-6" aria-live="polite" aria-atomic="true">
               <p className="text-xs font-medium text-slate-400 mb-1" suppressHydrationWarning>Your Monthly EMI</p>
               <p className="text-4xl font-bold text-[#D7B56D]" suppressHydrationWarning>

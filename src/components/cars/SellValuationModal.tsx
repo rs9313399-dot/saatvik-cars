@@ -80,7 +80,7 @@ const CONDITIONS: ConditionOption[] = [
   {
     value: 'Excellent',
     icon: Star,
-    desc: 'Like new — no scratches, dents, or issues',
+    desc: 'Like new - no scratches, dents, or issues',
     accent: 'text-emerald-400',
     ring: 'ring-emerald-500/40',
     bg: 'bg-emerald-500/[0.07]',
@@ -134,7 +134,7 @@ function formatLongDate(d: Date | undefined): string {
   });
 }
 
-/** Calendar `disabled` predicate — disable past dates AND Sundays. */
+/** Calendar `disabled` predicate - disable past dates AND Sundays. */
 function isPastOrSunday(date: Date): boolean {
   const today = new Date();
   today.setHours(0, 0, 0, 0);
@@ -150,7 +150,7 @@ export default function SellValuationModal() {
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  /* ── Step 1 — Car Details ── */
+  /* ── Step 1 - Car Details ── */
   const [brand, setBrand] = useState('');
   const [model, setModel] = useState('');
   const [year, setYear] = useState<string>('');
@@ -160,14 +160,14 @@ export default function SellValuationModal() {
   const [ownerType, setOwnerType] = useState('');
   const [condition, setCondition] = useState('');
 
-  /* ── Step 2 — Photos + Inspection ── */
+  /* ── Step 2 - Photos + Inspection ── */
   const [photos, setPhotos] = useState<PhotoEntry[]>([]);
   const [inspectionDate, setInspectionDate] = useState<Date | undefined>(
     undefined
   );
   const [inspectionSlot, setInspectionSlot] = useState('');
 
-  /* ── Step 3 — Contact ── */
+  /* ── Step 3 - Contact ── */
   const [customerName, setCustomerName] = useState('');
   const [phone, setPhone] = useState('');
   const [email, setEmail] = useState('');
@@ -191,7 +191,7 @@ export default function SellValuationModal() {
   const idMessage = `${rid}-message`;
   const idPhotos = `${rid}-photos`;
 
-  /* ── Live estimate (useMemo — recomputes when relevant inputs change) ── */
+  /* ── Live estimate (useMemo - recomputes when relevant inputs change) ── */
   const estimate = useMemo(() => {
     if (!brand || !year || !kmDriven || !condition || !ownerType) return null;
     const km = Number(kmDriven);
@@ -217,7 +217,7 @@ export default function SellValuationModal() {
     };
   }, [sellValuationOpen]);
 
-  /* ── ESC to close (disabled while submitting) — defined after handleClose below ── */
+  /* ── ESC to close (disabled while submitting) - defined after handleClose below ── */
 
   /* ── Revoke all object URLs on unmount (avoid memory leaks).
      We deliberately use `[]` deps so the cleanup only fires on unmount
@@ -462,7 +462,7 @@ export default function SellValuationModal() {
     message,
   ]);
 
-  /* ── "Browse cars" — closes modal + scrolls to #cars ── */
+  /* ── "Browse cars" - closes modal + scrolls to #cars ── */
   const handleBrowseCars = useCallback(() => {
     handleClose();
     window.setTimeout(() => {
@@ -505,7 +505,7 @@ export default function SellValuationModal() {
           onClick={handleOverlayClick}
           role="dialog"
           aria-modal="true"
-          aria-label="Sell or trade your car — valuation form"
+          aria-label="Sell or trade your car - valuation form"
           suppressHydrationWarning
         >
           <motion.div
@@ -556,7 +556,7 @@ export default function SellValuationModal() {
                         Sell / Trade Your Car
                       </h2>
                       <p className="truncate text-xs text-slate-400 sm:text-sm">
-                        Get an instant valuation in 3 easy steps
+                        Estimate your car's value in 3 steps
                       </p>
                     </div>
                   </div>
@@ -790,7 +790,7 @@ export default function SellValuationModal() {
   );
 }
 
-/* ─────────────────────────── Step 1 — Car Details ─────────────────────────── */
+/* ─────────────────────────── Step 1 - Car Details ─────────────────────────── */
 interface Step1FormProps {
   idBrand: string;
   idModel: string;
@@ -1131,7 +1131,7 @@ function Step1Form(props: Step1FormProps) {
   );
 }
 
-/* ─────────────────────────── Step 2 — Photos + Inspection ─────────────────────────── */
+/* ─────────────────────────── Step 2 - Photos + Inspection ─────────────────────────── */
 interface Step2FormProps {
   idPhotos: string;
   photos: PhotoEntry[];
@@ -1286,7 +1286,7 @@ function Step2Form(props: Step2FormProps) {
               Selected date
             </p>
             <p className="mt-1 font-semibold text-white">
-              {inspectionDate ? formatLongDate(inspectionDate) : '—'}
+              {inspectionDate ? formatLongDate(inspectionDate) : '-'}
             </p>
             <p className="mt-2 text-xs text-slate-500">
               Sundays not available.
@@ -1347,7 +1347,7 @@ function Step2Form(props: Step2FormProps) {
   );
 }
 
-/* ─────────────────────────── Step 3 — Contact + Summary ─────────────────────────── */
+/* ─────────────────────────── Step 3 - Contact + Summary ─────────────────────────── */
 interface Step3FormProps {
   idName: string;
   idPhone: string;
@@ -1414,7 +1414,7 @@ function Step3Form(props: Step3FormProps) {
               </span>
             </div>
             <span className="text-xl font-bold text-[#D7B56D]">
-              {estimate ? formatPrice(estimate) : '—'}
+              {estimate ? formatPrice(estimate) : '-'}
             </span>
           </div>
         </div>
@@ -1426,7 +1426,7 @@ function Step3Form(props: Step3FormProps) {
               Inspection
             </p>
             <p className="mt-0.5 font-medium text-white">
-              {inspectionDate ? formatLongDate(inspectionDate) : '—'}
+              {inspectionDate ? formatLongDate(inspectionDate) : '-'}
             </p>
           </div>
           <div>
@@ -1434,7 +1434,7 @@ function Step3Form(props: Step3FormProps) {
               Slot
             </p>
             <p className="mt-0.5 font-medium text-white">
-              {inspectionSlot || '—'}
+              {inspectionSlot || '-'}
             </p>
           </div>
         </div>
@@ -1443,7 +1443,7 @@ function Step3Form(props: Step3FormProps) {
         <div className="border-t border-white/[0.06] px-4 py-3 text-sm">
           <p className="text-xs uppercase tracking-wide text-slate-500">Car</p>
           <p className="mt-0.5 font-medium text-white">
-            {brand} {model} ({year || '—'})
+            {brand} {model} ({year || '-'})
           </p>
           <p className="mt-0.5 text-xs text-slate-400">
             {Number(kmDriven || 0).toLocaleString('en-IN')} km
@@ -1652,7 +1652,7 @@ function SuccessView(props: SuccessViewProps) {
       transition={{ duration: 0.25 }}
       suppressHydrationWarning
     >
-      {/* Green check icon — animated scale-in */}
+      {/* Green check icon - animated scale-in */}
       <motion.div
         className="mb-5 grid h-16 w-16 place-items-center rounded-full bg-emerald-500/15 ring-1 ring-emerald-500/40"
         initial={{ scale: 0.4, opacity: 0 }}
@@ -1670,7 +1670,7 @@ function SuccessView(props: SuccessViewProps) {
         Your valuation request has been received.
       </p>
 
-      {/* Estimated value — champagne, prominent */}
+      {/* Estimated value - champagne, prominent */}
       <div
         className="mt-5 w-full max-w-sm rounded-xl border border-[#D7B56D]/30 bg-[#D7B56D]/[0.06] px-4 py-4"
         suppressHydrationWarning
@@ -1679,7 +1679,7 @@ function SuccessView(props: SuccessViewProps) {
           Your estimated value
         </p>
         <p className="mt-1 text-3xl font-bold text-[#D7B56D]">
-          {estimate ? formatPrice(estimate) : '—'}
+          {estimate ? formatPrice(estimate) : '-'}
         </p>
         <p className="mt-1 text-xs text-slate-500">
           {brand} {model}
@@ -1695,7 +1695,7 @@ function SuccessView(props: SuccessViewProps) {
           Inspection scheduled
         </p>
         <p className="mt-1 text-sm font-medium text-white">
-          {inspectionDate ? formatLongDate(inspectionDate) : '—'}
+          {inspectionDate ? formatLongDate(inspectionDate) : '-'}
           {inspectionSlot ? ` at ${inspectionSlot}` : ''}
         </p>
       </div>

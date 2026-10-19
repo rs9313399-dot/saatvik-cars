@@ -1,6 +1,5 @@
 'use client';
 
-import { useState } from 'react';
 import Link from 'next/link';
 import {
   Car,
@@ -15,14 +14,10 @@ import {
   Mail,
   Clock,
   Shield,
-  Lock,
 } from 'lucide-react';
-import { Input } from '@/components/ui/input';
-import { Button } from '@/components/ui/button';
 import { toast } from 'sonner';
 import { useStore } from '@/lib/store';
 import { BUSINESS, FOOTER_BRANDS } from '@/lib/business';
-import PolicyModal, { type PolicyType } from './PolicyModal';
 
 const quickLinks = [
   { label: 'Browse Cars', href: '#cars' },
@@ -30,7 +25,7 @@ const quickLinks = [
   { label: 'How It Works', href: '#how-it-works' },
   { label: 'Customer Reviews', href: '#customer-reviews' },
   { label: 'Car Categories', href: '#categories' },
-  { label: 'EMI Calculator', href: '#emi' },
+  { label: 'Loan Payment Estimate', href: '#finance' },
   { label: 'Compare Cars', href: '#cars', action: 'compare' as const },
 ];
 
@@ -44,48 +39,15 @@ const socialLinks = [
   { icon: Linkedin, href: BUSINESS.social.linkedin, label: 'LinkedIn' },
 ];
 
-const certifications = [
-  { icon: Shield, label: `GST Registered (${BUSINESS.gstin})` },
-  { icon: Lock, label: 'SSL Secured' },
-];
-
 export default function Footer() {
-  const [email, setEmail] = useState('');
-  const [subscribing, setSubscribing] = useState(false);
-  const [policyType, setPolicyType] = useState<PolicyType | null>(null);
-  const { setSellModalOpen, setLoginModalOpen, setAdminPanelOpen, isAdmin, setActiveFilters, activeFilters } = useStore();
-
-  const handleSubscribe = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!email) return;
-    setSubscribing(true);
-    try {
-      const res = await fetch('/api/newsletter', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email }),
-      });
-      if (res.ok) {
-        toast.success('Subscribed successfully!', {
-          description: `Price alerts will be sent to ${email}`,
-          duration: 4000,
-        });
-        setEmail('');
-      } else {
-        toast.error('Subscription failed', {
-          description: 'Please try again later.',
-          duration: 4000,
-        });
-      }
-    } catch {
-      toast.error('Subscription failed', {
-        description: 'Please try again later or call us.',
-        duration: 4000,
-      });
-    } finally {
-      setSubscribing(false);
-    }
-  };
+  const {
+    setSellModalOpen,
+    setLoginModalOpen,
+    setAdminPanelOpen,
+    isAdmin,
+    setActiveFilters,
+    activeFilters,
+  } = useStore();
 
   const handleQuickLink = (href: string, label: string, action?: string) => {
     if (action === 'sell') {
@@ -121,30 +83,12 @@ export default function Footer() {
     toast.success(`Showing ${brand} cars`, { duration: 2500 });
   };
 
-  const handleBottomLink = (label: string) => {
-    if (label === 'Privacy Policy') {
-      return;
-    }
-    if (label === 'Terms of Service') {
-      setPolicyType('terms');
-      return;
-    }
-    if (label === 'Refund Policy') {
-      setPolicyType('refund');
-      return;
-    }
-    toast.info(label, {
-      description: `${label} page coming soon.`,
-      duration: 3000,
-    });
-  };
-
   return (
     <footer className="mt-auto w-full border-t border-white/[0.04] bg-[#0A0A0A]">
       {/* ───── Main 5-column grid ───── */}
       <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8 lg:py-14">
         <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-5 lg:gap-8">
-          {/* Column 1 — Brand */}
+          {/* Column 1 - Brand */}
           <div className="space-y-5 sm:col-span-2 lg:col-span-1">
             {/* Logo */}
             <div className="flex items-center gap-2.5">
@@ -163,8 +107,7 @@ export default function Footer() {
             {/* Tagline */}
             <p className="text-sm leading-relaxed text-slate-500">
               A unit of <span className="text-slate-400">Tarang Marketing</span>.
-              Certified pre-owned cars with transparent deals, verified papers, and
-              zero hassle.
+              Used car listings in Bilaspur. Contact us to confirm availability.
             </p>
 
             {/* Social icons */}
@@ -185,7 +128,7 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Column 2 — Quick Links */}
+          {/* Column 2 - Quick Links */}
           <div className="space-y-4">
             <h3 className="text-xs font-semibold uppercase tracking-wider text-slate-500">
               Quick Links
@@ -208,7 +151,7 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Column 3 — Car Brands */}
+          {/* Column 3 - Car Brands */}
           <div className="space-y-4">
             <h3 className="text-xs font-semibold uppercase tracking-wider text-slate-500">
               Car Brands
@@ -231,7 +174,7 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Column 4 — Contact Us */}
+          {/* Column 4 - Contact Us */}
           <div className="space-y-4">
             <h3 className="text-xs font-semibold uppercase tracking-wider text-slate-500">
               Contact Us
@@ -276,54 +219,15 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Column 5 — Newsletter */}
+          {/* Column 5 - Visit information */}
           <div className="space-y-4">
             <h3 className="text-xs font-semibold uppercase tracking-wider text-slate-500">
-              Get Price Alerts
+              Before You Visit
             </h3>
             <p className="text-sm leading-relaxed text-slate-500">
-              Be the first to know when prices drop on cars you love.
-            </p>
-            <form onSubmit={handleSubscribe} className="space-y-2.5" suppressHydrationWarning>
-              <div className="flex rounded-xl overflow-hidden border border-white/[0.08] bg-white/[0.03] focus-within:border-[#D7B56D]/30 focus-within:ring-1 focus-within:ring-[#D7B56D]/20 transition-all" suppressHydrationWarning>
-                <Input
-                  type="email"
-                  placeholder="your@email.com"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  required
-                  suppressHydrationWarning
-                  className="h-11 border-0 bg-transparent text-sm text-white placeholder:text-slate-400 focus-visible:ring-0 focus-visible:border-0"
-                />
-                <Button
-                  type="submit"
-                  disabled={subscribing}
-                  suppressHydrationWarning
-                  className="h-11 rounded-none bg-[#D7B56D] text-[#0A0A0A] hover:bg-[#E7C77B] text-sm font-bold disabled:opacity-60 px-5 shrink-0"
-                >
-                  {subscribing ? '...' : 'Subscribe'}
-                </Button>
-              </div>
-            </form>
-            <p className="text-[11px] text-slate-400">
-              Get notified when new cars arrive
+              Contact Saatvik Cars to confirm a car is still available and arrange a showroom visit.
             </p>
           </div>
-        </div>
-      </div>
-
-      {/* ───── Certification Badges ───── */}
-      <div className="border-t border-white/[0.04]">
-        <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-center gap-4 px-4 py-4 sm:gap-6 sm:px-6 lg:px-8">
-          {certifications.map(({ icon: Icon, label }) => (
-            <div
-              key={label}
-              className="flex items-center gap-2 rounded-lg border border-white/[0.06] bg-white/[0.02] px-3 py-1.5 text-[11px] text-slate-400"
-            >
-              <Icon className="h-3.5 w-3.5 text-[#D7B56D]/60" />
-              <span>{label}</span>
-            </div>
-          ))}
         </div>
       </div>
 
@@ -350,32 +254,15 @@ export default function Footer() {
                   setLoginModalOpen(true);
                 }
               }}
-              className="inline-flex items-center gap-1.5 text-[11px] text-slate-400 transition-colors hover:text-[#D7B56D]"
+              className="inline-flex min-h-10 items-center gap-2 border border-[#D7B56D]/50 bg-[#D7B56D] px-4 py-2 text-sm font-semibold text-[#111111] transition-colors hover:bg-[#e2c17d]"
             >
-              <Shield className="h-3 w-3" aria-hidden="true" />
+              <Shield className="h-4 w-4" aria-hidden="true" />
               {isAdmin ? 'Admin Panel' : 'Admin Login'}
-            </button>
-            <span className="text-white/[0.06]">|</span>
-            <button
-              onClick={() => handleBottomLink('Terms of Service')}
-              suppressHydrationWarning
-              className="text-[11px] text-slate-400 transition-colors hover:text-slate-400"
-            >
-              Terms of Service
-            </button>
-            <span className="text-white/[0.06]">|</span>
-            <button
-              onClick={() => handleBottomLink('Refund Policy')}
-              suppressHydrationWarning
-              className="text-[11px] text-slate-400 transition-colors hover:text-slate-400"
-            >
-              Refund Policy
             </button>
           </div>
         </div>
       </div>
 
-      <PolicyModal type={policyType} onClose={() => setPolicyType(null)} />
     </footer>
   );
 }

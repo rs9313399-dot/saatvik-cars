@@ -20,7 +20,7 @@ export interface CarFilters {
 interface StoreState {
   hydrated: boolean;
   hydrate: () => void;
-  // Dark mode — site is permanently dark; this only manages the html class
+  // Dark mode - site is permanently dark; this only manages the html class
   darkMode: boolean;
   // Active section for navbar highlighting
   activeSection: string;
@@ -29,18 +29,16 @@ interface StoreState {
   mobileMenuOpen: boolean;
   setMobileMenuOpen: (val: boolean) => void;
   // Auth
-  authToken: string | null;
-  setAuthToken: (token: string | null) => void;
   isAdmin: boolean;
   setIsAdmin: (val: boolean) => void;
   // Active filters applied to FeaturedCars
   activeFilters: CarFilters;
   setActiveFilters: (filters: CarFilters) => void;
   clearFilters: () => void;
-  // Sell Car Modal (admin — List Your Car)
+  // Sell Car Modal (admin - List Your Car)
   sellModalOpen: boolean;
   setSellModalOpen: (val: boolean) => void;
-  // Sell/Trade Valuation Modal (customer — C1)
+  // Sell/Trade Valuation Modal (customer - C1)
   sellValuationOpen: boolean;
   setSellValuationOpen: (val: boolean) => void;
   // Admin Login Modal
@@ -124,16 +122,13 @@ export const useStore = create<StoreState>((set, get) => ({
   hydrated: false,
   hydrate: () => {
     if (get().hydrated) return;
-    let authToken: string | null = null;
-    let isAdmin = false;
+    const isAdmin = false;
     let compareList: string[] = [];
     let wishlistIds: string[] = [];
     let lastViewedCars: string[] = [];
     try {
-      const storedToken = localStorage.getItem(`${STORAGE_PREFIX}authToken`);
-      if (storedToken) authToken = storedToken;
-      const storedAdmin = localStorage.getItem(`${STORAGE_PREFIX}isAdmin`);
-      if (storedAdmin === 'true') isAdmin = true;
+      localStorage.removeItem(`${STORAGE_PREFIX}authToken`);
+      localStorage.removeItem(`${STORAGE_PREFIX}isAdmin`);
       compareList = loadCompareList();
       lastViewedCars = loadViewedCars();
       const storedWishlist = localStorage.getItem(`${STORAGE_PREFIX}wishlist`);
@@ -143,29 +138,15 @@ export const useStore = create<StoreState>((set, get) => ({
       }
     } catch {}
     applyDarkMode(true); // site is permanently dark
-    set({ hydrated: true, darkMode: true, authToken, isAdmin, compareList, wishlistIds, lastViewedCars });
+    set({ hydrated: true, darkMode: true, isAdmin, compareList, wishlistIds, lastViewedCars });
   },
   darkMode: true,
   activeSection: 'hero',
   setActiveSection: (section: string) => set({ activeSection: section }),
   mobileMenuOpen: false,
   setMobileMenuOpen: (val: boolean) => set({ mobileMenuOpen: val }),
-  authToken: null,
-  setAuthToken: (token: string | null) => {
-    try {
-      if (token) {
-        localStorage.setItem(`${STORAGE_PREFIX}authToken`, token);
-      } else {
-        localStorage.removeItem(`${STORAGE_PREFIX}authToken`);
-      }
-    } catch {}
-    set({ authToken: token });
-  },
   isAdmin: false,
   setIsAdmin: (val: boolean) => {
-    try {
-      localStorage.setItem(`${STORAGE_PREFIX}isAdmin`, String(val));
-    } catch {}
     set({ isAdmin: val });
   },
   // Active filters applied to FeaturedCars
@@ -175,7 +156,7 @@ export const useStore = create<StoreState>((set, get) => ({
   // Sell Car Modal (admin)
   sellModalOpen: false,
   setSellModalOpen: (val: boolean) => set({ sellModalOpen: val }),
-  // Sell/Trade Valuation Modal (customer — C1)
+  // Sell/Trade Valuation Modal (customer - C1)
   sellValuationOpen: false,
   setSellValuationOpen: (val: boolean) => set({ sellValuationOpen: val }),
   // Admin Login Modal

@@ -248,7 +248,7 @@ export default function FilterSidebar({ cars }: FilterSidebarProps) {
                 <option key={y} value={y} className="bg-[#0f172a]">{y}</option>
               ))}
             </select>
-            <span className="text-slate-400">—</span>
+            <span className="text-slate-400">-</span>
             <select
               value={f.maxYear ?? ''}
               onChange={(e) => update({ maxYear: e.target.value ? Number(e.target.value) : undefined })}

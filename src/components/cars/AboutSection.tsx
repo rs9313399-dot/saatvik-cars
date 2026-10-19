@@ -1,28 +1,10 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Building2, ShieldCheck, FileCheck, Handshake, MapPin, Phone, Mail, Navigation } from 'lucide-react';
+import { Building2, MapPin, Phone, Mail, Navigation } from 'lucide-react';
 import { BUSINESS } from '@/lib/business';
 
-const highlights = [
-  {
-    icon: ShieldCheck,
-    title: 'GST Registered Dealer',
-    desc: `GSTIN: ${BUSINESS.gstin}. A legitimate, tax-compliant business you can trust.`,
-  },
-  {
-    icon: FileCheck,
-    title: 'Transparent Dealing',
-    desc: 'Clear pricing, verified documents, and honest car condition reports. No hidden charges.',
-  },
-  {
-    icon: Handshake,
-    title: 'Customer First',
-    desc: 'From inspection to RC transfer, we handle everything so you can drive home worry-free.',
-  },
-];
-
-// Full showroom address (BUSINESS.address is just the state — this is the specific location)
+// Full showroom address (BUSINESS.address is just the state - this is the specific location)
 const FULL_ADDRESS = 'Plot 14, Industrial Area, Bilaspur, Chhattisgarh 495001, India';
 const MAPS_QUERY = encodeURIComponent('Saatvik Cars Tarang Marketing Bilaspur Chhattisgarh');
 const MAPS_DIR_URL = `https://www.google.com/maps/dir/?api=1&destination=${MAPS_QUERY}`;
@@ -49,19 +31,12 @@ export default function AboutSection() {
               {BUSINESS.legalName}
             </h2>
             <p className="mt-4 text-sm leading-relaxed text-slate-400" suppressHydrationWarning>
-              Saatvik Cars is the pre-owned car dealership arm of Tarang Marketing, a
-              GST-registered business based in Bilaspur, Chhattisgarh. We specialise in certified
-              used cars that have passed our rigorous 150-point inspection, so you can
-              buy with confidence knowing every vehicle meets our quality standards.
-            </p>
-            <p className="mt-3 text-sm leading-relaxed text-slate-400" suppressHydrationWarning>
-              Whether you&apos;re looking for a budget hatchback, a family SUV, or a
-              premium sedan, our inventory is hand-picked and honestly priced. We handle
-              RC transfer, finance assistance, and exchange to keep your buying
-              process straightforward from start to finish.
+              Saatvik Cars operates under Tarang Marketing in Bilaspur, Chhattisgarh.
+              Browse the current listings and contact us to confirm a car&apos;s
+              availability before visiting.
             </p>
 
-            {/* Contact info — phone numbers as tel: links, email as mailto: */}
+            {/* Contact info - phone numbers as tel: links, email as mailto: */}
             <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="flex items-start gap-2.5">
                 <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-[#D7B56D]" />
@@ -92,7 +67,6 @@ export default function AboutSection() {
                 </div>
               </div>
               <div className="flex items-start gap-2.5">
-                <ShieldCheck className="mt-0.5 h-4 w-4 shrink-0 text-[#D7B56D]" />
                 <div>
                   <p className="text-xs font-medium text-slate-300" suppressHydrationWarning>GSTIN</p>
                   <p className="text-xs text-slate-500" suppressHydrationWarning>{BUSINESS.gstin}</p>
@@ -113,7 +87,7 @@ export default function AboutSection() {
             </a>
           </motion.div>
 
-          {/* Right: Map embed + highlights */}
+          {/* Right: Map and registered business details */}
           <motion.div
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -136,29 +110,11 @@ export default function AboutSection() {
               />
             </div>
 
-            {/* Highlights */}
-            {highlights.map((item, i) => {
-              const Icon = item.icon;
-              return (
-                <motion.div
-                  key={item.title}
-                  initial={{ opacity: 0, y: 16 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: i * 0.1 }}
-                  className="flex gap-4 rounded-xl border border-white/[0.06] bg-[#111827]/50 p-5 transition-all hover:border-[#D7B56D]/20"
-                  suppressHydrationWarning
-                >
-                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-[#D7B56D]/20 bg-[#D7B56D]/10" suppressHydrationWarning>
-                    <Icon className="h-5 w-5 text-[#D7B56D]" strokeWidth={1.8} />
-                  </div>
-                  <div>
-                    <h3 className="text-sm font-semibold text-white mb-1" suppressHydrationWarning>{item.title}</h3>
-                    <p className="text-xs leading-relaxed text-slate-400" suppressHydrationWarning>{item.desc}</p>
-                  </div>
-                </motion.div>
-              );
-            })}
+            <div className="rounded-xl border border-white/[0.06] bg-[#111827]/50 p-5">
+              <h3 className="text-sm font-semibold text-white">Business details</h3>
+              <p className="mt-2 text-xs text-slate-400">{BUSINESS.legalName}</p>
+              <p className="mt-1 text-xs text-slate-400">GSTIN: {BUSINESS.gstin}</p>
+            </div>
           </motion.div>
         </div>
       </div>

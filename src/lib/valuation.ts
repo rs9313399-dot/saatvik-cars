@@ -1,5 +1,5 @@
 /**
- * Saatvik Cars — Car Valuation Algorithm
+ * Saatvik Cars - Car Valuation Algorithm
  * Shared between the client (SellValuationModal live estimate)
  * and the server (/api/sell-inquiry POST) so both always agree.
  *
@@ -82,7 +82,7 @@ const FUEL_MULT: Record<string, number> = {
   Electric: 0.92, // depreciates faster
 };
 
-/** Hard floor — we never quote below this. */
+/** Hard floor - we never quote below this. */
 const MIN_VALUE = 50_000;
 /** Reference year (current evaluation year). */
 const REFERENCE_YEAR = 2025;

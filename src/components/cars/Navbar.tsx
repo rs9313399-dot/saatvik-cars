@@ -13,7 +13,6 @@ import { BUSINESS } from '@/lib/business';
 const NAV_LINKS = [
   { label: 'Used Cars', href: '#cars' },
   { label: 'Finance', href: '#finance' },
-  { label: 'Services', href: '#services' },
   { label: 'About', href: '#about' },
   { label: 'Blog', href: '#blog' },
   { label: 'Contact', href: '#contact' },
@@ -72,7 +71,7 @@ export default function Navbar() {
   const {
     activeSection, setActiveSection, mobileMenuOpen, setMobileMenuOpen,
     setSellModalOpen, setSellValuationOpen, setLoginModalOpen, setAdminPanelOpen,
-    isAdmin, setIsAdmin, setAuthToken,
+    isAdmin, setIsAdmin,
     wishlistIds, setWishlistOpen, compareList,
   } = useStore();
   const [scrolled, setScrolled] = useState(false);
@@ -148,10 +147,9 @@ export default function Navbar() {
   const handleLogout = useCallback(async () => {
     await logoutAdmin();
     setIsAdmin(false);
-    setAuthToken(null);
     setAdminDropdownOpen(false);
     toast.success('Logged out successfully');
-  }, [setIsAdmin, setAuthToken]);
+  }, [setIsAdmin]);
 
   const handleLogoClick = useCallback(
     (e: React.MouseEvent) => {
@@ -269,7 +267,7 @@ export default function Navbar() {
 
           {/* Right side CTAs */}
           <div className="flex shrink-0 items-center gap-2.5">
-            {/* Wishlist button — visible on md+ */}
+            {/* Wishlist button - visible on md+ */}
             <button
               onClick={() => setWishlistOpen(true)}
               suppressHydrationWarning
@@ -284,7 +282,7 @@ export default function Navbar() {
               )}
             </button>
 
-            {/* Compare button — visible on md+ */}
+            {/* Compare button - visible on md+ */}
             <button
               onClick={() => {
                 const carsSection = document.getElementById('cars');
@@ -305,7 +303,7 @@ export default function Navbar() {
               )}
             </button>
 
-            {/* Phone icon button — visible on md+ */}
+            {/* Phone icon button - visible on md+ */}
             <a
               href={`tel:${BUSINESS.primaryPhone}`}
               suppressHydrationWarning
@@ -497,7 +495,7 @@ export default function Navbar() {
                     )}
                   </nav>
 
-                  {/* Drawer footer — contact info */}
+                  {/* Drawer footer - contact info */}
                   <div className="mt-auto border-t border-white/[0.06] px-5 py-4">
                     <div className="flex flex-col gap-2.5 text-[11px] text-slate-500">
                       {BUSINESS.phones.map((phone) => (

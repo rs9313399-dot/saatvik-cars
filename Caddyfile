@@ -1,4 +1,4 @@
-:81 {
+localhost:81 {
 	@transform_port_query {
 		query XTransformPort=*
 	}

@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useMemo, useRef, useCallback, Fragment, type ReactNode } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { MapPin, Fuel, Gauge, Settings2, Calendar, ArrowRight, X, Phone, MessageCircle, Eye, Tag, GitCompare, Check, Heart, ChevronLeft, ChevronRight, Maximize2, SlidersHorizontal, CalendarCheck, Link2, Mail, AlertCircle, RefreshCw, SearchX, Sparkles, Printer, Trash2, CheckCircle2, XCircle, ShieldCheck, Camera, ImageOff } from 'lucide-react';
+import { MapPin, Fuel, Gauge, Settings2, Calendar, ArrowRight, X, Phone, MessageCircle, Tag, GitCompare, Check, Heart, ChevronLeft, ChevronRight, Maximize2, SlidersHorizontal, CalendarCheck, Link2, Mail, AlertCircle, RefreshCw, SearchX, Sparkles, Printer, Trash2, CheckCircle2, XCircle, ShieldCheck, Camera, ImageOff } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Skeleton } from '@/components/ui/skeleton';
@@ -10,7 +10,7 @@ import { fetchCars } from '@/lib/api';
 import { useStore } from '@/lib/store';
 import { BUSINESS } from '@/lib/business';
 import type { Car } from '@/lib/types';
-import { formatPrice, formatKM, parseImages, getTagLabel, getTagColor, getWhatsAppLink, getCallLink, calcEMI, formatEMI } from '@/lib/helpers';
+import { formatPrice, formatKM, parseImages, getTagLabel, getTagColor, getWhatsAppLink, getCallLink } from '@/lib/helpers';
 import FilterSidebar from './FilterSidebar';
 import TestDriveModal from './TestDriveModal';
 import { toast } from 'sonner';
@@ -55,21 +55,8 @@ const NON_CAR_IMAGE_PATHS = new Set([
   '/uploads/efdc16d4-a5be-4144-bf40-7b3f2fae7801.jpg',
 ]);
 
-const LEGACY_CAR_IMAGE_PATHS: Record<string, string> = {
-  '/images/cars/bmw-3series.png': '/images/cars/bmw-3-series-320d-sport-representative.webp',
-  '/images/cars/creta-sx.png': '/images/cars/hyundai-creta-sx-representative.webp',
-  '/images/cars/fortuner.png': '/images/cars/toyota-fortuner-legender-representative.webp',
-  '/images/cars/honda-city-grey.png': '/images/cars/honda-city-zx-cvt-representative.webp',
-  '/images/cars/honda-city.png': '/images/cars/honda-city-zx-cvt-representative.webp',
-  '/images/cars/mercedes-cclass.png': '/images/cars/mercedes-benz-c-class-c200-representative.webp',
-  '/images/cars/mg-hector.png': '/images/cars/mg-hector-sharp-representative.webp',
-  '/images/cars/swift-vxi.png': '/images/cars/maruti-suzuki-swift-vxi-representative.webp',
-  '/images/cars/tata-nexon.png': '/images/cars/tata-nexon-xz-plus-representative.webp',
-};
-
 function normalizeCarImage(src: string) {
-  if (LEGACY_CAR_IMAGE_PATHS[src]) return LEGACY_CAR_IMAGE_PATHS[src];
-  if (/^\/images\/cars\/.+\.png$/i.test(src)) return '';
+  if (/^\/images\/cars\//i.test(src)) return '';
   return src;
 }
 
@@ -77,70 +64,32 @@ function getTrustedImages(images: string[]) {
   return images.map(normalizeCarImage).filter((src) => src && !NON_CAR_IMAGE_PATHS.has(src));
 }
 
-function isRepresentativeImage(src: string) {
-  return src.includes('/images/cars/') && src.includes('-representative.');
-}
-
 function getPhotoTrustScore(car: Pick<Car, 'images'>) {
   const images = getTrustedImages(parseImages(car.images));
-  if (images.length === 0) return 0;
-  return images.some((src) => !isRepresentativeImage(src)) ? 2 : 1;
-}
-
-function getIndicativeEmi(price: number) {
-  return calcEMI(price * 0.8, 9.5, 60);
+  return images.length > 0 ? 2 : 0;
 }
 
 function getFallbackDetailId(carId: string) {
   return `car-detail-${carId.replace(/[^a-zA-Z0-9_-]/g, '-')}`;
 }
 
-function getEngineLabel(car: Pick<Car, 'brand' | 'model' | 'fuelType'>) {
-  const model = `${car.brand} ${car.model}`.toLowerCase();
-  if (model.includes('swift')) return '1.2L K-Series Petrol';
-  if (model.includes('creta')) return '1.5L CRDi Diesel';
-  if (model.includes('nexon')) return '1.2L Revotron Petrol';
-  if (model.includes('fortuner')) return '2.8L GD Diesel';
-  if (model.includes('city')) return '1.5L i-VTEC Petrol';
-  if (model.includes('320d') || model.includes('3 series')) return '2.0L TwinPower Diesel';
-  if (model.includes('xuv700')) return '2.2L mHawk Diesel';
-  if (model.includes('c200') || model.includes('c-class')) return '1.5L Turbo Petrol';
-  if (model.includes('hector')) return '1.5L Turbo Petrol';
-  return car.fuelType ? `${car.fuelType} engine` : '';
-}
-
 function PremiumCarVisual({ brand, name }: { brand: string; name: string }) {
-  const checklist = ['Inspection', 'Documents', 'RC transfer', 'Video call'];
-
   return (
-    <div className="relative flex h-full w-full flex-col justify-between overflow-hidden bg-[linear-gradient(145deg,#151922_0%,#090A0D_72%)] p-4">
+    <div className="relative flex h-full w-full flex-col justify-between overflow-hidden bg-[#101216] p-4">
       <div className="flex items-center justify-between gap-3">
         <div>
-          <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#D7B56D]/80">
-            Photos updating
+          <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-slate-400">
+            No photos available for {brand || 'this car'}
           </p>
           <p className="mt-1 max-w-[14rem] truncate text-sm font-semibold text-white/90">{name}</p>
         </div>
-        <div className="grid h-10 w-10 place-items-center rounded-full border border-[#D7B56D]/25 bg-[#D7B56D]/10">
+        <div className="grid h-10 w-10 place-items-center rounded-lg border border-white/10 bg-white/5">
           <ImageOff className="h-5 w-5 text-[#D7B56D]" />
         </div>
       </div>
 
-      <div className="grid grid-cols-2 gap-2">
-        {checklist.map((item) => (
-          <div key={item} className="flex items-center gap-1.5 rounded-lg border border-white/[0.06] bg-white/[0.035] px-2 py-1.5 text-[10px] font-medium text-slate-300">
-            <Camera className="h-3 w-3 text-[#D7B56D]" />
-            {item}
-          </div>
-        ))}
-      </div>
-
-      <div className="rounded-lg border border-amber-400/20 bg-amber-400/[0.06] px-3 py-2 text-[11px] leading-relaxed text-amber-100/80">
-        Live showroom photos or a video walkaround can be shared before booking.
-      </div>
-
-      <div>
-        <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#D7B56D]/80">{brand || 'Saatvik Cars'}</p>
+      <div className="max-w-sm rounded-lg border border-white/10 bg-white/[0.03] px-3 py-2 text-xs leading-relaxed text-slate-300">
+        Contact Saatvik Cars for details about this listing.
       </div>
     </div>
   );
@@ -161,7 +110,7 @@ function CarImage({
   className?: string;
 }) {
   // Track the specific src that failed to load. When `src` changes,
-  // `isErrored` automatically becomes false again — no effect needed.
+  // `isErrored` automatically becomes false again - no effect needed.
   const [erroredSrc, setErroredSrc] = useState<string>('');
   const isErrored = src === erroredSrc;
 
@@ -229,7 +178,7 @@ function CarImageCarousel({
     [total]
   );
 
-  // NOTE: No global window keyboard listener here — every card carousel
+  // NOTE: No global window keyboard listener here - every card carousel
   // would otherwise add its own listener, causing 9 simultaneous handlers
   // on ArrowRight. Card navigation is via on-screen arrows + touch swipe.
   // The full-screen PhotoLightbox has its own dedicated keyboard handler.
@@ -262,14 +211,14 @@ function CarImageCarousel({
   // No images at all → fallback placeholder
   if (total === 0) {
     return (
-      <div className="relative aspect-[16/10] w-full overflow-hidden rounded-t-2xl bg-gradient-to-br from-[#1a1a2e] to-[#0d0d0d]">
+      <div className="relative aspect-[16/10] w-full overflow-hidden rounded-t-2xl bg-[#101216]">
         <PremiumCarVisual brand={brand} name={alt} />
       </div>
     );
   }
 
   return (
-    <div className="relative aspect-[16/10] w-full overflow-hidden rounded-t-2xl bg-gradient-to-br from-[#1a1a2e] to-[#0d0d0d]">
+    <div className="relative aspect-[16/10] w-full overflow-hidden rounded-t-2xl bg-[#101216]">
       {/* Slides track */}
       <div
         className="flex h-full w-full transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]"
@@ -298,12 +247,6 @@ function CarImageCarousel({
 
       {/* Gradient overlay at bottom for legibility */}
       <div className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-[#111827]/70 via-[#111827]/25 to-transparent" />
-
-      {validImages.some(isRepresentativeImage) && (
-        <div className="absolute left-3 bottom-3 z-20 rounded-full border border-[#D7B56D]/25 bg-black/55 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wide text-[#D7B56D] backdrop-blur-sm">
-          Reference image
-        </div>
-      )}
 
       {/* Tags */}
       {tagsList.length > 0 && (
@@ -527,9 +470,6 @@ function PhotoLightbox({
 function CarDetailModal({ car, onClose, wishlisted, onToggleWishlist, onBookTestDrive, allCars, onSelectCar }: { car: Car; onClose: () => void; wishlisted: boolean; onToggleWishlist: (carId: string) => void; onBookTestDrive: (car: Car) => void; allCars: Car[]; onSelectCar: (car: Car) => void }) {
   const images = getTrustedImages(parseImages(car.images));
   const tagsList = car.tags ? car.tags.split(',').filter(Boolean) : [];
-  // Indicative EMI — assumes 80% loan amount at 9.5% interest over 60 months.
-  // Clicking the badge scrolls to the main EMI calculator section (#emi).
-  const emi = getIndicativeEmi(car.price);
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
   const modalScrollRef = useRef<HTMLDivElement>(null);
 
@@ -551,7 +491,7 @@ function CarDetailModal({ car, onClose, wishlisted, onToggleWishlist, onBookTest
     return result.slice(0, 4);
   }, [allCars, car.id, car.brand, car.price]);
 
-  // Car schema JSON-LD — built from the in-memory car prop so search
+  // Car schema JSON-LD - built from the in-memory car prop so search
   // engines (Google rich results) can parse the vehicle listing. Only
   // rendered while the modal is open (the parent only mounts this
   // component when `selectedCar` is set, so the schema never pollutes
@@ -579,8 +519,8 @@ function CarDetailModal({ car, onClose, wishlisted, onToggleWishlist, onBookTest
     [car.name, car.brand, car.model, car.year, car.fuelType, car.transmission, car.kmDriven, car.price, car.color, car.carNumber],
   );
 
-  // Share helpers — WhatsApp prefilled text, mailto subject/body, copy link.
-  const shareText = `Check out this ${car.name} at Saatvik Cars — ${formatPrice(car.price)}`;
+  // Share helpers - WhatsApp prefilled text, mailto subject/body, copy link.
+  const shareText = `Check out this ${car.name} at Saatvik Cars - ${formatPrice(car.price)}`;
   const whatsappShareLink = `https://wa.me/?text=${encodeURIComponent(shareText)}`;
   const emailShareLink = `mailto:?subject=${encodeURIComponent(`Check out: ${car.name}`)}&body=${encodeURIComponent(`${shareText}\n\nView more cars at Saatvik Cars.`)}`;
 
@@ -598,7 +538,7 @@ function CarDetailModal({ car, onClose, wishlisted, onToggleWishlist, onBookTest
   const handleScrollToEmi = () => {
     onClose();
     setTimeout(() => {
-      const el = document.getElementById('emi');
+      const el = document.getElementById('finance');
       if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }, 120);
   };
@@ -647,7 +587,7 @@ function CarDetailModal({ car, onClose, wishlisted, onToggleWishlist, onBookTest
           <X className="h-4 w-4" />
         </button>
 
-        {/* Image carousel — shows ALL photos of the car, slide by slide */}
+        {/* Image carousel - shows ALL photos of the car, slide by slide */}
         <CarImageCarousel
           key={car.id}
           images={images}
@@ -674,7 +614,7 @@ function CarDetailModal({ car, onClose, wishlisted, onToggleWishlist, onBookTest
           </div>
 
           {/* Share + EMI row */}
-          {/* Share buttons — WhatsApp / Copy Link / Email */}
+          {/* Share buttons - WhatsApp / Copy Link / Email */}
           <div className="flex flex-wrap items-center gap-2 mb-4">
             <span className="text-[11px] text-slate-500 mr-1">Share:</span>
             <a
@@ -706,25 +646,17 @@ function CarDetailModal({ car, onClose, wishlisted, onToggleWishlist, onBookTest
             </a>
           </div>
 
-          {/* EMI Calculator Section — clickable to jump to the main #emi section */}
+          {/* Open the loan payment estimate */}
           <button
             type="button"
             suppressHydrationWarning
             onClick={handleScrollToEmi}
-            aria-label="Open full EMI calculator"
+            aria-label="Estimate a loan payment"
             className="w-full text-left rounded-xl border border-[#D7B56D]/20 bg-[#D7B56D]/[0.06] px-4 py-3 mb-4 transition-all hover:border-[#D7B56D]/40 hover:bg-[#D7B56D]/[0.10]"
           >
-            <div className="flex items-center justify-between gap-2">
-              <span className="text-sm font-semibold text-[#D7B56D]" suppressHydrationWarning>
-                EMI from {formatEMI(emi)}/mo
-              </span>
-              <span className="flex items-center gap-1 text-[10px] font-medium text-[#D7B56D]/70" suppressHydrationWarning>
-                <SlidersHorizontal className="h-3 w-3" /> Calculate
-              </span>
-            </div>
-            <p className="mt-0.5 text-[11px] text-[#D7B56D]/50" suppressHydrationWarning>
-              Indicative • 80% loan • 9.5% interest • 60 months
-            </p>
+            <span className="text-sm font-semibold text-[#D7B56D]">
+              Estimate a loan payment
+            </span>
           </button>
 
           {/* Specs 2x2 grid */}
@@ -795,16 +727,15 @@ function CarDetailModal({ car, onClose, wishlisted, onToggleWishlist, onBookTest
             </div>
           )}
 
-          {/* Full Specifications table — exhaustive key/value list of every populated field.
+          {/* Full Specifications table - exhaustive key/value list of every populated field.
               Rows with no value (e.g. Body Type, RC Available, Service History, Road Tax,
-              Seller Type — not stored in the Car schema) are filtered out at render time. */}
+              Seller Type - not stored in the Car schema) are filtered out at render time. */}
           <div className="rounded-xl border border-white/[0.06] bg-white/[0.02] p-4 mb-4">
             <p className="mb-3 text-[11px] font-semibold uppercase tracking-widest text-[#D7B56D]/80">Full Specs</p>
             <div className="overflow-hidden rounded-lg border border-white/[0.05]">
               <table className="w-full text-xs">
                 <tbody>
                   {[
-                    { label: 'Engine', value: getEngineLabel(car) },
                     { label: 'Fuel Type', value: car.fuelType || '' },
                     { label: 'Transmission', value: car.transmission || '' },
                     { label: 'Year', value: car.year ? String(car.year) : '' },
@@ -837,9 +768,6 @@ function CarDetailModal({ car, onClose, wishlisted, onToggleWishlist, onBookTest
             </Badge>
             <Badge variant="outline" className="border-white/10 bg-white/[0.03] text-white/60 text-xs hover:bg-white/[0.06]" suppressHydrationWarning>
               <MapPin className="mr-1.5 h-3 w-3" /> {car.location}
-            </Badge>
-            <Badge variant="outline" className="border-white/10 bg-white/[0.03] text-white/60 text-xs hover:bg-white/[0.06]" suppressHydrationWarning>
-              <Eye className="mr-1.5 h-3 w-3" /> {car.views} views
             </Badge>
           </div>
 
@@ -882,7 +810,7 @@ function CarDetailModal({ car, onClose, wishlisted, onToggleWishlist, onBookTest
             </Button>
           </div>
 
-          {/* Similar cars you may like — same brand (or similar price ±20%), max 4.
+          {/* Similar cars you may like - same brand (or similar price ±20%), max 4.
               Clicking a card calls onSelectCar which swaps the modal content + scrolls to top. */}
           {relatedCars.length > 0 && (
             <div className="mt-6 pt-5 border-t border-white/[0.06]">
@@ -934,7 +862,7 @@ function CarDetailModal({ car, onClose, wishlisted, onToggleWishlist, onBookTest
           />
         )}
       </AnimatePresence>
-      {/* Car schema JSON-LD — emitted only while the modal is mounted
+      {/* Car schema JSON-LD - emitted only while the modal is mounted
           (parent guards with `selectedCar && <CarDetailModal ... />`),
           so search engines see vehicle data only when a car is open. */}
       <script
@@ -957,7 +885,7 @@ function CompareModal({ cars, onClose }: { cars: Car[]; onClose: () => void }) {
     return () => window.removeEventListener('keydown', handler);
   }, [onClose]);
 
-  // Empty state — not enough cars to compare
+  // Empty state - not enough cars to compare
   if (cars.length < 2) {
     return (
       <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} suppressHydrationWarning className="fixed inset-0 z-[100] flex items-center justify-center p-4" onClick={onClose}>
@@ -1086,13 +1014,8 @@ function CompareModal({ cars, onClose }: { cars: Car[]; onClose: () => void }) {
           state: (c) => c.id === bestPriceId ? 'best' : c.id === worstPriceId ? 'worst' : 'neutral',
         },
         {
-          label: 'EMI / month',
-          render: (c) => formatEMI(calcEMI(c.price * 0.8, 9.5, 60)),
-          state: (c) => c.id === bestPriceId ? 'best' : c.id === worstPriceId ? 'worst' : 'neutral',
-        },
-        {
           label: 'Price per km',
-          render: (c) => (c.kmDriven > 0 ? `₹${Math.round(pricePerKm(c)).toLocaleString('en-IN')}` : '—'),
+          render: (c) => (c.kmDriven > 0 ? `₹${Math.round(pricePerKm(c)).toLocaleString('en-IN')}` : '-'),
           state: (c) => c.id === bestPpkId ? 'best' : c.id === worstPpkId ? 'worst' : 'neutral',
         },
       ],
@@ -1100,8 +1023,8 @@ function CompareModal({ cars, onClose }: { cars: Car[]; onClose: () => void }) {
     {
       title: 'Performance & Specs',
       rows: [
-        { label: 'Fuel Type', render: (c) => c.fuelType || '—' },
-        { label: 'Transmission', render: (c) => c.transmission || '—' },
+        { label: 'Fuel Type', render: (c) => c.fuelType || '-' },
+        { label: 'Transmission', render: (c) => c.transmission || '-' },
         {
           label: 'Year',
           render: (c) => String(c.year),
@@ -1114,7 +1037,7 @@ function CompareModal({ cars, onClose }: { cars: Car[]; onClose: () => void }) {
         },
         {
           label: 'Owner Type',
-          render: (c) => c.ownerType || '—',
+          render: (c) => c.ownerType || '-',
           state: (c) => c.id === bestOwnerId ? 'best' : 'neutral',
         },
       ],
@@ -1122,7 +1045,7 @@ function CompareModal({ cars, onClose }: { cars: Car[]; onClose: () => void }) {
     {
       title: 'Condition & Features',
       rows: [
-        { label: 'Colour', render: (c) => c.color || '—' },
+        { label: 'Colour', render: (c) => c.color || '-' },
         {
           label: 'Sunroof',
           render: (c) => <FeatureCell present={hasSunroof(c)} label={hasSunroof(c) ? (c.sunroof || 'Yes') : 'No'} />,
@@ -1143,13 +1066,13 @@ function CompareModal({ cars, onClose }: { cars: Car[]; onClose: () => void }) {
     {
       title: 'Documentation',
       rows: [
-        { label: 'RTO', render: (c) => c.rto || '—' },
-        { label: 'Reg. No.', render: (c) => c.carNumber || '—' },
+        { label: 'RTO', render: (c) => c.rto || '-' },
+        { label: 'Reg. No.', render: (c) => c.carNumber || '-' },
         {
           label: 'Tags',
           render: (c) => {
             const tags = c.tags ? c.tags.split(',').filter(Boolean) : [];
-            if (!tags.length) return <span className="text-slate-500">—</span>;
+            if (!tags.length) return <span className="text-slate-500">-</span>;
             return (
               <div className="flex flex-wrap gap-1" suppressHydrationWarning>
                 {tags.map((t) => (
@@ -1166,15 +1089,14 @@ function CompareModal({ cars, onClose }: { cars: Car[]; onClose: () => void }) {
     {
       title: 'Location & Contact',
       rows: [
-        { label: 'Location', render: (c) => c.location || '—' },
-        { label: 'Views', render: (c) => String(c.views ?? 0) },
+        { label: 'Location', render: (c) => c.location || '-' },
         {
           label: 'Contact',
           render: (c) => c.contactPhone ? (
             <a href={getCallLink(c.contactPhone)} className="inline-flex items-center gap-1 text-[#D7B56D] hover:underline" suppressHydrationWarning>
               <Phone className="h-3 w-3" /> {c.contactPhone}
             </a>
-          ) : <span className="text-slate-500">—</span>,
+          ) : <span className="text-slate-500">-</span>,
         },
       ],
     },
@@ -1220,7 +1142,7 @@ function CompareModal({ cars, onClose }: { cars: Car[]; onClose: () => void }) {
           </div>
         </div>
 
-        {/* Spec table — horizontally scrollable on mobile */}
+        {/* Spec table - horizontally scrollable on mobile */}
         <div className="flex-1 overflow-auto">
           <table className="w-full border-collapse">
             <thead className="sticky top-0 z-10">
@@ -1327,7 +1249,6 @@ function CompareModal({ cars, onClose }: { cars: Car[]; onClose: () => void }) {
 function FallbackCarDetailPopup({ car }: { car: Car }) {
   const images = getTrustedImages(parseImages(car.images));
   const mainImage = images[0] || '';
-  const emi = getIndicativeEmi(car.price);
   const fallbackId = getFallbackDetailId(car.id);
 
   return (
@@ -1350,11 +1271,6 @@ function FallbackCarDetailPopup({ car }: { car: Car }) {
             loading="eager"
             className="h-full w-full object-cover brightness-[1.06] contrast-[1.04] saturate-[1.05]"
           />
-          {isRepresentativeImage(mainImage) && (
-            <div className="absolute left-3 bottom-3 rounded-full border border-[#D7B56D]/25 bg-black/60 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wide text-[#D7B56D]">
-              Reference image
-            </div>
-          )}
         </div>
 
         <div className="space-y-4 p-5">
@@ -1366,10 +1282,12 @@ function FallbackCarDetailPopup({ car }: { car: Car }) {
             <p className="text-2xl font-bold text-white">{formatPrice(car.price)}</p>
           </div>
 
-          <div className="rounded-xl border border-[#D7B56D]/20 bg-[#D7B56D]/[0.06] px-4 py-3">
-            <p className="text-sm font-semibold text-[#D7B56D]">EMI from {formatEMI(emi)}/mo</p>
-            <p className="mt-0.5 text-[11px] text-[#D7B56D]/60">Indicative • 80% loan • 9.5% interest • 60 months</p>
-          </div>
+          <a
+            href="/#finance"
+            className="block w-full rounded-lg border border-[#D7B56D]/20 bg-[#D7B56D]/[0.06] px-4 py-3 text-sm font-semibold text-[#D7B56D] transition-colors hover:bg-[#D7B56D]/10"
+          >
+            Estimate a loan payment
+          </a>
 
           <div className="grid grid-cols-2 gap-2">
             {[
@@ -1389,7 +1307,6 @@ function FallbackCarDetailPopup({ car }: { car: Car }) {
             <p className="mb-3 text-[11px] font-semibold uppercase tracking-widest text-[#D7B56D]/80">Vehicle Details</p>
             <div className="grid grid-cols-1 gap-2 text-xs sm:grid-cols-2">
               {[
-                ['Engine', getEngineLabel(car)],
                 ['Reg No', car.carNumber],
                 ['Colour', car.color],
                 ['RTO', car.rto],
@@ -1450,7 +1367,6 @@ function CarCard({
   const images = getTrustedImages(parseImages(car.images));
   const mainImage = images[0] || '';
   const tagsList = car.tags ? car.tags.split(',').filter(Boolean) : [];
-  const emi = getIndicativeEmi(car.price);
   const quickWhatsappLink = getWhatsAppLink(car.contactPhone || BUSINESS.primaryPhone, car.name);
   const fallbackDetailId = getFallbackDetailId(car.id);
   const openDetails = useCallback((event?: { stopPropagation: () => void; preventDefault?: () => void }) => {
@@ -1481,7 +1397,7 @@ function CarCard({
       )}
 
       {/* Image Area */}
-      <div className="relative aspect-[16/10] cursor-pointer overflow-hidden bg-gradient-to-b from-[#1a1a2e] to-[#0d0d0d]">
+      <div className="relative aspect-[16/10] cursor-pointer overflow-hidden bg-[#101216]">
         <CarImage
           src={mainImage}
           alt={car.name}
@@ -1489,15 +1405,6 @@ function CarCard({
           loading={index < 3 ? 'eager' : 'lazy'}
           className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
         />
-        {isRepresentativeImage(mainImage) && (
-          <div className="absolute right-2.5 bottom-2.5 z-10 rounded-full border border-[#D7B56D]/25 bg-black/55 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wide text-[#D7B56D] backdrop-blur-sm">
-            Reference image
-          </div>
-        )}
-        <div className="absolute left-2.5 bottom-2.5 z-10 inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-black/50 px-2.5 py-1 text-[10px] font-semibold text-white/85 backdrop-blur-sm">
-          <ShieldCheck className="h-3 w-3 text-[#D7B56D]" />
-          Verified
-        </div>
         {/* Tags as colored pills */}
         {tagsList.length > 0 && (
           <div className="absolute left-2.5 top-2.5 flex gap-1.5 z-10">
@@ -1543,17 +1450,11 @@ function CarCard({
           <span className="flex items-center gap-1.5 rounded-lg bg-white/[0.025] px-2 py-1.5" suppressHydrationWarning><Settings2 className="h-3 w-3 text-slate-500" />{car.transmission}</span>
         </div>
 
-        {/* Price + EMI */}
+        {/* Price */}
         <div className="mb-2 rounded-xl border border-white/[0.06] bg-black/20 px-3 py-2.5">
-          <div className="grid grid-cols-[minmax(0,1fr)_minmax(5.25rem,auto)] items-end gap-3">
-            <div className="min-w-0">
-              <p className="text-[10px] font-medium uppercase tracking-wider text-slate-500">Price</p>
-              <p className="truncate text-lg font-bold text-white sm:text-xl" suppressHydrationWarning>{formatPrice(car.price)}</p>
-            </div>
-            <div className="min-w-0 text-right">
-              <p className="text-[10px] font-medium uppercase tracking-wider text-slate-500">EMI from</p>
-              <p className="truncate text-xs font-semibold text-[#D7B56D] sm:text-sm" suppressHydrationWarning>{formatEMI(emi)}/mo</p>
-            </div>
+          <div className="min-w-0">
+            <p className="text-[10px] font-medium uppercase tracking-wider text-slate-500">Price</p>
+            <p className="truncate text-lg font-bold text-white sm:text-xl" suppressHydrationWarning>{formatPrice(car.price)}</p>
           </div>
         </div>
 
@@ -1769,14 +1670,14 @@ export default function FeaturedCars() {
 
   const handleToggleCompare = (carId: string) => {
     const isCurrentlyCompared = compareList.includes(carId);
-    // Removing — always allowed.
+    // Removing - always allowed.
     if (isCurrentlyCompared) {
       toggleCompare(carId);
       const car = cars.find(c => c.id === carId);
       toast.info(`${car?.name || 'Car'} removed from compare`, { duration: 2000 });
       return;
     }
-    // Adding — enforce max 4 with a clear warning instead of silent failure.
+    // Adding - enforce max 4 with a clear warning instead of silent failure.
     if (compareList.length >= 4) {
       toast.warning('Compare is full (4 max). Remove a car to add another.', { duration: 3000 });
       return;
@@ -1804,13 +1705,13 @@ export default function FeaturedCars() {
         <div className="mb-8 flex flex-wrap items-start justify-between gap-3">
           <div>
             <div className="flex items-center gap-3 mb-1">
-              <h2 className="text-2xl font-bold text-white sm:text-3xl" suppressHydrationWarning>Ready-To-Drive Cars</h2>
+              <h2 className="text-2xl font-bold text-white sm:text-3xl" suppressHydrationWarning>Cars currently listed</h2>
               <Badge variant="outline" className="border-white/10 bg-white/[0.03] text-slate-400 text-xs font-medium" suppressHydrationWarning>
                 {filteredCars.length}
               </Badge>
             </div>
             <p className="text-sm text-slate-500" suppressHydrationWarning>
-              Verified pre-owned cars with transparent pricing, quick contact, and EMI support
+              View listed prices and vehicle details, then contact us to confirm availability.
             </p>
           </div>
           {/* Sort Dropdown + Mobile Filter Toggle */}
@@ -1965,12 +1866,12 @@ export default function FeaturedCars() {
           {/* Grid */}
           <div>
             {loading ? (
-              // Loading state — skeleton count matches the 9-card grid (3 cols × 3 rows)
+              // Loading state - skeleton count matches the 9-card grid (3 cols × 3 rows)
               <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
                 {Array.from({ length: 9 }).map((_, i) => <SkeletonCard key={i} />)}
               </div>
             ) : loadError ? (
-              // Error state — API failed. Offer a retry button that bumps carListVersion.
+              // Error state - API failed. Offer a retry button that bumps carListVersion.
               <div role="alert" className="py-16 text-center" suppressHydrationWarning>
                 <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-xl border border-red-500/20 bg-red-500/[0.05]">
                   <AlertCircle className="h-7 w-7 text-red-400" />
@@ -1987,13 +1888,13 @@ export default function FeaturedCars() {
                 </Button>
               </div>
             ) : cars.length === 0 ? (
-              // Empty inventory — API succeeded but no cars exist yet.
+              // Empty inventory - API succeeded but no cars exist yet.
               <div className="py-16 text-center" suppressHydrationWarning>
                 <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-xl border border-white/10 bg-white/[0.02]">
                   <SearchX className="h-7 w-7 text-slate-400" />
                 </div>
                 <h3 className="text-base font-semibold text-white">No cars available yet</h3>
-                <p className="mt-1 text-sm text-slate-500">Our inventory is being updated — check back soon.</p>
+                <p className="mt-1 text-sm text-slate-500">Our inventory is being updated - check back soon.</p>
                 <div className="mt-4 flex flex-wrap justify-center gap-2">
                   <Button
                     suppressHydrationWarning
@@ -2013,7 +1914,7 @@ export default function FeaturedCars() {
                 </div>
               </div>
             ) : filteredCars.length === 0 ? (
-              // No results after filters — show Clear All + suggestion chips.
+              // No results after filters - show Clear All + suggestion chips.
               <div className="py-16 text-center" suppressHydrationWarning>
                 <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-xl border border-white/10 bg-white/[0.02]">
                   <SearchX className="h-7 w-7 text-slate-400" />

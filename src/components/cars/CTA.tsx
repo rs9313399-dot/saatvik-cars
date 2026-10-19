@@ -1,168 +1,83 @@
 'use client';
 
-import { Fragment } from 'react';
-import { motion } from 'framer-motion';
+import { Car, Mail, MapPin, MessageCircle, Phone } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Car, ArrowRight, Phone, Check, Shield, Mail, MessageCircle } from 'lucide-react';
 import { useStore } from '@/lib/store';
-import { toast } from 'sonner';
 import { BUSINESS } from '@/lib/business';
 
 export default function CTA() {
   const { setSellModalOpen, setSellValuationOpen, isAdmin } = useStore();
 
   const handleBrowseCars = () => {
-    const carsSection = document.getElementById('cars');
-    if (carsSection) {
-      carsSection.scrollIntoView({ behavior: 'smooth' });
-    }
-    toast.success('Browse our verified collection!', { duration: 2500 });
+    document.getElementById('cars')?.scrollIntoView({ behavior: 'smooth' });
   };
 
   const handleSellCar = () => {
     if (isAdmin) {
-      // Admin → List Your Car (create car listing)
       setSellModalOpen(true);
     } else {
-      // Customer → Sell/Trade valuation flow
       setSellValuationOpen(true);
     }
   };
 
   return (
-    <section id="contact" className="py-16 cta-gradient" suppressHydrationWarning>
-      <div className="mx-auto max-w-3xl px-4 text-center sm:px-6 lg:px-8" suppressHydrationWarning>
-        {/* Large headline */}
-        <motion.h2
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="text-3xl sm:text-4xl font-bold text-white leading-tight"
-          suppressHydrationWarning
-        >
-          Visit Our Showroom in{' '}
-          <span className="text-[#D7B56D]" suppressHydrationWarning>
-            Bilaspur
-          </span>
-        </motion.h2>
+    <section id="contact" className="bg-[#0D0F12] py-14">
+      <div className="mx-auto max-w-3xl px-4 text-center sm:px-6 lg:px-8">
+        <h2 className="text-3xl font-bold leading-tight text-white sm:text-4xl">
+          Visit Saatvik Cars in <span className="text-[#D7B56D]">Bilaspur</span>
+        </h2>
+        <p className="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-slate-400 sm:text-base">
+          Find us at Plot 14, Industrial Area, Bilaspur, Chhattisgarh 495001.
+          Contact us to confirm a listing is available before you visit.
+        </p>
 
-        {/* Subtitle */}
-        <motion.p
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.1 }}
-          className="mx-auto mt-4 max-w-lg text-slate-400 text-sm sm:text-base leading-relaxed"
-          suppressHydrationWarning
-        >
-          GST-registered dealer with verified paperwork, transparent pricing, and
-          in-person support at Plot 14, Industrial Area.
-        </motion.p>
-
-        {/* CTA Buttons */}
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4"
-          suppressHydrationWarning
-        >
+        <div className="mt-7 flex flex-col items-center justify-center gap-3 sm:flex-row">
           <Button
-            suppressHydrationWarning
-            className="h-12 min-w-[200px] rounded-xl bg-[#D7B56D] text-[#0A0A0A] font-bold hover:bg-[#E7C77B] shadow-lg shadow-[#D7B56D]/25 transition-colors duration-200 text-sm"
+            className="h-11 min-w-48 rounded-lg bg-[#D7B56D] font-semibold text-[#0A0A0A] hover:bg-[#E7C77B]"
             onClick={handleBrowseCars}
           >
-            <Car className="mr-2 h-4 w-4" suppressHydrationWarning />
-            Browse All Cars
+            <Car className="mr-2 h-4 w-4" aria-hidden="true" />
+            Browse cars
           </Button>
           <Button
-            suppressHydrationWarning
-            className="h-12 min-w-[200px] rounded-xl border-2 border-[#D7B56D]/40 text-[#D7B56D] font-bold hover:bg-[#D7B56D]/10 hover:border-[#D7B56D]/60 transition-colors duration-200 text-sm"
             variant="outline"
+            className="h-11 min-w-48 rounded-lg border-white/15 text-white hover:bg-white/5"
             onClick={handleSellCar}
           >
-            {isAdmin ? (
-              <>
-                <Car className="mr-2 h-4 w-4" suppressHydrationWarning />
-                List Your Car
-              </>
-            ) : (
-              <>
-                <Shield className="mr-2 h-4 w-4" suppressHydrationWarning />
-                Sell / Trade Your Car
-              </>
-            )}
+            Sell or trade a car
           </Button>
-        </motion.div>
+        </div>
 
-        {/* Trust Badges */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.3 }}
-          className="mt-8 flex flex-wrap items-center justify-center gap-3"
-          suppressHydrationWarning
-        >
-          {['No Hidden Fees', 'Verified Papers', '7-Day Return', 'RC Transfer Included'].map((item) => (
-            <span
-              key={item}
-              className="inline-flex items-center gap-1.5 rounded-md border border-[#D7B56D]/20 bg-[#D7B56D]/10 px-3 py-1.5 text-xs font-medium text-[#E8D4A2]"
-              suppressHydrationWarning
-            >
-              <Check className="h-3 w-3" />
-              {item}
-            </span>
-          ))}
-        </motion.div>
+        <div className="mt-6 flex flex-wrap items-center justify-center gap-x-5 gap-y-3 text-sm text-slate-300">
+          <a
+            href={`mailto:${BUSINESS.email}`}
+            className="inline-flex items-center gap-2 hover:text-white"
+          >
+            <Mail className="h-4 w-4 text-[#D7B56D]" aria-hidden="true" />
+            {BUSINESS.email}
+          </a>
+          <a
+            href={`tel:${BUSINESS.phones[0].tel}`}
+            className="inline-flex items-center gap-2 hover:text-white"
+          >
+            <Phone className="h-4 w-4 text-[#D7B56D]" aria-hidden="true" />
+            {BUSINESS.phones[0].display}
+          </a>
+          <a
+            href={`https://wa.me/${BUSINESS.phones[0].digits}?text=${encodeURIComponent('Hi, I have a question about a car listing.')}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 hover:text-white"
+          >
+            <MessageCircle className="h-4 w-4 text-[#D7B56D]" aria-hidden="true" />
+            WhatsApp
+          </a>
+        </div>
 
-        {/* Phone numbers */}
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.4 }}
-          className="mt-5 flex flex-col items-center gap-3"
-          suppressHydrationWarning
-        >
-          <div className="flex flex-wrap items-center justify-center gap-4">
-            <a
-              href={`mailto:${BUSINESS.email}`}
-              suppressHydrationWarning
-              className="inline-flex items-center gap-1.5 text-sm text-white/80 hover:text-[#D7B56D] transition-colors"
-            >
-              <Mail className="h-4 w-4 text-[#D7B56D]" />
-              {BUSINESS.email}
-            </a>
-            <span className="text-white/10">·</span>
-            <a
-              href={`https://wa.me/${BUSINESS.phones[0].digits}?text=${encodeURIComponent('Hi, I am interested in a car from Saatvik Cars.')}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              suppressHydrationWarning
-              className="inline-flex items-center gap-1.5 text-sm text-white/80 hover:text-emerald-400 transition-colors"
-            >
-              <MessageCircle className="h-4 w-4 text-emerald-400" />
-              WhatsApp
-            </a>
-          </div>
-          <div className="flex items-center gap-2">
-            <Phone className="h-4 w-4 text-[#D7B56D]" suppressHydrationWarning />
-            <span className="text-sm text-[#D7B56D] font-medium" suppressHydrationWarning>
-              Or call us:
-            </span>
-          </div>
-          <div className="flex flex-wrap items-center justify-center gap-4">
-            {BUSINESS.phones.map((phone, i) => (
-              <Fragment key={phone.tel}>
-                {i > 0 && <span className="text-white/10">·</span>}
-                <a href={`tel:${phone.tel}`} suppressHydrationWarning className="text-sm text-white/80 hover:text-[#D7B56D] transition-colors">{phone.display}</a>
-              </Fragment>
-            ))}
-          </div>
-        </motion.div>
+        <p className="mt-4 inline-flex items-center gap-2 text-xs text-slate-500">
+          <MapPin className="h-3.5 w-3.5" aria-hidden="true" />
+          Bilaspur, Chhattisgarh
+        </p>
       </div>
     </section>
   );

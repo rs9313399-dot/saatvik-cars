@@ -53,7 +53,6 @@ prompt
 
 server.log
 prisma/dev.db
-supabase/*.local.sql
 # Skills directory
 /skills/
 .vercel

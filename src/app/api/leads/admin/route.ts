@@ -12,7 +12,7 @@ async function requireAdmin(request: NextRequest): Promise<boolean> {
 }
 
 /**
- * PATCH /api/leads/admin — Update a lead's status.
+ * PATCH /api/leads/admin - Update a lead's status.
  * Body: { id, status: 'new' | 'contacted' | 'closed' }
  */
 export async function PATCH(request: NextRequest) {
@@ -67,7 +67,7 @@ export async function PATCH(request: NextRequest) {
 }
 
 /**
- * DELETE /api/leads/admin — Delete a lead.
+ * DELETE /api/leads/admin - Delete a lead.
  * Body: { id }
  */
 export async function DELETE(request: NextRequest) {

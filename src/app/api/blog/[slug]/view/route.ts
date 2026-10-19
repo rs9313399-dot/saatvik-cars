@@ -2,13 +2,13 @@ import { NextRequest, NextResponse } from 'next/server';
 import { db } from '@/lib/db';
 
 /**
- * POST /api/blog/[slug]/view — Public endpoint.
+ * POST /api/blog/[slug]/view - Public endpoint.
  * Increments the view counter on a published blog post.
- * No auth required — view tracking is anonymous & public.
+ * No auth required - view tracking is anonymous & public.
  *
  * Response:
- *   200 { views: number }  — on success
- *   404 { error: string }  — post not found
+ *   200 { views: number }  - on success
+ *   404 { error: string }  - post not found
  */
 export async function POST(
   _request: NextRequest,

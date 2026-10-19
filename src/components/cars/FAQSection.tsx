@@ -11,36 +11,20 @@ interface FAQ {
 
 const faqs: FAQ[] = [
   {
-    q: 'Are all cars at Saatvik Cars inspected?',
-    a: 'Yes. Every car undergoes a rigorous 150-point inspection covering engine, transmission, brakes, suspension, electricals, tyres, and body condition. You receive a detailed inspection report before purchase. Cars that don\'t meet our standards are not listed.',
+    q: 'How can I confirm a car is available?',
+    a: 'Contact Saatvik Cars using the phone number or email on this page before travelling. Availability can change as listings are updated.',
   },
   {
-    q: 'What documents do I get with the car?',
-    a: 'You receive: original RC (Registration Certificate), insurance papers, service history, PUC certificate, and sale agreement. We also handle the RC transfer to your name, so you do not need to visit the RTO yourself.',
+    q: 'Where can I view a car?',
+    a: 'Contact Saatvik Cars to arrange a showroom visit in Bilaspur and confirm the car is available to see.',
   },
   {
-    q: 'How does the 7-day return policy work?',
-    a: 'If you\'re not satisfied with the car within 7 days of purchase, you can return it for a full refund. The car must be in the same condition as sold (normal wear and tear excluded). This policy gives you peace of mind that you\'re making the right choice.',
+    q: 'Can I ask about a test drive?',
+    a: 'Contact Saatvik Cars about the listing you are interested in to discuss a visit or test drive.',
   },
   {
-    q: 'Do you offer finance and loan assistance?',
-    a: 'Yes! We have tie-ups with leading banks and NBFCs. We help you get the best interest rates on car loans. Both finance (new loans) and refinance options are available on most cars. Contact us with your requirements and we\'ll guide you through the process.',
-  },
-  {
-    q: 'Can I exchange my old car?',
-    a: 'Absolutely. We accept exchange of your existing car. Bring your car for a free valuation and our team will inspect it and offer a fair price that can be adjusted against your new purchase. The exchange value depends on the car\'s condition, age, and market demand.',
-  },
-  {
-    q: 'What is RC transfer and how long does it take?',
-    a: 'RC (Registration Certificate) transfer is the process of changing the vehicle\'s ownership from the previous owner to you. We handle all the paperwork and RTO procedures. Typically, RC transfer takes 15-30 working days depending on the RTO. You do not need to visit the RTO; we handle it for you.',
-  },
-  {
-    q: 'Are the prices negotiable?',
-    a: 'Our prices are fair and transparent, already reflecting the car\'s condition and market value. However, we\'re open to discussion, especially if you\'re paying upfront or exchanging a car. Visit our showroom or call us to discuss.',
-  },
-  {
-    q: 'Can I take a test drive before buying?',
-    a: 'Of course! Test drives are encouraged. Visit our showroom during business hours (Mon-Sat, 9 AM - 8 PM) or book a test drive by calling us. We\'ll arrange the car for you to experience before making any decision.',
+    q: 'How do I ask about a listing?',
+    a: 'Use the phone or email details on this page and mention the car you are interested in. The listing shows its currently entered price and vehicle details.',
   },
 ];
 
@@ -92,10 +76,10 @@ function FAQItem({ faq, isOpen, onToggle }: { faq: FAQ; isOpen: boolean; onToggl
 }
 
 export default function FAQSection() {
-  const [openIndex, setOpenIndex] = useState<number | null>(0);
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   // Build FAQPage JSON-LD from the FAQ array. Answers are plain text
-  // (no HTML in this dataset), so we strip nothing — but we still guard
+  // (no HTML in this dataset), so we strip nothing - but we still guard
   // against accidental HTML in case the data evolves.
   const faqJsonLd = useMemo(
     () => ({

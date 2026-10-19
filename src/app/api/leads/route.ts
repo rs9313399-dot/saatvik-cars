@@ -5,7 +5,7 @@ import { checkAuth } from '@/lib/auth';
 const ALLOWED_TYPES = new Set(['test_drive', 'callback', 'general']);
 
 /**
- * POST /api/leads — Public submission endpoint.
+ * POST /api/leads - Public submission endpoint.
  * Creates a new lead (test drive request, callback request, or general enquiry).
  */
 export async function POST(request: NextRequest) {
@@ -49,7 +49,7 @@ export async function POST(request: NextRequest) {
       ? (type as string)
       : 'test_drive';
 
-    // Normalize phone — strip spaces
+    // Normalize phone - strip spaces
     const normalizedPhone = String(phone).replace(/\s+/g, '').trim();
 
     // Basic phone sanity check (digits, +, -, parens)
@@ -93,7 +93,7 @@ export async function POST(request: NextRequest) {
 }
 
 /**
- * GET /api/leads — Admin-only. Returns all leads, newest first.
+ * GET /api/leads - Admin-only. Returns all leads, newest first.
  * Supports optional `?type=` and `?status=` filters.
  */
 export async function GET(request: NextRequest) {

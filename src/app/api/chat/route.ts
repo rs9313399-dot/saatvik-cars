@@ -4,12 +4,12 @@ import { checkAuth } from '@/lib/auth';
 import { BUSINESS } from '@/lib/business';
 
 /**
- * C16 — Live chat API (for future server-side persistence)
+ * C16 - Live chat API (for future server-side persistence)
  * ---------------------------------------------------------------
  * NOTE: The LiveChatWidget is currently 100% client-side. This endpoint
  * exists so the same keyword bot logic can be invoked server-side later,
  * and so admins can review past conversations (currently empty since the
- * widget never calls POST — but the schema + endpoint are ready).
+ * widget never calls POST - but the schema + endpoint are ready).
  *
  * POST /api/chat  { sessionId, message }
  *   - Saves a ChatMessage row with role:'user'
@@ -26,22 +26,22 @@ function getBotReply(input: string): string {
   const has = (...keys: string[]) => keys.some((k) => text.includes(k));
 
   if (has('browse', 'cars', 'inventory', 'view', 'see')) {
-    return "You can browse our verified inventory in the Cars section above. Use the filters to narrow by brand, budget, fuel type, and more! Want me to scroll there for you?";
+    return 'Browse the current car listings above. Use the filters, then contact Saatvik Cars to confirm availability.';
   }
   if (has('finance', 'emi', 'loan', 'interest')) {
-    return "We offer easy finance with 8+ partner banks starting at 9.20% p.a. Check our Finance section for an EMI calculator and eligibility check!";
+    return 'Use the loan payment estimate with figures from your lender. It is a calculation, not a loan offer or approval.';
   }
   if (has('sell', 'trade', 'exchange', 'valuation')) {
-    return "Want to sell or trade your car? Get an instant valuation in under 2 minutes! Click 'Sell / Trade Your Car' anywhere on the page.";
+    return 'Use the Sell or trade a car button to send us your details. Our team can follow up about your request.';
   }
   if (has('test drive', 'drive', 'book', 'try')) {
-    return "You can book a test drive from any car's detail page. Just click 'View Details' then 'Book Test Drive'.";
+    return 'Open a car listing and use its test drive request form. Contact us to confirm the visit.';
   }
   if (has('insurance', 'rc', 'service', 'warranty', 'rsa')) {
-    return "We offer Insurance, RC Transfer, and Exchange services. Scroll to our Services section for details!";
+    return 'Contact our team to ask about paperwork, insurance or other services.';
   }
   if (has('price', 'cost', 'budget', 'rate', 'cheap')) {
-    return "Our cars start from ₹2 Lakh. Use the budget filters in the Cars section to find cars in your range!";
+    return 'Prices appear on current car listings. Contact us to confirm a car is still available.';
   }
   if (has('contact', 'phone', 'call', 'human', 'talk', 'reach')) {
     const phoneList = BUSINESS.phones.map((p) => p.display).join(', ');
@@ -51,12 +51,12 @@ function getBotReply(input: string): string {
     return `We're open ${BUSINESS.hours}.`;
   }
   if (has('location', 'address', 'where', 'map', 'locate')) {
-    return `We're located in ${BUSINESS.address}. See the map in our About section.`;
+    return `Our showroom is in ${BUSINESS.address}. See the map and contact details in the About section.`;
   }
-  return `I'm not sure about that, but our team can help! Call us at ${BUSINESS.phones[0].display} or type 'talk to human'.`;
+  return `I do not have that information. Contact our team at ${BUSINESS.phones[0].display} or ${BUSINESS.email}.`;
 }
 
-// ===== POST — save user message, return + persist bot reply =====
+// ===== POST - save user message, return + persist bot reply =====
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json().catch(() => ({}));
@@ -97,7 +97,7 @@ export async function POST(request: NextRequest) {
   }
 }
 
-// ===== GET — admin-only, all chat sessions grouped by sessionId =====
+// ===== GET - admin-only, all chat sessions grouped by sessionId =====
 export async function GET(request: NextRequest) {
   const authed = await checkAuth(request);
   if (!authed) {

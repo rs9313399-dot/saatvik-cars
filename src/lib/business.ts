@@ -29,7 +29,7 @@ export const BUSINESS = {
   },
 } as const;
 
-/** All car brands — used by Hero dropdown, BrandMarquee, Footer, SellCarModal */
+/** All car brands - used by Hero dropdown, BrandMarquee, Footer, SellCarModal */
 export const ALL_BRANDS = [
   'Maruti Suzuki',
   'Hyundai',

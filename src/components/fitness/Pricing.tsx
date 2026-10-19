@@ -186,7 +186,7 @@ export default function Pricing() {
             suppressHydrationWarning
           >
             Flexible memberships designed for every fitness level. No hidden
-            fees, no contracts — just results.
+            fees, no contracts - just results.
           </motion.p>
         </div>
 

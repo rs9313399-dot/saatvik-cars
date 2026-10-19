@@ -363,11 +363,11 @@ function ReaderModal({ post, onClose }: ReaderModalProps) {
   // Fire-and-forget view increment whenever a new post opens.
   useEffect(() => {
     if (!post) return;
-    // fire-and-forget — we don't want to block the modal on a network call.
+    // fire-and-forget - we don't want to block the modal on a network call.
     void fetch(`/api/blog/${encodeURIComponent(post.slug)}/view`, {
       method: 'POST',
     }).catch(() => {
-      /* silently ignore — view tracking is best-effort */
+      /* silently ignore - view tracking is best-effort */
     });
   }, [post]);
 

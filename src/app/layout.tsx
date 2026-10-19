@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import { headers } from "next/headers";
 import { Geist, Geist_Mono, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import { Toaster as SonnerToaster } from "sonner";
@@ -24,9 +25,9 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  title: { default: "Saatvik Cars: Certified Pre-Owned Cars by Tarang Marketing", template: "%s | Saatvik Cars" },
-  description: `Saatvik Cars (A unit of Tarang Marketing) - certified pre-owned cars with transparent pricing in Bilaspur, Chhattisgarh. Browse inspected BMW, Mercedes, Honda, Toyota, Maruti and more. GSTIN: ${BUSINESS.gstin}.`,
-  keywords: ["Saatvik Cars", "Tarang Marketing", "used cars", "pre-owned cars", "car dealer", "second hand cars", "certified pre-owned", "buy used cars", "car marketplace", "Bilaspur cars"],
+  title: { default: "Used Cars in Bilaspur | Saatvik Cars", template: "%s | Saatvik Cars" },
+  description: "Browse used car listings from Saatvik Cars in Bilaspur, Chhattisgarh. Review each listing and contact us to confirm availability.",
+  keywords: ["Saatvik Cars", "Tarang Marketing", "used cars", "pre-owned cars", "car dealer", "second hand cars", "buy used cars", "car marketplace", "Bilaspur cars"],
   authors: [{ name: "Saatvik Cars" }],
   creator: "Saatvik Cars",
   publisher: "Saatvik Cars",
@@ -40,8 +41,8 @@ export const metadata: Metadata = {
     apple: '/icon.svg',
   },
   openGraph: {
-    title: "Saatvik Cars: Certified Pre-Owned Cars by Tarang Marketing",
-    description: "Saatvik Cars (A unit of Tarang Marketing) - certified pre-owned cars with transparent pricing.",
+    title: "Used Cars in Bilaspur | Saatvik Cars",
+    description: "Browse used car listings in Bilaspur and contact Saatvik Cars to confirm availability.",
     url: "https://saatvikcars.in",
     siteName: "Saatvik Cars",
     locale: "en_IN",
@@ -49,8 +50,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Saatvik Cars: Certified Pre-Owned Cars by Tarang Marketing",
-    description: "Saatvik Cars (A unit of Tarang Marketing) - certified pre-owned cars with transparent pricing.",
+    title: "Used Cars in Bilaspur | Saatvik Cars",
+    description: "Browse used car listings in Bilaspur and contact Saatvik Cars to confirm availability.",
   },
   robots: {
     index: true,
@@ -61,7 +62,9 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+export default async function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+  const nonce = (await headers()).get('x-nonce') || undefined;
+
   return (
     <html lang="en" className="dark" suppressHydrationWarning>
       <head suppressHydrationWarning>
@@ -70,6 +73,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <link rel="alternate icon" href="/favicon.ico" />
         {/* JSON-LD Structured Data: AutoDealer + Organization */}
         <script
+          nonce={nonce}
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
@@ -77,7 +81,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
               "@type": "AutoDealer",
               name: BUSINESS.dealerName,
               parentOrganization: { "@type": "Organization", name: BUSINESS.parentCompany },
-              description: "Certified pre-owned cars with transparent pricing. Browse BMW, Mercedes, Honda, Toyota, Maruti & more.",
+              description: "Used car listings from Saatvik Cars in Bilaspur, Chhattisgarh.",
               url: "https://saatvikcars.in",
               email: BUSINESS.email,
               telephone: BUSINESS.primaryPhone,
@@ -91,8 +95,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
               },
               vatID: BUSINESS.gstin,
               openingHours: "Mo-Sa 09:00-20:00",
-              priceRange: "₹3,00,000 - ₹50,00,000",
-              areaServed: "India",
+              areaServed: "Bilaspur, Chhattisgarh",
               sameAs: [
                 BUSINESS.social.instagram,
                 BUSINESS.social.youtube,
@@ -104,6 +107,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       </head>
       <body className={`${geistSans.variable} ${geistMono.variable} ${displayFont.variable} antialiased bg-[#0A0A0A] text-foreground`} suppressHydrationWarning>
         <script
+          nonce={nonce}
           dangerouslySetInnerHTML={{
             __html: `(function(){try{var clean=function(root){if(!root||!root.querySelectorAll)return;root.querySelectorAll('[data-darkreader-inline-stroke],[data-darkreader-inline-fill],[data-darkreader-inline-color],[data-darkreader-inline-bgcolor],[data-darkreader-inline-border]').forEach(function(el){Array.prototype.slice.call(el.attributes).forEach(function(attr){if(attr.name.indexOf('data-darkreader-')===0)el.removeAttribute(attr.name)});var style=el.getAttribute('style');if(style&&style.indexOf('--darkreader-')!==-1){var next=style.split(';').filter(function(part){return part.indexOf('--darkreader-')===-1}).join(';').trim();if(next)el.setAttribute('style',next);else el.removeAttribute('style')}})};clean(document);var until=Date.now()+2500;var observer=new MutationObserver(function(){clean(document);if(Date.now()>until)observer.disconnect()});observer.observe(document.documentElement,{subtree:true,attributes:true,attributeFilter:['style','data-darkreader-inline-stroke','data-darkreader-inline-fill','data-darkreader-inline-color','data-darkreader-inline-bgcolor','data-darkreader-inline-border']})}catch(e){}})();`,
           }}

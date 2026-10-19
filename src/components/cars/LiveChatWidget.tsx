@@ -1,7 +1,7 @@
 'use client';
 
 /**
- * Saatvik Cars — Live Chat Widget (Task C16)
+ * Saatvik Cars - Live Chat Widget (Task C16)
  * ---------------------------------------------------------------
  * Self-contained floating chat widget:
  *  - Floating action button (champagne #D7B56D) with pulse + unread badge
@@ -9,7 +9,7 @@
  *  - Initial bot greeting + 4 quick-reply chips
  *  - Client-side keyword-matching FAQ bot (no AI / no API call)
  *  - 3-dot typing indicator (~800ms) before bot response
- *  - Action buttons: scroll-to-section (#cars / #finance / #services) + WhatsApp
+ *  - Action buttons: scroll-to-section (#cars / #finance) + WhatsApp
  *  - Session + messages persisted in localStorage (capped at 50)
  *  - Accessible: aria-label, role="dialog", role="log", aria-live="polite"
  *
@@ -78,16 +78,16 @@ function getBotResponse(input: string): ChatMessage {
   if (has('browse', 'cars', 'inventory', 'view', 'see')) {
     return {
       role: 'bot',
-      text: "You can browse our verified inventory in the Cars section above. Use the filters to narrow by brand, budget, fuel type, and more! Want me to scroll there for you?",
+      text: 'Browse the current car listings above. Use the filters, then contact Saatvik Cars to confirm availability.',
       ts,
-      action: { label: 'Yes, show me', type: 'scroll', target: '#cars' },
+      action: { label: 'Show listings', type: 'scroll', target: '#cars' },
     };
   }
 
   if (has('finance', 'emi', 'loan', 'interest')) {
     return {
       role: 'bot',
-      text: "We offer easy finance with 8+ partner banks starting at 9.20% p.a. Check our Finance section for an EMI calculator and eligibility check!",
+      text: 'Use the loan payment estimate with figures from your lender. It is a calculation, not a loan offer or approval.',
       ts,
       action: { label: 'Show finance', type: 'scroll', target: '#finance' },
     };
@@ -96,7 +96,7 @@ function getBotResponse(input: string): ChatMessage {
   if (has('sell', 'trade', 'exchange', 'valuation')) {
     return {
       role: 'bot',
-      text: "Want to sell or trade your car? Get an instant valuation in under 2 minutes! Click 'Sell / Trade Your Car' anywhere on the page.",
+      text: 'Use the Sell or trade a car button to send us your details. Our team can follow up about your request.',
       ts,
     };
   }
@@ -104,7 +104,7 @@ function getBotResponse(input: string): ChatMessage {
   if (has('test drive', 'drive', 'book', 'try')) {
     return {
       role: 'bot',
-      text: "You can book a test drive from any car's detail page. Just click 'View Details' then 'Book Test Drive'.",
+      text: 'Open a car listing and use its test drive request form. Contact us to confirm the visit.',
       ts,
     };
   }
@@ -112,16 +112,15 @@ function getBotResponse(input: string): ChatMessage {
   if (has('insurance', 'rc', 'service', 'warranty', 'rsa')) {
     return {
       role: 'bot',
-      text: "We offer Insurance, RC Transfer, and Exchange services. Scroll to our Services section for details!",
+      text: 'Contact our team to ask about paperwork, insurance or other services.',
       ts,
-      action: { label: 'Show services', type: 'scroll', target: '#services' },
     };
   }
 
   if (has('price', 'cost', 'budget', 'rate', 'cheap')) {
     return {
       role: 'bot',
-      text: "Our cars start from ₹2 Lakh. Use the budget filters in the Cars section to find cars in your range!",
+      text: 'Prices appear on current car listings. Contact us to confirm a car is still available.',
       ts,
     };
   }
@@ -147,7 +146,7 @@ function getBotResponse(input: string): ChatMessage {
   if (has('location', 'address', 'where', 'map', 'locate')) {
     return {
       role: 'bot',
-      text: `We're located in ${BUSINESS.address}. See the map in our About section.`,
+      text: `Our showroom is in ${BUSINESS.address}. See the map and contact details in the About section.`,
       ts,
     };
   }
@@ -155,7 +154,7 @@ function getBotResponse(input: string): ChatMessage {
   // Default / unknown
   return {
     role: 'bot',
-    text: `I'm not sure about that, but our team can help! Call us at ${BUSINESS.phones[0].display} or type 'talk to human'.`,
+    text: `I do not have that information. Contact our team at ${BUSINESS.phones[0].display} or ${BUSINESS.email}.`,
     ts,
   };
 }
@@ -179,7 +178,7 @@ const SCROLLBAR_CSS = `
 
 // ===== Mount detection (no setState-in-effect) =====
 // useSyncExternalStore returns false on the server (and during initial hydration),
-// then true once the client takes over — without any setState-in-effect.
+// then true once the client takes over - without any setState-in-effect.
 const noopSubscribe = () => () => {};
 const getClientSnapshot = () => true;
 const getServerSnapshot = () => false;
@@ -190,7 +189,7 @@ function readStoredSession(): {
   messages: ChatMessage[];
   hasUnread: boolean;
 } {
-  // On the server, return defaults — typeof window guard prevents access.
+  // On the server, return defaults - typeof window guard prevents access.
   if (typeof window === 'undefined') {
     return { sessionId: '', messages: [INITIAL_GREETING], hasUnread: true };
   }
@@ -219,7 +218,7 @@ function readStoredSession(): {
   } catch {
     // ignore parse / quota errors
   }
-  // No stored session — generate a fresh ID for this visitor.
+  // No stored session - generate a fresh ID for this visitor.
   return {
     sessionId: generateSessionId(),
     messages: [INITIAL_GREETING],
@@ -236,14 +235,14 @@ function generateSessionId(): string {
 
 // ===== Main component =====
 export default function LiveChatWidget() {
-  // Client-only flag — false during SSR + initial hydration, true after.
+  // Client-only flag - false during SSR + initial hydration, true after.
   const isMounted = useSyncExternalStore(
     noopSubscribe,
     getClientSnapshot,
     getServerSnapshot
   );
 
-  // Lazy initial state — read from localStorage once on the client.
+  // Lazy initial state - read from localStorage once on the client.
   const [stored] = useState(readStoredSession);
   const [sessionId] = useState<string>(stored.sessionId);
   const [messages, setMessages] = useState<ChatMessage[]>(stored.messages);
@@ -257,7 +256,7 @@ export default function LiveChatWidget() {
   const typingTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   // ===== Persist session to localStorage (capped at 50) =====
-  // Pure side effect — no setState. Runs whenever messages / sessionId change.
+  // Pure side effect - no setState. Runs whenever messages / sessionId change.
   useEffect(() => {
     if (!isMounted || !sessionId) return;
     try {
@@ -353,7 +352,7 @@ export default function LiveChatWidget() {
     });
   }, []);
 
-  // ===== SSR guard — avoid hydration mismatch =====
+  // ===== SSR guard - avoid hydration mismatch =====
   // isMounted is false during SSR + initial hydration, true once hydrated.
   if (!isMounted) return null;
 

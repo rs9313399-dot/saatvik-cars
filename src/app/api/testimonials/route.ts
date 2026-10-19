@@ -19,7 +19,7 @@ export async function GET() {
   }
 }
 
-// POST /api/testimonials — public submission, creates with approved: false
+// POST /api/testimonials - public submission, creates with approved: false
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json().catch(() => null);

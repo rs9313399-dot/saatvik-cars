@@ -54,7 +54,7 @@ export async function POST(request: NextRequest) {
   }
 }
 
-// GET — list subscribers (admin only)
+// GET - list subscribers (admin only)
 export async function GET(request: NextRequest) {
   try {
     const authenticated = await checkAuth(request);
