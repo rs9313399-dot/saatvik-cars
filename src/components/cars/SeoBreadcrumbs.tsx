@@ -34,12 +34,6 @@ export default function SeoBreadcrumbs() {
         {
           '@type': 'ListItem',
           position: 3,
-          name: 'Finance',
-          item: 'https://saatvikcars.in/#finance',
-        },
-        {
-          '@type': 'ListItem',
-          position: 4,
           name: 'About',
           item: 'https://saatvikcars.in/#about',
         },

@@ -9,7 +9,7 @@
  *  - Initial bot greeting + 4 quick-reply chips
  *  - Client-side keyword-matching FAQ bot (no AI / no API call)
  *  - 3-dot typing indicator (~800ms) before bot response
- *  - Action buttons: scroll-to-section (#cars / #finance) + WhatsApp
+ *  - Action buttons: scroll-to-listings and WhatsApp
  *  - Session + messages persisted in localStorage (capped at 50)
  *  - Accessible: aria-label, role="dialog", role="log", aria-live="polite"
  *
@@ -87,9 +87,9 @@ function getBotResponse(input: string): ChatMessage {
   if (has('finance', 'emi', 'loan', 'interest')) {
     return {
       role: 'bot',
-      text: 'Use the loan payment estimate with figures from your lender. It is a calculation, not a loan offer or approval.',
+      text: 'Finance details depend on the car and lender. Ask our team or your lender about current options. This is not a loan offer or approval.',
       ts,
-      action: { label: 'Show finance', type: 'scroll', target: '#finance' },
+      action: { label: 'Ask on WhatsApp', type: 'whatsapp' },
     };
   }
 
@@ -146,7 +146,7 @@ function getBotResponse(input: string): ChatMessage {
   if (has('location', 'address', 'where', 'map', 'locate')) {
     return {
       role: 'bot',
-      text: `Our showroom is in ${BUSINESS.address}. See the map and contact details in the About section.`,
+      text: `Our showroom is at ${BUSINESS.address}. Use the map at the top of the page for directions.`,
       ts,
     };
   }
