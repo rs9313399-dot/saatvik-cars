@@ -55,4 +55,5 @@ server.log
 prisma/dev.db
 # Skills directory
 /skills/
+.taste-skill/
 .vercel
