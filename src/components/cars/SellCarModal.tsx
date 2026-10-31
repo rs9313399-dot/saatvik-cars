@@ -870,7 +870,7 @@ export default function SellCarModal() {
                         </label>
                         <Input
                           type="tel"
-                          placeholder="e.g. 9644924777"
+                          placeholder="e.g. 9425205507"
                           value={form.contactPhone}
                           onChange={(e) => updateField('contactPhone', e.target.value)}
                           suppressHydrationWarning

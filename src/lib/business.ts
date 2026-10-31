@@ -14,12 +14,13 @@ export const BUSINESS = {
   hours: 'Mon-Sat 9AM-8PM IST',
   // Canonical phone order (display order)
   phones: [
+    { display: '+91 94252 05507', tel: '+919425205507', digits: '919425205507' },
     { display: '+91 75828 5000', tel: '+91758285000', digits: '91758285000' },
     { display: '+91 96449 24777', tel: '+919644924777', digits: '919644924777' },
     { display: '+91 95756 01601', tel: '+919575601601', digits: '919575601601' },
   ],
   // Primary phone (used for fallback / demo cars)
-  primaryPhone: '+919644924777',
+  primaryPhone: '+919425205507',
   social: {
     instagram: 'https://instagram.com/saatvikcars',
     twitter: 'https://twitter.com/saatvikcars',

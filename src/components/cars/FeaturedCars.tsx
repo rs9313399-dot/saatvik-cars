@@ -783,8 +783,8 @@ function CarDetailModal({ car, onClose, wishlisted, onToggleWishlist, onBookTest
                 suppressHydrationWarning
                 className="flex-1 h-11 bg-[#D7B56D] text-[#0A0A0A] hover:bg-[#E7C77B] font-semibold text-sm shadow-lg shadow-[#D7B56D]/20"
                 onClick={() => {
-                  window.open(getCallLink(car.contactPhone || '+919644924777'), '_self');
-                  toast.success('Calling seller...', { description: `Connecting to ${car.contactPhone}` });
+                  window.open(getCallLink(car.contactPhone || BUSINESS.primaryPhone), '_self');
+                  toast.success('Calling seller...', { description: `Connecting to ${car.contactPhone || BUSINESS.primaryPhone}` });
                 }}
               >
                 <Phone className="mr-2 h-4 w-4" /> Call Seller
@@ -793,7 +793,7 @@ function CarDetailModal({ car, onClose, wishlisted, onToggleWishlist, onBookTest
                 suppressHydrationWarning
                 className="flex-1 h-11 bg-green-600 text-white hover:bg-green-700 font-semibold text-sm shadow-lg shadow-green-500/20"
                 onClick={() => {
-                  window.open(getWhatsAppLink(car.contactPhone || '+919644924777', car.name), '_blank');
+                  window.open(getWhatsAppLink(car.contactPhone || BUSINESS.primaryPhone, car.name), '_blank');
                   toast.success('Opening WhatsApp...');
                 }}
               >

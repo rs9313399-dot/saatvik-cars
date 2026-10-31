@@ -71,12 +71,28 @@ export function parseImages(images: string | string[]): string[] {
 }
 
 export function getWhatsAppLink(phone: string, carName: string): string {
-  const cleanPhone = phone.replace(/[^0-9]/g, '');
+  let cleanPhone = (phone || '').replace(/[^0-9]/g, '');
+  // Default canonical dealer WhatsApp: +91 94252 05507 (919425205507)
+  const defaultDealerNumber = '919425205507';
+  if (!cleanPhone || cleanPhone.length < 10) {
+    cleanPhone = defaultDealerNumber;
+  } else if (cleanPhone.length === 10) {
+    cleanPhone = `91${cleanPhone}`;
+  } else if (cleanPhone.length > 10 && !cleanPhone.startsWith('91')) {
+    cleanPhone = defaultDealerNumber;
+  }
   const message = encodeURIComponent(`Hi, I am interested in this car: ${carName}`);
   return `https://wa.me/${cleanPhone}?text=${message}`;
 }
 
 export function getCallLink(phone: string): string {
-  const cleanPhone = phone.replace(/[^0-9+]/g, '');
+  let cleanPhone = (phone || '').replace(/[^0-9+]/g, '');
+  const digits = cleanPhone.replace(/[^0-9]/g, '');
+  if (!digits || digits.length < 10) {
+    cleanPhone = '+919425205507';
+  } else if (digits.length === 10) {
+    cleanPhone = `+91${digits}`;
+  }
   return `tel:${cleanPhone}`;
 }
+
